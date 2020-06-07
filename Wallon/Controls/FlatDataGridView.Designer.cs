@@ -1,4 +1,4 @@
-﻿namespace QMag.Controls
+﻿namespace Controls
 {
 	partial class FlatDataGridView
 	{
@@ -50,8 +50,8 @@
 			// 
 			// FlatDataGridView
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			/*this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;*/
 			this.Controls.Add(this.dataGridView);
 			this.Name = "FlatDataGridView";
 			this.Size = new System.Drawing.Size(1856, 893);

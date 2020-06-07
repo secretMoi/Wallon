@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using Controls;
 using Core;
 
-namespace QMag.Controls
+namespace Controls
 {
     public partial class FlatTextBox : UserControl
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using Controls;
+using Controls.Buttons;
 using Core;
-using QMag.Controls.Buttons;
 
 namespace Wallon.Fenetres
 {

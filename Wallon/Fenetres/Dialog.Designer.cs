@@ -1,4 +1,6 @@
-﻿namespace Wallon.Fenetres
+﻿using Controls;
+
+namespace Wallon.Fenetres
 {
 	partial class Dialog
 	{
@@ -30,7 +32,7 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dialog));
 			this.panelHeader = new System.Windows.Forms.Panel();
-			this.flatLabel1 = new Wallon.Controls.FlatLabel();
+			this.flatLabel1 = new FlatLabel();
 			this.panelHeader.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -81,6 +83,6 @@
 		#endregion
 
 		private System.Windows.Forms.Panel panelHeader;
-		private Controls.FlatLabel flatLabel1;
+		private FlatLabel flatLabel1;
 	}
 }

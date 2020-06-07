@@ -1,4 +1,6 @@
-﻿namespace QMag.Controls
+﻿using Controls.Buttons;
+
+namespace Controls
 {
     partial class FlatListBox
     {
@@ -34,8 +36,8 @@
 			this.panelTitre = new System.Windows.Forms.Panel();
 			this.pictureBox = new System.Windows.Forms.PictureBox();
 			this.panelCorps = new System.Windows.Forms.Panel();
-			this.flatButtonDown = new QMag.Controls.Buttons.FlatButton();
-			this.flatButtonUp = new QMag.Controls.Buttons.FlatButton();
+			this.flatButtonDown = new FlatButton();
+			this.flatButtonUp = new FlatButton();
 			this.timer = new System.Windows.Forms.Timer(this.components);
 			this.panelTitre.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -151,7 +153,7 @@
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Panel panelCorps;
         private System.Windows.Forms.Timer timer;
-		private QMag.Controls.Buttons.FlatButton flatButtonUp;
-		private QMag.Controls.Buttons.FlatButton flatButtonDown;
+		private FlatButton flatButtonUp;
+		private FlatButton flatButtonDown;
 	}
 }

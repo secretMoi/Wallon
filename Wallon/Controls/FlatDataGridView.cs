@@ -7,7 +7,7 @@ using Controls;
 using Core;
 
 //todo optimiser grosse liste de data, mettre toutes les données dans une liste en ram et n'afficher que celles visibles
-namespace QMag.Controls
+namespace Controls
 {
 	public partial class FlatDataGridView : ThemePanel
 	{

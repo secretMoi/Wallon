@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using Core;
 
-namespace QMag.Controls.Buttons
+namespace Controls.Buttons
 {
     public partial class FlatButton : Button
     {

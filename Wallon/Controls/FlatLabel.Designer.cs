@@ -1,4 +1,4 @@
-﻿namespace Wallon.Controls
+﻿namespace Controls
 {
     partial class FlatLabel
     {

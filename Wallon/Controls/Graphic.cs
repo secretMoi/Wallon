@@ -6,7 +6,7 @@ using Core;
 using Core.Figures;
 using QMag.Core.Graphique;
 
-namespace QMag.Controls
+namespace Controls
 {
 	public partial class Graphic : PictureBox
 	{

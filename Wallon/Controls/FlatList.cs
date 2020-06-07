@@ -2,9 +2,9 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Controls;
-using QMag.Controls.Buttons;
+using Controls.Buttons;
 
-namespace Wallon.Controls
+namespace Controls
 {
 	public partial class FlatList : UserControl
 	{

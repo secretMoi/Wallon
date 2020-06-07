@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Core;
-using QMag.Controls;
 using QMag.Core;
 
 namespace Controls.Checkbox

@@ -1,4 +1,6 @@
-﻿namespace Wallon.Controls
+﻿using Controls;
+
+namespace Controls
 {
 	partial class FlatList
 	{
@@ -29,7 +31,7 @@
 		private void InitializeComponent()
 		{
 			this.panelTitre = new System.Windows.Forms.Panel();
-			this.flatLabelTitre = new Wallon.Controls.FlatLabel();
+			this.flatLabelTitre = new FlatLabel();
 			this.panelCorps = new System.Windows.Forms.Panel();
 			this.panelTitre.SuspendLayout();
 			this.SuspendLayout();

@@ -1,4 +1,4 @@
-﻿namespace QMag.Controls.Buttons
+﻿namespace Controls.Buttons
 {
 	partial class FlatButton
 	{

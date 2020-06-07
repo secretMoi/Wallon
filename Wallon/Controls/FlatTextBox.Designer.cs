@@ -1,4 +1,4 @@
-﻿namespace QMag.Controls
+﻿namespace Controls
 {
     partial class FlatTextBox
     {

@@ -110,12 +110,6 @@
     <Compile Include="Controls\GraphicRepartition.Designer.cs">
       <DependentUpon>GraphicRepartition.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\test.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\test.Designer.cs">
-      <DependentUpon>test.cs</DependentUpon>
-    </Compile>
     <Compile Include="Controls\Theme.cs" />
     <Compile Include="Controls\ThemePanel.cs">
       <SubType>UserControl</SubType>
@@ -146,20 +140,6 @@
     <Compile Include="Core\Graphique\Spirographe.cs" />
     <Compile Include="Core\HtmlView.cs" />
     <Compile Include="Core\Money.cs" />
-    <Compile Include="Core\Pages\AjouterArguments.cs" />
-    <Compile Include="Core\Pages\BaseAjouter.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Core\Pages\BaseAjouter.Designer.cs">
-      <DependentUpon>BaseAjouter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Core\Pages\BaseConsulter.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Core\Pages\BaseConsulter.Designer.cs">
-      <DependentUpon>BaseConsulter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Core\Pages\Formulaire.cs" />
     <Compile Include="Core\Reflection.cs" />
     <Compile Include="Core\UseGridView.cs" />
     <Compile Include="Fenetres\Dialog.cs">
@@ -214,12 +194,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Utilisation.resx">
       <DependentUpon>Utilisation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Core\Pages\BaseAjouter.resx">
-      <DependentUpon>BaseAjouter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Core\Pages\BaseConsulter.resx">
-      <DependentUpon>BaseConsulter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fenetres\Dialog.resx">
       <DependentUpon>Dialog.cs</DependentUpon>

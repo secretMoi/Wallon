@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using Controls;
 using Core;
 using Core.Figures;
-using QMag.Controls;
 
 namespace QMag.Core.Graphique
 {

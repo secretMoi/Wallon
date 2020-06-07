@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using Controls;
-using QMag.Controls.Buttons;
+using Controls.Buttons;
 
-namespace QMag.Controls
+namespace Controls
 {
 	public partial class FlatListBox : UserControl
 	{

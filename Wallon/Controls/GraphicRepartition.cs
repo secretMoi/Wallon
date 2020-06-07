@@ -5,7 +5,6 @@ using System.Globalization;
 using System.Windows.Forms;
 using Core;
 using Core.Figures;
-using QMag.Controls;
 
 namespace Controls
 {

@@ -1,4 +1,4 @@
-﻿using  QMag.Controls.Buttons;
+﻿using Controls.Buttons;
 
 namespace Wallon.Fenetres
 {
@@ -33,25 +33,25 @@ namespace Wallon.Fenetres
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.panelMenu = new System.Windows.Forms.Panel();
-			this.menuFlatButtonClose = new QMag.Controls.Buttons.MenuFlatButton();
+			this.menuFlatButtonClose = new MenuFlatButton();
 			this.panelSousMenuFournisseurs = new System.Windows.Forms.Panel();
-			this.menu_Fournisseurs_Reapprovisionner = new QMag.Controls.Buttons.MenuFlatButton();
-			this.menu_Fournisseurs_Commandes = new QMag.Controls.Buttons.MenuFlatButton();
-			this.menu_Fournisseurs_Ajouter = new QMag.Controls.Buttons.MenuFlatButton();
-			this.menu_Fournisseurs_Consulter = new QMag.Controls.Buttons.MenuFlatButton();
-			this.menu_Fournisseurs = new QMag.Controls.Buttons.MenuFlatButton();
+			this.menu_Fournisseurs_Reapprovisionner = new MenuFlatButton();
+			this.menu_Fournisseurs_Commandes = new MenuFlatButton();
+			this.menu_Fournisseurs_Ajouter = new MenuFlatButton();
+			this.menu_Fournisseurs_Consulter = new MenuFlatButton();
+			this.menu_Fournisseurs = new MenuFlatButton();
 			this.panelSousMenuClients = new System.Windows.Forms.Panel();
-			this.menu_Clients_Historique = new QMag.Controls.Buttons.MenuFlatButton();
-			this.menu_Clients_Commander = new QMag.Controls.Buttons.MenuFlatButton();
-			this.menu_Clients_Ajouter = new QMag.Controls.Buttons.MenuFlatButton();
-			this.menu_Clients_Consulter = new QMag.Controls.Buttons.MenuFlatButton();
-			this.menu_Clients = new QMag.Controls.Buttons.MenuFlatButton();
+			this.menu_Clients_Historique = new MenuFlatButton();
+			this.menu_Clients_Commander = new MenuFlatButton();
+			this.menu_Clients_Ajouter = new MenuFlatButton();
+			this.menu_Clients_Consulter = new MenuFlatButton();
+			this.menu_Clients = new MenuFlatButton();
 			this.panelSousMenuStock = new System.Windows.Forms.Panel();
-			this.menu_Stock_Consulter = new QMag.Controls.Buttons.MenuFlatButton();
-			this.menu_Stock_Ajouter = new QMag.Controls.Buttons.MenuFlatButton();
-			this.menu_Stock = new QMag.Controls.Buttons.MenuFlatButton();
-			this.menu_ChiffreAffaire = new QMag.Controls.Buttons.MenuFlatButton();
-			this.menu_Accueil = new QMag.Controls.Buttons.MenuFlatButton();
+			this.menu_Stock_Consulter = new MenuFlatButton();
+			this.menu_Stock_Ajouter = new MenuFlatButton();
+			this.menu_Stock = new MenuFlatButton();
+			this.menu_ChiffreAffaire = new MenuFlatButton();
+			this.menu_Accueil = new MenuFlatButton();
 			this.panelContainer = new System.Windows.Forms.Panel();
 			this.panelHeader = new System.Windows.Forms.Panel();
 			this.pictureBoxReduce = new System.Windows.Forms.PictureBox();

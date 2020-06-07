@@ -1,4 +1,4 @@
-﻿using QMag.Controls.Buttons;
+﻿using Controls;
 
 namespace Wallon.Pages
 {
@@ -34,7 +34,7 @@ namespace Wallon.Pages
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Accueil));
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.panelAlerte = new System.Windows.Forms.Panel();
-			this.flatLabelAlerte = new Wallon.Controls.FlatLabel();
+			this.flatLabelAlerte = new FlatLabel();
 			this.labelTitre = new System.Windows.Forms.Label();
 			this.buttonVendre = new System.Windows.Forms.Button();
 			this.buttonAcheter = new System.Windows.Forms.Button();
@@ -195,7 +195,7 @@ namespace Wallon.Pages
 		private System.Windows.Forms.Button buttonStock;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Panel panelAlerte;
-		private Controls.FlatLabel flatLabelAlerte;
+		private FlatLabel flatLabelAlerte;
 		private System.Windows.Forms.Timer timer;
 	}
 }

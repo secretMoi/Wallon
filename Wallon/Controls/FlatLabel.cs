@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using Controls;
 
-namespace Wallon.Controls
+namespace Controls
 {
     public partial class FlatLabel : Label
     {

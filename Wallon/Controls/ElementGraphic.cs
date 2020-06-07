@@ -7,7 +7,7 @@ using Core;
 using Core.Figures;
 using Rectangle = QMag.Core.Figures.Rectangle;
 
-namespace QMag.Controls
+namespace Controls
 {
     public partial class ElementGraphic
     {
