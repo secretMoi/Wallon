@@ -28,12 +28,22 @@ namespace Wallon.Fenetres
 
 			Resize += Form1_Resize;
 
+			SetSubMenus();
+
+			SetColors();
+		}
+
+		private void SetColors()
+		{
+			panelHeader.BackColor = Theme.BackDark;
+		}
+
+		private void Form1_Load(object sender, EventArgs e)
+		{
 			ThemePanel.SetConnection(Connexion);
 			Accueil accueil = new Accueil();
 
 			panelContainer.Controls.Add(accueil);
-
-			SetSubMenus();
 		}
 
 		private void SetSubMenus()
@@ -251,5 +261,5 @@ namespace Wallon.Fenetres
         {
 
         }
-    }
+	}
 }
