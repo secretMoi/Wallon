@@ -46,14 +46,190 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Controls\Buttons\FlatButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Buttons\FlatButton.Designer.cs">
+      <DependentUpon>FlatButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Buttons\MenuFlatButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Buttons\MenuFlatButton.Designer.cs">
+      <DependentUpon>MenuFlatButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Checkbox\RoundedCheckbox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Checkbox\RoundedCheckbox.Designer.cs">
+      <DependentUpon>RoundedCheckbox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ElementGraphic.cs" />
+    <Compile Include="Controls\ElementGraphic.Designer.cs">
+      <DependentUpon>ElementGraphic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FlatDataGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FlatDataGridView.Designer.cs">
+      <DependentUpon>FlatDataGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FlatLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\FlatLabel.Designer.cs">
+      <DependentUpon>FlatLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FlatList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FlatList.Designer.cs">
+      <DependentUpon>FlatList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FlatListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FlatListBox.Designer.cs">
+      <DependentUpon>FlatListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FlatTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\FlatTextBox.Designer.cs">
+      <DependentUpon>FlatTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Graphic.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Graphic.Designer.cs">
+      <DependentUpon>Graphic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GraphicRepartition.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GraphicRepartition.Designer.cs">
+      <DependentUpon>GraphicRepartition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\test.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\test.Designer.cs">
+      <DependentUpon>test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Theme.cs" />
+    <Compile Include="Controls\ThemePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ThemePanel.Designer.cs">
+      <DependentUpon>ThemePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Utilisation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Utilisation.Designer.cs">
+      <DependentUpon>Utilisation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Couple.cs" />
+    <Compile Include="Core\Element.cs" />
+    <Compile Include="Core\Figures\Arc.cs" />
+    <Compile Include="Core\Figures\Cercle.cs" />
+    <Compile Include="Core\Figures\Disque.cs" />
+    <Compile Include="Core\Figures\Ellipse.cs" />
+    <Compile Include="Core\Figures\Figure.cs" />
+    <Compile Include="Core\Figures\Ligne.cs" />
+    <Compile Include="Core\Figures\Point.cs" />
+    <Compile Include="Core\Figures\Rectangle.cs" />
+    <Compile Include="Core\Figures\RectangleArrondi.cs" />
+    <Compile Include="Core\Figures\Rotation.cs" />
+    <Compile Include="Core\Figures\Texte.cs" />
+    <Compile Include="Core\Graphique\Graphique.cs" />
+    <Compile Include="Core\Graphique\Spirographe.cs" />
+    <Compile Include="Core\HtmlView.cs" />
+    <Compile Include="Core\Money.cs" />
+    <Compile Include="Core\Pages\AjouterArguments.cs" />
+    <Compile Include="Core\Pages\BaseAjouter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\Pages\BaseAjouter.Designer.cs">
+      <DependentUpon>BaseAjouter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Pages\BaseConsulter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Core\Pages\BaseConsulter.Designer.cs">
+      <DependentUpon>BaseConsulter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Pages\Formulaire.cs" />
+    <Compile Include="Core\Reflection.cs" />
+    <Compile Include="Core\UseGridView.cs" />
+    <Compile Include="Fenetres\Dialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Fenetres\Dialog.Designer.cs">
+      <DependentUpon>Dialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fenetres\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fenetres\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Fenetres\FormBdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Fenetres\FormBdd.Designer.cs">
+      <DependentUpon>FormBdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Accueil.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\Accueil.Designer.cs">
+      <DependentUpon>Accueil.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Controls\Checkbox\RoundedCheckbox.resx">
+      <DependentUpon>RoundedCheckbox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ElementGraphic.resx">
+      <DependentUpon>ElementGraphic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FlatDataGridView.resx">
+      <DependentUpon>FlatDataGridView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FlatList.resx">
+      <DependentUpon>FlatList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FlatListBox.resx">
+      <DependentUpon>FlatListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FlatTextBox.resx">
+      <DependentUpon>FlatTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GraphicRepartition.resx">
+      <DependentUpon>GraphicRepartition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ThemePanel.resx">
+      <DependentUpon>ThemePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Utilisation.resx">
+      <DependentUpon>Utilisation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Pages\BaseAjouter.resx">
+      <DependentUpon>BaseAjouter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Core\Pages\BaseConsulter.resx">
+      <DependentUpon>BaseConsulter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fenetres\Dialog.resx">
+      <DependentUpon>Dialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Fenetres\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Accueil.resx">
+      <DependentUpon>Accueil.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +251,86 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Ressources\Images\bag.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\box.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\checkup.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\close.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\delivery-box.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\delivery.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\diagonal-arrows.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\down-arrow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\editer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\euro.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\hard-disk-drive.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\home.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\jobs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\loading.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\logo.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\logo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\logout.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\loupe.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\minus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\pack.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\pie-chart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\signs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\supprimer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\tick.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\tools-and-utensils.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ressources\Images\up-arrow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

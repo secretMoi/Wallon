@@ -1,13 +1,13 @@
-﻿namespace Wallon
+﻿namespace QMag.Controls
 {
-	partial class Form1
+	partial class test
 	{
-		/// <summary>
+		/// <summary> 
 		/// Variable nécessaire au concepteur.
 		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
+		/// <summary> 
 		/// Nettoyage des ressources utilisées.
 		/// </summary>
 		/// <param name="disposing">true si les ressources managées doivent être supprimées ; sinon, false.</param>
@@ -20,21 +20,18 @@
 			base.Dispose(disposing);
 		}
 
-		#region Code généré par le Concepteur Windows Form
+		#region Code généré par le Concepteur de composants
 
-		/// <summary>
-		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas
+		/// <summary> 
+		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas 
 		/// le contenu de cette méthode avec l'éditeur de code.
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Text = "Form1";
+			components = new System.ComponentModel.Container();
+			//this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 		}
 
 		#endregion
 	}
 }
-
