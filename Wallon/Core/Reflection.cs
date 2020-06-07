@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace QMag.Core
+namespace Core
 {
 	public class Reflection
 	{

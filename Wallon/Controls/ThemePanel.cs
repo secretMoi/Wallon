@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
+using Core;
 using Wallon.Fenetres;
 
 //todo border fenetre
@@ -21,6 +22,16 @@ namespace Controls
 			_arguments = new List<object>();
 		}
 
+		protected void SetPanelTitre(Panel panel)
+		{
+			panel.Height = Theme.HauteurHeaderTitre;
+		}
+
+		protected void SetTitre(string titre)
+		{
+			labelTitre.Text = titre;
+		}
+
 		// méthode appelée après la création d'une page pour charger des arguments
 		public virtual void Hydrate(params object[] args)
 		{
@@ -31,9 +42,11 @@ namespace Controls
 
 		protected void LoadPage(string page, params object[] arguments)
 		{
-			// Form1 form = (Form1) Form.ActiveForm; méthode basique mais peu fiable
-			Form1 lastOpenedForm = Application.OpenForms[Application.OpenForms.Count - 1] as Form1; // récupère la dernière form active
-			lastOpenedForm?.LoadPage("QMag.Pages." + page, arguments); // charge la page Ajouter
+			string @namespace = new Reflection(GetType()).FirstNamespace;
+			 Form1 lastOpenedForm = (Form1) Form.ActiveForm; //méthode basique mais peu fiable
+			var test = Application.OpenForms;
+			//Form1 lastOpenedForm = Application.OpenForms[Application.OpenForms.Count - 1] as Form1; // récupère la dernière form active
+			lastOpenedForm?.LoadPage(@namespace + ".Pages.Vue." + page, arguments); // charge la page Ajouter
 		}
 
 		public static void SetConnection(string connexion)

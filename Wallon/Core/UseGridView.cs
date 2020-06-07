@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace QMag.Core
+namespace Core
 {
 	public class UseGridView
 	{

@@ -15,6 +15,9 @@ namespace Controls
         public static readonly string TypeFace = "Yu Gothic UI";
         public static readonly Font Font = new Font(TypeFace, TextSize);
 
+        // tailles
+        public static readonly int HauteurHeaderTitre = 120;
+
         // converti la classe couleur en code couleur hexa
         public static string ColorToHex(Color color)
         {

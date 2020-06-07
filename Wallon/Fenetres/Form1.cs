@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Controls;
-using QMag.Core;
+using Core;
 using Wallon.Pages;
+using Wallon.Pages.Vue;
 
 //todo séparer les pages header dans une classe
 //todo geler l'affichage durant le chargement d'une page pour éviter les "blancs"
@@ -93,13 +94,13 @@ namespace Wallon.Fenetres
 
 			if (chaine.Length == 3) // si c'est un bouton de sous-menu
 			{
-				@namespace = reflection.FirstNamespace + ".Pages." + chaine[1];
+				@namespace = reflection.FirstNamespace + ".Pages.Vue." + chaine[1];
 				@class = chaine[2];
 			}
 			else // si c'est un bouton de menu
 			{
 				// charge directement la page
-				@namespace = reflection.FirstNamespace + ".Pages";
+				@namespace = reflection.FirstNamespace + ".Pages.Vue";
 				@class = chaine[1];
 
 				// trouve le panel correspondant
