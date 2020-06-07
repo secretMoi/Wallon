@@ -29,7 +29,7 @@ namespace Wallon.Pages
 					alerte = true;
 					break;
 				}
-			}
+			}*/
 
 			if (alerte) // si il y a au moins un article en quantité insuffisante
 			{
@@ -38,7 +38,7 @@ namespace Wallon.Pages
 				timer.Start();
 			}
 
-			panelAlerte.Size = new Size(panelAlerte.Width, 0);*/
+			panelAlerte.Size = new Size(panelAlerte.Width, 0);
 		}
 
 		private void panelAlerte_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
