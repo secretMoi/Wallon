@@ -4,7 +4,7 @@ namespace Wallon.Fenetres
 {
 	public partial class FormBdd : Form
 	{
-		private readonly string _connexion = "Data Source=ROGSTRIXSCAR;Initial Catalog=magasin;Integrated Security=True";
+		private readonly string _connexion = "Data Source=192.168.1.106;Initial Catalog=Wallons;Persist Security Info=True;User ID=sa;Password=6463f184f";
 
 		public FormBdd()
 		{

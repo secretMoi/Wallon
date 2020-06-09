@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{19B14CFC-7598-4CF8-984A-3DB93A7F0CC6}</ProjectGuid>
+    <ProjectGuid>{B6A7E0F9-5516-4273-B044-24B1B88A8BBD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Couche_Acces</RootNamespace>
-    <AssemblyName>Couche_Acces</AssemblyName>
+    <RootNamespace>Couche_Gestion</RootNamespace>
+    <AssemblyName>Couche_Gestion</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Couche_Acces, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Couche_Acces\obj\Debug\Couche_Acces.dll</HintPath>
+    </Reference>
     <Reference Include="Couche_Classe, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Couche_Classe\obj\Debug\Couche_Classe.dll</HintPath>
@@ -46,7 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base.cs" />
-    <Compile Include="Acces_Locataire.cs" />
+    <Compile Include="Gestion_Locataire.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

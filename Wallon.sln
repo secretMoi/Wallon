@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wallon", "Wallon\Wallon.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Couche_Acces", "Couche_Acces\Couche_Acces.csproj", "{19B14CFC-7598-4CF8-984A-3DB93A7F0CC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Couche_Classe", "Couche_Classe\Couche_Classe.csproj", "{86508A58-5ED4-4119-8F9E-85685F25B9FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Couche_Gestion", "Couche_Gestion\Couche_Gestion.csproj", "{B6A7E0F9-5516-4273-B044-24B1B88A8BBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{19B14CFC-7598-4CF8-984A-3DB93A7F0CC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19B14CFC-7598-4CF8-984A-3DB93A7F0CC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19B14CFC-7598-4CF8-984A-3DB93A7F0CC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86508A58-5ED4-4119-8F9E-85685F25B9FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86508A58-5ED4-4119-8F9E-85685F25B9FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86508A58-5ED4-4119-8F9E-85685F25B9FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86508A58-5ED4-4119-8F9E-85685F25B9FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6A7E0F9-5516-4273-B044-24B1B88A8BBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6A7E0F9-5516-4273-B044-24B1B88A8BBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6A7E0F9-5516-4273-B044-24B1B88A8BBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6A7E0F9-5516-4273-B044-24B1B88A8BBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -33,6 +33,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Couche_Acces">
+      <HintPath>..\Couche_Acces\obj\Debug\Couche_Acces.dll</HintPath>
+    </Reference>
+    <Reference Include="Couche_Classe">
+      <HintPath>..\Couche_Classe\obj\Debug\Couche_Classe.dll</HintPath>
+    </Reference>
+    <Reference Include="Couche_Gestion">
+      <HintPath>..\Couche_Gestion\obj\Debug\Couche_Gestion.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Controls;
+using Couche_Gestion;
 
 namespace Wallon.Pages.Vue
 {
@@ -12,6 +13,8 @@ namespace Wallon.Pages.Vue
 			SetTitre("Connexion");
 
 			SetColors();
+
+			//new Gestion_Locataire(Connexion).Ajouter("Quentin", "6463f184f");
 		}
 
 		private void SetColors()
