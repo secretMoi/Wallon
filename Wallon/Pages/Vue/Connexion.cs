@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Linq;
 using Controls;
 
 namespace Wallon.Pages.Vue
@@ -24,7 +16,8 @@ namespace Wallon.Pages.Vue
 
 		private void SetColors()
 		{
-			foreach (FlatLabel label in this.Controls.OfType<FlatLabel>())
+			// change la couleur de tous les flatLabel
+			foreach (FlatLabel label in Controls.OfType<FlatLabel>())
 				label.ForeColor = Theme.BackDark;
 		}
 	}

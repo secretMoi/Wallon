@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using Controls;
 using Core;
-using Wallon.Pages;
 using Wallon.Pages.Vue;
 
 //todo séparer les pages header dans une classe
@@ -59,11 +58,11 @@ namespace Wallon.Fenetres
 				_subMenuPanelToHide.Add(panelSousMenuStock);
 
 			if (panelSousMenuClients.Size.Height >= panelSousMenuClients.MinimumSize.Height &&
-			         panelSousMenuClients != _subMenuPanelToShow)
+					 panelSousMenuClients != _subMenuPanelToShow)
 				_subMenuPanelToHide.Add(panelSousMenuClients);
 
 			if (panelSousMenuFournisseurs.Size.Height >= panelSousMenuFournisseurs.MinimumSize.Height &&
-			         panelSousMenuFournisseurs != _subMenuPanelToShow)
+					 panelSousMenuFournisseurs != _subMenuPanelToShow)
 				_subMenuPanelToHide.Add(panelSousMenuFournisseurs);
 		}
 
@@ -257,9 +256,9 @@ namespace Wallon.Fenetres
 			control.Size = new Size(taille, taille);
 		}
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
+		private void pictureBox1_Click(object sender, EventArgs e)
+		{
 
-        }
+		}
 	}
 }
