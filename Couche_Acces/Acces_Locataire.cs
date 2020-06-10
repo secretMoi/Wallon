@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using Couche_Classe;
 
 namespace Couche_Acces
@@ -11,22 +13,28 @@ namespace Couche_Acces
 		  : base(sChaineConnexion)
 		{
 			Table = "Locataires";
+
+			_champs.Add(("id", typeof(int)));
+			_champs.Add(("nom", typeof(string)));
+			_champs.Add(("password", typeof(string)));
 		}
 
 		public int Ajouter(string nom, string password)
 		{
-			CreerCommande("LocataireAjouter");
+			CreerCommande("Ajouter");
 
-			Commande.Parameters.Add("id", SqlDbType.Int);
-			Direction("id", ParameterDirection.Output);
+			/*Commande.Parameters.Add("id", SqlDbType.Int);
+			Direction("id", ParameterDirection.Output);*/
 
-			AddParameter("nom", nom);
-			AddParameter("password", password);
+			AddParameters(nom, password);
 
 			Commande.Connection.Open();
-			Commande.ExecuteNonQuery();
 
-			int num = int.Parse(LireParametre("id"));
+			Commande.ExecuteNonQuery();
+			
+
+			//int num = int.Parse(LireParametre("id"));
+			int num = 0;
 
 			Commande.Connection.Close();
 
@@ -35,12 +43,11 @@ namespace Couche_Acces
 
 		public int Modifier(int id, string nom, string password)
 		{
-			CreerCommande("ModifierClients");
+			CreerCommande("Modifier");
 			int num = 0;
 
-			AddParameter("id", id);
-			AddParameter("nom", nom);
-			AddParameter("password", password);
+			AddParameters(true, id, nom, password);
+
 			Commande.Connection.Open();
 
 			Commande.ExecuteNonQuery();

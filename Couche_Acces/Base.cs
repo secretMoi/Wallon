@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -9,6 +10,7 @@ namespace Couche_Acces
 		#region Données membres
 		protected SqlCommand _commande;
 		protected String _table;
+		protected List<(string, Type)> _champs = new List<(string, Type)>();
 		#endregion
 
 		#region Constructeurs (étendus)
@@ -95,6 +97,30 @@ namespace Couche_Acces
 		protected void AddParameter(string name, object value)
 		{
 			Commande.Parameters.AddWithValue("@" + name, (dynamic) value);
+		}
+
+		protected void AddParameters(params object[] values)
+		{
+			if(values.Length != _champs.Count - 1)
+				throw new Exception("Nombre de paramètres inexact");
+
+			/*int idChamp = 0;
+
+			if (withId == false)
+				idChamp = 1;
+
+			while (idChamp < values.Length)
+			{
+				AddParameter(_champs[idChamp].Item1, values[idChamp]);
+
+				idChamp++;
+			}*/
+
+			for (int i = 0; i < values.Length; i++)
+			{
+				AddParameter(_champs[i + 1].Item1, values[i]);
+				//Commande.Parameters.AddWithValue("@" + _champs[i].Item1, (dynamic)values[i]);
+			}
 		}
 
 		protected string LireChamp(SqlDataReader sqlDataReader, string champ)
