@@ -10,6 +10,7 @@ namespace Couche_Acces
 		public Acces_Locataire(string sChaineConnexion)
 		  : base(sChaineConnexion)
 		{
+			Table = "Locataires";
 		}
 
 		public int Ajouter(string nom, string password)
@@ -19,8 +20,8 @@ namespace Couche_Acces
 			Commande.Parameters.Add("id", SqlDbType.Int);
 			Direction("id", ParameterDirection.Output);
 
-			Commande.Parameters.AddWithValue("@nom", nom);
-			Commande.Parameters.AddWithValue("@password", password);
+			AddParameter("nom", nom);
+			AddParameter("password", password);
 
 			Commande.Connection.Open();
 			Commande.ExecuteNonQuery();
@@ -37,9 +38,9 @@ namespace Couche_Acces
 			CreerCommande("ModifierClients");
 			int num = 0;
 
-			Commande.Parameters.AddWithValue("@id", id);
-			Commande.Parameters.AddWithValue("@nom", nom);
-			Commande.Parameters.AddWithValue("@password", password);
+			AddParameter("id", id);
+			AddParameter("nom", nom);
+			AddParameter("password", password);
 			Commande.Connection.Open();
 
 			Commande.ExecuteNonQuery();
@@ -49,11 +50,11 @@ namespace Couche_Acces
 			return num;
 		}
 
-		public List<Locataire> Lire(string Index)
+		public List<Locataire> Lire(string index)
 		{
-			CreerCommande("SelectionnerClients");
+			CreerCommande("Lire");
 
-			Commande.Parameters.AddWithValue("@Index", Index);
+			Commande.Parameters.AddWithValue("@Index", index);
 			Commande.Connection.Open();
 
 			SqlDataReader sqlDataReader = Commande.ExecuteReader();
@@ -62,9 +63,9 @@ namespace Couche_Acces
 			while (sqlDataReader.Read())
 				cClientsList.Add(new Locataire
 				{
-					Id = int.Parse(sqlDataReader["id"].ToString()),
-					Nom = sqlDataReader["nom"].ToString(),
-					Password = sqlDataReader["password"].ToString()
+					Id = int.Parse(LireChamp(sqlDataReader, "id")),
+					Nom = LireChamp(sqlDataReader, "nom"),
+					Password = LireChamp(sqlDataReader, "password")
 				});
 
 			sqlDataReader.Close();
@@ -73,9 +74,9 @@ namespace Couche_Acces
 			return cClientsList;
 		}
 
-		public Locataire Lire_ID(int id)
+		public Locataire LireId(int id)
 		{
-			CreerCommande("SelectionnerClients_ID");
+			CreerCommande("LireId");
 
 			Commande.Parameters.AddWithValue("@id", id);
 			Commande.Connection.Open();
@@ -85,9 +86,9 @@ namespace Couche_Acces
 
 			while (sqlDataReader.Read())
 			{
-				cClients.Id = int.Parse(sqlDataReader[nameof(id)].ToString());
-				cClients.Nom = sqlDataReader["nom"].ToString();
-				cClients.Password = sqlDataReader["password"].ToString();
+				cClients.Id = int.Parse(LireChamp(sqlDataReader, "id"));
+				cClients.Nom = LireChamp(sqlDataReader, "nom");
+				cClients.Password = LireChamp(sqlDataReader, "password");
 			}
 
 			sqlDataReader.Close();
@@ -100,7 +101,8 @@ namespace Couche_Acces
 		{
 			CreerCommande("SupprimerClients");
 
-			Commande.Parameters.AddWithValue("@id", id);
+			//Commande.Parameters.AddWithValue("@id", id);
+			AddParameter("id", id);
 
 			Commande.Connection.Open();
 			int num = Commande.ExecuteNonQuery();

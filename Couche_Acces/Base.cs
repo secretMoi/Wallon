@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace Couche_Acces
@@ -7,6 +8,7 @@ namespace Couche_Acces
 	{
 		#region Données membres
 		protected SqlCommand _commande;
+		protected String _table;
 		#endregion
 
 		#region Constructeurs (étendus)
@@ -30,6 +32,8 @@ namespace Couche_Acces
 		{
 			_commande.CommandType = CommandType.StoredProcedure;
 			_commande.CommandText = sCommande;
+
+			AddTableAsParam();
 		}
 		/// <summary>
 		/// Méthode assignant une procédure stockée ET une chaîne de connexion
@@ -87,6 +91,27 @@ namespace Couche_Acces
 		{
 			return Commande.Parameters[sParam].Value.ToString();
 		}
+
+		protected void AddParameter(string name, object value)
+		{
+			Commande.Parameters.AddWithValue("@" + name, (dynamic) value);
+		}
+
+		protected string LireChamp(SqlDataReader sqlDataReader, string champ)
+		{
+			return sqlDataReader[champ].ToString();
+		}
+
+		protected void AddTableAsParam()
+		{
+			AddParameter("Table", Table);
+		}
 		#endregion
+
+		protected string Table
+		{
+			get => _table;
+			set => _table = value;
+		}
 	}
 }

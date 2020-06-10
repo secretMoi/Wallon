@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Couche_Acces;
 using Couche_Classe;
 
@@ -21,27 +17,27 @@ namespace Couche_Gestion
 
 		public int Ajouter(string nom, string password)
 		{
-			return new Acces_Locataire(this.ChaineConnexion).Ajouter(nom, password);
+			return new Acces_Locataire(ChaineConnexion).Ajouter(nom, password);
 		}
 
 		public int Modifier(int id, string nom, string password)
 		{
-			return new Acces_Locataire(this.ChaineConnexion).Modifier(id, nom, password);
+			return new Acces_Locataire(ChaineConnexion).Modifier(id, nom, password);
 		}
 
-		public List<Locataire> Lire(string Index)
+		public List<Locataire> Lire(string index)
 		{
-			return new Acces_Locataire(this.ChaineConnexion).Lire(Index);
+			return new Acces_Locataire(ChaineConnexion).Lire(index);
 		}
 
-		public Locataire Lire_ID(int id)
+		public Locataire LireId(int id)
 		{
-			return new Acces_Locataire(this.ChaineConnexion).Lire_ID(id);
+			return new Acces_Locataire(ChaineConnexion).LireId(id);
 		}
 
 		public int Supprimer(int id)
 		{
-			return new Acces_Locataire(this.ChaineConnexion).Supprimer(id);
+			return new Acces_Locataire(ChaineConnexion).Supprimer(id);
 		}
 	}
 }
