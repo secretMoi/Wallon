@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using Couche_Classe;
 
 namespace Couche_Acces
 {
@@ -94,31 +93,40 @@ namespace Couche_Acces
 			return Commande.Parameters[sParam].Value.ToString();
 		}
 
+		/// <summary>
+		/// Ajoute un seul paramètre à une requête SQL
+		/// </summary>
+		/// <param name="name">Nom du paramètre dans la procédure stockée</param>
+		/// <param name="value">Valeur du paramètre</param>
 		protected void AddParameter(string name, object value)
 		{
 			Commande.Parameters.AddWithValue("@" + name, (dynamic) value);
 		}
 
+		/// <summary>
+		/// Ajoute une liste de paramètres à une requête SQL SANS l'id
+		/// </summary>
+		/// <param name="values">Tableau dynamique contenant les paramètres</param>
 		protected void AddParameters(params object[] values)
 		{
 			if(values.Length != _classesBase.GetChamps().Count - 1)
 				throw new Exception("Nombre de paramètres inexact");
 
 			for (int i = 0; i < values.Length; i++)
-			{
 				AddParameter(_classesBase.GetChamps()[i + 1].Item1, values[i]);
-			}
 		}
 
+		/// <summary>
+		/// Ajoute une liste de paramètres à une requête SQL comprenant l'id
+		/// </summary>
+		/// <param name="values">Tableau dynamique contenant les paramètres</param>
 		protected void AddParametersWithId(params object[] values)
 		{
 			if (values.Length != _classesBase.GetChamps().Count)
 				throw new Exception("Nombre de paramètres inexact");
 
 			for (int i = 0; i < values.Length; i++)
-			{
 				AddParameter(_classesBase.GetChamps()[i].Item1, values[i]);
-			}
 		}
 
 		protected string LireChamp(SqlDataReader sqlDataReader, string champ)
@@ -126,12 +134,20 @@ namespace Couche_Acces
 			return sqlDataReader[champ].ToString();
 		}
 
+		/// <summary>
+		/// Ajoute la table de la classe enfant aux paramètres de la procédure stockée
+		/// </summary>
 		protected void AddTableAsParam()
 		{
 			AddParameter("Table", Table);
 		}
 		#endregion
 
+		/// <summary>
+		/// Permet de récupérer tous les enregistrements d'une table
+		/// </summary>
+		/// <param name="index">Détermine l'ordre de tri</param>
+		/// <returns>Une liste des enregistrements trouvés</returns>
 		public List<Couche_Classe.Base> Lire(string index)
 		{
 			CreerCommande("Lire");
@@ -151,6 +167,11 @@ namespace Couche_Acces
 			return liste;
 		}
 
+		/// <summary>
+		/// Permet de récupérer un enregistrement grâce à son id
+		/// </summary>
+		/// <param name="id">L'id de l'élément à recupérer</param>
+		/// <returns>L'enregistrement trouvé</returns>
 		public Couche_Classe.Base LireId(int id)
 		{
 			CreerCommande("LireId");
@@ -170,44 +191,47 @@ namespace Couche_Acces
 			return element;
 		}
 
+		/// <summary>
+		/// Construit la requête SQL pour un SELECT
+		/// </summary>
+		/// <returns>Une liste des enregistrements trouvés</returns>
 		protected List<Couche_Classe.Base> AssigneChamp(SqlDataReader sqlDataReader)
 		{
-			// récupère le type de l'objet
-			Type type = _classesBase.GetType();
+			Type type = _classesBase.GetType(); // récupère le type de l'objet
 
-			List<Couche_Classe.Base> liste = new List<Couche_Classe.Base>();
+			List<Couche_Classe.Base> liste = new List<Couche_Classe.Base>(); // crée la liste à retourner
 
-			while (sqlDataReader.Read())
+			while (sqlDataReader.Read()) // parcourt toutes les données SQL reçues
 			{
-				object[] arguments = GenereArguments(sqlDataReader);
+				object[] arguments = GenereArguments(sqlDataReader); // prépare les arguments en vue d'hydrater l'objet
 
-				// crée l'objet
-				/*object classe = Activator.CreateInstance(type,
-					int.Parse(LireChamp(sqlDataReader, "id")),
-					LireChamp(sqlDataReader, "nom"),
-					LireChamp(sqlDataReader, "password")
-				);*/
+				object classe = Activator.CreateInstance(type, arguments); // instancie l'objet dans son type et l'hydrate
 
-				object classe = Activator.CreateInstance(type, arguments);
-
-				liste.Add(classe as Couche_Classe.Base);
+				liste.Add(classe as Couche_Classe.Base); // ajoute l'objet à la liste de retour
 			}
 
 			return liste;
 		}
 
+		/// <summary>
+		/// Génère les champs automatiquement pour les requêtes SQL de lecture
+		/// </summary>
+		/// <returns>La liste des valeurs des champs créés dans le type adéquat</returns>
+		/// <remarks>La chaîne de connexion est récupérée en argument</remarks>
 		private object[] GenereArguments(SqlDataReader sqlDataReader)
 		{
-			object[] arguments = new object[_classesBase.GetChamps().Count];
+			object[] arguments = new object[_classesBase.GetChamps().Count]; // tableau pour contenir la valeur des champs
 
 			(string, Type) champ;
+
+			// pour chaque champ, on teste son type et on fait le cast adéquat
 			for (int i = 0; i < _classesBase.GetChamps().Count; i++)
 			{
 				champ = _classesBase.GetChamps()[i];
 
-				if (champ.Item2 == typeof(string))
+				if (champ.Item2 == typeof(string)) // si le champ est de type string
 					arguments[i] = LireChamp(sqlDataReader, champ.Item1);
-				else if (champ.Item2 == typeof(int))
+				else if (champ.Item2 == typeof(int)) // si le champ est un simple int
 				{
 					try
 					{
@@ -218,18 +242,10 @@ namespace Couche_Acces
 						throw new Exception("Impossible de convert le champ " + champ.Item1 + " en nombre");
 					}
 				}
-
 			}
 
 			return arguments;
 		}
-
-		/*public IList CreateList(Type myType)
-		{
-			Type genericListType = typeof(List<>).MakeGenericType(myType);
-
-			return (IList)Activator.CreateInstance(genericListType);
-		}*/
 
 		protected string Table
 		{

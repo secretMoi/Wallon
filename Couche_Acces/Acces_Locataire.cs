@@ -49,57 +49,6 @@ namespace Couche_Acces
 			return num;
 		}
 
-		/*public List<Locataire> Lire(string index)
-		{
-			CreerCommande("Lire");
-
-			AddTableAsParam();
-
-			Commande.Parameters.AddWithValue("@Index", index);
-			Commande.Connection.Open();
-
-			SqlDataReader sqlDataReader = Commande.ExecuteReader();
-			List<Locataire> cClientsList = new List<Locataire>();
-
-			while (sqlDataReader.Read())
-				cClientsList.Add(new Locataire
-				{
-					Id = int.Parse(LireChamp(sqlDataReader, "id")),
-					Nom = LireChamp(sqlDataReader, "nom"),
-					Password = LireChamp(sqlDataReader, "password")
-				});
-
-			sqlDataReader.Close();
-			Commande.Connection.Close();
-
-			return cClientsList;
-		}*/
-
-		/*public Locataire LireId(int id)
-		{
-			CreerCommande("LireId");
-
-			AddTableAsParam();
-
-			Commande.Parameters.AddWithValue("@id", id);
-			Commande.Connection.Open();
-
-			SqlDataReader sqlDataReader = Commande.ExecuteReader();
-			Locataire cClients = new Locataire();
-
-			while (sqlDataReader.Read())
-			{
-				cClients.Id = int.Parse(LireChamp(sqlDataReader, "id"));
-				cClients.Nom = LireChamp(sqlDataReader, "nom");
-				cClients.Password = LireChamp(sqlDataReader, "password");
-			}
-
-			sqlDataReader.Close();
-			Commande.Connection.Close();
-
-			return cClients;
-		}*/
-
 		public int Supprimer(int id)
 		{
 			CreerCommande("Supprimer");

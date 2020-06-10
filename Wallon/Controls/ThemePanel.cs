@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 using Core;
 using Wallon.Fenetres;
@@ -11,8 +12,9 @@ namespace Controls
 		protected static string Connexion;
 		protected List<object> _arguments;
 
-		public ThemePanel()
+		public ThemePanel(/*IContainer components*/)
 		{
+			//this.components = components;
 			InitializeComponent();
 
 			Dock = DockStyle.Fill;
@@ -21,6 +23,11 @@ namespace Controls
 
 			_arguments = new List<object>();
 		}
+
+		/*protected ThemePanel()
+		{
+			
+		}*/
 
 		protected void SetPanelTitre(Panel panel)
 		{
