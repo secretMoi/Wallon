@@ -143,6 +143,11 @@ namespace Couche_Acces
 		}
 		#endregion
 
+		/// <summary>
+		/// Permet d'ajouter un enregistrement
+		/// </summary>
+		/// <param name="arguments">Liste des valeurs que va prendre l'enregistrement</param>
+		/// <returns>Id du nouvel enregistrement</returns>
 		public int Ajouter(params object[] arguments)
 		{
 			CreerCommande(Table + "Ajouter");
@@ -163,10 +168,13 @@ namespace Couche_Acces
 			return num;
 		}
 
+		/// <summary>
+		/// Permet de modifier un enregistrement grâce à son id
+		/// </summary>
+		/// <param name="arguments">Liste des nouvelles valeurs que va prendre l'enregistrement</param>
 		public int Modifier(params object[] arguments)
 		{
 			CreerCommande(Table + "Modifier");
-			int num = 0;
 
 			AddParametersWithId(arguments);
 
@@ -176,9 +184,13 @@ namespace Couche_Acces
 
 			Commande.Connection.Close();
 
-			return num;
+			return 0;
 		}
 
+		/// <summary>
+		/// Permet de supprimer un enregistrement grâce à son id
+		/// </summary>
+		/// <param name="id">Id de l'enregistrement à supprimer</param>
 		public int Supprimer(int id)
 		{
 			CreerCommande(Table + "Supprimer");
