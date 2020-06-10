@@ -151,7 +151,7 @@ namespace Couche_Acces
 			return liste;
 		}
 
-		/*public Couche_Classe.Base LireId(int id)
+		public Couche_Classe.Base LireId(int id)
 		{
 			CreerCommande("LireId");
 
@@ -161,20 +161,14 @@ namespace Couche_Acces
 			Commande.Connection.Open();
 
 			SqlDataReader sqlDataReader = Commande.ExecuteReader();
-			Locataire cClients = new Locataire();
 
-			while (sqlDataReader.Read())
-			{
-				cClients.Id = int.Parse(LireChamp(sqlDataReader, "id"));
-				cClients.Nom = LireChamp(sqlDataReader, "nom");
-				cClients.Password = LireChamp(sqlDataReader, "password");
-			}
+			Couche_Classe.Base element = AssigneChamp(sqlDataReader)[0];
 
 			sqlDataReader.Close();
 			Commande.Connection.Close();
 
-			return cClients;
-		}*/
+			return element;
+		}
 
 		protected List<Couche_Classe.Base> AssigneChamp(SqlDataReader sqlDataReader)
 		{

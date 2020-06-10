@@ -32,7 +32,7 @@ namespace Couche_Gestion
 
 		public Locataire LireId(int id)
 		{
-			return new Acces_Locataire(ChaineConnexion).LireId(id);
+			return new Acces_Locataire(ChaineConnexion).LireId(id) as Locataire;
 		}
 
 		public int Supprimer(int id)

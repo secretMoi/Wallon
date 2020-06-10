@@ -17,8 +17,11 @@ namespace Wallon.Pages.Vue
 			SetColors();
 
 			//new Gestion_Locataire(Connexion).Modifier(10, "cou", "cou");
-			List<Locataire> locataire = new Gestion_Locataire(Connexion).Lire("id");
-			SetTitre(locataire[9].Nom);
+			/*List<Locataire> locataire = new Gestion_Locataire(Connexion).Lire("id");
+			SetTitre(locataire[9].Nom);*/
+
+			Locataire locataire = new Gestion_Locataire(Connexion).LireId(1);
+			SetTitre(locataire.Nom);
 		}
 
 		private void SetColors()
