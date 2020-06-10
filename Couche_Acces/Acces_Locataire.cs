@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Diagnostics;
 using Couche_Classe;
 
 namespace Couche_Acces
@@ -14,17 +12,15 @@ namespace Couche_Acces
 		{
 			Table = "Locataires";
 
-			_champs.Add(("id", typeof(int)));
-			_champs.Add(("nom", typeof(string)));
-			_champs.Add(("password", typeof(string)));
+			_classesBase = new Locataire();
 		}
 
 		public int Ajouter(string nom, string password)
 		{
-			CreerCommande("Ajouter");
+			CreerCommande("LocataireAjouter");
 
-			/*Commande.Parameters.Add("id", SqlDbType.Int);
-			Direction("id", ParameterDirection.Output);*/
+			Commande.Parameters.Add("id", SqlDbType.Int);
+			Direction("id", ParameterDirection.Output);
 
 			AddParameters(nom, password);
 
@@ -32,9 +28,7 @@ namespace Couche_Acces
 
 			Commande.ExecuteNonQuery();
 			
-
-			//int num = int.Parse(LireParametre("id"));
-			int num = 0;
+			int num = int.Parse(LireParametre("id"));
 
 			Commande.Connection.Close();
 
@@ -43,10 +37,10 @@ namespace Couche_Acces
 
 		public int Modifier(int id, string nom, string password)
 		{
-			CreerCommande("Modifier");
+			CreerCommande("LocataireModifier");
 			int num = 0;
 
-			AddParameters(true, id, nom, password);
+			AddParametersWithId(id, nom, password);
 
 			Commande.Connection.Open();
 
@@ -57,9 +51,11 @@ namespace Couche_Acces
 			return num;
 		}
 
-		public List<Locataire> Lire(string index)
+		/*public List<Locataire> Lire(string index)
 		{
 			CreerCommande("Lire");
+
+			AddTableAsParam();
 
 			Commande.Parameters.AddWithValue("@Index", index);
 			Commande.Connection.Open();
@@ -79,11 +75,13 @@ namespace Couche_Acces
 			Commande.Connection.Close();
 
 			return cClientsList;
-		}
+		}*/
 
 		public Locataire LireId(int id)
 		{
 			CreerCommande("LireId");
+
+			AddTableAsParam();
 
 			Commande.Parameters.AddWithValue("@id", id);
 			Commande.Connection.Open();
@@ -106,7 +104,7 @@ namespace Couche_Acces
 
 		public int Supprimer(int id)
 		{
-			CreerCommande("SupprimerClients");
+			CreerCommande("Supprimer");
 
 			//Commande.Parameters.AddWithValue("@id", id);
 			AddParameter("id", id);

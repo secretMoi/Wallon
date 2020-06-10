@@ -27,7 +27,7 @@ namespace Couche_Gestion
 
 		public List<Locataire> Lire(string index)
 		{
-			return new Acces_Locataire(ChaineConnexion).Lire(index);
+			return new Acces_Locataire(ChaineConnexion).Lire(index).ConvertAll(x => (Locataire)x);
 		}
 
 		public Locataire LireId(int id)

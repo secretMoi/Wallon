@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
+using Couche_Classe;
 
 namespace Couche_Acces
 {
@@ -9,8 +12,9 @@ namespace Couche_Acces
 	{
 		#region Données membres
 		protected SqlCommand _commande;
-		protected String _table;
-		protected List<(string, Type)> _champs = new List<(string, Type)>();
+		protected string _table;
+
+		protected Couche_Classe.Base _classesBase;
 		#endregion
 
 		#region Constructeurs (étendus)
@@ -34,8 +38,6 @@ namespace Couche_Acces
 		{
 			_commande.CommandType = CommandType.StoredProcedure;
 			_commande.CommandText = sCommande;
-
-			AddTableAsParam();
 		}
 		/// <summary>
 		/// Méthode assignant une procédure stockée ET une chaîne de connexion
@@ -52,7 +54,7 @@ namespace Couche_Acces
 		/// Méthode assignant une procédure stockée et le type de requête
 		/// </summary>
 		/// <param name="sCommande">Nom de la procédure stockée</param>
-		/// <param name="bTypeProcedures">Type de requête (Vrai=stockée, Faux=Texte)</param>
+		/// <param name="bTypeRequete">Type de requête (Vrai=stockée, Faux=Texte)</param>
 		public void CreerCommande(string sCommande, bool bTypeRequete)
 		{
 			if (bTypeRequete) _commande.CommandType = CommandType.StoredProcedure;
@@ -64,7 +66,7 @@ namespace Couche_Acces
 		/// </summary>
 		/// <param name="sCommande">Nom de la procédure stockée</param>
 		/// <param name="sConnexion">Chaîne de connexion à utiliser</param>
-		/// <param name="bTypeProcedures">Type de requête (Vrai=stockée, Faux=Texte)</param>
+		/// <param name="bTypeRequete">Type de requête (Vrai=stockée, Faux=Texte)</param>
 		public void CreerCommande(string sCommande, bool bTypeRequete, string sConnexion)
 		{
 			_commande.Connection = new SqlConnection(sConnexion);
@@ -101,25 +103,23 @@ namespace Couche_Acces
 
 		protected void AddParameters(params object[] values)
 		{
-			if(values.Length != _champs.Count - 1)
+			if(values.Length != _classesBase.GetChamps().Count - 1)
 				throw new Exception("Nombre de paramètres inexact");
-
-			/*int idChamp = 0;
-
-			if (withId == false)
-				idChamp = 1;
-
-			while (idChamp < values.Length)
-			{
-				AddParameter(_champs[idChamp].Item1, values[idChamp]);
-
-				idChamp++;
-			}*/
 
 			for (int i = 0; i < values.Length; i++)
 			{
-				AddParameter(_champs[i + 1].Item1, values[i]);
-				//Commande.Parameters.AddWithValue("@" + _champs[i].Item1, (dynamic)values[i]);
+				AddParameter(_classesBase.GetChamps()[i + 1].Item1, values[i]);
+			}
+		}
+
+		protected void AddParametersWithId(params object[] values)
+		{
+			if (values.Length != _classesBase.GetChamps().Count)
+				throw new Exception("Nombre de paramètres inexact");
+
+			for (int i = 0; i < values.Length; i++)
+			{
+				AddParameter(_classesBase.GetChamps()[i].Item1, values[i]);
 			}
 		}
 
@@ -133,6 +133,67 @@ namespace Couche_Acces
 			AddParameter("Table", Table);
 		}
 		#endregion
+
+		public List<Couche_Classe.Base> Lire(string index)
+		{
+			CreerCommande("Lire");
+
+			AddTableAsParam();
+
+			Commande.Parameters.AddWithValue("@Index", index);
+			Commande.Connection.Open();
+
+			SqlDataReader sqlDataReader = Commande.ExecuteReader();
+
+
+			//IList liste = CreateList(_classesBase.GetType());
+
+			List<Couche_Classe.Base> liste = AssigneChamp(sqlDataReader);
+
+			/*while (sqlDataReader.Read())
+				liste.Add(new Locataire
+				{
+					Id = int.Parse(LireChamp(sqlDataReader, "id")),
+					Nom = LireChamp(sqlDataReader, "nom"),
+					Password = LireChamp(sqlDataReader, "password")
+				});*/
+
+			sqlDataReader.Close();
+			Commande.Connection.Close();
+
+			return liste;
+		}
+
+		protected List<Couche_Classe.Base> AssigneChamp(SqlDataReader sqlDataReader)
+		{
+			// get type information
+			Type type = _classesBase.GetType();
+
+			List<Couche_Classe.Base> liste = new List<Couche_Classe.Base>();
+
+			while (sqlDataReader.Read())
+			{
+				// invoke the first public constructor with no parameters.
+				object classe = Activator.CreateInstance(type,
+					int.Parse(LireChamp(sqlDataReader, "id")),
+					LireChamp(sqlDataReader, "nom"),
+					LireChamp(sqlDataReader, "password")
+				);
+
+				liste.Add(classe as Couche_Classe.Base);
+			}
+
+			return liste;
+		}
+
+		//private object[] 
+
+		/*public IList CreateList(Type myType)
+		{
+			Type genericListType = typeof(List<>).MakeGenericType(myType);
+
+			return (IList)Activator.CreateInstance(genericListType);
+		}*/
 
 		protected string Table
 		{
