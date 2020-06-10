@@ -16,7 +16,7 @@ namespace Wallon.Pages.Vue
 
 			SetColors();
 
-			//new Gestion_Locataire(Connexion).Modifier(10, "cou", "cou");
+			new Gestion_Locataire(Connexion).Supprimer(5);
 			/*List<Locataire> locataire = new Gestion_Locataire(Connexion).Lire("id");
 			SetTitre(locataire[9].Nom);*/
 

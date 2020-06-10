@@ -143,6 +143,58 @@ namespace Couche_Acces
 		}
 		#endregion
 
+		public int Ajouter(params object[] arguments)
+		{
+			CreerCommande(Table + "Ajouter");
+
+			Commande.Parameters.Add("id", SqlDbType.Int);
+			Direction("id", ParameterDirection.Output);
+
+			AddParameters(arguments);
+
+			Commande.Connection.Open();
+
+			Commande.ExecuteNonQuery();
+
+			int num = int.Parse(LireParametre("id"));
+
+			Commande.Connection.Close();
+
+			return num;
+		}
+
+		public int Modifier(params object[] arguments)
+		{
+			CreerCommande(Table + "Modifier");
+			int num = 0;
+
+			AddParametersWithId(arguments);
+
+			Commande.Connection.Open();
+
+			Commande.ExecuteNonQuery();
+
+			Commande.Connection.Close();
+
+			return num;
+		}
+
+		public int Supprimer(int id)
+		{
+			CreerCommande(Table + "Supprimer");
+
+			AddTableAsParam();
+
+			AddParameter("id", id);
+
+			Commande.Connection.Open();
+			int num = Commande.ExecuteNonQuery();
+
+			Commande.Connection.Close();
+
+			return num;
+		}
+
 		/// <summary>
 		/// Permet de récupérer tous les enregistrements d'une table
 		/// </summary>
