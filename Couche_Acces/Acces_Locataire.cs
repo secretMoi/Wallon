@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
+﻿using System.Data;
 using Couche_Classe;
 
 namespace Couche_Acces
@@ -77,7 +75,7 @@ namespace Couche_Acces
 			return cClientsList;
 		}*/
 
-		public Locataire LireId(int id)
+		/*public Locataire LireId(int id)
 		{
 			CreerCommande("LireId");
 
@@ -100,7 +98,7 @@ namespace Couche_Acces
 			Commande.Connection.Close();
 
 			return cClients;
-		}
+		}*/
 
 		public int Supprimer(int id)
 		{

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Reflection;
 using Couche_Classe;
 
 namespace Couche_Acces
@@ -145,18 +143,7 @@ namespace Couche_Acces
 
 			SqlDataReader sqlDataReader = Commande.ExecuteReader();
 
-
-			//IList liste = CreateList(_classesBase.GetType());
-
 			List<Couche_Classe.Base> liste = AssigneChamp(sqlDataReader);
-
-			/*while (sqlDataReader.Read())
-				liste.Add(new Locataire
-				{
-					Id = int.Parse(LireChamp(sqlDataReader, "id")),
-					Nom = LireChamp(sqlDataReader, "nom"),
-					Password = LireChamp(sqlDataReader, "password")
-				});*/
 
 			sqlDataReader.Close();
 			Commande.Connection.Close();
@@ -164,21 +151,50 @@ namespace Couche_Acces
 			return liste;
 		}
 
+		/*public Couche_Classe.Base LireId(int id)
+		{
+			CreerCommande("LireId");
+
+			AddTableAsParam();
+
+			Commande.Parameters.AddWithValue("@id", id);
+			Commande.Connection.Open();
+
+			SqlDataReader sqlDataReader = Commande.ExecuteReader();
+			Locataire cClients = new Locataire();
+
+			while (sqlDataReader.Read())
+			{
+				cClients.Id = int.Parse(LireChamp(sqlDataReader, "id"));
+				cClients.Nom = LireChamp(sqlDataReader, "nom");
+				cClients.Password = LireChamp(sqlDataReader, "password");
+			}
+
+			sqlDataReader.Close();
+			Commande.Connection.Close();
+
+			return cClients;
+		}*/
+
 		protected List<Couche_Classe.Base> AssigneChamp(SqlDataReader sqlDataReader)
 		{
-			// get type information
+			// récupère le type de l'objet
 			Type type = _classesBase.GetType();
 
 			List<Couche_Classe.Base> liste = new List<Couche_Classe.Base>();
 
 			while (sqlDataReader.Read())
 			{
-				// invoke the first public constructor with no parameters.
-				object classe = Activator.CreateInstance(type,
+				object[] arguments = GenereArguments(sqlDataReader);
+
+				// crée l'objet
+				/*object classe = Activator.CreateInstance(type,
 					int.Parse(LireChamp(sqlDataReader, "id")),
 					LireChamp(sqlDataReader, "nom"),
 					LireChamp(sqlDataReader, "password")
-				);
+				);*/
+
+				object classe = Activator.CreateInstance(type, arguments);
 
 				liste.Add(classe as Couche_Classe.Base);
 			}
@@ -186,7 +202,33 @@ namespace Couche_Acces
 			return liste;
 		}
 
-		//private object[] 
+		private object[] GenereArguments(SqlDataReader sqlDataReader)
+		{
+			object[] arguments = new object[_classesBase.GetChamps().Count];
+
+			(string, Type) champ;
+			for (int i = 0; i < _classesBase.GetChamps().Count; i++)
+			{
+				champ = _classesBase.GetChamps()[i];
+
+				if (champ.Item2 == typeof(string))
+					arguments[i] = LireChamp(sqlDataReader, champ.Item1);
+				else if (champ.Item2 == typeof(int))
+				{
+					try
+					{
+						arguments[i] = int.Parse(LireChamp(sqlDataReader, champ.Item1));
+					}
+					catch
+					{
+						throw new Exception("Impossible de convert le champ " + champ.Item1 + " en nombre");
+					}
+				}
+
+			}
+
+			return arguments;
+		}
 
 		/*public IList CreateList(Type myType)
 		{
