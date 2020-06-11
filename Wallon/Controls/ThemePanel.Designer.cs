@@ -26,6 +26,7 @@
         {
 			this.panelTitre = new System.Windows.Forms.Panel();
 			this.labelTitre = new System.Windows.Forms.Label();
+			this.panelCorps = new System.Windows.Forms.Panel();
 			this.panelTitre.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -51,11 +52,20 @@
 			this.labelTitre.TabIndex = 1;
 			this.labelTitre.Text = "Titre";
 			// 
+			// panelCorps
+			// 
+			this.panelCorps.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panelCorps.Location = new System.Drawing.Point(0, 120);
+			this.panelCorps.Name = "panelCorps";
+			this.panelCorps.Size = new System.Drawing.Size(800, 480);
+			this.panelCorps.TabIndex = 6;
+			// 
 			// ThemePanel
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
+			this.Controls.Add(this.panelCorps);
 			this.Controls.Add(this.panelTitre);
 			this.Name = "ThemePanel";
 			this.Size = new System.Drawing.Size(800, 600);
@@ -69,5 +79,6 @@
 		protected System.Windows.Forms.Panel panelTitre;
 		protected System.Windows.Forms.Label labelTitre;
 		private System.ComponentModel.IContainer components;
+		protected System.Windows.Forms.Panel panelCorps;
 	}
 }

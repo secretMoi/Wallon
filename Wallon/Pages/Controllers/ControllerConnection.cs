@@ -1,6 +1,6 @@
-﻿using Wallon.Pages.Controlleur;
+﻿using Wallon.Controllers;
 
-namespace Wallon.Controllers
+namespace Wallon.Pages.Controllers
 {
 	public class ControllerConnection
 	{

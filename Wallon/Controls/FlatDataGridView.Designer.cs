@@ -50,11 +50,11 @@
 			// 
 			// FlatDataGridView
 			// 
-			/*this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;*/
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.Controls.Add(this.dataGridView);
 			this.Name = "FlatDataGridView";
 			this.Size = new System.Drawing.Size(1856, 893);
+			this.Controls.SetChildIndex(this.dataGridView, 0);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
 			this.ResumeLayout(false);
 

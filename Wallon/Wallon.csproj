@@ -55,7 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\ControllerConnection.cs" />
+    <Compile Include="Pages\Controllers\ControllerConnection.cs" />
     <Compile Include="Controls\Alerte.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -178,8 +178,14 @@
       <DependentUpon>FormBdd.cs</DependentUpon>
     </Compile>
     <Compile Include="LocalOptions.cs" />
-    <Compile Include="Pages\Controlleur\ControllerLocataires.cs" />
-    <Compile Include="Pages\Repository\RepositoryLocataires.cs" />
+    <Compile Include="Controllers\ControllerLocataires.cs" />
+    <Compile Include="Pages\Vue\Utilisateurs\Liste.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\Vue\Utilisateurs\Liste.Designer.cs">
+      <DependentUpon>Liste.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Repository\RepositoryLocataires.cs" />
     <Compile Include="Pages\Vue\Accueil.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -236,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Vue\Connexion.resx">
       <DependentUpon>Connexion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Vue\Utilisateurs\Liste.resx">
+      <DependentUpon>Liste.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

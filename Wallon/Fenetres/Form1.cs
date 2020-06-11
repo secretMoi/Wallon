@@ -50,12 +50,17 @@ namespace Wallon.Fenetres
 			panelSousMenuStock.Size = new Size(panelSousMenuStock.Size.Width, 0);
 			panelSousMenuClients.Size = new Size(panelSousMenuClients.Size.Width, 0);
 			panelSousMenuFournisseurs.Size = new Size(panelSousMenuFournisseurs.Size.Width, 0);
+			panelSousMenuUtilisateurs.Size = new Size(panelSousMenuUtilisateurs.Size.Width, 0);
 		}
 
 		private void HideSubMenu()
 		{
 			if (panelSousMenuStock.Size.Height >= panelSousMenuStock.MinimumSize.Height && panelSousMenuStock != _subMenuPanelToShow)
 				_subMenuPanelToHide.Add(panelSousMenuStock);
+
+			if (panelSousMenuUtilisateurs.Size.Height >= panelSousMenuUtilisateurs.MinimumSize.Height &&
+			    panelSousMenuUtilisateurs != _subMenuPanelToShow)
+				_subMenuPanelToHide.Add(panelSousMenuUtilisateurs);
 
 			if (panelSousMenuClients.Size.Height >= panelSousMenuClients.MinimumSize.Height &&
 					 panelSousMenuClients != _subMenuPanelToShow)
@@ -72,19 +77,21 @@ namespace Wallon.Fenetres
 			{
 				_subMenuPanelToShow = subMenu;
 				HideSubMenu(); // cache les autres sous-menus
-				
+			}
+			else if (panelSousMenuUtilisateurs.Size.Height == panelSousMenuUtilisateurs.MinimumSize.Height)
+			{
+				_subMenuPanelToShow = subMenu;
+				HideSubMenu(); // cache les autres sous-menus
 			}
 			else if(panelSousMenuClients.Size.Height == panelSousMenuClients.MinimumSize.Height)
 			{
 				_subMenuPanelToShow = subMenu;
 				HideSubMenu(); // cache les autres sous-menus
-				
 			}
 			else if (panelSousMenuFournisseurs.Size.Height == panelSousMenuFournisseurs.MinimumSize.Height)
 			{
 				_subMenuPanelToShow = subMenu;
 				HideSubMenu(); // cache les autres sous-menus
-
 			}
 			else
 				_subMenuPanelToHide.Add(subMenu);

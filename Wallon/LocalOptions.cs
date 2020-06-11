@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Xml;
@@ -44,7 +45,7 @@ namespace Wallon
 			}
 			catch (FileNotFoundException) // si le fichier n'existe pas on le crée
 			{
-				Enregistre();
+				SaveGeneric();
 				xReader = XmlReader.Create(FichierConfiguration, settings);
 			}
 
@@ -98,6 +99,13 @@ namespace Wallon
 		{
 			VerrouAccesFichier.WaitOne();
 
+			SaveGeneric();
+
+			VerrouAccesFichier.ReleaseMutex();
+		}
+
+		private void SaveGeneric()
+		{
 			XmlWriter xmlWriter = XmlWriter.Create(FichierConfiguration);
 
 			xmlWriter.WriteStartDocument();
@@ -112,8 +120,6 @@ namespace Wallon
 
 			xmlWriter.WriteEndDocument();
 			xmlWriter.Close();
-
-			VerrouAccesFichier.ReleaseMutex();
 		}
 
 		public static LocalOptions Instance => instance;

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Couche_Classe;
-using Wallon.Pages.Repository;
+using Wallon.Repository;
 
-namespace Wallon.Pages.Controlleur
+namespace Wallon.Controllers
 {
 	public class ControllerLocataires
 	{
@@ -10,6 +10,7 @@ namespace Wallon.Pages.Controlleur
 		{
 			
 		}
+
 
 		public Locataire Existe(string nom)
 		{

@@ -9,7 +9,7 @@ using Core;
 //todo optimiser grosse liste de data, mettre toutes les données dans une liste en ram et n'afficher que celles visibles
 namespace Controls
 {
-	public partial class FlatDataGridView : ThemePanel
+	public partial class FlatDataGridView : UserControl
 	{
 		private readonly List<int> _colonnesCliquables;
 		private readonly Dictionary<int, object> _colonnesMasquees;

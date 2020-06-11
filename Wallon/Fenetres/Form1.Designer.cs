@@ -33,25 +33,25 @@ namespace Wallon.Fenetres
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.panelMenu = new System.Windows.Forms.Panel();
-			this.menuFlatButtonClose = new MenuFlatButton();
+			this.menuFlatButtonClose = new Controls.Buttons.MenuFlatButton();
 			this.panelSousMenuFournisseurs = new System.Windows.Forms.Panel();
-			this.menu_Fournisseurs_Reapprovisionner = new MenuFlatButton();
-			this.menu_Fournisseurs_Commandes = new MenuFlatButton();
-			this.menu_Fournisseurs_Ajouter = new MenuFlatButton();
-			this.menu_Fournisseurs_Consulter = new MenuFlatButton();
-			this.menu_Fournisseurs = new MenuFlatButton();
+			this.menu_Fournisseurs_Reapprovisionner = new Controls.Buttons.MenuFlatButton();
+			this.menu_Fournisseurs_Commandes = new Controls.Buttons.MenuFlatButton();
+			this.menu_Fournisseurs_Ajouter = new Controls.Buttons.MenuFlatButton();
+			this.menu_Fournisseurs_Consulter = new Controls.Buttons.MenuFlatButton();
+			this.menu_Fournisseurs = new Controls.Buttons.MenuFlatButton();
 			this.panelSousMenuClients = new System.Windows.Forms.Panel();
-			this.menu_Clients_Historique = new MenuFlatButton();
-			this.menu_Clients_Commander = new MenuFlatButton();
-			this.menu_Clients_Ajouter = new MenuFlatButton();
-			this.menu_Clients_Consulter = new MenuFlatButton();
-			this.menu_Clients = new MenuFlatButton();
+			this.menu_Clients_Historique = new Controls.Buttons.MenuFlatButton();
+			this.menu_Clients_Commander = new Controls.Buttons.MenuFlatButton();
+			this.menu_Clients_Ajouter = new Controls.Buttons.MenuFlatButton();
+			this.menu_Clients_Consulter = new Controls.Buttons.MenuFlatButton();
+			this.menu_Clients = new Controls.Buttons.MenuFlatButton();
 			this.panelSousMenuStock = new System.Windows.Forms.Panel();
-			this.menu_Stock_Consulter = new MenuFlatButton();
-			this.menu_Stock_Ajouter = new MenuFlatButton();
-			this.menu_Stock = new MenuFlatButton();
-			this.menu_ChiffreAffaire = new MenuFlatButton();
-			this.menu_Accueil = new MenuFlatButton();
+			this.menu_Stock_Consulter = new Controls.Buttons.MenuFlatButton();
+			this.menu_Stock_Ajouter = new Controls.Buttons.MenuFlatButton();
+			this.menu_Stock = new Controls.Buttons.MenuFlatButton();
+			this.menu_Utilisateurs = new Controls.Buttons.MenuFlatButton();
+			this.menu_Accueil = new Controls.Buttons.MenuFlatButton();
 			this.panelContainer = new System.Windows.Forms.Panel();
 			this.panelHeader = new System.Windows.Forms.Panel();
 			this.pictureBoxReduce = new System.Windows.Forms.PictureBox();
@@ -59,6 +59,9 @@ namespace Wallon.Fenetres
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.timerMenuDeroulant = new System.Windows.Forms.Timer(this.components);
 			this.pictureBoxResize = new System.Windows.Forms.PictureBox();
+			this.panelSousMenuUtilisateurs = new System.Windows.Forms.Panel();
+			this.menu_Utilisateurs_Liste = new Controls.Buttons.MenuFlatButton();
+			this.menuFlatButton2 = new Controls.Buttons.MenuFlatButton();
 			this.panelMenu.SuspendLayout();
 			this.panelSousMenuFournisseurs.SuspendLayout();
 			this.panelSousMenuClients.SuspendLayout();
@@ -68,6 +71,7 @@ namespace Wallon.Fenetres
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxResize)).BeginInit();
+			this.panelSousMenuUtilisateurs.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panelMenu
@@ -81,7 +85,8 @@ namespace Wallon.Fenetres
 			this.panelMenu.Controls.Add(this.menu_Clients);
 			this.panelMenu.Controls.Add(this.panelSousMenuStock);
 			this.panelMenu.Controls.Add(this.menu_Stock);
-			this.panelMenu.Controls.Add(this.menu_ChiffreAffaire);
+			this.panelMenu.Controls.Add(this.panelSousMenuUtilisateurs);
+			this.panelMenu.Controls.Add(this.menu_Utilisateurs);
 			this.panelMenu.Controls.Add(this.menu_Accueil);
 			this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
 			this.panelMenu.Location = new System.Drawing.Point(0, 90);
@@ -99,7 +104,7 @@ namespace Wallon.Fenetres
 			this.menuFlatButtonClose.ForeColor = System.Drawing.Color.White;
 			this.menuFlatButtonClose.Image = ((System.Drawing.Image)(resources.GetObject("menuFlatButtonClose.Image")));
 			this.menuFlatButtonClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.menuFlatButtonClose.Location = new System.Drawing.Point(0, 1050);
+			this.menuFlatButtonClose.Location = new System.Drawing.Point(0, 1190);
 			this.menuFlatButtonClose.Name = "menuFlatButtonClose";
 			this.menuFlatButtonClose.Size = new System.Drawing.Size(258, 70);
 			this.menuFlatButtonClose.TabIndex = 7;
@@ -115,7 +120,7 @@ namespace Wallon.Fenetres
 			this.panelSousMenuFournisseurs.Controls.Add(this.menu_Fournisseurs_Ajouter);
 			this.panelSousMenuFournisseurs.Controls.Add(this.menu_Fournisseurs_Consulter);
 			this.panelSousMenuFournisseurs.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panelSousMenuFournisseurs.Location = new System.Drawing.Point(0, 770);
+			this.panelSousMenuFournisseurs.Location = new System.Drawing.Point(0, 910);
 			this.panelSousMenuFournisseurs.MaximumSize = new System.Drawing.Size(275, 280);
 			this.panelSousMenuFournisseurs.Name = "panelSousMenuFournisseurs";
 			this.panelSousMenuFournisseurs.Size = new System.Drawing.Size(258, 280);
@@ -203,7 +208,7 @@ namespace Wallon.Fenetres
 			this.menu_Fournisseurs.ForeColor = System.Drawing.Color.White;
 			this.menu_Fournisseurs.Image = ((System.Drawing.Image)(resources.GetObject("menu_Fournisseurs.Image")));
 			this.menu_Fournisseurs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.menu_Fournisseurs.Location = new System.Drawing.Point(0, 700);
+			this.menu_Fournisseurs.Location = new System.Drawing.Point(0, 840);
 			this.menu_Fournisseurs.Name = "menu_Fournisseurs";
 			this.menu_Fournisseurs.Size = new System.Drawing.Size(258, 70);
 			this.menu_Fournisseurs.TabIndex = 12;
@@ -219,7 +224,7 @@ namespace Wallon.Fenetres
 			this.panelSousMenuClients.Controls.Add(this.menu_Clients_Ajouter);
 			this.panelSousMenuClients.Controls.Add(this.menu_Clients_Consulter);
 			this.panelSousMenuClients.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panelSousMenuClients.Location = new System.Drawing.Point(0, 420);
+			this.panelSousMenuClients.Location = new System.Drawing.Point(0, 560);
 			this.panelSousMenuClients.MaximumSize = new System.Drawing.Size(275, 280);
 			this.panelSousMenuClients.Name = "panelSousMenuClients";
 			this.panelSousMenuClients.Size = new System.Drawing.Size(258, 280);
@@ -307,7 +312,7 @@ namespace Wallon.Fenetres
 			this.menu_Clients.ForeColor = System.Drawing.Color.White;
 			this.menu_Clients.Image = ((System.Drawing.Image)(resources.GetObject("menu_Clients.Image")));
 			this.menu_Clients.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.menu_Clients.Location = new System.Drawing.Point(0, 350);
+			this.menu_Clients.Location = new System.Drawing.Point(0, 490);
 			this.menu_Clients.Name = "menu_Clients";
 			this.menu_Clients.Size = new System.Drawing.Size(258, 70);
 			this.menu_Clients.TabIndex = 11;
@@ -321,7 +326,7 @@ namespace Wallon.Fenetres
 			this.panelSousMenuStock.Controls.Add(this.menu_Stock_Consulter);
 			this.panelSousMenuStock.Controls.Add(this.menu_Stock_Ajouter);
 			this.panelSousMenuStock.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panelSousMenuStock.Location = new System.Drawing.Point(0, 210);
+			this.panelSousMenuStock.Location = new System.Drawing.Point(0, 350);
 			this.panelSousMenuStock.MaximumSize = new System.Drawing.Size(275, 140);
 			this.panelSousMenuStock.Name = "panelSousMenuStock";
 			this.panelSousMenuStock.Size = new System.Drawing.Size(258, 140);
@@ -373,7 +378,7 @@ namespace Wallon.Fenetres
 			this.menu_Stock.ForeColor = System.Drawing.Color.White;
 			this.menu_Stock.Image = ((System.Drawing.Image)(resources.GetObject("menu_Stock.Image")));
 			this.menu_Stock.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.menu_Stock.Location = new System.Drawing.Point(0, 140);
+			this.menu_Stock.Location = new System.Drawing.Point(0, 280);
 			this.menu_Stock.Name = "menu_Stock";
 			this.menu_Stock.Size = new System.Drawing.Size(258, 70);
 			this.menu_Stock.TabIndex = 6;
@@ -382,24 +387,24 @@ namespace Wallon.Fenetres
 			this.menu_Stock.UseVisualStyleBackColor = false;
 			this.menu_Stock.Click += new System.EventHandler(this.Menu_Click);
 			// 
-			// menu_ChiffreAffaire
+			// menu_Utilisateurs
 			// 
-			this.menu_ChiffreAffaire.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
-			this.menu_ChiffreAffaire.Dock = System.Windows.Forms.DockStyle.Top;
-			this.menu_ChiffreAffaire.FlatAppearance.BorderSize = 0;
-			this.menu_ChiffreAffaire.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.menu_ChiffreAffaire.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.menu_ChiffreAffaire.ForeColor = System.Drawing.Color.White;
-			this.menu_ChiffreAffaire.Image = ((System.Drawing.Image)(resources.GetObject("menu_ChiffreAffaire.Image")));
-			this.menu_ChiffreAffaire.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.menu_ChiffreAffaire.Location = new System.Drawing.Point(0, 70);
-			this.menu_ChiffreAffaire.Name = "menu_ChiffreAffaire";
-			this.menu_ChiffreAffaire.Size = new System.Drawing.Size(258, 70);
-			this.menu_ChiffreAffaire.TabIndex = 14;
-			this.menu_ChiffreAffaire.Text = "   Utilisateurs";
-			this.menu_ChiffreAffaire.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.menu_ChiffreAffaire.UseVisualStyleBackColor = false;
-			this.menu_ChiffreAffaire.Click += new System.EventHandler(this.Menu_Click);
+			this.menu_Utilisateurs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+			this.menu_Utilisateurs.Dock = System.Windows.Forms.DockStyle.Top;
+			this.menu_Utilisateurs.FlatAppearance.BorderSize = 0;
+			this.menu_Utilisateurs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.menu_Utilisateurs.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.menu_Utilisateurs.ForeColor = System.Drawing.Color.White;
+			this.menu_Utilisateurs.Image = ((System.Drawing.Image)(resources.GetObject("menu_Utilisateurs.Image")));
+			this.menu_Utilisateurs.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.menu_Utilisateurs.Location = new System.Drawing.Point(0, 70);
+			this.menu_Utilisateurs.Name = "menu_Utilisateurs";
+			this.menu_Utilisateurs.Size = new System.Drawing.Size(258, 70);
+			this.menu_Utilisateurs.TabIndex = 14;
+			this.menu_Utilisateurs.Text = "   Utilisateurs";
+			this.menu_Utilisateurs.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.menu_Utilisateurs.UseVisualStyleBackColor = false;
+			this.menu_Utilisateurs.Click += new System.EventHandler(this.Menu_Click);
 			// 
 			// menu_Accueil
 			// 
@@ -502,6 +507,52 @@ namespace Wallon.Fenetres
 			this.pictureBoxResize.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxResize_MouseMove);
 			this.pictureBoxResize.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBoxResize_MouseUp);
 			// 
+			// panelSousMenuUtilisateurs
+			// 
+			this.panelSousMenuUtilisateurs.Controls.Add(this.menu_Utilisateurs_Liste);
+			this.panelSousMenuUtilisateurs.Controls.Add(this.menuFlatButton2);
+			this.panelSousMenuUtilisateurs.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panelSousMenuUtilisateurs.Location = new System.Drawing.Point(0, 140);
+			this.panelSousMenuUtilisateurs.MaximumSize = new System.Drawing.Size(275, 140);
+			this.panelSousMenuUtilisateurs.Name = "panelSousMenuUtilisateurs";
+			this.panelSousMenuUtilisateurs.Size = new System.Drawing.Size(258, 140);
+			this.panelSousMenuUtilisateurs.TabIndex = 9;
+			// 
+			// menu_Utilisateurs_Liste
+			// 
+			this.menu_Utilisateurs_Liste.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
+			this.menu_Utilisateurs_Liste.FlatAppearance.BorderSize = 0;
+			this.menu_Utilisateurs_Liste.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.menu_Utilisateurs_Liste.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.menu_Utilisateurs_Liste.ForeColor = System.Drawing.Color.White;
+			this.menu_Utilisateurs_Liste.Image = ((System.Drawing.Image)(resources.GetObject("menu_Utilisateurs_Liste.Image")));
+			this.menu_Utilisateurs_Liste.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.menu_Utilisateurs_Liste.Location = new System.Drawing.Point(0, 70);
+			this.menu_Utilisateurs_Liste.Name = "menu_Utilisateurs_Liste";
+			this.menu_Utilisateurs_Liste.Size = new System.Drawing.Size(275, 70);
+			this.menu_Utilisateurs_Liste.TabIndex = 1;
+			this.menu_Utilisateurs_Liste.Text = "   Liste";
+			this.menu_Utilisateurs_Liste.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.menu_Utilisateurs_Liste.UseVisualStyleBackColor = false;
+			this.menu_Utilisateurs_Liste.Click += new System.EventHandler(this.Menu_Click);
+			// 
+			// menuFlatButton2
+			// 
+			this.menuFlatButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
+			this.menuFlatButton2.FlatAppearance.BorderSize = 0;
+			this.menuFlatButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.menuFlatButton2.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.menuFlatButton2.ForeColor = System.Drawing.Color.White;
+			this.menuFlatButton2.Image = ((System.Drawing.Image)(resources.GetObject("menuFlatButton2.Image")));
+			this.menuFlatButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.menuFlatButton2.Location = new System.Drawing.Point(0, 0);
+			this.menuFlatButton2.Name = "menuFlatButton2";
+			this.menuFlatButton2.Size = new System.Drawing.Size(275, 70);
+			this.menuFlatButton2.TabIndex = 0;
+			this.menuFlatButton2.Text = "   Ajouter";
+			this.menuFlatButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.menuFlatButton2.UseVisualStyleBackColor = false;
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -533,6 +584,7 @@ namespace Wallon.Fenetres
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxResize)).EndInit();
+			this.panelSousMenuUtilisateurs.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -564,7 +616,10 @@ namespace Wallon.Fenetres
 		private MenuFlatButton menu_Fournisseurs_Reapprovisionner;
 		private MenuFlatButton menu_Clients_Commander;
 		private MenuFlatButton menu_Clients_Historique;
-		private MenuFlatButton menu_ChiffreAffaire;
+		private MenuFlatButton menu_Utilisateurs;
+		private System.Windows.Forms.Panel panelSousMenuUtilisateurs;
+		private MenuFlatButton menu_Utilisateurs_Liste;
+		private MenuFlatButton menuFlatButton2;
 	}
 }
 

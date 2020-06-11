@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Couche_Classe;
 using Couche_Gestion;
 
-namespace Wallon.Pages.Repository
+namespace Wallon.Repository
 {
 	public class RepositoryLocataires
 	{
