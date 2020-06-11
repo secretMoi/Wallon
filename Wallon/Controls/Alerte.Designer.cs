@@ -1,6 +1,4 @@
-﻿using FlatLabel = Controls.FlatLabel;
-
-namespace Wallon.Controls
+﻿namespace Controls
 {
 	partial class Alerte
 	{

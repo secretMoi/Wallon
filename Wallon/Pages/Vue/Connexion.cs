@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Controls;
-using Wallon.Fenetres;
+using Wallon.Controllers;
 using Wallon.Pages.Controlleur;
 
 namespace Wallon.Pages.Vue
@@ -9,26 +8,24 @@ namespace Wallon.Pages.Vue
 	public partial class Connexion : ThemePanel
 	{
 		private readonly ControllerLocataires _controllerLocataires;
+		private readonly ControllerConnection _controllerConnection;
 
 		public Connexion()
 		{
 			InitializeComponent();
 
 			_controllerLocataires = new ControllerLocataires();
+			_controllerConnection = new ControllerConnection();
+
+			if (_controllerConnection.AuthInCacheValid(_controllerLocataires))
+			{
+				_controllerConnection.Auth();
+				LoadPage("Accueil");
+			}
 
 			SetTitre("Connexion");
 
 			SetColors();
-
-			/*alerte.Text = "coucou";
-			alerte.Enable = true;*/
-
-			alerte.AddClick(test);
-		}
-
-		private void test(object sender, EventArgs e)
-		{
-			Dialog.Show("coucou");
 		}
 
 		private void SetColors()
@@ -43,13 +40,15 @@ namespace Wallon.Pages.Vue
 			string nom = flatTextName.Text;
 			string password = flatTextBoxPassword.Text;
 
-			if(_controllerLocataires.Authentifie(nom, password))
-				LoadPage("Accueil");
-			else
+			if (_controllerLocataires.Authentifie(nom, password))
 			{
-				alerte.Text = @"Identifiants invalides";
-				alerte.Enable = true;
+				_controllerConnection.Save(nom, password);
+				_controllerConnection.Auth();
+
+				LoadPage("Accueil");
 			}
+			else
+				alerte.Show("Identifiants invalides");
 		}
 	}
 }

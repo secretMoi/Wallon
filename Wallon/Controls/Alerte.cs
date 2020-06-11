@@ -2,14 +2,13 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using Controls;
 
-namespace Wallon.Controls
+namespace Controls
 {
 	public partial class Alerte : UserControl
 	{
 		private bool _enabled;
-		private int _heightMax = 45;
+		private int _heightMax = 40;
 
 		public Alerte()
 		{
@@ -39,6 +38,12 @@ namespace Wallon.Controls
 		{
 			Visible = state;
 			Size = new Size(Width, 0);
+		}
+
+		public void Show(string text)
+		{
+			Enable = true;
+			Text = text;
 		}
 
 		public void AddClick(EventHandler callBack)

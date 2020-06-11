@@ -1,6 +1,7 @@
 ﻿using FlatLabel = Controls.FlatLabel;
 using FlatTextBox = Controls.FlatTextBox;
 using FlatButton = Controls.Buttons.FlatButton;
+using Alerte = Controls.Alerte;
 
 namespace Wallon.Pages.Vue
 {
@@ -37,7 +38,7 @@ namespace Wallon.Pages.Vue
 			this.flatTextBoxPassword = new Controls.FlatTextBox();
 			this.flatLabelPassword = new Controls.FlatLabel();
 			this.flatButtonConnexion = new Controls.Buttons.FlatButton();
-			this.alerte = new Wallon.Controls.Alerte();
+			this.alerte = new Controls.Alerte();
 			this.panelTitre.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -113,7 +114,7 @@ namespace Wallon.Pages.Vue
 			this.alerte.BackColor = System.Drawing.Color.Tomato;
 			this.alerte.Dock = System.Windows.Forms.DockStyle.Top;
 			this.alerte.Enable = false;
-			this.alerte.HeightMax = 45;
+			this.alerte.HeightMax = 40;
 			this.alerte.Location = new System.Drawing.Point(0, 0);
 			this.alerte.Name = "alerte";
 			this.alerte.Size = new System.Drawing.Size(1856, 45);

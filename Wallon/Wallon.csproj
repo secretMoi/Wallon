@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ControllerConnection.cs" />
     <Compile Include="Controls\Alerte.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -176,6 +177,7 @@
     <Compile Include="Fenetres\FormBdd.Designer.cs">
       <DependentUpon>FormBdd.cs</DependentUpon>
     </Compile>
+    <Compile Include="LocalOptions.cs" />
     <Compile Include="Pages\Controlleur\ControllerLocataires.cs" />
     <Compile Include="Pages\Repository\RepositoryLocataires.cs" />
     <Compile Include="Pages\Vue\Accueil.cs">

@@ -40,7 +40,7 @@ namespace Wallon.Fenetres
 		private void Form1_Load(object sender, EventArgs e)
 		{
 			ThemePanel.SetConnection(Connexion);
-			Accueil accueil = new Accueil();
+			Connexion accueil = new Connexion();
 
 			panelContainer.Controls.Add(accueil);
 		}
