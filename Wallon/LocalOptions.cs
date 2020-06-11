@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Xml;
 
 namespace Wallon
@@ -10,6 +11,8 @@ namespace Wallon
 		private Dictionary<string, string> _elementConfiguration;
 
 		private static readonly LocalOptions instance = new LocalOptions();
+
+		private static readonly Mutex VerrouAccesFichier = new Mutex();
 
 		// juste pour le pattern Singleton, ne pas remplir
 		static LocalOptions()
@@ -39,7 +42,7 @@ namespace Wallon
 			{
 				xReader = XmlReader.Create(FichierConfiguration, settings);
 			}
-			catch(FileNotFoundException) // si le fichier n'existe pas on le crée
+			catch (FileNotFoundException) // si le fichier n'existe pas on le crée
 			{
 				Enregistre();
 				xReader = XmlReader.Create(FichierConfiguration, settings);
@@ -87,6 +90,14 @@ namespace Wallon
 
 		public void Enregistre()
 		{
+			Thread threadConnect = new Thread(SaveInThread);
+			threadConnect.Start();
+		}
+
+		private void SaveInThread()
+		{
+			VerrouAccesFichier.WaitOne();
+
 			XmlWriter xmlWriter = XmlWriter.Create(FichierConfiguration);
 
 			xmlWriter.WriteStartDocument();
@@ -101,6 +112,8 @@ namespace Wallon
 
 			xmlWriter.WriteEndDocument();
 			xmlWriter.Close();
+
+			VerrouAccesFichier.ReleaseMutex();
 		}
 
 		public static LocalOptions Instance => instance;
