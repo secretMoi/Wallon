@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 using System.Windows.Forms;
 using Core;
 using Wallon.Fenetres;
@@ -12,9 +11,8 @@ namespace Controls
 		protected static string Connexion;
 		protected List<object> _arguments;
 
-		public ThemePanel(/*IContainer components*/)
+		public ThemePanel()
 		{
-			//this.components = components;
 			InitializeComponent();
 
 			Dock = DockStyle.Fill;
@@ -23,11 +21,6 @@ namespace Controls
 
 			_arguments = new List<object>();
 		}
-
-		/*protected ThemePanel()
-		{
-			
-		}*/
 
 		protected void SetPanelTitre(Panel panel)
 		{
@@ -50,7 +43,7 @@ namespace Controls
 		protected void LoadPage(string page, params object[] arguments)
 		{
 			string @namespace = new Reflection(GetType()).FirstNamespace;
-			 //Form1 lastOpenedForm = (Form1) Form.ActiveForm; //méthode basique mais peu fiable
+
 			var test = Application.OpenForms;
 			Form1 lastOpenedForm = Application.OpenForms[Application.OpenForms.Count - 1] as Form1; // récupère la dernière form active
 			lastOpenedForm?.LoadPage(@namespace + ".Pages.Vue." + page, arguments); // charge la page Ajouter

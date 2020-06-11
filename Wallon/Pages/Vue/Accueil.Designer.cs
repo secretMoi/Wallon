@@ -30,10 +30,10 @@ namespace Wallon.Pages.Vue
 		/// </summary>
 		private new void InitializeComponent()
 		{
-			this.panelCorps = new System.Windows.Forms.Panel();
-			this.panelTitre.SuspendLayout();
+			//this.panelCorps = new System.Windows.Forms.Panel();
+			//this.panelTitre.SuspendLayout();
 			this.SuspendLayout();
-			// 
+			/*// 
 			// panelTitre
 			// 
 			this.panelTitre.Size = new System.Drawing.Size(1856, 120);
@@ -44,7 +44,7 @@ namespace Wallon.Pages.Vue
 			this.panelCorps.Location = new System.Drawing.Point(0, 120);
 			this.panelCorps.Name = "panelCorps";
 			this.panelCorps.Size = new System.Drawing.Size(1856, 773);
-			this.panelCorps.TabIndex = 4;
+			this.panelCorps.TabIndex = 4;*/
 			// 
 			// Accueil
 			// 
@@ -63,6 +63,6 @@ namespace Wallon.Pages.Vue
 		}
 
 		#endregion
-		private System.Windows.Forms.Panel panelCorps;
+		//private System.Windows.Forms.Panel panelCorps;
 	}
 }
