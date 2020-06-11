@@ -9,6 +9,7 @@ namespace Controls
         public static readonly Color Back = Color.FromArgb(25, 118, 211);
         public static readonly Color BackLight = Color.FromArgb(33, 150, 245);
         public static readonly Color BackDark = Color.FromArgb(22, 101, 193);
+        public static readonly Color Error = Color.Tomato;
 
         // Police
         public static readonly float TextSize = 12.5f;

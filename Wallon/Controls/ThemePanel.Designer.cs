@@ -44,7 +44,7 @@
 			this.labelTitre.AutoSize = true;
 			this.labelTitre.Font = new System.Drawing.Font("Nirmala UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.labelTitre.ForeColor = System.Drawing.Color.White;
-			this.labelTitre.Location = new System.Drawing.Point(17, 35);
+			this.labelTitre.Location = new System.Drawing.Point(17, 42);
 			this.labelTitre.Margin = new System.Windows.Forms.Padding(0);
 			this.labelTitre.Name = "labelTitre";
 			this.labelTitre.Size = new System.Drawing.Size(78, 37);

@@ -1,7 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Controls;
-using Couche_Classe;
-using Couche_Gestion;
 using Wallon.Fenetres;
 using Wallon.Pages.Controlleur;
 
@@ -9,7 +8,7 @@ namespace Wallon.Pages.Vue
 {
 	public partial class Connexion : ThemePanel
 	{
-		private ControllerLocataires _controllerLocataires;
+		private readonly ControllerLocataires _controllerLocataires;
 
 		public Connexion()
 		{
@@ -21,12 +20,18 @@ namespace Wallon.Pages.Vue
 
 			SetColors();
 
-			//new Gestion_Locataire(Connexion).Supprimer(5);
-			/*List<Locataire> _controllerLocataires = new Gestion_Locataire(Connexion).Lire("id");
-			SetTitre(_controllerLocataires[9].Nom);*/
+			alerte.Text = "coucou";
 
-			/*Locataire locataire = _controllerLocataires.GetById(2);
-			SetTitre(locataire.Nom);*/
+			alerte.HeightMax = 45;
+				
+			alerte.Enable = true;
+
+			alerte.AddClick(test);
+		}
+
+		private void test(object sender, EventArgs e)
+		{
+			Dialog.Show("coucou");
 		}
 
 		private void SetColors()
