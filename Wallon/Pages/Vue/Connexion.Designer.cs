@@ -32,6 +32,7 @@
 			this.flatTextName = new Controls.FlatTextBox();
 			this.flatTextBox1 = new Controls.FlatTextBox();
 			this.flatLabelPassword = new Controls.FlatLabel();
+			this.flatButtonConnexion = new Controls.Buttons.FlatButton();
 			this.panelTitre.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -83,10 +84,27 @@
 			this.flatLabelPassword.TabIndex = 8;
 			this.flatLabelPassword.Text = "Mot de passe";
 			// 
+			// flatButtonConnexion
+			// 
+			this.flatButtonConnexion.Anchor = System.Windows.Forms.AnchorStyles.Top;
+			this.flatButtonConnexion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
+			this.flatButtonConnexion.FlatAppearance.BorderSize = 0;
+			this.flatButtonConnexion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.flatButtonConnexion.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.flatButtonConnexion.ForeColor = System.Drawing.Color.White;
+			this.flatButtonConnexion.Location = new System.Drawing.Point(824, 389);
+			this.flatButtonConnexion.Name = "flatButtonConnexion";
+			this.flatButtonConnexion.Size = new System.Drawing.Size(215, 56);
+			this.flatButtonConnexion.TabIndex = 10;
+			this.flatButtonConnexion.Text = "Se connecter";
+			this.flatButtonConnexion.UseVisualStyleBackColor = false;
+			this.flatButtonConnexion.Click += new System.EventHandler(this.flatButtonConnexion_Click);
+			// 
 			// Connexion
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.Controls.Add(this.flatButtonConnexion);
 			this.Controls.Add(this.flatTextBox1);
 			this.Controls.Add(this.flatLabelPassword);
 			this.Controls.Add(this.flatTextName);
@@ -98,6 +116,7 @@
 			this.Controls.SetChildIndex(this.flatTextName, 0);
 			this.Controls.SetChildIndex(this.flatLabelPassword, 0);
 			this.Controls.SetChildIndex(this.flatTextBox1, 0);
+			this.Controls.SetChildIndex(this.flatButtonConnexion, 0);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();
 			this.ResumeLayout(false);
@@ -111,5 +130,6 @@
 		private Controls.FlatTextBox flatTextName;
 		private Controls.FlatTextBox flatTextBox1;
 		private Controls.FlatLabel flatLabelPassword;
+		private Controls.Buttons.FlatButton flatButtonConnexion;
 	}
 }
