@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,6 +59,7 @@
     <Compile Include="Controllers\BaseConsulter.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Core\Cryptage.cs" />
     <Compile Include="Pages\Controllers\ControllerConnection.cs" />
     <Compile Include="Controls\Alerte.cs">
       <SubType>UserControl</SubType>

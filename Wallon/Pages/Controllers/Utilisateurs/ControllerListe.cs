@@ -30,12 +30,9 @@ namespace Wallon.Pages.Controllers.Utilisateurs
 			List<Locataire> locataires = _locataire.Lire("id");
 
 			foreach (Locataire locataire in locataires)
-			{
-
 				useGridView.Add(
 					locataire.Nom
 				);
-			}
 		}
 	}
 }

@@ -17,9 +17,9 @@ namespace Wallon.Controllers
 		protected Image _imageSupprimer;
 		protected Image _imageVoir;
 
-		private bool _editEnabled = false;
-		private bool _deleteEnabled = false;
-		private bool _seeEnabled = false;
+		private bool _editEnabled;
+		private bool _deleteEnabled;
+		private bool _seeEnabled;
 
 		public BaseConsulter()
 		{
@@ -96,27 +96,27 @@ namespace Wallon.Controllers
 			return Dialog.ShowYesNo("Voulez-vous vraiment supprimer " + question);
 		}
 
-		private void InitializeComponent()
+		private new void InitializeComponent()
 		{
-			this.panelTitre.SuspendLayout();
-			this.SuspendLayout();
+			panelTitre.SuspendLayout();
+			SuspendLayout();
 			// 
 			// panelTitre
 			// 
-			this.panelTitre.Size = new System.Drawing.Size(1856, 120);
+			panelTitre.Size = new Size(1856, 120);
 			// 
 			// panelCorps
 			// 
-			this.panelCorps.Size = new System.Drawing.Size(1856, 773);
+			panelCorps.Size = new Size(1856, 773);
 			// 
 			// BaseConsulter
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-			this.Name = "BaseConsulter";
-			this.Size = new System.Drawing.Size(1856, 893);
-			this.panelTitre.ResumeLayout(false);
-			this.panelTitre.PerformLayout();
-			this.ResumeLayout(false);
+			AutoScaleDimensions = new SizeF(96F, 96F);
+			Name = "BaseConsulter";
+			Size = new Size(1856, 893);
+			panelTitre.ResumeLayout(false);
+			panelTitre.PerformLayout();
+			ResumeLayout(false);
 
 		}
 	}

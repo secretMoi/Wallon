@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Couche_Classe;
 using Couche_Gestion;
+using Wallon.Core;
 
 namespace Wallon.Repository
 {
@@ -54,7 +55,10 @@ namespace Wallon.Repository
 		{
 			try
 			{
-				return _gestion.Ajouter(locataire.Nom, locataire.Password);
+				return _gestion.Ajouter(
+					locataire.Nom,
+					locataire.Password
+				);
 			}
 			catch (Exception ex)
 			{

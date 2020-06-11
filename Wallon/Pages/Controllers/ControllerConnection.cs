@@ -1,4 +1,5 @@
 ﻿using Wallon.Controllers;
+using Wallon.Core;
 
 namespace Wallon.Pages.Controllers
 {
@@ -24,7 +25,7 @@ namespace Wallon.Pages.Controllers
 			(string, string) result = Get();
 
 			if (result.Item1 != null && result.Item2 != null)
-				if (controllerLocataires.Authentifie(result.Item1, result.Item2))
+				if (controllerLocataires.Authentifie(result.Item1,  Cryptage.Uncrypt(result.Item2)))
 					return true;
 
 			return false;
@@ -38,7 +39,7 @@ namespace Wallon.Pages.Controllers
 		public void Save(string nom, string password)
 		{
 			LocalOptions.SetOption(ChampNom, nom);
-			LocalOptions.SetOption(ChampPassword, password);
+			LocalOptions.SetOption(ChampPassword, Cryptage.Crypt(password));
 
 			LocalOptions.Enregistre();
 		}
