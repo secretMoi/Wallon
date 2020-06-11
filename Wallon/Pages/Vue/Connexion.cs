@@ -20,11 +20,8 @@ namespace Wallon.Pages.Vue
 
 			SetColors();
 
-			alerte.Text = "coucou";
-
-			alerte.HeightMax = 45;
-				
-			alerte.Enable = true;
+			/*alerte.Text = "coucou";
+			alerte.Enable = true;*/
 
 			alerte.AddClick(test);
 		}
@@ -50,7 +47,8 @@ namespace Wallon.Pages.Vue
 				LoadPage("Accueil");
 			else
 			{
-				Dialog.Show("Identifiants invalides");
+				alerte.Text = @"Identifiants invalides";
+				alerte.Enable = true;
 			}
 		}
 	}

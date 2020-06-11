@@ -32,11 +32,11 @@ namespace Wallon.Pages.Vue
 		/// </summary>
 		private new void InitializeComponent()
 		{
-			this.flatLabelNom = new FlatLabel();
-			this.flatTextName = new FlatTextBox();
-			this.flatTextBoxPassword = new FlatTextBox();
-			this.flatLabelPassword = new FlatLabel();
-			this.flatButtonConnexion = new FlatButton();
+			this.flatLabelNom = new Controls.FlatLabel();
+			this.flatTextName = new Controls.FlatTextBox();
+			this.flatTextBoxPassword = new Controls.FlatTextBox();
+			this.flatLabelPassword = new Controls.FlatLabel();
+			this.flatButtonConnexion = new Controls.Buttons.FlatButton();
 			this.alerte = new Wallon.Controls.Alerte();
 			this.panelTitre.SuspendLayout();
 			this.SuspendLayout();
@@ -113,12 +113,12 @@ namespace Wallon.Pages.Vue
 			this.alerte.BackColor = System.Drawing.Color.Tomato;
 			this.alerte.Dock = System.Windows.Forms.DockStyle.Top;
 			this.alerte.Enable = false;
-			this.alerte.HeightMax = 0;
+			this.alerte.HeightMax = 45;
 			this.alerte.Location = new System.Drawing.Point(0, 0);
-			this.alerte.MaximumSize = new System.Drawing.Size(1358, 0);
 			this.alerte.Name = "alerte";
-			this.alerte.Size = new System.Drawing.Size(1358, 0);
+			this.alerte.Size = new System.Drawing.Size(1856, 45);
 			this.alerte.TabIndex = 2;
+			this.alerte.Visible = false;
 			// 
 			// Connexion
 			// 
