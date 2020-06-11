@@ -11,20 +11,28 @@ namespace Wallon.Pages.Controlleur
 			
 		}
 
-		public bool LocataireExiste(string nom)
+		public Locataire Existe(string nom)
 		{
 			List<Locataire> locataires = new RepositoryLocataires().Lire("id");
 
 			foreach (Locataire locataire in locataires)
 				if (locataire.Nom == nom)
-					return true;
+					return locataire;
 
-			return false;
+			return null;
+		}
+
+		public bool Authentifie(string nom, string password)
+		{
+			Locataire locataire = Existe(nom);
+			if (locataire == null) return false;
+
+			return locataire.Password == password;
 		}
 
 		public Locataire GetById(int id)
 		{
 			return new RepositoryLocataires().LireId(id);
 		}
-    }
+	}
 }

@@ -2,6 +2,7 @@
 using Controls;
 using Couche_Classe;
 using Couche_Gestion;
+using Wallon.Fenetres;
 using Wallon.Pages.Controlleur;
 
 namespace Wallon.Pages.Vue
@@ -14,7 +15,7 @@ namespace Wallon.Pages.Vue
 		{
 			InitializeComponent();
 
-			this._controllerLocataires = new ControllerLocataires();
+			_controllerLocataires = new ControllerLocataires();
 
 			SetTitre("Connexion");
 
@@ -24,8 +25,8 @@ namespace Wallon.Pages.Vue
 			/*List<Locataire> _controllerLocataires = new Gestion_Locataire(Connexion).Lire("id");
 			SetTitre(_controllerLocataires[9].Nom);*/
 
-			Locataire locataire = _controllerLocataires.GetById(2);
-			SetTitre(locataire.Nom);
+			/*Locataire locataire = _controllerLocataires.GetById(2);
+			SetTitre(locataire.Nom);*/
 		}
 
 		private void SetColors()
@@ -37,7 +38,15 @@ namespace Wallon.Pages.Vue
 
 		private void flatButtonConnexion_Click(object sender, System.EventArgs e)
 		{
+			string nom = flatTextName.Text;
+			string password = flatTextBoxPassword.Text;
 
+			if(_controllerLocataires.Authentifie(nom, password))
+				LoadPage("Accueil");
+			else
+			{
+				Dialog.Show("Identifiants invalides");
+			}
 		}
 	}
 }
