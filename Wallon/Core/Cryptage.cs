@@ -6,27 +6,29 @@ namespace Wallon.Core
 {
 	public static class Cryptage
 	{
-		private static readonly byte[] _cle = Encoding.UTF8.GetBytes("wa");
+		private static readonly byte[] Cle = Encoding.UTF8.GetBytes("Wallons");
 
-		public static string Crypt(string clearPassword/*, string cle*/)
+		public static string Crypt(string clearPassword)
 		{
 			byte[] bytes = Encoding.UTF8.GetBytes(clearPassword);
-			//_cle = Encoding.UTF8.GetBytes(cle);
 
-			byte[] protectedBytes = ProtectedData.Protect(bytes, _cle, DataProtectionScope.CurrentUser);
+			byte[] protectedBytes = ProtectedData.Protect(bytes, Cle, DataProtectionScope.CurrentUser);
 
 			return Convert.ToBase64String(protectedBytes);
 		}
 
-		public static string Uncrypt(string protectedPassword/*, string cle = null*/)
+		public static string Uncrypt(string protectedPassword)
 		{
-			byte[] protectedBytes = Convert.FromBase64String(protectedPassword);
-			/*if (cle != null)
-				_cle = Encoding.UTF8.GetBytes(cle);*/
-
-			byte[] bytes = ProtectedData.Unprotect(protectedBytes, _cle, DataProtectionScope.CurrentUser);
-
-			return Encoding.UTF8.GetString(bytes);
+			try
+			{
+				byte[] protectedBytes = Convert.FromBase64String(protectedPassword);
+				byte[] bytes = ProtectedData.Unprotect(protectedBytes, Cle, DataProtectionScope.CurrentUser);
+				return Encoding.UTF8.GetString(bytes);
+			}
+			catch
+			{
+				return null;
+			}
 		}
 	}
 }

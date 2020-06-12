@@ -19,7 +19,7 @@ namespace Wallon.Pages.Vue
 
 			if (_controllerConnection.AuthInCacheValid(_controllerLocataires))
 			{
-				_controllerConnection.Auth();
+				_controllerConnection.Auth(_controllerLocataires);
 				LoadPage("Accueil");
 			}
 
@@ -44,7 +44,7 @@ namespace Wallon.Pages.Vue
 			if (_controllerLocataires.Authentifie(nom, password)) // si les identifiants entrés sont bons
 			{
 				_controllerConnection.Save(nom, password); // enregistre la session dans le fichier local
-				_controllerConnection.Auth(); // authentifie dans le programme
+				_controllerConnection.Auth(_controllerLocataires); // authentifie dans le programme
 
 				LoadPage("Accueil"); // redirige vers la page d'accueil
 			}

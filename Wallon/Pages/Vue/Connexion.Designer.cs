@@ -49,6 +49,11 @@ namespace Wallon.Pages.Vue
 			this.panelTitre.Controls.SetChildIndex(this.labelTitre, 0);
 			this.panelTitre.Controls.SetChildIndex(this.alerte, 0);
 			// 
+			// panelCorps
+			// 
+			this.panelCorps.Location = new System.Drawing.Point(0, 0);
+			this.panelCorps.Size = new System.Drawing.Size(1856, 893);
+			// 
 			// flatLabelNom
 			// 
 			this.flatLabelNom.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -132,6 +137,7 @@ namespace Wallon.Pages.Vue
 			this.Controls.Add(this.flatLabelNom);
 			this.Name = "Connexion";
 			this.Size = new System.Drawing.Size(1856, 893);
+			this.Controls.SetChildIndex(this.panelCorps, 0);
 			this.Controls.SetChildIndex(this.panelTitre, 0);
 			this.Controls.SetChildIndex(this.flatLabelNom, 0);
 			this.Controls.SetChildIndex(this.flatTextName, 0);

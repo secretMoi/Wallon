@@ -58,9 +58,10 @@ namespace Wallon.Pages.Controllers
 			return result;
 		}
 
-		public void Auth()
+		public void Auth(ControllerLocataires controllerLocataires)
 		{
-			Settings.Auth = true;
+			Settings.Auth = true; // initialise la session
+			Settings.IdLocataire = controllerLocataires.IdValid; // sauvegarde l'id de la session courante
 		}
 	}
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
+﻿using System.Collections.Generic;
 using Couche_Classe;
 using Wallon.Core;
 using Wallon.Repository;
@@ -10,8 +7,10 @@ namespace Wallon.Controllers
 {
 	public class ControllerLocataires
 	{
+		private int _idValid;
+
 		public ControllerLocataires()
-		{
+		{ 
 			/*Ajouter(
 				new Locataire("q", "s")
 			);*/
@@ -24,6 +23,11 @@ namespace Wallon.Controllers
 			return new RepositoryLocataires().Ajouter(locataire);
 		}
 
+		/// <summary>
+		/// Vérifie que le nom du locataire passé en paramètres existe dans la bdd
+		/// </summary>
+		/// <param name="nom">Le nom du locataire</param>
+		/// <returns>true si le locataire se trouve dans la bdd, false sinon</returns>
 		public Locataire Existe(string nom)
 		{
 			List<Locataire> locataires = new RepositoryLocataires().Lire("id");
@@ -35,10 +39,18 @@ namespace Wallon.Controllers
 			return null;
 		}
 
+		/// <summary>
+		/// Permet de savoir si les logs correspondent à ceux dans la base de données
+		/// </summary>
+		/// <param name="nom">Le nom du locataire</param>
+		/// <param name="password">Le mot de passe du locataire</param>
+		/// <returns>true si le nom et le mot de passe correspondent, false sinon</returns>
 		public bool Authentifie(string nom, string password)
 		{
 			Locataire locataire = Existe(nom);
 			if (locataire == null) return false;
+
+			_idValid = locataire.Id;
 
 			return Cryptage.Uncrypt(locataire.Password) == password;
 		}
@@ -47,6 +59,8 @@ namespace Wallon.Controllers
 		{
 			return new RepositoryLocataires().LireId(id);
 		}
+
+		public int IdValid => _idValid;
 
 		/*public static string CryptPassword(string password)
 		{

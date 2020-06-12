@@ -50,6 +50,9 @@ namespace Wallon.Fenetres
 			this.menu_Stock_Consulter = new Controls.Buttons.MenuFlatButton();
 			this.menu_Stock_Ajouter = new Controls.Buttons.MenuFlatButton();
 			this.menu_Stock = new Controls.Buttons.MenuFlatButton();
+			this.panelSousMenuUtilisateurs = new System.Windows.Forms.Panel();
+			this.menu_Utilisateurs_Liste = new Controls.Buttons.MenuFlatButton();
+			this.menu_Utilisateurs_Profil = new Controls.Buttons.MenuFlatButton();
 			this.menu_Utilisateurs = new Controls.Buttons.MenuFlatButton();
 			this.menu_Accueil = new Controls.Buttons.MenuFlatButton();
 			this.panelContainer = new System.Windows.Forms.Panel();
@@ -59,19 +62,16 @@ namespace Wallon.Fenetres
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.timerMenuDeroulant = new System.Windows.Forms.Timer(this.components);
 			this.pictureBoxResize = new System.Windows.Forms.PictureBox();
-			this.panelSousMenuUtilisateurs = new System.Windows.Forms.Panel();
-			this.menu_Utilisateurs_Liste = new Controls.Buttons.MenuFlatButton();
-			this.menuFlatButton2 = new Controls.Buttons.MenuFlatButton();
 			this.panelMenu.SuspendLayout();
 			this.panelSousMenuFournisseurs.SuspendLayout();
 			this.panelSousMenuClients.SuspendLayout();
 			this.panelSousMenuStock.SuspendLayout();
+			this.panelSousMenuUtilisateurs.SuspendLayout();
 			this.panelHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxReduce)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxResize)).BeginInit();
-			this.panelSousMenuUtilisateurs.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panelMenu
@@ -387,6 +387,53 @@ namespace Wallon.Fenetres
 			this.menu_Stock.UseVisualStyleBackColor = false;
 			this.menu_Stock.Click += new System.EventHandler(this.Menu_Click);
 			// 
+			// panelSousMenuUtilisateurs
+			// 
+			this.panelSousMenuUtilisateurs.Controls.Add(this.menu_Utilisateurs_Liste);
+			this.panelSousMenuUtilisateurs.Controls.Add(this.menu_Utilisateurs_Profil);
+			this.panelSousMenuUtilisateurs.Dock = System.Windows.Forms.DockStyle.Top;
+			this.panelSousMenuUtilisateurs.Location = new System.Drawing.Point(0, 140);
+			this.panelSousMenuUtilisateurs.MaximumSize = new System.Drawing.Size(275, 140);
+			this.panelSousMenuUtilisateurs.Name = "panelSousMenuUtilisateurs";
+			this.panelSousMenuUtilisateurs.Size = new System.Drawing.Size(258, 140);
+			this.panelSousMenuUtilisateurs.TabIndex = 9;
+			// 
+			// menu_Utilisateurs_Liste
+			// 
+			this.menu_Utilisateurs_Liste.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
+			this.menu_Utilisateurs_Liste.FlatAppearance.BorderSize = 0;
+			this.menu_Utilisateurs_Liste.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.menu_Utilisateurs_Liste.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.menu_Utilisateurs_Liste.ForeColor = System.Drawing.Color.White;
+			this.menu_Utilisateurs_Liste.Image = ((System.Drawing.Image)(resources.GetObject("menu_Utilisateurs_Liste.Image")));
+			this.menu_Utilisateurs_Liste.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.menu_Utilisateurs_Liste.Location = new System.Drawing.Point(0, 70);
+			this.menu_Utilisateurs_Liste.Name = "menu_Utilisateurs_Liste";
+			this.menu_Utilisateurs_Liste.Size = new System.Drawing.Size(275, 70);
+			this.menu_Utilisateurs_Liste.TabIndex = 1;
+			this.menu_Utilisateurs_Liste.Text = "   Liste";
+			this.menu_Utilisateurs_Liste.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.menu_Utilisateurs_Liste.UseVisualStyleBackColor = false;
+			this.menu_Utilisateurs_Liste.Click += new System.EventHandler(this.Menu_Click);
+			// 
+			// menu_Utilisateurs_Profil
+			// 
+			this.menu_Utilisateurs_Profil.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
+			this.menu_Utilisateurs_Profil.FlatAppearance.BorderSize = 0;
+			this.menu_Utilisateurs_Profil.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.menu_Utilisateurs_Profil.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.menu_Utilisateurs_Profil.ForeColor = System.Drawing.Color.White;
+			this.menu_Utilisateurs_Profil.Image = ((System.Drawing.Image)(resources.GetObject("menu_Utilisateurs_Profil.Image")));
+			this.menu_Utilisateurs_Profil.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.menu_Utilisateurs_Profil.Location = new System.Drawing.Point(0, 0);
+			this.menu_Utilisateurs_Profil.Name = "menu_Utilisateurs_Profil";
+			this.menu_Utilisateurs_Profil.Size = new System.Drawing.Size(275, 70);
+			this.menu_Utilisateurs_Profil.TabIndex = 0;
+			this.menu_Utilisateurs_Profil.Text = "   Profil";
+			this.menu_Utilisateurs_Profil.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.menu_Utilisateurs_Profil.UseVisualStyleBackColor = false;
+			this.menu_Utilisateurs_Profil.Click += new System.EventHandler(this.Menu_Click);
+			// 
 			// menu_Utilisateurs
 			// 
 			this.menu_Utilisateurs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
@@ -507,52 +554,6 @@ namespace Wallon.Fenetres
 			this.pictureBoxResize.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxResize_MouseMove);
 			this.pictureBoxResize.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBoxResize_MouseUp);
 			// 
-			// panelSousMenuUtilisateurs
-			// 
-			this.panelSousMenuUtilisateurs.Controls.Add(this.menu_Utilisateurs_Liste);
-			this.panelSousMenuUtilisateurs.Controls.Add(this.menuFlatButton2);
-			this.panelSousMenuUtilisateurs.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panelSousMenuUtilisateurs.Location = new System.Drawing.Point(0, 140);
-			this.panelSousMenuUtilisateurs.MaximumSize = new System.Drawing.Size(275, 140);
-			this.panelSousMenuUtilisateurs.Name = "panelSousMenuUtilisateurs";
-			this.panelSousMenuUtilisateurs.Size = new System.Drawing.Size(258, 140);
-			this.panelSousMenuUtilisateurs.TabIndex = 9;
-			// 
-			// menu_Utilisateurs_Liste
-			// 
-			this.menu_Utilisateurs_Liste.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
-			this.menu_Utilisateurs_Liste.FlatAppearance.BorderSize = 0;
-			this.menu_Utilisateurs_Liste.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.menu_Utilisateurs_Liste.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.menu_Utilisateurs_Liste.ForeColor = System.Drawing.Color.White;
-			this.menu_Utilisateurs_Liste.Image = ((System.Drawing.Image)(resources.GetObject("menu_Utilisateurs_Liste.Image")));
-			this.menu_Utilisateurs_Liste.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.menu_Utilisateurs_Liste.Location = new System.Drawing.Point(0, 70);
-			this.menu_Utilisateurs_Liste.Name = "menu_Utilisateurs_Liste";
-			this.menu_Utilisateurs_Liste.Size = new System.Drawing.Size(275, 70);
-			this.menu_Utilisateurs_Liste.TabIndex = 1;
-			this.menu_Utilisateurs_Liste.Text = "   Liste";
-			this.menu_Utilisateurs_Liste.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.menu_Utilisateurs_Liste.UseVisualStyleBackColor = false;
-			this.menu_Utilisateurs_Liste.Click += new System.EventHandler(this.Menu_Click);
-			// 
-			// menuFlatButton2
-			// 
-			this.menuFlatButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
-			this.menuFlatButton2.FlatAppearance.BorderSize = 0;
-			this.menuFlatButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.menuFlatButton2.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.menuFlatButton2.ForeColor = System.Drawing.Color.White;
-			this.menuFlatButton2.Image = ((System.Drawing.Image)(resources.GetObject("menuFlatButton2.Image")));
-			this.menuFlatButton2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.menuFlatButton2.Location = new System.Drawing.Point(0, 0);
-			this.menuFlatButton2.Name = "menuFlatButton2";
-			this.menuFlatButton2.Size = new System.Drawing.Size(275, 70);
-			this.menuFlatButton2.TabIndex = 0;
-			this.menuFlatButton2.Text = "   Ajouter";
-			this.menuFlatButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.menuFlatButton2.UseVisualStyleBackColor = false;
-			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -579,12 +580,12 @@ namespace Wallon.Fenetres
 			this.panelSousMenuFournisseurs.ResumeLayout(false);
 			this.panelSousMenuClients.ResumeLayout(false);
 			this.panelSousMenuStock.ResumeLayout(false);
+			this.panelSousMenuUtilisateurs.ResumeLayout(false);
 			this.panelHeader.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxReduce)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxResize)).EndInit();
-			this.panelSousMenuUtilisateurs.ResumeLayout(false);
 			this.ResumeLayout(false);
 
         }
@@ -619,7 +620,7 @@ namespace Wallon.Fenetres
 		private MenuFlatButton menu_Utilisateurs;
 		private System.Windows.Forms.Panel panelSousMenuUtilisateurs;
 		private MenuFlatButton menu_Utilisateurs_Liste;
-		private MenuFlatButton menuFlatButton2;
+		private MenuFlatButton menu_Utilisateurs_Profil;
 	}
 }
 
