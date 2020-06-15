@@ -57,7 +57,8 @@ namespace Wallon.Repository
 				return _gestion.Ajouter(
 					tache.Nom,
 					tache.DatteFin,
-					tache.Active
+					tache.Active,
+					tache.LocataireCourant
 				);
 			}
 			catch (Exception ex)
@@ -77,5 +78,10 @@ namespace Wallon.Repository
 				throw new Exception("Impossible de modifier le locataire " + locataire.Nom + "  : \n" + ex.Message);
 			}
 		}*/
+
+		public string NomLocataireCourant(int id)
+		{
+			return new RepositoryLocataires().LireId(id).Nom;
+		}
 	}
 }

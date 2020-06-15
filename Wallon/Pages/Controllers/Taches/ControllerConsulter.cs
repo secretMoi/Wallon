@@ -25,7 +25,7 @@ namespace Wallon.Pages.Controllers.Taches
 			for (int i = 0; i < locataire.Count; i++)
 				listeColonnes[i] = locataire[i].Item1;*/
 
-			return new[] { "Nom", "DatteFin" };
+			return new[] { "Nom", "Locataire en charge", "DatteFin" };
 		}
 
 		/// <summary>
@@ -39,6 +39,7 @@ namespace Wallon.Pages.Controllers.Taches
 			foreach (Couche_Classe.Taches tache in taches) // les lie à la dgv
 				useGridView.Add(
 					tache.Nom,
+					_taches.NomLocataireCourant(tache.LocataireCourant),
 					tache.DatteFin.ToShortDateString()
 				);
 		}

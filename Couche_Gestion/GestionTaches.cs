@@ -15,7 +15,7 @@ namespace Couche_Gestion
 		{
 		}
 
-		public int Ajouter(string nom, DateTime datteFin, bool active)
+		public int Ajouter(string nom, DateTime datteFin, bool active, int locataireCourant)
 		{
 			string activeBdd;
 
@@ -24,7 +24,7 @@ namespace Couche_Gestion
 			else
 				activeBdd = "0";
 
-			return new AccesTaches(ChaineConnexion).Ajouter(nom, datteFin, activeBdd);
+			return new AccesTaches(ChaineConnexion).Ajouter(nom, datteFin, activeBdd, locataireCourant);
 		}
 
 		public List<Taches> Lire(string index)
