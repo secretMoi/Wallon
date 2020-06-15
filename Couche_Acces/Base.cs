@@ -287,11 +287,13 @@ namespace Couche_Acces
 			object[] arguments = new object[_classesBase.GetChamps().Count]; // tableau pour contenir la valeur des champs
 
 			(string, Type) champ;
+			string valeur;
 
 			// pour chaque champ, on teste son type et on fait le cast adéquat
 			for (int i = 0; i < _classesBase.GetChamps().Count; i++)
 			{
 				champ = _classesBase.GetChamps()[i];
+				valeur = LireChamp(sqlDataReader, champ.Item1);
 
 				if (champ.Item2 == typeof(string)) // si le champ est de type string
 					arguments[i] = LireChamp(sqlDataReader, champ.Item1);
@@ -303,9 +305,28 @@ namespace Couche_Acces
 					}
 					catch
 					{
-						throw new Exception("Impossible de convert le champ " + champ.Item1 + " en nombre");
+						throw new Exception("Impossible de convertir la valeur " + valeur + " en nombre");
 					}
 				}
+				else if (champ.Item2 == typeof(bool)) // si le champ est un simple int
+				{
+					if (valeur == "False")
+						arguments[i] = false;
+					else if (valeur == "True")
+						arguments[i] = true;
+					else
+						throw new Exception("Le booléen dans la BDD n'est pas valide");
+				}
+				else if (champ.Item2 == typeof(DateTime)) // si le champ est un simple int
+					arguments[i] = Convert.ToDateTime(valeur);
+
+				else
+					throw new Exception(
+						"Type de paramètre inconnu venant de la BDD pour la valeur " + valeur +
+						" du type " + champ.Item2 +
+						" de la colonne " + champ.Item1 +
+						" de la table " + _table
+					);
 			}
 
 			return arguments;

@@ -1,5 +1,4 @@
-﻿using System;
-using Controls;
+﻿using Controls;
 
 namespace Wallon.Pages.Vue
 {
@@ -11,23 +10,10 @@ namespace Wallon.Pages.Vue
 
 			SetTitre("Accueil");
 
+			//new GestionTaches(Connexion).Ajouter("test", DateTime.Now, true);
+
 			if(!Settings.Auth)
 				LoadPage("Connexion");
-		}
-
-		private void buttonVendre_Click(object sender, EventArgs e)
-		{
-			LoadPage("Clients.Commander");
-		}
-
-		private void buttonAcheter_Click(object sender, EventArgs e)
-		{
-			LoadPage("Fournisseurs.Reapprovisionner");
-		}
-
-		private void buttonStock_Click(object sender, EventArgs e)
-		{
-			LoadPage("Stock.Consulter");
 		}
 	}
 }

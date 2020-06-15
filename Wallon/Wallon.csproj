@@ -223,8 +223,15 @@
     </Compile>
     <Compile Include="LocalOptions.cs" />
     <Compile Include="Controllers\ControllerLocataires.cs" />
+    <Compile Include="Pages\Controllers\Taches\ControllerConsulter.cs" />
     <Compile Include="Pages\Controllers\Utilisateurs\ControllerListe.cs" />
     <Compile Include="Pages\Controllers\Utilisateurs\ControllerProfil.cs" />
+    <Compile Include="Pages\Vue\Taches\Consulter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\Vue\Taches\Consulter.Designer.cs">
+      <DependentUpon>Consulter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Vue\Utilisateurs\Liste.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -252,6 +259,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\RepositoryTaches.cs" />
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="Controllers\BaseConsulter.resx">
       <DependentUpon>BaseConsulter.cs</DependentUpon>
@@ -297,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Vue\Connexion.resx">
       <DependentUpon>Connexion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Vue\Taches\Consulter.resx">
+      <DependentUpon>Consulter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Vue\Utilisateurs\Liste.resx">
       <DependentUpon>Liste.cs</DependentUpon>
@@ -419,5 +430,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
