@@ -28,27 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox = new System.Windows.Forms.TextBox();
-            this.SuspendLayout();
-            // 
-            // textBox
-            // 
-            this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox.Location = new System.Drawing.Point(0, 10);
-            this.textBox.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(140, 20);
-            this.textBox.TabIndex = 0;
-            // 
-            // FlatTextBox
-            // 
-            this.Controls.Add(this.textBox);
-            this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "FlatTextBox";
-            this.Size = new System.Drawing.Size(150, 40);
-            this.SizeChanged += new System.EventHandler(this.ResizeControl);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			this.textBox = new System.Windows.Forms.TextBox();
+			this.SuspendLayout();
+			// 
+			// textBox
+			// 
+			this.textBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+			this.textBox.Location = new System.Drawing.Point(0, 10);
+			this.textBox.Margin = new System.Windows.Forms.Padding(0);
+			this.textBox.Name = "textBox";
+			this.textBox.Size = new System.Drawing.Size(140, 20);
+			this.textBox.TabIndex = 0;
+			this.textBox.TextChanged += new System.EventHandler(this.textBox_TextChanged);
+			this.textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_KeyDown);
+			// 
+			// FlatTextBox
+			// 
+			this.Controls.Add(this.textBox);
+			this.Margin = new System.Windows.Forms.Padding(0);
+			this.Name = "FlatTextBox";
+			this.Size = new System.Drawing.Size(150, 40);
+			this.SizeChanged += new System.EventHandler(this.ResizeControl);
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
         }
 

@@ -26,6 +26,8 @@ namespace Wallon.Pages.Vue
 			SetTitre("Connexion");
 
 			SetColors();
+
+			flatTextBoxPassword.IsPassword = true;
 		}
 
 		private void SetColors()

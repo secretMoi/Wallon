@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Couche_Classe;
 using Couche_Gestion;
-using Wallon.Core;
 
 namespace Wallon.Repository
 {
