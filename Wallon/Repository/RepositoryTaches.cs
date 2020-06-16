@@ -54,12 +54,7 @@ namespace Wallon.Repository
 		{
 			try
 			{
-				return _gestion.Ajouter(
-					tache.Nom,
-					tache.DatteFin,
-					tache.Active,
-					tache.LocataireCourant
-				);
+				return _gestion.Ajouter(tache);
 			}
 			catch (Exception ex)
 			{

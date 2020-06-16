@@ -14,6 +14,12 @@ namespace Wallon.Pages.Controllers.Taches
 		public ControllerAjouter(FlatList flatList)
 		{
 			_taches = new RepositoryTaches();
+
+			_taches.Ajouter(new Couche_Classe.Taches(
+
+				"test", DateTime.Now, true, 8, 7
+			));
+
 			_flatList = flatList;
 		}
 

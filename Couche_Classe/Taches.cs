@@ -9,16 +9,17 @@ namespace Couche_Classe
 		{
 		}
 
-		public Taches(string nom, DateTime datteFin, bool actif, int locataireCourant)
+		public Taches(string nom, DateTime datteFin, bool actif, int locataireCourant, int cycle)
 		{
 			Nom = nom;
 			DatteFin = datteFin;
 			Active = actif;
 			LocataireCourant = locataireCourant;
+			Cycle = cycle;
 		}
 
-		public Taches(int id, string nom, DateTime datteFin, bool actif, int locataireCourant) :
-			this(nom, datteFin, actif, locataireCourant)
+		public Taches(int id, string nom, DateTime datteFin, bool actif, int locataireCourant, int cycle) :
+			this(nom, datteFin, actif, locataireCourant, cycle)
 		{
 			Id = id;
 		}
@@ -32,6 +33,7 @@ namespace Couche_Classe
 				_champs.Add(("datteFin", typeof(DateTime)));
 				_champs.Add(("active", typeof(bool)));
 				_champs.Add(("locataireCourant", typeof(int)));
+				_champs.Add(("cycle", typeof(int)));
 			}
 
 			return _champs;
@@ -43,5 +45,6 @@ namespace Couche_Classe
 		public DateTime DatteFin { get; set; }
 		public bool Active { get; set; }
 		public int LocataireCourant { get; set; }
+		public int Cycle { get; set; }
 	}
 }

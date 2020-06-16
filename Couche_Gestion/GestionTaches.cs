@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Couche_Acces;
 using Couche_Classe;
 
@@ -15,16 +14,22 @@ namespace Couche_Gestion
 		{
 		}
 
-		public int Ajouter(string nom, DateTime datteFin, bool active, int locataireCourant)
+		public int Ajouter(Taches tache)
 		{
 			string activeBdd;
 
-			if (active)
+			if (tache.Active)
 				activeBdd = "1";
 			else
 				activeBdd = "0";
 
-			return new AccesTaches(ChaineConnexion).Ajouter(nom, datteFin, activeBdd, locataireCourant);
+			return new AccesTaches(ChaineConnexion).Ajouter(
+				tache.Nom,
+				tache.DatteFin,
+				activeBdd,
+				tache.LocataireCourant,
+				tache.Cycle
+			);
 		}
 
 		public List<Taches> Lire(string index)
