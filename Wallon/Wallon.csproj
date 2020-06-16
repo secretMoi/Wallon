@@ -99,6 +99,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Core\Cryptage.cs" />
+    <Compile Include="Core\Formulaire.cs" />
     <Compile Include="Pages\Controllers\ControllerConnection.cs" />
     <Compile Include="Controls\Alerte.cs">
       <SubType>UserControl</SubType>

@@ -30,7 +30,7 @@
 		{
 			this.flatList = new Controls.FlatList();
 			this.flatButtonAjouter = new Controls.Buttons.FlatButton();
-			this.flatTextBoxPassword = new Controls.FlatTextBox();
+			this.flatTextBoxDatteDebut = new Controls.FlatTextBox();
 			this.flatLabelDateDebut = new Controls.FlatLabel();
 			this.flatTextName = new Controls.FlatTextBox();
 			this.flatLabelNom = new Controls.FlatLabel();
@@ -49,7 +49,7 @@
 			this.panelCorps.Controls.Add(this.flatTextBoxCycle);
 			this.panelCorps.Controls.Add(this.flatLabelCycle);
 			this.panelCorps.Controls.Add(this.flatButtonAjouter);
-			this.panelCorps.Controls.Add(this.flatTextBoxPassword);
+			this.panelCorps.Controls.Add(this.flatTextBoxDatteDebut);
 			this.panelCorps.Controls.Add(this.flatLabelDateDebut);
 			this.panelCorps.Controls.Add(this.flatTextName);
 			this.panelCorps.Controls.Add(this.flatLabelNom);
@@ -79,16 +79,17 @@
 			this.flatButtonAjouter.TabIndex = 15;
 			this.flatButtonAjouter.Text = "Ajouter";
 			this.flatButtonAjouter.UseVisualStyleBackColor = false;
+			this.flatButtonAjouter.Click += new System.EventHandler(this.flatButtonAjouter_Click);
 			// 
-			// flatTextBoxPassword
+			// flatTextBoxDatteDebut
 			// 
-			this.flatTextBoxPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
-			this.flatTextBoxPassword.IsPassword = false;
-			this.flatTextBoxPassword.Location = new System.Drawing.Point(215, 104);
-			this.flatTextBoxPassword.Margin = new System.Windows.Forms.Padding(0);
-			this.flatTextBoxPassword.Name = "flatTextBoxPassword";
-			this.flatTextBoxPassword.Size = new System.Drawing.Size(237, 40);
-			this.flatTextBoxPassword.TabIndex = 14;
+			this.flatTextBoxDatteDebut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
+			this.flatTextBoxDatteDebut.IsPassword = false;
+			this.flatTextBoxDatteDebut.Location = new System.Drawing.Point(215, 104);
+			this.flatTextBoxDatteDebut.Margin = new System.Windows.Forms.Padding(0);
+			this.flatTextBoxDatteDebut.Name = "flatTextBoxDatteDebut";
+			this.flatTextBoxDatteDebut.Size = new System.Drawing.Size(237, 40);
+			this.flatTextBoxDatteDebut.TabIndex = 14;
 			// 
 			// flatLabelDateDebut
 			// 
@@ -161,7 +162,7 @@
 
 		private Controls.FlatList flatList;
 		private Controls.Buttons.FlatButton flatButtonAjouter;
-		private Controls.FlatTextBox flatTextBoxPassword;
+		private Controls.FlatTextBox flatTextBoxDatteDebut;
 		private Controls.FlatLabel flatLabelDateDebut;
 		private Controls.FlatTextBox flatTextName;
 		private Controls.FlatLabel flatLabelNom;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Couche_Classe;
 using Couche_Gestion;
+using Wallon.Controllers;
 
 namespace Wallon.Repository
 {
@@ -76,7 +77,7 @@ namespace Wallon.Repository
 
 		public string NomLocataireCourant(int id)
 		{
-			return new RepositoryLocataires().LireId(id).Nom;
+			return new ControllerLocataires().GetById(id).Nom;
 		}
 	}
 }

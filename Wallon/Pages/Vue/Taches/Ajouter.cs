@@ -17,9 +17,19 @@ namespace Wallon.Pages.Vue.Taches
 			_controllerAjouter = new ControllerAjouter(flatList);
 
 			flatList.Text = @"Liste des locataires";
-			flatList.Add(_controllerAjouter.ListeLocataires(), _controllerAjouter.ClickListeLocataires);
+			flatList.Add(_controllerAjouter.ListeLocataires());
 
 			SetColors();
+		}
+
+		private void flatButtonAjouter_Click(object sender, System.EventArgs e)
+		{
+			_controllerAjouter.Ajouter(
+				flatTextName.Text,
+				flatTextBoxDatteDebut.Text,
+				flatTextBoxCycle.Text,
+				flatList.SelectedItems()
+			);
 		}
 	}
 }

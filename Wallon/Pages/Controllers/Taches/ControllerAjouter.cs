@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Controls;
+using Wallon.Core;
+using Wallon.Fenetres;
 using Wallon.Repository;
 
 namespace Wallon.Pages.Controllers.Taches
@@ -28,13 +30,15 @@ namespace Wallon.Pages.Controllers.Taches
 			return new RepositoryLocataires().Lire("id").Select(locataire => locataire.Nom).ToList();
 		}
 
-		public void ClickListeLocataires(object sender, EventArgs arg)
+		public void Ajouter(string name, string datteDebut, string cycle, List<string> selectedItems)
 		{
-			List<string> selectedItems = _flatList.SelectedItems();
+			if (!Formulaire.IsValid(name, datteDebut, cycle))
+			{
+				Dialog.Show("Le formualire n'est pas correctement rempli");
+				return;
+			}
 
 
-
-			//Dialog.Show(string.Join(",", test));
 		}
 	}
 }
