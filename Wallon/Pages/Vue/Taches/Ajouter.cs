@@ -21,6 +21,11 @@ namespace Wallon.Pages.Vue.Taches
 			SetColors();
 		}
 
+		/// <summary>
+		/// FOnction de callback lors du clic sur un élément de la FlatList
+		/// </summary>
+		/// <param name="sender">Bouton de la FlatList qui a lancé l'event</param>
+		/// <param name="e">Arguments</param>
 		private void flatButtonAjouter_Click(object sender, System.EventArgs e)
 		{
 			_controllerAjouter.Ajouter(

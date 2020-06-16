@@ -23,6 +23,11 @@ namespace Controls
 			_selected = new List<FlatButton>();
 		}
 
+		/// <summary>
+		/// Permet d'ajouter un élément
+		/// </summary>
+		/// <param name="element">Elément à ajouter à la flatlist</param>
+		/// <param name="click">Fonction de callback si l'utilisateur clic sur un bouton</param>
 		public void Add(string element, EventHandler click = null)
 		{
 			FlatButton flatButton = new FlatButton
@@ -46,18 +51,33 @@ namespace Controls
 				flatButton.Click += click; // abonne la fonction utilisateur
 		}
 
+		/// <summary>
+		/// Permet d'ajouter une liste d'éléments
+		/// </summary>
+		/// <param name="elements">Liste des éléments à ajouter à la flatlist</param>
+		/// <param name="click">Fonction de callback si l'utilisateur clic sur un bouton</param>
 		public void Add(string[] elements, EventHandler click = null)
 		{
 			foreach (string element in elements)
 				Add(element, click);
 		}
 
+		/// <summary>
+		/// Permet d'ajouter une liste d'éléments
+		/// </summary>
+		/// <param name="elements">Liste des éléments à ajouter à la flatlist</param>
+		/// <param name="click">Fonction de callback si l'utilisateur clic sur un bouton</param>
 		public void Add(List<string> elements, EventHandler click = null)
 		{
 			foreach (string element in elements)
 				Add(element, click);
 		}
 
+		/// <summary>
+		/// Event lors du clic sur un bouton de la liste
+		/// </summary>
+		/// <param name="sender">Le bouton qui lance l'event</param>
+		/// <param name="e">Les arguments transmis</param>
 		private new void Click(object sender, EventArgs e)
 		{
 			FlatButton flatButton = (FlatButton) sender;
@@ -68,11 +88,19 @@ namespace Controls
 			flatButton.BackColor = Theme.BackLight;
 		}
 
+		/// <summary>
+		/// Récupère la liste des éléments sélectionnés
+		/// </summary>
+		/// <returns>Une liste contenant tous les textes des éléments sélectionnés</returns>
 		public List<string> SelectedItems()
 		{
 			return _selected.Select(x => x.Text).ToList();
 		}
 
+		/// <summary>
+		/// Récupère la liste des id sélectionnés
+		/// </summary>
+		/// <returns>La liste des id sélectionnés</returns>
 		public List<int> SelectedId()
 		{
 			List<int> idSelected = new List<int>();

@@ -75,6 +75,11 @@ namespace Wallon.Repository
 			}
 		}*/
 
+		/// <summary>
+		/// Récupère le nom du locataire grâce à son id
+		/// </summary>
+		/// <param name="id">Id du locataire</param>
+		/// <returns>Le nom du locataire</returns>
 		public string NomLocataireCourant(int id)
 		{
 			return new ControllerLocataires().GetById(id).Nom;

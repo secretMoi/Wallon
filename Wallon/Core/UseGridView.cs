@@ -8,7 +8,6 @@ namespace Core
 	{
 		private readonly DataTable _table;
 		private readonly BindingSource _liens;
-		//private FlatDataGridView _flatDataGridView;
 		private int _nombreElements;
 
 		public UseGridView()
@@ -22,12 +21,21 @@ namespace Core
 			CreateColumns(titles);
 		}
 
+		/// <summary>
+		/// Crée des colonnes de texte
+		/// </summary>
+		/// <param name="titles">Titres des colonnes</param>
 		public void CreateColumns(params string[] titles)
 		{
 			foreach (string title in titles)
 				_table.Columns.Add(new DataColumn(title));
 		}
 
+		/// <summary>
+		/// Crée des colonnes contenant une image
+		/// </summary>
+		/// <param name="titles">Titres des colonnes</param>
+		/// <returns>Un tableau contenant l'index des colonnes créées</returns>
 		public int[] CreateImageColumn(params string[] titles)
 		{
 			int[] indexColonne = new int[titles.Length]; // tableau des index de colonnes cliquables
@@ -43,6 +51,10 @@ namespace Core
 			return indexColonne;
 		}
 
+		/// <summary>
+		/// Ajoute des données aux colonnes
+		/// </summary>
+		/// <param name="records">Données à ajouter aux colonnes</param>
 		public void Add(params object[] records)
 		{
 			_table.Rows.Add(records);

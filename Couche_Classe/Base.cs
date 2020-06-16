@@ -7,6 +7,6 @@ namespace Couche_Classe
 	{
 		protected readonly List<(string, Type)> _champs = new List<(string, Type)>();
 
-		public abstract List<(string, Type)> GetChamps();
+		public abstract List<(string, Type)> GetChamps(); // liste des champs de la classe
 	}
 }

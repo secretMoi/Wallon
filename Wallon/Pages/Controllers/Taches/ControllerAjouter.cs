@@ -18,6 +18,11 @@ namespace Wallon.Pages.Controllers.Taches
 			_associeIdListAndLocataires = new List<(int, int)>();
 		}
 
+
+		/// <summary>
+		/// Génère une liste complète des noms de locataires, associe l'id d'ordre de la flatlist avec l'id des locataires
+		/// </summary>
+		/// <returns>Liste des noms des locataires</returns>
 		public List<string> ListeLocataires()
 		{
 			List<Locataire> locataires = new RepositoryLocataires().Lire("id");
@@ -36,6 +41,13 @@ namespace Wallon.Pages.Controllers.Taches
 			return noms;
 		}
 
+		/// <summary>
+		/// Permet d'ajouter une tâche et sa liaison
+		/// </summary>
+		/// <param name="name">Nom de la tâche</param>
+		/// <param name="datte">Datte de début de la tâche</param>
+		/// <param name="cycleInput">Cycle en jours pour répéter la tâche</param>
+		/// <param name="selectedId">Liste des id de la FlatList sélectionnés</param>
 		public void Ajouter(string name, string datte, string cycleInput, List<int> selectedId)
 		{
 			if (!Formulaire.IsValid(name, datte, cycleInput) || selectedId.Count <1)
