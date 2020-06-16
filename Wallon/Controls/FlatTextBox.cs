@@ -43,7 +43,8 @@ namespace Controls
 			set
 			{
 				_isPassword = value;
-				textBox.PasswordChar = '\u25CF';
+				if(_isPassword)
+					textBox.PasswordChar = '\u25CF';
 				//_clearPassword = new StringBuilder();
 			} 
 		}

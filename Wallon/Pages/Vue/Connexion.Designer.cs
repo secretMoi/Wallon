@@ -40,6 +40,7 @@ namespace Wallon.Pages.Vue
 			this.flatButtonConnexion = new Controls.Buttons.FlatButton();
 			this.alerte = new Controls.Alerte();
 			this.panelTitre.SuspendLayout();
+			this.panelCorps.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panelTitre
@@ -51,6 +52,11 @@ namespace Wallon.Pages.Vue
 			// 
 			// panelCorps
 			// 
+			this.panelCorps.Controls.Add(this.flatButtonConnexion);
+			this.panelCorps.Controls.Add(this.flatTextBoxPassword);
+			this.panelCorps.Controls.Add(this.flatLabelPassword);
+			this.panelCorps.Controls.Add(this.flatTextName);
+			this.panelCorps.Controls.Add(this.flatLabelNom);
 			this.panelCorps.Location = new System.Drawing.Point(0, 0);
 			this.panelCorps.Size = new System.Drawing.Size(1856, 893);
 			// 
@@ -60,7 +66,7 @@ namespace Wallon.Pages.Vue
 			this.flatLabelNom.AutoSize = true;
 			this.flatLabelNom.Font = new System.Drawing.Font("Yu Gothic UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flatLabelNom.ForeColor = System.Drawing.Color.Black;
-			this.flatLabelNom.Location = new System.Drawing.Point(705, 197);
+			this.flatLabelNom.Location = new System.Drawing.Point(705, 135);
 			this.flatLabelNom.Name = "flatLabelNom";
 			this.flatLabelNom.Size = new System.Drawing.Size(82, 40);
 			this.flatLabelNom.TabIndex = 6;
@@ -70,7 +76,8 @@ namespace Wallon.Pages.Vue
 			// 
 			this.flatTextName.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.flatTextName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
-			this.flatTextName.Location = new System.Drawing.Point(937, 197);
+			this.flatTextName.IsPassword = false;
+			this.flatTextName.Location = new System.Drawing.Point(937, 135);
 			this.flatTextName.Margin = new System.Windows.Forms.Padding(0);
 			this.flatTextName.Name = "flatTextName";
 			this.flatTextName.Size = new System.Drawing.Size(215, 40);
@@ -80,7 +87,8 @@ namespace Wallon.Pages.Vue
 			// 
 			this.flatTextBoxPassword.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.flatTextBoxPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
-			this.flatTextBoxPassword.Location = new System.Drawing.Point(937, 286);
+			this.flatTextBoxPassword.IsPassword = false;
+			this.flatTextBoxPassword.Location = new System.Drawing.Point(937, 224);
 			this.flatTextBoxPassword.Margin = new System.Windows.Forms.Padding(0);
 			this.flatTextBoxPassword.Name = "flatTextBoxPassword";
 			this.flatTextBoxPassword.Size = new System.Drawing.Size(215, 40);
@@ -92,7 +100,7 @@ namespace Wallon.Pages.Vue
 			this.flatLabelPassword.AutoSize = true;
 			this.flatLabelPassword.Font = new System.Drawing.Font("Yu Gothic UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flatLabelPassword.ForeColor = System.Drawing.Color.Black;
-			this.flatLabelPassword.Location = new System.Drawing.Point(705, 286);
+			this.flatLabelPassword.Location = new System.Drawing.Point(705, 224);
 			this.flatLabelPassword.Name = "flatLabelPassword";
 			this.flatLabelPassword.Size = new System.Drawing.Size(192, 40);
 			this.flatLabelPassword.TabIndex = 8;
@@ -106,7 +114,7 @@ namespace Wallon.Pages.Vue
 			this.flatButtonConnexion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.flatButtonConnexion.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flatButtonConnexion.ForeColor = System.Drawing.Color.White;
-			this.flatButtonConnexion.Location = new System.Drawing.Point(824, 389);
+			this.flatButtonConnexion.Location = new System.Drawing.Point(824, 327);
 			this.flatButtonConnexion.Name = "flatButtonConnexion";
 			this.flatButtonConnexion.Size = new System.Drawing.Size(215, 56);
 			this.flatButtonConnexion.TabIndex = 10;
@@ -130,24 +138,13 @@ namespace Wallon.Pages.Vue
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-			this.Controls.Add(this.flatButtonConnexion);
-			this.Controls.Add(this.flatTextBoxPassword);
-			this.Controls.Add(this.flatLabelPassword);
-			this.Controls.Add(this.flatTextName);
-			this.Controls.Add(this.flatLabelNom);
 			this.Name = "Connexion";
 			this.Size = new System.Drawing.Size(1856, 893);
-			this.Controls.SetChildIndex(this.panelCorps, 0);
-			this.Controls.SetChildIndex(this.panelTitre, 0);
-			this.Controls.SetChildIndex(this.flatLabelNom, 0);
-			this.Controls.SetChildIndex(this.flatTextName, 0);
-			this.Controls.SetChildIndex(this.flatLabelPassword, 0);
-			this.Controls.SetChildIndex(this.flatTextBoxPassword, 0);
-			this.Controls.SetChildIndex(this.flatButtonConnexion, 0);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();
+			this.panelCorps.ResumeLayout(false);
+			this.panelCorps.PerformLayout();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 

@@ -30,13 +30,6 @@ namespace Wallon.Pages.Vue
 			flatTextBoxPassword.IsPassword = true;
 		}
 
-		private void SetColors()
-		{
-			// change la couleur de tous les flatLabel
-			foreach (FlatLabel label in Controls.OfType<FlatLabel>())
-				label.ForeColor = Theme.BackDark;
-		}
-
 		private void flatButtonConnexion_Click(object sender, System.EventArgs e)
 		{
 			// récupère les text des champs

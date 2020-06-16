@@ -48,7 +48,7 @@ namespace Wallon.Fenetres
 			this.menu_Clients = new Controls.Buttons.MenuFlatButton();
 			this.panelSousMenuStock = new System.Windows.Forms.Panel();
 			this.menu_Taches_Consulter = new Controls.Buttons.MenuFlatButton();
-			this.menu_Stock_Ajouter = new Controls.Buttons.MenuFlatButton();
+			this.menu_Taches_Ajouter = new Controls.Buttons.MenuFlatButton();
 			this.menu_Stock = new Controls.Buttons.MenuFlatButton();
 			this.panelSousMenuUtilisateurs = new System.Windows.Forms.Panel();
 			this.menu_Utilisateurs_Liste = new Controls.Buttons.MenuFlatButton();
@@ -324,7 +324,7 @@ namespace Wallon.Fenetres
 			// panelSousMenuStock
 			// 
 			this.panelSousMenuStock.Controls.Add(this.menu_Taches_Consulter);
-			this.panelSousMenuStock.Controls.Add(this.menu_Stock_Ajouter);
+			this.panelSousMenuStock.Controls.Add(this.menu_Taches_Ajouter);
 			this.panelSousMenuStock.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panelSousMenuStock.Location = new System.Drawing.Point(0, 350);
 			this.panelSousMenuStock.MaximumSize = new System.Drawing.Size(275, 140);
@@ -350,23 +350,23 @@ namespace Wallon.Fenetres
 			this.menu_Taches_Consulter.UseVisualStyleBackColor = false;
 			this.menu_Taches_Consulter.Click += new System.EventHandler(this.Menu_Click);
 			// 
-			// menu_Stock_Ajouter
+			// menu_Taches_Ajouter
 			// 
-			this.menu_Stock_Ajouter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
-			this.menu_Stock_Ajouter.FlatAppearance.BorderSize = 0;
-			this.menu_Stock_Ajouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.menu_Stock_Ajouter.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.menu_Stock_Ajouter.ForeColor = System.Drawing.Color.White;
-			this.menu_Stock_Ajouter.Image = ((System.Drawing.Image)(resources.GetObject("menu_Stock_Ajouter.Image")));
-			this.menu_Stock_Ajouter.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			this.menu_Stock_Ajouter.Location = new System.Drawing.Point(0, 0);
-			this.menu_Stock_Ajouter.Name = "menu_Stock_Ajouter";
-			this.menu_Stock_Ajouter.Size = new System.Drawing.Size(275, 70);
-			this.menu_Stock_Ajouter.TabIndex = 0;
-			this.menu_Stock_Ajouter.Text = "   Ajouter";
-			this.menu_Stock_Ajouter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-			this.menu_Stock_Ajouter.UseVisualStyleBackColor = false;
-			this.menu_Stock_Ajouter.Click += new System.EventHandler(this.Menu_Click);
+			this.menu_Taches_Ajouter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
+			this.menu_Taches_Ajouter.FlatAppearance.BorderSize = 0;
+			this.menu_Taches_Ajouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.menu_Taches_Ajouter.Font = new System.Drawing.Font("Yu Gothic UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.menu_Taches_Ajouter.ForeColor = System.Drawing.Color.White;
+			this.menu_Taches_Ajouter.Image = ((System.Drawing.Image)(resources.GetObject("menu_Taches_Ajouter.Image")));
+			this.menu_Taches_Ajouter.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.menu_Taches_Ajouter.Location = new System.Drawing.Point(0, 0);
+			this.menu_Taches_Ajouter.Name = "menu_Taches_Ajouter";
+			this.menu_Taches_Ajouter.Size = new System.Drawing.Size(275, 70);
+			this.menu_Taches_Ajouter.TabIndex = 0;
+			this.menu_Taches_Ajouter.Text = "   Ajouter";
+			this.menu_Taches_Ajouter.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+			this.menu_Taches_Ajouter.UseVisualStyleBackColor = false;
+			this.menu_Taches_Ajouter.Click += new System.EventHandler(this.Menu_Click);
 			// 
 			// menu_Stock
 			// 
@@ -602,7 +602,7 @@ namespace Wallon.Fenetres
         private System.Windows.Forms.PictureBox pictureBoxReduce;
         private System.Windows.Forms.Panel panelSousMenuStock;
         private MenuFlatButton menu_Taches_Consulter;
-        private MenuFlatButton menu_Stock_Ajouter;
+        private MenuFlatButton menu_Taches_Ajouter;
         private System.Windows.Forms.PictureBox pictureBoxResize;
         private System.Windows.Forms.Timer timerMenuDeroulant;
 		private System.Windows.Forms.Panel panelSousMenuClients;

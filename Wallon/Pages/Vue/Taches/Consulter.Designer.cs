@@ -33,21 +33,16 @@
 			this.panelCorps.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// panelTitre
-			// 
-			this.panelTitre.Size = new System.Drawing.Size(1002, 120);
-			// 
 			// panelCorps
 			// 
 			this.panelCorps.Controls.Add(this.flatDataGridView);
-			this.panelCorps.Size = new System.Drawing.Size(1002, 773);
 			// 
 			// flatDataGridView
 			// 
 			this.flatDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.flatDataGridView.Location = new System.Drawing.Point(0, 0);
 			this.flatDataGridView.Name = "flatDataGridView";
-			this.flatDataGridView.Size = new System.Drawing.Size(1002, 773);
+			this.flatDataGridView.Size = new System.Drawing.Size(1856, 773);
 			this.flatDataGridView.TabIndex = 0;
 			// 
 			// Consulter
@@ -55,7 +50,6 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Name = "Consulter";
-			this.Size = new System.Drawing.Size(1002, 893);
 			this.Load += new System.EventHandler(this.Consulter_Load);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();

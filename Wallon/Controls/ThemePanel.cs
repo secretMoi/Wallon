@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using Core;
 using Wallon.Fenetres;
@@ -47,6 +48,13 @@ namespace Controls
 			var test = Application.OpenForms;
 			Form1 lastOpenedForm = Application.OpenForms[Application.OpenForms.Count - 1] as Form1; // récupère la dernière form active
 			lastOpenedForm?.LoadPage(@namespace + ".Pages.Vue." + page, arguments); // charge la page Ajouter
+		}
+
+		protected void SetColors()
+		{
+			// change la couleur de tous les flatLabel
+			foreach (FlatLabel label in panelCorps.Controls.OfType<FlatLabel>())
+				label.ForeColor = Theme.BackDark;
 		}
 
 		public static void SetConnection(string connexion)

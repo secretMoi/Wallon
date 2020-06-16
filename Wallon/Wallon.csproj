@@ -223,9 +223,16 @@
     </Compile>
     <Compile Include="LocalOptions.cs" />
     <Compile Include="Controllers\ControllerLocataires.cs" />
+    <Compile Include="Pages\Controllers\Taches\ControllerAjouter.cs" />
     <Compile Include="Pages\Controllers\Taches\ControllerConsulter.cs" />
     <Compile Include="Pages\Controllers\Utilisateurs\ControllerListe.cs" />
     <Compile Include="Pages\Controllers\Utilisateurs\ControllerProfil.cs" />
+    <Compile Include="Pages\Vue\Taches\Ajouter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\Vue\Taches\Ajouter.Designer.cs">
+      <DependentUpon>Ajouter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Vue\Taches\Consulter.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -305,6 +312,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Vue\Connexion.resx">
       <DependentUpon>Connexion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Vue\Taches\Ajouter.resx">
+      <DependentUpon>Ajouter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Vue\Taches\Consulter.resx">
       <DependentUpon>Consulter.cs</DependentUpon>

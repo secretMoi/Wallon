@@ -31,15 +31,15 @@ namespace Controls
 		private void InitializeComponent()
 		{
 			this.panelTitre = new System.Windows.Forms.Panel();
-			this.flatLabelTitre = new FlatLabel();
+			this.flatLabelTitre = new Controls.FlatLabel();
 			this.panelCorps = new System.Windows.Forms.Panel();
 			this.panelTitre.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panelTitre
 			// 
-			this.panelTitre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.panelTitre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.panelTitre.BackColor = System.Drawing.Color.White;
 			this.panelTitre.Controls.Add(this.flatLabelTitre);
 			this.panelTitre.Location = new System.Drawing.Point(0, 0);
@@ -60,8 +60,8 @@ namespace Controls
 			// 
 			// panelCorps
 			// 
-			this.panelCorps.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.panelCorps.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.panelCorps.BackColor = System.Drawing.Color.White;
 			this.panelCorps.Location = new System.Drawing.Point(0, 75);
 			this.panelCorps.Name = "panelCorps";
@@ -73,6 +73,7 @@ namespace Controls
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+			this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.BackColor = System.Drawing.Color.White;
 			this.Controls.Add(this.panelCorps);
 			this.Controls.Add(this.panelTitre);
