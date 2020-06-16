@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Controls;
 using Couche_Classe;
 using Wallon.Core;
 using Wallon.Fenetres;
@@ -12,26 +10,18 @@ namespace Wallon.Pages.Controllers.Taches
 	public class ControllerAjouter
 	{
 		private readonly RepositoryTaches _taches;
-		private readonly FlatList _flatList;
 		private readonly List<(int, int)> _associeIdListAndLocataires; // id1 ordre, id2 id réel bdd
 
-		public ControllerAjouter(FlatList flatList)
+		public ControllerAjouter()
 		{
-			_flatList = flatList;
 			_taches = new RepositoryTaches();
 			_associeIdListAndLocataires = new List<(int, int)>();
-
-			_taches.Ajouter(new Couche_Classe.Taches(
-
-				"test", DateTime.Now, true, 8, 7
-			));
 		}
 
 		public List<string> ListeLocataires()
 		{
 			List<Locataire> locataires = new RepositoryLocataires().Lire("id");
 			List<string> noms = new List<string>();
-			//List<string> locataires = new RepositoryLocataires().Lire("id").Select(locataire => locataire.Nom).ToList();
 
 			for (int i = 0; i < locataires.Count; i++)
 			{
@@ -82,17 +72,6 @@ namespace Wallon.Pages.Controllers.Taches
 			int idTache = _taches.Ajouter(tache);
 
 			// Ajout les locataires à la tâche
-			/*foreach ((int, int) locataire in _associeIdListAndLocataires)
-				new RepositoryLiaisonTachesLocataires().Ajouter(locataire, idTache);*/
-
-			/*for (int i = 0; i < selectedId.Count; i++)
-			{
-				new RepositoryLiaisonTachesLocataires().Ajouter(
-					_associeIdListAndLocataires[i].Item2,
-					idTache
-				);
-			}*/
-
 			foreach (int idSelected in selectedId)
 				new RepositoryLiaisonTachesLocataires().Ajouter(
 					_associeIdListAndLocataires[idSelected].Item2,

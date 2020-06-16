@@ -13,7 +13,7 @@ namespace Wallon.Pages.Vue.Taches
 
 			SetTitre("Ajouter une tâche");
 
-			_controllerAjouter = new ControllerAjouter(flatList);
+			_controllerAjouter = new ControllerAjouter();
 
 			flatList.Text = @"Liste des locataires";
 			flatList.Add(_controllerAjouter.ListeLocataires());
