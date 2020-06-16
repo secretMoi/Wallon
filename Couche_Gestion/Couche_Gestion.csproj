@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base.cs" />
+    <Compile Include="GestionLiaisonTachesLocataires.cs" />
     <Compile Include="GestionTaches.cs" />
     <Compile Include="Gestion_Locataire.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

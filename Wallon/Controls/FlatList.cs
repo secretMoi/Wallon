@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Controls.Buttons;
-
+// todo supprimer élément sélectionné
 namespace Controls
 {
 	public partial class FlatList : UserControl
@@ -71,6 +71,20 @@ namespace Controls
 		public List<string> SelectedItems()
 		{
 			return _selected.Select(x => x.Text).ToList();
+		}
+
+		public List<int> SelectedId()
+		{
+			List<int> idSelected = new List<int>();
+			string name;
+
+			foreach (FlatButton flatButton in _selected)
+			{
+				name = flatButton.Name.Split('_')[1];
+				idSelected.Add(int.Parse(name));
+			}
+
+			return idSelected;
 		}
 
 		public override string Text

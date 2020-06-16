@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Controls;
+﻿using Controls;
 using Wallon.Pages.Controllers.Taches;
 
 namespace Wallon.Pages.Vue.Taches
@@ -28,7 +27,7 @@ namespace Wallon.Pages.Vue.Taches
 				flatTextName.Text,
 				flatTextBoxDatteDebut.Text,
 				flatTextBoxCycle.Text,
-				flatList.SelectedItems()
+				flatList.SelectedId()
 			);
 		}
 	}

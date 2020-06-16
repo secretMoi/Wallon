@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccesLiaisonTachesLocataires.cs" />
     <Compile Include="AccesTaches.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Acces_Locataire.cs" />

@@ -252,6 +252,7 @@
     <Compile Include="Pages\Vue\Utilisateurs\Profil.Designer.cs">
       <DependentUpon>Profil.cs</DependentUpon>
     </Compile>
+    <Compile Include="Repository\RepositoryLiaisonTachesLocataires.cs" />
     <Compile Include="Repository\RepositoryLocataires.cs" />
     <Compile Include="Pages\Vue\Accueil.cs">
       <SubType>UserControl</SubType>
