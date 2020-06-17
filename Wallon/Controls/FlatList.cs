@@ -21,6 +21,16 @@ namespace Controls
 
 			_elements = new List<string>();
 			_selected = new List<FlatButton>();
+
+			// désactive les barres de scroll mais rend le panel scrollable
+			panelCorps.HorizontalScroll.Enabled = false;
+			panelCorps.HorizontalScroll.Visible = false;
+			panelCorps.HorizontalScroll.Maximum = 0;
+
+			panelCorps.VerticalScroll.Enabled = false;
+			panelCorps.VerticalScroll.Visible = false;
+			panelCorps.VerticalScroll.Maximum = 0;
+			panelCorps.AutoScroll = true;
 		}
 
 		/// <summary>

@@ -38,10 +38,9 @@ namespace Controls
 			// 
 			// panelTitre
 			// 
-			this.panelTitre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.panelTitre.BackColor = System.Drawing.Color.White;
 			this.panelTitre.Controls.Add(this.flatLabelTitre);
+			this.panelTitre.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panelTitre.Location = new System.Drawing.Point(0, 0);
 			this.panelTitre.Name = "panelTitre";
 			this.panelTitre.Size = new System.Drawing.Size(420, 75);
@@ -60,9 +59,8 @@ namespace Controls
 			// 
 			// panelCorps
 			// 
-			this.panelCorps.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
 			this.panelCorps.BackColor = System.Drawing.Color.White;
+			this.panelCorps.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panelCorps.Location = new System.Drawing.Point(0, 75);
 			this.panelCorps.Name = "panelCorps";
 			this.panelCorps.Size = new System.Drawing.Size(420, 242);
