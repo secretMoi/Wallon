@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Controls.Buttons;
-// todo supprimer élément sélectionné
+
 namespace Controls
 {
 	public partial class FlatList : UserControl
@@ -90,12 +90,20 @@ namespace Controls
 		/// <param name="e">Les arguments transmis</param>
 		private new void Click(object sender, EventArgs e)
 		{
-			FlatButton flatButton = (FlatButton) sender;
+			FlatButton flatButton = (FlatButton) sender; // obtient le bouton qui lance l'event
 
-			// trouve l'id
-			_selected.Add(flatButton);
+			if (_selected.Contains(flatButton)) // si la liste contient déjà la couleur
+			{
+				_selected.Remove(flatButton); // retire le bouton de la liste
 
-			flatButton.BackColor = Theme.BackLight;
+				flatButton.BackColor = Theme.Back; // change la couleur
+			}
+			else
+			{
+				_selected.Add(flatButton); // ajoute le bouton à la liste
+
+				flatButton.BackColor = Theme.BackLight; // change la couleur
+			}
 		}
 
 		/// <summary>
