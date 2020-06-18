@@ -9,6 +9,7 @@ namespace Wallon.Repository
 	{
 		private readonly GestionLiaisonTachesLocataires _gestion;
 
+		// todo hériter le constructeur
 		public RepositoryLiaisonTachesLocataires()
 		{
 			_gestion = new GestionLiaisonTachesLocataires(Settings.Connection);
