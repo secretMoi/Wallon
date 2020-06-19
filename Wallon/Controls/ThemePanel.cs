@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Core;
+using FlatControls.Core;
 using Wallon.Fenetres;
 
 //todo border fenetre

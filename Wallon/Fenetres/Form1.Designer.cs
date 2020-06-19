@@ -1,4 +1,4 @@
-﻿using Controls.Buttons;
+﻿using FlatControls.Controls.Buttons;
 
 namespace Wallon.Fenetres
 {
@@ -33,28 +33,28 @@ namespace Wallon.Fenetres
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.panelMenu = new System.Windows.Forms.Panel();
-			this.menuFlatButtonClose = new Controls.Buttons.MenuFlatButton();
+			this.menuFlatButtonClose = new FlatControls.Controls.Buttons.MenuFlatButton();
 			this.panelSousMenuFournisseurs = new System.Windows.Forms.Panel();
-			this.menu_Fournisseurs_Reapprovisionner = new Controls.Buttons.MenuFlatButton();
-			this.menu_Fournisseurs_Commandes = new Controls.Buttons.MenuFlatButton();
-			this.menu_Fournisseurs_Ajouter = new Controls.Buttons.MenuFlatButton();
-			this.menu_Fournisseurs_Consulter = new Controls.Buttons.MenuFlatButton();
-			this.menu_Fournisseurs = new Controls.Buttons.MenuFlatButton();
+			this.menu_Fournisseurs_Reapprovisionner = new FlatControls.Controls.Buttons.MenuFlatButton();
+			this.menu_Fournisseurs_Commandes = new FlatControls.Controls.Buttons.MenuFlatButton();
+			this.menu_Fournisseurs_Ajouter = new FlatControls.Controls.Buttons.MenuFlatButton();
+			this.menu_Fournisseurs_Consulter = new FlatControls.Controls.Buttons.MenuFlatButton();
+			this.menu_Fournisseurs = new FlatControls.Controls.Buttons.MenuFlatButton();
 			this.panelSousMenuClients = new System.Windows.Forms.Panel();
-			this.menu_Clients_Historique = new Controls.Buttons.MenuFlatButton();
-			this.menu_Clients_Commander = new Controls.Buttons.MenuFlatButton();
-			this.menu_Clients_Ajouter = new Controls.Buttons.MenuFlatButton();
-			this.menu_Clients_Consulter = new Controls.Buttons.MenuFlatButton();
-			this.menu_Clients = new Controls.Buttons.MenuFlatButton();
+			this.menu_Clients_Historique = new FlatControls.Controls.Buttons.MenuFlatButton();
+			this.menu_Clients_Commander = new FlatControls.Controls.Buttons.MenuFlatButton();
+			this.menu_Clients_Ajouter = new FlatControls.Controls.Buttons.MenuFlatButton();
+			this.menu_Clients_Consulter = new FlatControls.Controls.Buttons.MenuFlatButton();
+			this.menu_Clients = new FlatControls.Controls.Buttons.MenuFlatButton();
 			this.panelSousMenuStock = new System.Windows.Forms.Panel();
-			this.menu_Taches_Consulter = new Controls.Buttons.MenuFlatButton();
-			this.menu_Taches_Ajouter = new Controls.Buttons.MenuFlatButton();
-			this.menu_Stock = new Controls.Buttons.MenuFlatButton();
+			this.menu_Taches_Consulter = new FlatControls.Controls.Buttons.MenuFlatButton();
+			this.menu_Taches_Ajouter = new FlatControls.Controls.Buttons.MenuFlatButton();
+			this.menu_Stock = new FlatControls.Controls.Buttons.MenuFlatButton();
 			this.panelSousMenuUtilisateurs = new System.Windows.Forms.Panel();
-			this.menu_Utilisateurs_Liste = new Controls.Buttons.MenuFlatButton();
-			this.menu_Utilisateurs_Profil = new Controls.Buttons.MenuFlatButton();
-			this.menu_Utilisateurs = new Controls.Buttons.MenuFlatButton();
-			this.menu_Accueil = new Controls.Buttons.MenuFlatButton();
+			this.menu_Utilisateurs_Liste = new FlatControls.Controls.Buttons.MenuFlatButton();
+			this.menu_Utilisateurs_Profil = new FlatControls.Controls.Buttons.MenuFlatButton();
+			this.menu_Utilisateurs = new FlatControls.Controls.Buttons.MenuFlatButton();
+			this.menu_Accueil = new FlatControls.Controls.Buttons.MenuFlatButton();
 			this.panelContainer = new System.Windows.Forms.Panel();
 			this.panelHeader = new System.Windows.Forms.Panel();
 			this.pictureBoxReduce = new System.Windows.Forms.PictureBox();

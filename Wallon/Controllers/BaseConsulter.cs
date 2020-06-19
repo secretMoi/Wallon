@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using Controls;
-using Core;
+using FlatControls.Core;
 using Wallon.Fenetres;
 using FlatDataGridView = FlatControls.Controls.FlatDataGridView;
 

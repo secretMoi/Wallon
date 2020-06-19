@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core
+namespace FlatControls.Core
 {
 	class Money
 	{

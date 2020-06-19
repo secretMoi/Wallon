@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Controls;
-using Core;
+using FlatControls.Core;
 using Wallon.Pages.Vue;
 
 //todo séparer les pages header dans une classe

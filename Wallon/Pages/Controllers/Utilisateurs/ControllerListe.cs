@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Core;
+using FlatControls.Core;
 using Couche_Classe;
 using Wallon.Repository;
 
