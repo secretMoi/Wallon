@@ -1,4 +1,5 @@
 ﻿using Controls;
+using FlatControls.Controls;
 
 namespace Wallon.Fenetres
 {
@@ -32,7 +33,7 @@ namespace Wallon.Fenetres
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dialog));
 			this.panelHeader = new System.Windows.Forms.Panel();
-			this.flatLabel1 = new FlatLabel();
+			this.flatLabel1 = new FlatControls.Controls.FlatLabel();
 			this.panelHeader.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -83,6 +84,6 @@ namespace Wallon.Fenetres
 		#endregion
 
 		private System.Windows.Forms.Panel panelHeader;
-		private FlatLabel flatLabel1;
+		private FlatControls.Controls.FlatLabel flatLabel1;
 	}
 }

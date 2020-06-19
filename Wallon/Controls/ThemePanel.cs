@@ -53,7 +53,7 @@ namespace Controls
 		protected void SetColors()
 		{
 			// change la couleur de tous les flatLabel
-			foreach (FlatLabel label in panelCorps.Controls.OfType<FlatLabel>())
+			foreach (FlatControls.Controls.FlatLabel label in panelCorps.Controls.OfType<FlatControls.Controls.FlatLabel>())
 				label.ForeColor = Theme.BackDark;
 		}
 
