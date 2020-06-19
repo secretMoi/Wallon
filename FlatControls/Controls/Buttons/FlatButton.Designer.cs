@@ -1,6 +1,6 @@
-﻿namespace Wallon.Pages.Vue.Utilisateurs
+﻿namespace FlatControls.Controls.Buttons
 {
-	partial class Profil
+	partial class FlatButton
 	{
 		/// <summary> 
 		/// Variable nécessaire au concepteur.
@@ -26,29 +26,9 @@
 		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas 
 		/// le contenu de cette méthode avec l'éditeur de code.
 		/// </summary>
-		private new void InitializeComponent()
+		private void InitializeComponent()
 		{
-			this.panelTitre.SuspendLayout();
-			this.SuspendLayout();
-			// 
-			// panelTitre
-			// 
-			this.panelTitre.Size = new System.Drawing.Size(1856, 120);
-			// 
-			// panelCorps
-			// 
-			this.panelCorps.Size = new System.Drawing.Size(1856, 773);
-			// 
-			// Profil
-			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-			this.Name = "Profil";
-			this.Size = new System.Drawing.Size(1856, 893);
-			this.panelTitre.ResumeLayout(false);
-			this.panelTitre.PerformLayout();
-			this.ResumeLayout(false);
-
+			components = new System.ComponentModel.Container();
 		}
 
 		#endregion

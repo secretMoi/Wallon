@@ -1,4 +1,6 @@
-﻿namespace Wallon.Pages.Vue.Utilisateurs
+﻿using FlatControls.Controls;
+
+namespace Wallon.Pages.Vue.Utilisateurs
 {
 	partial class Liste
 	{
@@ -28,7 +30,7 @@
 		/// </summary>
 		private new void InitializeComponent()
 		{
-			this.flatDataGridView = new Controls.FlatDataGridView();
+			this.flatDataGridView = new FlatDataGridView();
 			this.panelTitre.SuspendLayout();
 			this.panelCorps.SuspendLayout();
 			this.SuspendLayout();
@@ -60,6 +62,6 @@
 
 		#endregion
 
-		private Controls.FlatDataGridView flatDataGridView;
+		private FlatDataGridView flatDataGridView;
 	}
 }

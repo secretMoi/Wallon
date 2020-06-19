@@ -1,4 +1,7 @@
-﻿namespace Wallon.Pages.Vue.Taches
+﻿using FlatControls.Controls;
+using FlatControls.Controls.Buttons;
+
+namespace Wallon.Pages.Vue.Taches
 {
 	partial class Ajouter
 	{
@@ -28,21 +31,21 @@
 		/// </summary>
 		private new void InitializeComponent()
 		{
-			this.flatList = new Controls.FlatList();
-			this.flatButtonAjouter = new Controls.Buttons.FlatButton();
-			this.flatTextBoxDatteDebut = new Controls.FlatTextBox();
-			this.flatLabelDateDebut = new Controls.FlatLabel();
-			this.flatTextName = new Controls.FlatTextBox();
-			this.flatLabelNom = new Controls.FlatLabel();
-			this.flatTextBoxCycle = new Controls.FlatTextBox();
-			this.flatLabelCycle = new Controls.FlatLabel();
+			this.flatList = new FlatList();
+			this.flatButtonAjouter = new FlatButton();
+			this.flatTextBoxDatteDebut = new FlatTextBox();
+			this.flatLabelDateDebut = new FlatLabel();
+			this.flatTextName = new FlatTextBox();
+			this.flatLabelNom = new FlatLabel();
+			this.flatTextBoxCycle = new FlatTextBox();
+			this.flatLabelCycle = new FlatLabel();
 			this.panelTitre.SuspendLayout();
 			this.panelCorps.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panelTitre
 			// 
-			this.panelTitre.Size = new System.Drawing.Size(1856, 120);
+			this.panelTitre.Size = new System.Drawing.Size(1539, 120);
 			// 
 			// panelCorps
 			// 
@@ -54,14 +57,14 @@
 			this.panelCorps.Controls.Add(this.flatTextName);
 			this.panelCorps.Controls.Add(this.flatLabelNom);
 			this.panelCorps.Controls.Add(this.flatList);
-			this.panelCorps.Size = new System.Drawing.Size(1856, 773);
+			this.panelCorps.Size = new System.Drawing.Size(1539, 436);
 			// 
 			// flatList
 			// 
 			this.flatList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.flatList.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.flatList.BackColor = System.Drawing.Color.White;
-			this.flatList.Location = new System.Drawing.Point(1609, 18);
+			this.flatList.Location = new System.Drawing.Point(1292, 18);
 			this.flatList.Name = "flatList";
 			this.flatList.Size = new System.Drawing.Size(235, 317);
 			this.flatList.TabIndex = 0;
@@ -149,7 +152,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Name = "Ajouter";
-			this.Size = new System.Drawing.Size(1856, 893);
+			this.Size = new System.Drawing.Size(1539, 556);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();
 			this.panelCorps.ResumeLayout(false);
@@ -160,13 +163,13 @@
 
 		#endregion
 
-		private Controls.FlatList flatList;
-		private Controls.Buttons.FlatButton flatButtonAjouter;
-		private Controls.FlatTextBox flatTextBoxDatteDebut;
-		private Controls.FlatLabel flatLabelDateDebut;
-		private Controls.FlatTextBox flatTextName;
-		private Controls.FlatLabel flatLabelNom;
-		private Controls.FlatTextBox flatTextBoxCycle;
-		private Controls.FlatLabel flatLabelCycle;
+		private FlatList flatList;
+		private FlatButton flatButtonAjouter;
+		private FlatTextBox flatTextBoxDatteDebut;
+		private FlatLabel flatLabelDateDebut;
+		private FlatTextBox flatTextName;
+		private FlatLabel flatLabelNom;
+		private FlatTextBox flatTextBoxCycle;
+		private FlatLabel flatLabelCycle;
 	}
 }

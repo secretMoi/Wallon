@@ -1,6 +1,4 @@
-﻿using Controls;
-
-namespace Wallon.Pages.Vue
+﻿namespace Wallon.Pages.Vue
 {
 	partial class Accueil
 	{
@@ -35,11 +33,11 @@ namespace Wallon.Pages.Vue
 			// 
 			// panelTitre
 			// 
-			this.panelTitre.Size = new System.Drawing.Size(1856, 120);
+			this.panelTitre.Size = new System.Drawing.Size(1539, 120);
 			// 
 			// panelCorps
 			// 
-			this.panelCorps.Size = new System.Drawing.Size(1856, 773);
+			this.panelCorps.Size = new System.Drawing.Size(1539, 436);
 			// 
 			// Accueil
 			// 
@@ -47,7 +45,7 @@ namespace Wallon.Pages.Vue
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.Name = "Accueil";
-			this.Size = new System.Drawing.Size(1856, 893);
+			this.Size = new System.Drawing.Size(1539, 556);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();
 			this.ResumeLayout(false);
