@@ -262,5 +262,10 @@ namespace Wallon.Fenetres
 			control.Location = nouvellePosition;
 			control.Size = new Size(taille, taille);
 		}
+
+		private void pictureBox1_Click(object sender, EventArgs e)
+		{
+
+		}
 	}
 }
