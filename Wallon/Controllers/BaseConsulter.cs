@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
 using Controls;
@@ -15,13 +16,15 @@ namespace Wallon.Controllers
 		protected UseGridView _useGridView;
 		protected FlatDataGridView _flatDataGridView;
 
-		protected Image _imageEditer;
-		protected Image _imageSupprimer;
-		protected Image _imageVoir;
+		public Image _imageEditer;
+		public Image _imageSupprimer;
+		public Image _imageVoir;
+		public Image _imageValider;
 
 		private bool _editEnabled;
 		private bool _deleteEnabled;
 		private bool _seeEnabled;
+		private bool _validateEnabled;
 
 		public BaseConsulter()
 		{
@@ -52,6 +55,8 @@ namespace Wallon.Controllers
 				_flatDataGridView.Column["Supprimer"].Width = 200;
 			if (_seeEnabled)
 				_flatDataGridView.Column["Voir"].Width = 150;
+			if (_validateEnabled)
+				_flatDataGridView.Column["Valider"].Width = 150;
 		}
 
 		protected void SetColonnes(params string[] titres)
@@ -66,7 +71,7 @@ namespace Wallon.Controllers
 			);
 		}
 
-		protected void EnableColumn(params string[] colonnes)
+		public void EnableColumn(params string[] colonnes)
 		{
 			if (colonnes.Contains("editer"))
 			{
@@ -86,6 +91,51 @@ namespace Wallon.Controllers
 				SetColonnesCliquables("Voir");
 				_imageVoir = Image.FromFile("Ressources/Images/loupe.png");
 			}
+			if (colonnes.Contains("valider"))
+			{
+				_validateEnabled = true;
+				SetColonnesCliquables("Valider");
+
+				_imageValider = Image.FromFile("Ressources/Images/correct.png");
+				_imageValider = ResizeImage(_imageValider, new Size(32, 32));
+			}
+		}
+
+		public static Image ResizeImage(Image image, Size size, bool preserveAspectRatio = true)
+		{
+			int newWidth;
+			int newHeight;
+
+			if (size == image.Size)
+				return image;
+
+			if (preserveAspectRatio)
+			{
+				int originalWidth = image.Width;
+				int originalHeight = image.Height;
+
+				float percentWidth = (float)size.Width / (float)originalWidth;
+				float percentHeight = (float)size.Height / (float)originalHeight;
+				float percent = percentHeight < percentWidth ? percentHeight : percentWidth;
+
+				newWidth = (int)(originalWidth * percent);
+				newHeight = (int)(originalHeight * percent);
+			}
+			else
+			{
+				newWidth = size.Width;
+				newHeight = size.Height;
+			}
+
+			Image newImage = new Bitmap(newWidth, newHeight);
+
+			using (Graphics graphicsHandle = Graphics.FromImage(newImage))
+			{
+				graphicsHandle.InterpolationMode = InterpolationMode.HighQualityBicubic;
+				graphicsHandle.DrawImage(image, 0, 0, newWidth, newHeight);
+			}
+
+			return newImage;
 		}
 
 		public virtual void EffetClic(object sender, DataGridViewCellMouseEventArgs e)

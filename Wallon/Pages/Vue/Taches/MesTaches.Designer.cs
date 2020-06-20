@@ -28,7 +28,9 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.flatDataGridView = new FlatControls.Controls.FlatDataGridView();
 			this.panelTitre.SuspendLayout();
+			this.panelCorps.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panelTitre
@@ -37,7 +39,16 @@
 			// 
 			// panelCorps
 			// 
+			this.panelCorps.Controls.Add(this.flatDataGridView);
 			this.panelCorps.Size = new System.Drawing.Size(1539, 773);
+			// 
+			// flatDataGridView
+			// 
+			this.flatDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.flatDataGridView.Location = new System.Drawing.Point(0, 0);
+			this.flatDataGridView.Name = "flatDataGridView";
+			this.flatDataGridView.Size = new System.Drawing.Size(1539, 773);
+			this.flatDataGridView.TabIndex = 0;
 			// 
 			// MesTaches
 			// 
@@ -45,12 +56,16 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Name = "MesTaches";
 			this.Size = new System.Drawing.Size(1539, 893);
+			this.Load += new System.EventHandler(this.MesTaches_Load);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();
+			this.panelCorps.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
+
+		private FlatControls.Controls.FlatDataGridView flatDataGridView;
 	}
 }
