@@ -129,12 +129,6 @@
     <Compile Include="Fenetres\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Fenetres\FormBdd.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Fenetres\FormBdd.Designer.cs">
-      <DependentUpon>FormBdd.cs</DependentUpon>
-    </Compile>
     <Compile Include="LocalOptions.cs" />
     <Compile Include="Controllers\ControllerLocataires.cs" />
     <Compile Include="Pages\Controllers\Taches\ControllerAjouter.cs" />

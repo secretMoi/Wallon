@@ -9,7 +9,7 @@ using Theme = FlatControls.Controls.Theme;
 //todo geler l'affichage durant le chargement d'une page pour éviter les "blancs"
 namespace Wallon.Fenetres
 {
-	public partial class Form1 : FormBdd
+	public partial class Form1 : Form
 	{
 		private bool _isResizing;
 		private Point _anciennePositionCurseur;
@@ -38,7 +38,7 @@ namespace Wallon.Fenetres
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			ThemePanel.SetConnection(Connexion);
+			ThemePanel.SetConnection(Settings.Connection);
 			Connexion accueil = new Connexion();
 
 			panelContainer.Controls.Add(accueil);

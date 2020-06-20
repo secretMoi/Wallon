@@ -5,7 +5,7 @@ using FlatControls.Core;
 
 namespace Wallon.Fenetres
 {
-	public partial class Dialog : FormBdd
+	public partial class Dialog : Form
 	{
 		private readonly Couple _tailleBouton = new Couple(150, 50);
 		private static DialogResult resultat;
