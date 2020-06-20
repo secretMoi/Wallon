@@ -282,7 +282,7 @@ namespace Couche_Acces
 		/// </summary>
 		/// <returns>La liste des valeurs des champs créés dans le type adéquat</returns>
 		/// <remarks>La chaîne de connexion est récupérée en argument</remarks>
-		private object[] GenereArguments(SqlDataReader sqlDataReader)
+		protected object[] GenereArguments(SqlDataReader sqlDataReader)
 		{
 			object[] arguments = new object[_classesBase.GetChamps().Count]; // tableau pour contenir la valeur des champs
 
@@ -308,7 +308,7 @@ namespace Couche_Acces
 						throw new Exception("Impossible de convertir la valeur " + valeur + " en nombre");
 					}
 				}
-				else if (champ.Item2 == typeof(bool)) // si le champ est un simple int
+				else if (champ.Item2 == typeof(bool)) // si le champ est un booléen
 				{
 					if (valeur == "False")
 						arguments[i] = false;
@@ -317,7 +317,7 @@ namespace Couche_Acces
 					else
 						throw new Exception("Le booléen dans la BDD n'est pas valide");
 				}
-				else if (champ.Item2 == typeof(DateTime)) // si le champ est un simple int
+				else if (champ.Item2 == typeof(DateTime)) // si le champ est un DateTime
 					arguments[i] = Convert.ToDateTime(valeur);
 
 				else

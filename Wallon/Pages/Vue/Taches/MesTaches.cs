@@ -1,4 +1,5 @@
-﻿using Wallon.Controllers;
+﻿using System.Windows.Forms;
+using Wallon.Controllers;
 using Wallon.Pages.Controllers.Taches;
 
 namespace Wallon.Pages.Vue.Taches
@@ -11,7 +12,7 @@ namespace Wallon.Pages.Vue.Taches
 		{
 			InitializeComponent();
 
-			_controllerMesTaches = new ControllerMesTaches();
+			_controllerMesTaches = new ControllerMesTaches(flatDataGridView);
 
 			SetTitre("Mes tâches");
 		}
@@ -29,6 +30,11 @@ namespace Wallon.Pages.Vue.Taches
 			_controllerMesTaches.GetData(_useGridView, this);
 
 			AfterLoad();
+		}
+
+		public override void EffetClic(object sender, DataGridViewCellMouseEventArgs e)
+		{
+			_controllerMesTaches.Clic(sender, e);
 		}
 	}
 }

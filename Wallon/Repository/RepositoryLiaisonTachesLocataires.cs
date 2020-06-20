@@ -26,6 +26,18 @@ namespace Wallon.Repository
 			}
 		}
 
+		public List<int> LireTache(int idTache)
+		{
+			try
+			{
+				return _gestion.LireTache(idTache);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception("Impossible de lire la liaison : \n" + ex.Message);
+			}
+		}
+
 		public int Ajouter(LiaisonTachesLocataires liaison)
 		{
 			try

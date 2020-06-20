@@ -39,5 +39,10 @@ namespace Couche_Gestion
 		{
 			return new AccesLiaisonTachesLocataires(ChaineConnexion).Supprimer(id);
 		}
+
+		public List<int> LireTache(int idTache)
+		{
+			return new AccesLiaisonTachesLocataires(ChaineConnexion).LireTache(idTache);
+		}
 	}
 }

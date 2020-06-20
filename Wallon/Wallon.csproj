@@ -102,6 +102,7 @@
     <Compile Include="Controllers\BaseConsulter.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controllers\ControllerTaches.cs" />
     <Compile Include="Core\Cryptage.cs" />
     <Compile Include="Core\Formulaire.cs" />
     <Compile Include="Pages\Controllers\ControllerConnection.cs" />
