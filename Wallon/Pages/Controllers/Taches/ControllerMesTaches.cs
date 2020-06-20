@@ -12,7 +12,7 @@ namespace Wallon.Pages.Controllers.Taches
 	{
 		private readonly FlatDataGridView _flatDataGridView;
 		private readonly RepositoryTaches _taches;
-		private List<int> _id; // associe id bdd et id dgv
+		private List<int> _idTaches; // associe id bdd et id dgv
 
 		public ControllerMesTaches(FlatDataGridView flatDataGridView)
 		{
@@ -46,7 +46,7 @@ namespace Wallon.Pages.Controllers.Taches
 		public void GetData(UseGridView useGridView, BaseConsulter baseConsulter)
 		{
 			List<Couche_Classe.Taches> taches = _taches.Lire("id"); // récupère les données dans la bdd
-			_id = new List<int>(taches.Count);
+			_idTaches = new List<int>(taches.Count);
 
 			//todo lire les taches seulement de l'utilisateur courant
 			//todo ajout event valider
@@ -59,7 +59,7 @@ namespace Wallon.Pages.Controllers.Taches
 					baseConsulter._imageValider
 				);
 
-				_id.Add(tache.Id); // ajout l'id pour associer la ligne de la dgv à la bdd
+				_idTaches.Add(tache.Id); // ajout l'id pour associer la ligne de la dgv à la bdd
 			}
 		}
 
@@ -71,9 +71,9 @@ namespace Wallon.Pages.Controllers.Taches
 			//todo faire une fonction pour la condition
 			if (colonne == _flatDataGridView.Column["Valider"]?.DisplayIndex) // si la colonne cliquée correspond
 			{
-				int test= new ControllerTaches().LocataireSuivant(_id[ligne]);
+				int test= new ControllerTaches().LocataireSuivant(_idTaches[ligne]);
 			}
-				//LoadPage(reflection.LastItemNamespace + ".ConsulterDetailVente", _id[ligne]); // charge la page de détail
+				//LoadPage(reflection.LastItemNamespace + ".ConsulterDetailVente", _idTaches[ligne]); // charge la page de détail
 		}
 	}
 }

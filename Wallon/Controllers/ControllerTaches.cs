@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Wallon.Repository;
 
 namespace Wallon.Controllers
@@ -10,15 +11,15 @@ namespace Wallon.Controllers
 
 		}
 
-		public int LocataireSuivant(int locataireActuel)
+		public int LocataireSuivant(int idTache)
 		{
-			List<int> liaison = new RepositoryLiaisonTachesLocataires().LireTache(locataireActuel);
+			List<int> liaison = new RepositoryLiaisonTachesLocataires().LireTache(idTache);
 
-			int indexActuel = liaison.IndexOf(locataireActuel); // todo throw si pas contenu (-1)
+			int indexActuel = liaison.IndexOf(Settings.IdLocataire);
+			if(indexActuel == -1)
+				throw new Exception("Le locataire " + indexActuel + " n'est pas dans la tâche " + idTache);
 
-			int prochainLocataire = ProchainLocataire(indexActuel, liaison);
-
-			return 0;
+			return ProchainLocataire(indexActuel, liaison);
 		}
 
 		private int ProchainLocataire(int indexActuel, List<int> listeLocataires)
