@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using Controls;
 using FlatControls.Core;
 using Wallon.Pages.Vue;
 using Theme = FlatControls.Controls.Theme;
 
-//todo séparer les pages header dans une classe
 //todo geler l'affichage durant le chargement d'une page pour éviter les "blancs"
 namespace Wallon.Fenetres
 {
@@ -48,7 +46,7 @@ namespace Wallon.Fenetres
 
 		private void SetSubMenus()
 		{
-			panelSousMenuStock.Size = new Size(panelSousMenuStock.Size.Width, 0);
+			panelSousMenuTaches.Size = new Size(panelSousMenuTaches.Size.Width, 0);
 			panelSousMenuClients.Size = new Size(panelSousMenuClients.Size.Width, 0);
 			panelSousMenuFournisseurs.Size = new Size(panelSousMenuFournisseurs.Size.Width, 0);
 			panelSousMenuUtilisateurs.Size = new Size(panelSousMenuUtilisateurs.Size.Width, 0);
@@ -56,8 +54,8 @@ namespace Wallon.Fenetres
 
 		private void HideSubMenu()
 		{
-			if (panelSousMenuStock.Size.Height >= panelSousMenuStock.MinimumSize.Height && panelSousMenuStock != _subMenuPanelToShow)
-				_subMenuPanelToHide.Add(panelSousMenuStock);
+			if (panelSousMenuTaches.Size.Height >= panelSousMenuTaches.MinimumSize.Height && panelSousMenuTaches != _subMenuPanelToShow)
+				_subMenuPanelToHide.Add(panelSousMenuTaches);
 
 			if (panelSousMenuUtilisateurs.Size.Height >= panelSousMenuUtilisateurs.MinimumSize.Height &&
 			    panelSousMenuUtilisateurs != _subMenuPanelToShow)
@@ -74,7 +72,7 @@ namespace Wallon.Fenetres
 
 		private void ShowSubMenu(Panel subMenu)
 		{
-			if (panelSousMenuStock.Size.Height == panelSousMenuStock.MinimumSize.Height)
+			if (panelSousMenuTaches.Size.Height == panelSousMenuTaches.MinimumSize.Height)
 			{
 				_subMenuPanelToShow = subMenu;
 				HideSubMenu(); // cache les autres sous-menus
