@@ -10,6 +10,7 @@ namespace FlatControls.Controls
         public static readonly Color BackLight = Color.FromArgb(33, 150, 245);
         public static readonly Color BackDark = Color.FromArgb(22, 101, 193);
         public static readonly Color Error = Color.Tomato;
+        public static readonly Color Valid = Color.LimeGreen;
 
         // Police
         public static readonly float TextSize = 12.5f;

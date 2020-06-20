@@ -9,10 +9,11 @@ namespace FlatControls.Controls
 	public partial class FlatTextBox : UserControl
 	{
 		private bool _isPassword;
-		private string _clearPassword;
+		private readonly string _clearPassword;
 
 		public FlatTextBox()
 		{
+			_clearPassword = null;
 			InitializeComponent();
 
 			BackColor = Theme.Back;

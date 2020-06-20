@@ -20,10 +20,16 @@ namespace FlatControls.Controls
 			ThemeError();
 		}
 
-		private void ThemeError()
+		public void ThemeError()
 		{
 			flatLabelText.ForeColor = Theme.Texte;
 			BackColor = Theme.Error;
+		}
+
+		public void ThemeValid()
+		{
+			flatLabelText.ForeColor = Theme.Texte;
+			BackColor = Theme.Valid;
 		}
 
 		private void timer_Tick(object sender, EventArgs e)

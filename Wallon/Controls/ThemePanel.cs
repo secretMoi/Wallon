@@ -45,7 +45,6 @@ namespace Controls
 		{
 			string @namespace = new Reflection(GetType()).FirstNamespace;
 
-			var test = Application.OpenForms;
 			Form1 lastOpenedForm = Application.OpenForms[Application.OpenForms.Count - 1] as Form1; // récupère la dernière form active
 			lastOpenedForm?.LoadPage(@namespace + ".Pages.Vue." + page, arguments); // charge la page Ajouter
 		}
