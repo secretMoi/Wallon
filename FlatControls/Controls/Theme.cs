@@ -2,7 +2,7 @@
 
 namespace FlatControls.Controls
 {
-    static class Theme
+    public static class Theme
     {
         // Couleurs
         public static readonly Color Texte = Color.White;

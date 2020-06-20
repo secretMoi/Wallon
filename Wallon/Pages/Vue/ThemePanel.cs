@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using Controls;
+using FlatControls.Controls;
 using FlatControls.Core;
 using Wallon.Fenetres;
 
 //todo border fenetre
-namespace Controls
+namespace Wallon.Pages.Vue
 {
 	public partial class ThemePanel : UserControl
 	{
@@ -25,7 +27,7 @@ namespace Controls
 
 		protected void SetPanelTitre(Panel panel)
 		{
-			panel.Height = Theme.HauteurHeaderTitre;
+			panel.Height = FlatControls.Controls.Theme.HauteurHeaderTitre;
 		}
 
 		protected void SetTitre(string titre)

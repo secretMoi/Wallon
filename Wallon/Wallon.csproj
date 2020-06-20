@@ -105,15 +105,12 @@
     <Compile Include="Core\Cryptage.cs" />
     <Compile Include="Core\Formulaire.cs" />
     <Compile Include="Pages\Controllers\ControllerConnection.cs" />
-    <Compile Include="Controls\Theme.cs" />
-    <Compile Include="Controls\ThemePanel.cs">
+    <Compile Include="Pages\Vue\ThemePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\ThemePanel.Designer.cs">
+    <Compile Include="Pages\Vue\ThemePanel.Designer.cs">
       <DependentUpon>ThemePanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Core\HtmlView.cs" />
-    <Compile Include="Core\MenuForm.cs" />
     <Compile Include="Fenetres\Dialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,7 +180,7 @@
     <EmbeddedResource Include="Controllers\BaseConsulter.resx">
       <DependentUpon>BaseConsulter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ThemePanel.resx">
+    <EmbeddedResource Include="Pages\Vue\ThemePanel.resx">
       <DependentUpon>ThemePanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Fenetres\Dialog.resx">

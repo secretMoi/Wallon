@@ -1,4 +1,4 @@
-﻿namespace Controls
+﻿namespace Wallon.Pages.Vue
 {
     partial class ThemePanel
     {

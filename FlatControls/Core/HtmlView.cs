@@ -1,10 +1,10 @@
 ﻿using System.IO;
 using System.Text;
-using Controls;
+using FlatControls.Controls;
 
-namespace QMag.Core
+namespace FlatControls.Core
 {
-	class HtmlView
+	public class HtmlView
 	{
 		private StringBuilder _htmlCode;
 		private int _nombreColonnes;
@@ -32,24 +32,6 @@ namespace QMag.Core
 				"<table align='center' cellpadding='5' cellspacing='0' style='border: 1px solid " + Theme.ColorToHex(Theme.BackDark) + ";'>\r\n"
 			);
 		}
-
-		/*public void GenerateBody(params string[] data)
-		{
-			if(data.Length % _nombreColonnes != 0) return;
-
-			for (int colonne = 0; colonne < data.Length; colonne++)
-			{
-				if (colonne % _nombreColonnes == 0)
-					_htmlCode.Append("<tr>\r\n");
-
-				_htmlCode.Append(
-					"<th>" + data[colonne] + "</th>\r\n"
-				);
-
-				if (colonne % _nombreColonnes == 0)
-					_htmlCode.Append("</tr>\r\n\r\n");
-			}
-		}*/
 
 		public void GenerateColumn(params string[] data)
 		{

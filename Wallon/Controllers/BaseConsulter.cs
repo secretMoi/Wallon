@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Controls;
 using FlatControls.Core;
 using Wallon.Fenetres;
+using Wallon.Pages.Vue;
 using FlatDataGridView = FlatControls.Controls.FlatDataGridView;
 
 namespace Wallon.Controllers

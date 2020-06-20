@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Controls;
 using FlatControls.Core;
 using Wallon.Pages.Vue;
+using Theme = FlatControls.Controls.Theme;
 
 //todo séparer les pages header dans une classe
 //todo geler l'affichage durant le chargement d'une page pour éviter les "blancs"

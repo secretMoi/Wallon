@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using Controls;
 using FlatControls.Controls.Buttons;
 using FlatControls.Core;
 
@@ -150,7 +149,7 @@ namespace Wallon.Fenetres
 		// dessine une bordure pour la distinguer du fond
 		private void Dialog_Paint(object sender, PaintEventArgs e)
 		{
-			ControlPaint.DrawBorder(e.Graphics, e.ClipRectangle, Theme.BackDark, ButtonBorderStyle.Solid);
+			ControlPaint.DrawBorder(e.Graphics, e.ClipRectangle, FlatControls.Controls.Theme.BackDark, ButtonBorderStyle.Solid);
 		}
 	}
 }

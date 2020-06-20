@@ -135,6 +135,7 @@
     <Compile Include="Core\Figures\Texte.cs" />
     <Compile Include="Core\Graphique\Graphique.cs" />
     <Compile Include="Core\Graphique\Spirographe.cs" />
+    <Compile Include="Core\HtmlView.cs" />
     <Compile Include="Core\Money.cs" />
     <Compile Include="Core\Reflection.cs" />
     <Compile Include="Core\UseGridView.cs" />
