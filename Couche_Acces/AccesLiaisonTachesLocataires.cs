@@ -14,9 +14,32 @@ namespace Couche_Acces
 			_classesBase = new LiaisonTachesLocataires();
 		}
 
-		public List<int> LireTache(int idTache)
+		public List<int> LireTachesLocataire(int idLocataire)
 		{
 			CreerCommande("LiaisonTachesLocatairesLireTache");
+
+			Commande.Parameters.AddWithValue("@idLocataire", idLocataire);
+
+			Commande.Connection.Open();
+
+			SqlDataReader sqlDataReader = Commande.ExecuteReader();
+
+			List<int> liste = new List<int>(); // crée la liste à retourner
+
+			while (sqlDataReader.Read())
+			{
+				liste.Add(int.Parse(sqlDataReader["idTache"].ToString()));
+			}
+			
+			sqlDataReader.Close();
+			Commande.Connection.Close();
+
+			return liste;
+		}
+
+		public List<int> ListeLocataires(int idTache)
+		{
+			CreerCommande("LiaisonTachesLocatairesListeLocataires");
 
 			Commande.Parameters.AddWithValue("@idTache", idTache);
 
@@ -30,7 +53,7 @@ namespace Couche_Acces
 			{
 				liste.Add(int.Parse(sqlDataReader["idLocataire"].ToString()));
 			}
-			
+
 			sqlDataReader.Close();
 			Commande.Connection.Close();
 

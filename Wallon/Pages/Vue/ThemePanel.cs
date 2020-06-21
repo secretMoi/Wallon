@@ -43,7 +43,7 @@ namespace Wallon.Pages.Vue
 					_arguments.Add(arg);
 		}
 
-		protected void LoadPage(string page, params object[] arguments)
+		public void LoadPage(string page, params object[] arguments)
 		{
 			string @namespace = new Reflection(GetType()).FirstNamespace;
 

@@ -12,9 +12,19 @@ namespace Wallon.Pages.Vue.Taches
 		{
 			InitializeComponent();
 
-			_controllerMesTaches = new ControllerMesTaches(flatDataGridView);
+			_controllerMesTaches = new ControllerMesTaches(flatDataGridView, this);
 
 			SetTitre("Mes tâches");
+		}
+
+		public override void Hydrate(params object[] args)
+		{
+			base.Hydrate(args);
+
+			if(args.Length == 0) return;
+
+			alerte.ThemeValid();
+			alerte.Show(args[0] as string);
 		}
 
 		private void MesTaches_Load(object sender, System.EventArgs e)

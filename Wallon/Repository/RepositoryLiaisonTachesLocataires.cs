@@ -26,11 +26,23 @@ namespace Wallon.Repository
 			}
 		}
 
-		public List<int> LireTache(int idTache)
+		public List<int> LireTachesLocataire(int idLocataire)
 		{
 			try
 			{
-				return _gestion.LireTache(idTache);
+				return _gestion.LireTachesLocataire(idLocataire);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception("Impossible de lire la liaison : \n" + ex.Message);
+			}
+		}
+
+		public List<int> ListeLocataires(int idTache)
+		{
+			try
+			{
+				return _gestion.ListeLocataires(idTache);
 			}
 			catch (Exception ex)
 			{

@@ -49,13 +49,13 @@ namespace Wallon.Controllers
 
 			_flatDataGridView.DataSource = _useGridView.Liens; // ajout(liage) des colonnes à la gridview
 
-			if (_editEnabled)
+			if (_editEnabled && _flatDataGridView.Column.Contains("Editer"))
 				_flatDataGridView.Column["Editer"].Width = 150;
-			if (_deleteEnabled)
+			if (_deleteEnabled && _flatDataGridView.Column.Contains("Supprimer"))
 				_flatDataGridView.Column["Supprimer"].Width = 200;
-			if (_seeEnabled)
+			if (_seeEnabled && _flatDataGridView.Column.Contains("Voir"))
 				_flatDataGridView.Column["Voir"].Width = 150;
-			if (_validateEnabled)
+			if (_validateEnabled && _flatDataGridView.Column.Contains("Valider"))
 				_flatDataGridView.Column["Valider"].Width = 150;
 		}
 

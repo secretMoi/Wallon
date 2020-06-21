@@ -27,7 +27,7 @@ namespace Wallon.Repository
 			}
 		}
 
-		/*public Locataire LireId(int index)
+		public Taches LireId(int index)
 		{
 			try
 			{
@@ -39,7 +39,19 @@ namespace Wallon.Repository
 			}
 		}
 
-		public int Supprimer(int index)
+		public List<Taches> TachesCourantesDuLocataire(int idLocataireCourant)
+		{
+			try
+			{
+				return _gestion.TachesCourantesDuLocataire(idLocataireCourant);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception("Impossible de lire les tâches du locataire " + idLocataireCourant + "  : \n" + ex.Message);
+			}
+		}
+
+		/*public int Supprimer(int index)
 		{
 			try
 			{
@@ -63,17 +75,21 @@ namespace Wallon.Repository
 			}
 		}
 
-		/*public int Modifier(Locataire locataire)
+		public int ModifierLocataireCourant(int id, int idLocataire)
 		{
 			try
 			{
-				return _gestion.Modifier(locataire.Id, locataire.Nom, locataire.Password);
+				Taches tache = LireId(id); // récupère les infos sur la tâche
+				tache.DatteFin = tache.DatteFin.AddDays(tache.Cycle); // met à jour la datte de fin
+				tache.LocataireCourant = idLocataire; // met à jour le locataire courant
+
+				return _gestion.Modifier(tache);
 			}
 			catch (Exception ex)
 			{
-				throw new Exception("Impossible de modifier le locataire " + locataire.Nom + "  : \n" + ex.Message);
+				throw new Exception("Impossible de modifier la tâche " + id + "  : \n" + ex.Message);
 			}
-		}*/
+		}
 
 		/// <summary>
 		/// Récupère le nom du locataire grâce à son id

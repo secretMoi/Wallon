@@ -32,9 +32,31 @@ namespace Couche_Gestion
 			);
 		}
 
+		public int Modifier(Taches tache)
+		{
+			return new AccesTaches(ChaineConnexion).Modifier(
+				tache.Id,
+				tache.Nom,
+				tache.DatteFin,
+				tache.Active,
+				tache.LocataireCourant,
+				tache.Cycle
+			);
+		}
+
 		public List<Taches> Lire(string index)
 		{
 			return new AccesTaches(ChaineConnexion).Lire(index).ConvertAll(x => (Taches)x);
+		}
+
+		public Taches LireId(int id)
+		{
+			return new AccesTaches(ChaineConnexion).LireId(id) as Taches;
+		}
+
+		public List<Taches> TachesCourantesDuLocataire(int idLocataire)
+		{
+			return new AccesTaches(ChaineConnexion).TachesCourantesDuLocataire(idLocataire).ConvertAll(x => (Taches)x);
 		}
 	}
 }
