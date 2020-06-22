@@ -6,7 +6,6 @@ using FlatControls.Core;
 using Wallon.Pages.Vue;
 using Theme = FlatControls.Controls.Theme;
 
-//todo geler l'affichage durant le chargement d'une page pour éviter les "blancs"
 namespace Wallon.Fenetres
 {
 	public partial class Form1 : Form
@@ -159,10 +158,20 @@ namespace Wallon.Fenetres
 
 		private void panelHeader_MouseMove(object sender, MouseEventArgs e)
 		{
+			MoveForm(panelHeader, e);
+		}
+
+		private void pictureBoxLogo_MouseMove(object sender, MouseEventArgs e)
+		{
+			MoveForm(pictureBoxLogo, e);
+		}
+
+		private void MoveForm(Control control, MouseEventArgs e)
+		{
 			if (e.Button == MouseButtons.Left)
 			{
 				// Release the mouse capture started by the mouse down.
-				panelHeader.Capture = false;
+				control.Capture = false;
 
 				// Create and send a WM_NCLBUTTONDOWN message.
 				const int wmNclbuttondown = 0x00A1;
@@ -260,11 +269,6 @@ namespace Wallon.Fenetres
 			);
 			control.Location = nouvellePosition;
 			control.Size = new Size(taille, taille);
-		}
-
-		private void pictureBox1_Click(object sender, EventArgs e)
-		{
-
 		}
 	}
 }

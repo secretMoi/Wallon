@@ -21,7 +21,7 @@ namespace Wallon.Pages.Vue.Taches
 		{
 			base.Hydrate(args);
 
-			if(args.Length == 0) return;
+			if (args.Length == 0) return;
 
 			alerte.ThemeValid();
 			alerte.Show(args[0] as string);

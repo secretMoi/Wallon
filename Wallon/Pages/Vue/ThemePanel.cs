@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using Controls;
 using FlatControls.Controls;
 using FlatControls.Core;
 using Wallon.Fenetres;
@@ -23,11 +22,13 @@ namespace Wallon.Pages.Vue
 			DoubleBuffered = true;
 
 			_arguments = new List<object>();
+
+			BorderStyle = BorderStyle.None;
 		}
 
 		protected void SetPanelTitre(Panel panel)
 		{
-			panel.Height = FlatControls.Controls.Theme.HauteurHeaderTitre;
+			panel.Height = Theme.HauteurHeaderTitre;
 		}
 
 		protected void SetTitre(string titre)
@@ -54,7 +55,7 @@ namespace Wallon.Pages.Vue
 		protected void SetColors()
 		{
 			// change la couleur de tous les flatLabel
-			foreach (FlatControls.Controls.FlatLabel label in panelCorps.Controls.OfType<FlatControls.Controls.FlatLabel>())
+			foreach (FlatLabel label in panelCorps.Controls.OfType<FlatLabel>())
 				label.ForeColor = Theme.BackDark;
 		}
 

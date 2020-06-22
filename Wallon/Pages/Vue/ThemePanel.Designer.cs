@@ -69,6 +69,7 @@
 			this.Controls.Add(this.panelTitre);
 			this.Name = "ThemePanel";
 			this.Size = new System.Drawing.Size(800, 600);
+			this.Paint += new System.Windows.Forms.PaintEventHandler(this.ThemePanel_Paint);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();
 			this.ResumeLayout(false);

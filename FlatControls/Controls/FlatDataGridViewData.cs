@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using FlatControls.Core;
 
 namespace FlatControls.Controls
@@ -22,9 +21,6 @@ namespace FlatControls.Controls
 		/// <param name="colonne">Nom de la colonne à masquer</param>
 		public void HideColonne(string colonne)
 		{
-			if (_hidedColumns == null)
-				_hidedColumns = new List<string>();
-
 			_hidedColumns.Add(colonne);
 		}
 
@@ -71,6 +67,19 @@ namespace FlatControls.Controls
 		public string Get(int x, int y)
 		{
 			return Get(new Couple(x, y));
+		}
+
+		/// <summary>
+		/// Récupère l'id du nom d'une colonne
+		/// </summary>
+		/// <param name="name">Nom de la colonne</param>
+		/// <returns>La position de la colonne, null si non trouvée</returns>
+		public int? GetColumnId(string name)
+		{
+			if(Column.Contains(name))
+				return Column[name]?.DisplayIndex;
+
+			return null;
 		}
 
 		/// <summary>

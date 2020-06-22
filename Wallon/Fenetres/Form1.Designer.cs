@@ -60,7 +60,7 @@ namespace Wallon.Fenetres
 			this.panelHeader = new System.Windows.Forms.Panel();
 			this.pictureBoxReduce = new System.Windows.Forms.PictureBox();
 			this.pictureBoxClose = new System.Windows.Forms.PictureBox();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
+			this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
 			this.timerMenuDeroulant = new System.Windows.Forms.Timer(this.components);
 			this.pictureBoxResize = new System.Windows.Forms.PictureBox();
 			this.panelMenu.SuspendLayout();
@@ -71,7 +71,7 @@ namespace Wallon.Fenetres
 			this.panelHeader.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxReduce)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxResize)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -507,7 +507,7 @@ namespace Wallon.Fenetres
 			this.panelHeader.BackColor = System.Drawing.SystemColors.MenuHighlight;
 			this.panelHeader.Controls.Add(this.pictureBoxReduce);
 			this.panelHeader.Controls.Add(this.pictureBoxClose);
-			this.panelHeader.Controls.Add(this.pictureBox1);
+			this.panelHeader.Controls.Add(this.pictureBoxLogo);
 			this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
 			this.panelHeader.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.panelHeader.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -543,16 +543,16 @@ namespace Wallon.Fenetres
 			this.pictureBoxClose.MouseEnter += new System.EventHandler(this.pictureBoxClose_MouseEnter);
 			this.pictureBoxClose.MouseLeave += new System.EventHandler(this.pictureBoxClose_MouseLeave);
 			// 
-			// pictureBox1
+			// pictureBoxLogo
 			// 
-			this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-			this.pictureBox1.Location = new System.Drawing.Point(37, 3);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(185, 88);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pictureBox1.TabIndex = 0;
-			this.pictureBox1.TabStop = false;
-			this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+			this.pictureBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLogo.Image")));
+			this.pictureBoxLogo.Location = new System.Drawing.Point(37, 3);
+			this.pictureBoxLogo.Name = "pictureBoxLogo";
+			this.pictureBoxLogo.Size = new System.Drawing.Size(185, 88);
+			this.pictureBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pictureBoxLogo.TabIndex = 0;
+			this.pictureBoxLogo.TabStop = false;
+			this.pictureBoxLogo.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxLogo_MouseMove);
 			// 
 			// timerMenuDeroulant
 			// 
@@ -604,7 +604,7 @@ namespace Wallon.Fenetres
 			this.panelHeader.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxReduce)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxLogo)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxResize)).EndInit();
 			this.ResumeLayout(false);
 
@@ -612,7 +612,7 @@ namespace Wallon.Fenetres
 
         #endregion
         private System.Windows.Forms.Panel panelMenu;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxLogo;
         private System.Windows.Forms.Panel panelContainer;
         private MenuFlatButton menu_Taches;
         private MenuFlatButton menu_Accueil;

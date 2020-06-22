@@ -31,10 +31,10 @@ namespace Wallon.Pages.Controllers.Taches
 		{
 			return new[]
 			{
-				"Id",
-				"Nom",
-				"Temps restant (en jours)"
-			};
+			"Id",
+			"Nom",
+			"Temps restant (en jours)"
+		};
 		}
 
 		public void ColonnesCliquables(BaseConsulter baseConsulter)
@@ -76,8 +76,7 @@ namespace Wallon.Pages.Controllers.Taches
 			int ligne = args.RowIndex;
 			int colonne = args.ColumnIndex;
 
-			//todo faire une fonction pour la condition
-			if (colonne == _flatDataGridView.Column["Valider"]?.DisplayIndex) // si la colonne cliquée correspond
+			if (colonne == _flatDataGridView.GetColumnId("Valider")) // si la colonne cliquée correspond
 			{
 				int locataireSuivant = new ControllerTaches().LocataireSuivant(_taches[ligne].Id); // récupère l'id du locataire suivant
 

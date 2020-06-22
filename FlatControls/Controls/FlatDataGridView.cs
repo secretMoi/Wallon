@@ -14,14 +14,14 @@ namespace FlatControls.Controls
 		private Dictionary<int, Color> _rowsBackground; // lignes dont on change la couleur d'arrière-plan
 		private Dictionary<int, Color> _rowsForeground; // lignes dont on change la couleur du texte
 
-		private List<string> _hidedColumns;
+		private readonly List<string> _hidedColumns;
 
 		public FlatDataGridView()
 		{
 			InitializeComponent();
 
 			_colonnesCliquables = new List<int>();
-			//_colonnesMasquees = new Dictionary<int, object>();
+			_hidedColumns = new List<string>();
 
 			dataGridView.GridColor = Theme.Back;
 			dataGridView.ForeColor = Theme.BackDark;
@@ -54,11 +54,11 @@ namespace FlatControls.Controls
 			Type dgvType = dataGridView.GetType();
 			PropertyInfo pi = dgvType.GetProperty("DoubleBuffered",
 				BindingFlags.Instance | BindingFlags.NonPublic);
-			pi.SetValue(dataGridView, true, null);
+			pi?.SetValue(dataGridView, true, null);
 
 			// désactive les barres de scroll mais rend le panel scrollable
 			dataGridView.ScrollBars = ScrollBars.None;
-			this.dataGridView.MouseWheel += new MouseEventHandler(Mouse_Wheel);
+			this.dataGridView.MouseWheel += Mouse_Wheel;
 		}
 
 		// permet de subscribe une méthode à l'event
@@ -82,7 +82,7 @@ namespace FlatControls.Controls
 		// code exécuté après le chargement de la dgv
 		private void dataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
 		{
-			if(dataGridView.Rows.Count > 0) // vérifie qu'il y a bien des cellules pour ne pas provoquer de bug
+			if(dataGridView.Rows.Count > 0) // vérifie qu'il y a bien des cellules pour ne pas provoquer de problème
 				dataGridView.FirstDisplayedCell.Selected = false; // désactive la sélection automatique
 		}
 
