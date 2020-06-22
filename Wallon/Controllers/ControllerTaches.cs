@@ -22,6 +22,12 @@ namespace Wallon.Controllers
 			return ProchainLocataire(indexActuel, liaison); // renvoie l'id du prochain locataire
 		}
 
+		/// <summary>
+		/// Passe à l'élément suivant dans la liste
+		/// </summary>
+		/// <param name="indexActuel">Position actuelle dans la liste</param>
+		/// <param name="listeLocataires">Liste en lecture seule à parcourir</param>
+		/// <returns>La prochaine position dans la liste</returns>
 		private int ProchainLocataire(int indexActuel, IReadOnlyList<int> listeLocataires)
 		{
 			if (indexActuel + 1 < listeLocataires.Count) // si il y encore des locataires dans la liste

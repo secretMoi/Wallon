@@ -19,12 +19,18 @@ namespace FlatControls.Controls
 			ThemeError();
 		}
 
+		/// <summary>
+		/// Applique un thème d'erreur à l'alerte
+		/// </summary>
 		public void ThemeError()
 		{
 			flatLabelText.ForeColor = Theme.Texte;
 			BackColor = Theme.Error;
 		}
 
+		/// <summary>
+		/// Applique de un thème de validation à l'alerte
+		/// </summary>
 		public void ThemeValid()
 		{
 			flatLabelText.ForeColor = Theme.Texte;
@@ -46,12 +52,20 @@ namespace FlatControls.Controls
 			Size = new Size(Width, 0);
 		}
 
+		/// <summary>
+		/// Active et affiche l'alerte
+		/// </summary>
+		/// <param name="text">Texte à afficher</param>
 		public void Show(string text)
 		{
 			Enable = true;
 			Text = text;
 		}
 
+		/// <summary>
+		/// Ajoute une fonction de callback lors du click sur l'alerte
+		/// </summary>
+		/// <param name="callBack">Fonction de callback</param>
 		public void AddClick(EventHandler callBack)
 		{
 			Click += callBack;
@@ -65,6 +79,10 @@ namespace FlatControls.Controls
 			set => flatLabelText.Text = value;
 		}
 
+		/// <summary>
+		/// Définit ou récupère l'état d'activation de l'alerte
+		/// </summary>
+		/// <param name="value">Etat d'activation</param>
 		public bool Enable
 		{
 			get => _enabled;
@@ -79,6 +97,10 @@ namespace FlatControls.Controls
 			}
 		}
 
+		/// <summary>
+		/// Change la taille que peut prendre l'alerte en s'étendant
+		/// </summary>
+		/// <param name="value">Taille maximum de l'alerte</param>
 		public int HeightMax
 		{
 			get => _heightMax;

@@ -13,7 +13,6 @@ namespace Wallon.Pages.Controllers.Taches
 	{
 		private readonly FlatDataGridView _flatDataGridView;
 		private readonly RepositoryTaches _repositoryTaches;
-		private readonly RepositoryLiaisonTachesLocataires _repositoryLiaison;
 		private List<Couche_Classe.Taches> _taches; // associe id bdd et id dgv
 		private readonly ThemePanel _vue;
 
@@ -22,7 +21,6 @@ namespace Wallon.Pages.Controllers.Taches
 			_flatDataGridView = flatDataGridView;
 			_vue = vue;
 			_repositoryTaches = new RepositoryTaches();
-			_repositoryLiaison = new RepositoryLiaisonTachesLocataires();
 		}
 
 		/// <summary>
@@ -33,6 +31,7 @@ namespace Wallon.Pages.Controllers.Taches
 		{
 			return new[]
 			{
+				"Id",
 				"Nom",
 				"Temps restant (en jours)"
 			};
@@ -50,11 +49,16 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <param name="baseConsulter">Classe contenant les images à afficher dans les colonnes</param>
 		public void GetData(UseGridView useGridView, BaseConsulter baseConsulter)
 		{
+			_flatDataGridView.HideColonne("Id");
+
+			// récupère les tâches dont le locataire connecté est le locataireCourant
 			_taches = _repositoryTaches.TachesCourantesDuLocataire(Settings.IdLocataire);
 
 			foreach (Couche_Classe.Taches tache in _taches)
 			{
+				// ajoute à la dgv
 				useGridView.Add(
+					tache.Id,
 					tache.Nom,
 					(tache.DatteFin - DateTime.Now.Date).Days,
 					baseConsulter._imageValider
@@ -62,6 +66,11 @@ namespace Wallon.Pages.Controllers.Taches
 			}
 		}
 
+		/// <summary>
+		/// Event lors du clic sur un élément de la dgv
+		/// </summary>
+		/// <param name="sender">Objet qui lance l'event</param>
+		/// <param name="args">Arguments optionnels</param>
 		public void Clic(object sender, DataGridViewCellMouseEventArgs args)
 		{
 			int ligne = args.RowIndex;
@@ -70,11 +79,11 @@ namespace Wallon.Pages.Controllers.Taches
 			//todo faire une fonction pour la condition
 			if (colonne == _flatDataGridView.Column["Valider"]?.DisplayIndex) // si la colonne cliquée correspond
 			{
-				int locataireSuivant = new ControllerTaches().LocataireSuivant(_taches[ligne].Id);
+				int locataireSuivant = new ControllerTaches().LocataireSuivant(_taches[ligne].Id); // récupère l'id du locataire suivant
 
-				_repositoryTaches.ModifierLocataireCourant(_taches[ligne].Id, locataireSuivant);
+				_repositoryTaches.ModifierLocataireCourant(_taches[ligne].Id, locataireSuivant); // modifie le locataire devant effectuer la tâche
 
-				// todo message de conformation + actualisation dgv
+				// recharge la page avec un message de validation
 				string texteValide = "Vous avez validé la tâche " + _taches[ligne].Nom;
 				_vue.LoadPage("Taches.MesTaches", texteValide);
 			}

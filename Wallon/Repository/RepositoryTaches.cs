@@ -39,6 +39,11 @@ namespace Wallon.Repository
 			}
 		}
 
+		/// <summary>
+		/// Récupère les tâches que le locataire doit effectuer
+		/// </summary>
+		/// <param name="idLocataireCourant">Id du locataire</param>
+		/// <returns>La liste des tâches</returns>
 		public List<Taches> TachesCourantesDuLocataire(int idLocataireCourant)
 		{
 			try
@@ -75,6 +80,11 @@ namespace Wallon.Repository
 			}
 		}
 
+		/// <summary>
+		/// Met à jour la tâche et définit un nouveau locataire devant effectuer la tâche
+		/// </summary>
+		/// <param name="id">Id de la tâche</param>
+		/// <param name="idLocataire">Id du locataire devant effectuer la tâche</param>
 		public int ModifierLocataireCourant(int id, int idLocataire)
 		{
 			try

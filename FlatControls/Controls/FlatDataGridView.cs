@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
-using Controls;
-using FlatControls.Controls;
-using FlatControls.Core;
 
 //todo optimiser grosse liste de data, mettre toutes les données dans une liste en ram et n'afficher que celles visibles
 namespace FlatControls.Controls
@@ -13,17 +10,18 @@ namespace FlatControls.Controls
 	public partial class FlatDataGridView : UserControl
 	{
 		private readonly List<int> _colonnesCliquables;
-		private readonly Dictionary<int, object> _colonnesMasquees;
 
 		private Dictionary<int, Color> _rowsBackground; // lignes dont on change la couleur d'arrière-plan
 		private Dictionary<int, Color> _rowsForeground; // lignes dont on change la couleur du texte
+
+		private List<string> _hidedColumns;
 
 		public FlatDataGridView()
 		{
 			InitializeComponent();
 
 			_colonnesCliquables = new List<int>();
-			_colonnesMasquees = new Dictionary<int, object>();
+			//_colonnesMasquees = new Dictionary<int, object>();
 
 			dataGridView.GridColor = Theme.Back;
 			dataGridView.ForeColor = Theme.BackDark;
@@ -81,52 +79,6 @@ namespace FlatControls.Controls
 				dataGridView.Cursor = Cursors.Default;
 		}
 
-		public void SetColonnesCliquables(params int[] colonnes)
-		{
-			foreach (int colonne in colonnes)
-				_colonnesCliquables.Add(colonne);
-		}
-
-		public void SetDataMasquee(int positionColonne, object data)
-		{
-			_colonnesMasquees[positionColonne] = data;
-		}
-
-		public void UpdateDataMasquee(int positionColonne, object data)
-		{
-			_colonnesMasquees[positionColonne] = data;
-		}
-
-		public object GetDataMasquee(int positionColonne)
-		{
-			return _colonnesMasquees[positionColonne];
-		}
-
-		public BindingSource DataSource
-		{
-			set
-			{
-				dataGridView.SuspendLayout();
-				dataGridView.DataSource = value;
-				dataGridView.ResumeLayout();
-			} 
-		}
-
-		public DataGridViewColumnCollection Column => dataGridView.Columns;
-
-		public string Get(Couple coordonnees)
-		{
-			if(dataGridView.Rows.Count > coordonnees.Xi && dataGridView.ColumnCount > coordonnees.Yi)
-				return dataGridView.Rows[coordonnees.Xi].Cells[coordonnees.Yi].Value.ToString();
-
-			return null;
-		}
-
-		public string Get(int x, int y)
-		{
-			return Get(new Couple(x, y));
-		}
-
 		// code exécuté après le chargement de la dgv
 		private void dataGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
 		{
@@ -134,27 +86,11 @@ namespace FlatControls.Controls
 				dataGridView.FirstDisplayedCell.Selected = false; // désactive la sélection automatique
 		}
 
-		// supprime une ligne à une position donnée
-		public void RemoveRowAt(int ligne)
-		{
-			DataGridViewRow dgvDelRow = dataGridView.Rows[ligne];
-			dataGridView.Rows.Remove(dgvDelRow);
-		}
-
-		// modifie une ligne à une position donnée
-		public void UpdateRowAt(int ligne, params object[] newData)
-		{
-			DataGridViewRow nouvelleLigne = dataGridView.Rows[ligne];
-
-			for (int colonne = 0; colonne < dataGridView.ColumnCount; colonne++)
-				nouvelleLigne.Cells[colonne].Value = newData[colonne];
-		}
-
-		// retourne une collection des lignes
-		public DataGridViewRowCollection Rows => dataGridView.Rows;
-		public int SelectedRow => dataGridView.CurrentCell.RowIndex;
-
-		// permet de changer la couleur d'arrière-plan d'une ligne demandée
+		/// <summary>
+		/// Permet de changer la couleur d'arrière-plan d'une ligne demandée
+		/// </summary>
+		/// <param name="idLigne">Position de la ligne à modifier</param>
+		/// <param name="couleur">Couleur d'arrière-plan que la ligne prendra</param>
 		public void BackgroundColor(int idLigne, Color couleur)
 		{
 			if(_rowsBackground == null)
@@ -164,7 +100,11 @@ namespace FlatControls.Controls
 			dataGridView.InvalidateRow(idLigne);
 		}
 
-		// permet de changer la couleur du texte d'une ligne demandée
+		/// <summary>
+		/// Permet de changer la couleur du texte d'une ligne demandée
+		/// </summary>
+		/// <param name="idLigne">Position de la ligne à modifier</param>
+		/// <param name="couleur">Couleur du texte que la ligne prendra</param>
 		public void ForegroundColor(int idLigne, Color couleur)
 		{
 			if (_rowsForeground == null)
