@@ -41,6 +41,8 @@ namespace Wallon.Fenetres
 			Connexion accueil = new Connexion();
 
 			panelContainer.Controls.Add(accueil);
+
+			SelfUpdate.CheckUpdate();
 		}
 
 		private void SetSubMenus()

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using FlatControls.Core;
 using Wallon.Repository;
 
@@ -19,12 +20,6 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <returns>Un tableau du nom des colonnes</returns>
 		public string[] ListeColonnes()
 		{
-			/*List<(string, Type)> locataire = new Locataire().GetChamps();
-			string[] listeColonnes = new string[locataire.Count];
-
-			for (int i = 0; i < locataire.Count; i++)
-				listeColonnes[i] = locataire[i].Item1;*/
-
 			return new[] { "Nom", "Locataire en charge", "DatteFin" };
 		}
 
@@ -32,16 +27,29 @@ namespace Wallon.Pages.Controllers.Taches
 		/// Récupère les données demandées et les ajoute à la dgv
 		/// </summary>
 		/// <param name="useGridView">Dgv où insérer les données trouvées</param>
-		public void GetData(UseGridView useGridView)
+		public async Task GetDataAsync(UseGridView useGridView)
 		{
 			List<Couche_Classe.Taches> taches = _taches.Lire("id"); // récupère les données dans la bdd
+			List<Task> tasks = new List<Task>();
 
 			foreach (Couche_Classe.Taches tache in taches) // les lie à la dgv
-				useGridView.Add(
-					tache.Nom,
-					_taches.NomLocataireCourant(tache.LocataireCourant),
-					tache.DatteFin.ToShortDateString()
-				);
+				tasks.Add(Task.Run(() => AddToDgv(useGridView, tache)));
+
+			await Task.WhenAll(tasks);
+		}
+
+		/// <summary>
+		/// Ajoute une tâche dans la dgv
+		/// </summary>
+		/// <param name="useGridView">Dgv où insérer les données</param>
+		/// <param name="tache">Données à insérer</param>
+		private void AddToDgv(UseGridView useGridView, Couche_Classe.Taches tache)
+		{
+			useGridView.Add(
+				tache.Nom,
+				_taches.NomLocataireCourant(tache.LocataireCourant),
+				tache.DatteFin.ToShortDateString()
+			);
 		}
 	}
 }

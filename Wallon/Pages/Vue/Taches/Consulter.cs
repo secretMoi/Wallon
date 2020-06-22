@@ -16,7 +16,7 @@ namespace Wallon.Pages.Vue.Taches
 			_controllerConsulter = new ControllerConsulter();
 		}
 
-		private void Consulter_Load(object sender, System.EventArgs e)
+		private async void Consulter_Load(object sender, System.EventArgs e)
 		{
 			_flatDataGridView = flatDataGridView;
 
@@ -24,7 +24,7 @@ namespace Wallon.Pages.Vue.Taches
 				_controllerConsulter.ListeColonnes()
 			);
 
-			_controllerConsulter.GetData(_useGridView);
+			await _controllerConsulter.GetDataAsync(_useGridView);
 
 			AfterLoad();
 		}

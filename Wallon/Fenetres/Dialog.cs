@@ -8,8 +8,8 @@ namespace Wallon.Fenetres
 	public partial class Dialog : Form
 	{
 		private readonly Couple _tailleBouton = new Couple(150, 50);
-		private static DialogResult resultat;
-		private static TypeFenetre type;
+		private static DialogResult _resultat;
+		private static TypeFenetre _type;
 
 		private enum TypeFenetre
 		{
@@ -24,7 +24,7 @@ namespace Wallon.Fenetres
 				Text = titre;
 			flatLabel1.Text = texte;
 
-			switch (type)
+			switch (_type)
 			{
 				case TypeFenetre.Ok:
 					CreerOkButton();
@@ -40,7 +40,7 @@ namespace Wallon.Fenetres
 
 		public static void Show(string texte, string titre = null)
 		{
-			type = TypeFenetre.Ok;
+			_type = TypeFenetre.Ok;
 
 			// using assure que les ressources seront libérées à la fermeture de la fenêtre
 			using (Dialog form = new Dialog(texte, titre))
@@ -51,7 +51,7 @@ namespace Wallon.Fenetres
 
 		public static DialogResult ShowYesNo(string texte, string titre = null)
 		{
-			type = TypeFenetre.YesNo;
+			_type = TypeFenetre.YesNo;
 
 			// using assure que les ressources seront libérées à la fermeture de la fenêtre
 			using (Dialog form = new Dialog(texte, titre))
@@ -59,7 +59,7 @@ namespace Wallon.Fenetres
 				form.ShowDialog();
 			}
 
-			return resultat;
+			return _resultat;
 		}
 
 		private void CreerOuiNonBoutons()
@@ -73,7 +73,7 @@ namespace Wallon.Fenetres
 
 			bouton.Click += (sender, args) =>
 			{
-				resultat = DialogResult.Yes;
+				_resultat = DialogResult.Yes;
 				Action_Fermeture(sender, args);
 			};
 
@@ -85,7 +85,7 @@ namespace Wallon.Fenetres
 
 			bouton.Click += (sender, args) =>
 			{
-				resultat = DialogResult.No;
+				_resultat = DialogResult.No;
 				Action_Fermeture(sender, args);
 			};
 		}
@@ -118,8 +118,8 @@ namespace Wallon.Fenetres
 
 		public sealed override string Text
 		{
-			get { return base.Text; }
-			set { base.Text = value; }
+			get => base.Text;
+			set => base.Text = value;
 		}
 
 		private void Action_Fermeture(object sender, EventArgs eventArgs)
