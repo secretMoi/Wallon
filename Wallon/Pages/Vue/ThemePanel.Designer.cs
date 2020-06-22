@@ -1,20 +1,20 @@
 ﻿namespace Wallon.Pages.Vue
 {
-    partial class ThemePanel
-    {
+	partial class ThemePanel
+	{
 
-        /// <summary> 
-        /// Nettoyage des ressources utilisées.
-        /// </summary>
-        /// <param name="disposing">true si les ressources managées doivent être supprimées ; sinon, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary> 
+		/// Nettoyage des ressources utilisées.
+		/// </summary>
+		/// <param name="disposing">true si les ressources managées doivent être supprimées ; sinon, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
 		#region Code généré par le Concepteur de composants
 
@@ -23,7 +23,7 @@
 		/// le contenu de cette méthode avec l'éditeur de code.
 		/// </summary>
 		protected void InitializeComponent()
-        {
+		{
 			this.panelTitre = new System.Windows.Forms.Panel();
 			this.labelTitre = new System.Windows.Forms.Label();
 			this.panelCorps = new System.Windows.Forms.Panel();
@@ -69,12 +69,11 @@
 			this.Controls.Add(this.panelTitre);
 			this.Name = "ThemePanel";
 			this.Size = new System.Drawing.Size(800, 600);
-			this.Paint += new System.Windows.Forms.PaintEventHandler(this.ThemePanel_Paint);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();
 			this.ResumeLayout(false);
 
-        }
+		}
 
 		#endregion
 		protected System.Windows.Forms.Panel panelTitre;
