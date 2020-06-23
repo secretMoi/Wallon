@@ -21,10 +21,33 @@ namespace Couche_Acces
 		/// <remarks>La chaîne de connexion est récupérée en argument</remarks>
 		public Base(string sChaineConnexion)
 		{
+			sChaineConnexion += "Connection Timeout=3";
 			_commande = new SqlCommand
 			{
-				Connection = new SqlConnection(sChaineConnexion)
+				Connection = new SqlConnection(sChaineConnexion),
+				CommandTimeout = 3
 			};
+		}
+
+		public bool TestConnection()
+		{
+			try
+			{
+				Commande.CommandTimeout = 2;
+				//_commande.Connection.Open();
+
+				//SqlCommand myCommand = new SqlCommand("select 1", _commande.Connection);
+				CreerCommande("select 1", false);
+				Commande.Connection.Open();
+				Commande.ExecuteScalar();
+				Commande.Connection.Close();
+
+				return true;
+			}
+			catch(SqlException)
+			{
+				return false;
+			}
 		}
 
 		/// <summary>
@@ -54,8 +77,10 @@ namespace Couche_Acces
 		/// <param name="bTypeRequete">Type de requête (Vrai=stockée, Faux=Texte)</param>
 		public void CreerCommande(string sCommande, bool bTypeRequete)
 		{
-			if (bTypeRequete) _commande.CommandType = CommandType.StoredProcedure;
-			else _commande.CommandType = CommandType.Text;
+			if (bTypeRequete)
+				_commande.CommandType = CommandType.StoredProcedure;
+			else
+				_commande.CommandType = CommandType.Text;
 			_commande.CommandText = sCommande;
 		}
 		/// <summary>
@@ -67,8 +92,12 @@ namespace Couche_Acces
 		public void CreerCommande(string sCommande, bool bTypeRequete, string sConnexion)
 		{
 			_commande.Connection = new SqlConnection(sConnexion);
-			if (bTypeRequete) _commande.CommandType = CommandType.StoredProcedure;
-			else _commande.CommandType = CommandType.Text;
+
+			if (bTypeRequete)
+				_commande.CommandType = CommandType.StoredProcedure;
+			else
+				_commande.CommandType = CommandType.Text;
+
 			_commande.CommandText = sCommande;
 		}
 		#endregion
@@ -180,11 +209,11 @@ namespace Couche_Acces
 
 			Commande.Connection.Open();
 
-			Commande.ExecuteNonQuery();
+			int result = Commande.ExecuteNonQuery();
 
 			Commande.Connection.Close();
 
-			return 0;
+			return result;
 		}
 
 		/// <summary>

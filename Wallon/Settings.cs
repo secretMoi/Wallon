@@ -8,7 +8,7 @@
 		private static string Password = "Nax2J,/nwdbLQGj";
 		private static string Database = "WallonsTest";
 
-		public static string Connection = $"Data Source={Server};Initial Catalog={Database};Persist Security Info=True;User ID={User};Password={Password}";
+		public static string Connection = $"Data Source={Server};Initial Catalog={Database};Persist Security Info=True;User ID={User};Password={Password};";
 		public static bool Auth = false; // contient un boolen si la session est active ou pas
 		public static int IdLocataire; // contient l'id de l'utilisateur loggé
 	}

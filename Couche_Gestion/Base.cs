@@ -18,6 +18,11 @@
 		}
 		#endregion
 
+		public bool TestConnection()
+		{
+			return new Couche_Acces.Base(ChaineConnexion).TestConnection();
+		}
+
 		#region Accesseur
 		public string ChaineConnexion
 		{

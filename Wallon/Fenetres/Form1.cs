@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using Couche_Gestion;
 using FlatControls.Core;
 using Wallon.Pages.Vue;
 using Theme = FlatControls.Controls.Theme;
@@ -37,12 +38,28 @@ namespace Wallon.Fenetres
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			ThemePanel.SetConnection(Settings.Connection);
-			Connexion accueil = new Connexion();
+			ThemePanel.SetConnection(Settings.Connection); // initialise la connexion
 
-			panelContainer.Controls.Add(accueil);
+			if(!TestDatabaseConnection()) return; // si la bdd est injoignable on quitte
 
-			SelfUpdate.CheckUpdate();
+			Connexion accueil = new Connexion(); // charge la page de connexion comme page d'accueil
+
+			panelContainer.Controls.Add(accueil); // affiche la page
+
+			SelfUpdate.CheckUpdate(); // vérifie les maj
+		}
+
+		private bool TestDatabaseConnection()
+		{
+			bool result = new Base(Settings.Connection).TestConnection();
+
+			if(!result)
+			{
+				Dialog.Show("Erreur : Connexion à la base de données impossible !\nFermeture de l'application...");
+				Application.Exit();
+			}
+
+			return result;
 		}
 
 		private void SetSubMenus()
@@ -51,6 +68,9 @@ namespace Wallon.Fenetres
 			panelSousMenuClients.Size = new Size(panelSousMenuClients.Size.Width, 0);
 			panelSousMenuFournisseurs.Size = new Size(panelSousMenuFournisseurs.Size.Width, 0);
 			panelSousMenuUtilisateurs.Size = new Size(panelSousMenuUtilisateurs.Size.Width, 0);
+
+			menu_Clients.Size = new Size(menu_Clients.Width, 0);
+			menu_Fournisseurs.Size = new Size(menu_Fournisseurs.Width, 0);
 		}
 
 		private void HideSubMenu()

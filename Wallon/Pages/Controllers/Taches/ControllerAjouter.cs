@@ -75,7 +75,7 @@ namespace Wallon.Pages.Controllers.Taches
 				return;
 			}
 
-			// Ajout la tache dans la bdd
+			// Crée la tâche
 			Couche_Classe.Taches tache = new Couche_Classe.Taches(
 				name,
 				datteDebut,
@@ -84,9 +84,8 @@ namespace Wallon.Pages.Controllers.Taches
 				cycle
 			);
 
-			// validation
-			TacheValidator validator = new TacheValidator();
-			ValidationResult result = validator.Validate(tache);
+			// validation des données
+			ValidationResult result = new TacheValidator().Validate(tache);
 			if (!result.IsValid)
 			{
 				Dialog.Show($"{result.Errors[0].PropertyName} : {result.Errors[0].ErrorMessage}");

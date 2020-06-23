@@ -26,6 +26,10 @@ namespace Wallon.Controllers.Validators
 				.Must(ValidDatteFin).WithMessage("La datte de fin doit être supérieure au " + DateTime.Now.ToShortDateString());
 		}
 
+		/// <summary>
+		/// Vérifie que la valeur de la datte soit valide
+		/// </summary>
+		/// <returns>true si la datte est valide, false sinon</returns>
 		protected bool ValidDatteFin(DateTime arg)
 		{
 			DateTime today = DateTime.Now.Date;
