@@ -21,7 +21,7 @@ namespace Wallon.Pages.Vue.Taches
 			_flatDataGridView = flatDataGridView;
 
 			SetColonnes(
-				_controllerConsulter.ListeColonnes()
+			_controllerConsulter.ListeColonnes()
 			);
 
 			await _controllerConsulter.GetDataAsync(_useGridView);

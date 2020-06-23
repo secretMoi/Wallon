@@ -1,5 +1,4 @@
-﻿using Controls;
-using Wallon.Pages.Controllers.Taches;
+﻿using Wallon.Pages.Controllers.Taches;
 
 namespace Wallon.Pages.Vue.Taches
 {

@@ -1,5 +1,4 @@
-﻿using Controls;
-using Wallon.Pages.Controllers.Utilisateurs;
+﻿using Wallon.Pages.Controllers.Utilisateurs;
 
 namespace Wallon.Pages.Vue.Utilisateurs
 {

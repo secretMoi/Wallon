@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Couche_Classe;
+using FluentValidation.Results;
+using Wallon.Controllers.Validators;
 using Wallon.Core;
 using Wallon.Fenetres;
 using Wallon.Repository;
@@ -50,7 +52,7 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <param name="selectedId">Liste des id de la FlatList sélectionnés</param>
 		public void Ajouter(string name, string datte, string cycleInput, List<int> selectedId)
 		{
-			if (!Formulaire.IsValid(name, datte, cycleInput) || selectedId.Count <1)
+			if (!Formulaire.IsValid(name, datte, cycleInput) || selectedId.Count < 1)
 			{
 				Dialog.Show("Le formulaire n'est pas correctement rempli");
 				return;
@@ -72,7 +74,7 @@ namespace Wallon.Pages.Controllers.Taches
 				Dialog.Show("Le cycle " + cycleInput + " n'est pas valide");
 				return;
 			}
-			
+
 			// Ajout la tache dans la bdd
 			Couche_Classe.Taches tache = new Couche_Classe.Taches(
 				name,
@@ -81,9 +83,20 @@ namespace Wallon.Pages.Controllers.Taches
 				_associeIdListAndLocataires[selectedId[0]].Item2,
 				cycle
 			);
+
+			// validation
+			TacheValidator validator = new TacheValidator();
+			ValidationResult result = validator.Validate(tache);
+			if (!result.IsValid)
+			{
+				Dialog.Show($"{result.Errors[0].PropertyName} : {result.Errors[0].ErrorMessage}");
+				return;
+			}
+
+			// Ajout de la tâche à la bdd
 			int idTache = _taches.Ajouter(tache);
 
-			// Ajout les locataires à la tâche
+			// Ajout les locataires à la tâche dans la bdd (table liaison)
 			foreach (int idSelected in selectedId)
 				new RepositoryLiaisonTachesLocataires().Ajouter(
 					_associeIdListAndLocataires[idSelected].Item2,

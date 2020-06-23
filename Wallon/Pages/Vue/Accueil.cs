@@ -1,6 +1,4 @@
-﻿using Controls;
-
-namespace Wallon.Pages.Vue
+﻿namespace Wallon.Pages.Vue
 {
 	public partial class Accueil : ThemePanel
 	{

@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
-using Controls;
 using FlatControls.Core;
 using Wallon.Fenetres;
 using Wallon.Pages.Vue;

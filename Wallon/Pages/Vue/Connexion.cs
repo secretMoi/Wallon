@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using Controls;
-using Wallon.Controllers;
+﻿using Wallon.Controllers;
 using Wallon.Pages.Controllers;
 
 namespace Wallon.Pages.Vue
