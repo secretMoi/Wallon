@@ -12,23 +12,28 @@ namespace Wallon.tests
 		{
 			InitializeComponent();
 
-			
-		}
-
-		private void TestMenu_Load(object sender, EventArgs e)
-		{
 			mainMenu1.BackColor = Theme.BackDark;
-			mainMenu1.AddMenuItem("test1", "test1", Image.FromFile("Ressources/Images/box.png"));
-
 			mainMenu1.DefaultCallback = Menu_Click;
+			mainMenu1.AddMenuItem("test1", "test1", Image.FromFile("Ressources/Images/box.png"));
+			mainMenu1.AddMenuItem("test2", "test2", Image.FromFile("Ressources/Images/box.png"));
+			mainMenu1.AddMenuItem("test3", "test3", Image.FromFile("Ressources/Images/box.png"));
+			mainMenu1.AddSubMenuItem("test3", "test6", "2", Image.FromFile("Ressources/Images/box.png"));
+			mainMenu1.AddSubMenuItem("test3", "test7", "3", Image.FromFile("Ressources/Images/box.png"));
+			mainMenu1.AddMenuItem("test4", "test4", Image.FromFile("Ressources/Images/box.png"));
+			mainMenu1.AddSubMenuItem("test4", "test5", "1", Image.FromFile("Ressources/Images/box.png"));
 		}
 
 		private void Menu_Click(object sender, EventArgs e)
 		{
+			
 			string nom = ((Button)sender).Name; // récupère le nom du controle appelant
 			string[] chaine = nom.Split('_'); // scinde le nom pour avoir les 2 parties
 
-			Reflection reflection = new Reflection(GetType());
+			Panel panel = mainMenu1.PanelList.Find(x => x.Name == "panelSousMenu_" + chaine[1]);
+			if (panel != null) // si un panel existe
+				mainMenu1.ShowSubMenu(panel);
+
+			/*Reflection reflection = new Reflection(GetType());
 
 			string @namespace, @class;
 
@@ -44,10 +49,10 @@ namespace Wallon.tests
 				@class = chaine[1];
 
 				// trouve le panel correspondant
-				Control[] panel = Controls.Find("PanelSousMenu" + chaine[1], true);
-				/*if (panel.Length > 0) // si un panel existe
-					ShowSubMenu((Panel)panel[0]);*/
-			}
+				/*Control[] panel = Controls.Find("PanelSousMenu" + chaine[1], true);
+				if (panel.Length > 0) // si un panel existe
+					mainMenu1.ShowSubMenu((Panel)panel[0]);
+			}*/
 
 			//LoadPage(@namespace + "." + @class);
 		}

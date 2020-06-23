@@ -33,11 +33,15 @@
 			// 
 			// mainMenu1
 			// 
+			this.mainMenu1.AutoScroll = true;
 			this.mainMenu1.DefaultCallback = null;
+			this.mainMenu1.Dock = System.Windows.Forms.DockStyle.Left;
 			this.mainMenu1.HeightItem = 70;
-			this.mainMenu1.Location = new System.Drawing.Point(16, 13);
+			this.mainMenu1.Location = new System.Drawing.Point(0, 0);
+			this.mainMenu1.Margin = new System.Windows.Forms.Padding(0);
 			this.mainMenu1.Name = "mainMenu1";
-			this.mainMenu1.Size = new System.Drawing.Size(488, 387);
+			this.mainMenu1.Size = new System.Drawing.Size(171, 450);
+			this.mainMenu1.SpeedStep = 7;
 			this.mainMenu1.TabIndex = 0;
 			// 
 			// TestMenu
@@ -48,7 +52,6 @@
 			this.Controls.Add(this.mainMenu1);
 			this.Name = "TestMenu";
 			this.Text = "testMenu";
-			this.Load += new System.EventHandler(this.TestMenu_Load);
 			this.ResumeLayout(false);
 
 		}

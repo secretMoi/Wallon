@@ -6,17 +6,22 @@ using FlatControls.Controls.Buttons;
 
 namespace Wallon.tests
 {
-	public partial class MainMenu : UserControl
+	public sealed partial class MainMenu : UserControl
 	{
 		private readonly List<FlatButton> _menuItems; // élément de menu de base
 		private readonly List<Panel> _panelMenu; // panel pour menu déroulant
 		private readonly List<(FlatButton, FlatButton)> _subMenuItems; // élément de sous-menu
 
+		private readonly List<Panel> _subMenuPanelToHide = new List<Panel>();
+		private Panel _subMenuPanelToShow;
+
 		public EventHandler DefaultCallback { get; set; }
 
 		public int HeightItem { get; set; } = 70;
+		public int SpeedStep { get; set; } = 7;
 
 		public new Color BackColor { get => panelContainer.BackColor; set => panelContainer.BackColor = value; }
+		public List<Panel> PanelList => _panelMenu;
 
 		public MainMenu()
 		{
@@ -25,6 +30,17 @@ namespace Wallon.tests
 			_menuItems = new List<FlatButton>();
 			_panelMenu = new List<Panel>();
 			_subMenuItems = new List<(FlatButton, FlatButton)>();
+
+			// désactive les barres de scroll
+			panelContainer.AutoScroll = false;
+			panelContainer.VerticalScroll.Enabled = false;
+
+			panelContainer.HorizontalScroll.Enabled = false;
+			panelContainer.HorizontalScroll.Visible = false;
+			panelContainer.HorizontalScroll.Maximum = 0;
+			panelContainer.AutoScroll = true;
+
+			//panelContainer.MaximumSize = new Size(Width + 50, panelContainer.MaximumSize.Height);
 		}
 
 		public void AddMenuItem(string name, string text, Image image)
@@ -33,20 +49,33 @@ namespace Wallon.tests
 			_menuItems.Add(button);
 
 			panelContainer.Controls.Add(button);
-			panelContainer.Refresh();
 		}
 
 		public void AddSubMenuItem(string parent, string name, string text, Image image)
 		{
-			if (FindPanel(parent) == null)
-				_panelMenu.Add(CreatePanel(parent));
+			if (FindPanel(parent) == null) // si c'est le premier élément de sous-menu
+				_panelMenu.Add(CreatePanel(parent)); // crée le panel dédié
 
+			Control controlParent = FindPanel(parent);
+
+			FlatButton button = CreateButton(name, text, image); // crée le bouton
+
+			// ajoute le bouton au panel;
 			_subMenuItems.Add(
 				(
 					FindParent(parent),
 					CreateButton(name, text, image)
 				)
 			);
+
+			controlParent?.Controls.Add(button);
+
+			RefreshMaxHeight(controlParent);
+		}
+
+		private void RefreshMaxHeight(Control control)
+		{
+			control.MaximumSize = new Size(control.MaximumSize.Width, control.MaximumSize.Height + HeightItem);
 		}
 
 		private Panel CreatePanel(string parent)
@@ -54,12 +83,15 @@ namespace Wallon.tests
 			Panel panel = new Panel
 			{
 				Name = "panelSousMenu_" + parent,
-				BackColor = BackColor,
+				//BackColor = BackColor,
+				BackColor = Color.Tomato,
 				Dock = DockStyle.Top,
-				Location = new Point(0, _panelMenu.Count * HeightItem),
+				Location = new Point(0, 0),
 				MaximumSize = new Size(Width, 0),
 				Size = new Size(Width, 0)
 			};
+
+			panelContainer.Controls.Add(panel);
 
 			return panel;
 		}
@@ -95,17 +127,70 @@ namespace Wallon.tests
 				Font = new Font("Yu Gothic UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point),
 				ForeColor = Color.White,
 				ImageAlign = ContentAlignment.MiddleLeft,
-				Location = new Point(0, 0),
+				Location = new Point(0,0),
 				Name = "menu_" + name,
 				Size = new Size(Width, HeightItem),
 				TextImageRelation = TextImageRelation.ImageBeforeText
 			};
 
-			var test = button.Location;
-
 			button.Click += DefaultCallback;
 
 			return button;
+		}
+
+		private void HideSubMenu()
+		{
+			foreach (Panel panel in _panelMenu)
+			{
+				if (panel.Size.Height >= panel.MinimumSize.Height && panel != _subMenuPanelToShow)
+					_subMenuPanelToHide.Add(panel);
+			}
+		}
+
+		public void ShowSubMenu(Panel subMenu)
+		{
+			//bool sameMenu;
+			foreach (Panel panel in _panelMenu)
+			{
+				if (panel.Size.Height == panel.MinimumSize.Height)
+				{
+					_subMenuPanelToShow = subMenu;
+					HideSubMenu(); // cache les autres sous-menus7
+
+					//otherMenu = true;
+				}
+			}
+
+			
+			/*else
+				_subMenuPanelToHide.Add(subMenu);*/
+
+			timer.Start();
+		}
+
+		private void timerMenuDeroulant_Tick(object sender, EventArgs e)
+		{
+			foreach (Panel panelToHide in _subMenuPanelToHide.ToArray())
+			{
+				panelToHide.Height -= SpeedStep;
+
+				if (panelToHide.Size.Height == panelToHide.MinimumSize.Height)
+					_subMenuPanelToHide.Remove(panelToHide);
+			}
+
+			bool hideDone = !(_subMenuPanelToHide.Count > 0);
+
+			if (_subMenuPanelToShow != null)
+			{
+				_subMenuPanelToShow.Height += SpeedStep;
+
+				if (_subMenuPanelToShow.Size.Height >= _subMenuPanelToShow.MaximumSize.Height)
+					_subMenuPanelToShow = null;
+			}
+
+			// si tous les panels ont atteint leur position finale
+			if (_subMenuPanelToShow == null && hideDone)
+				timer.Stop();
 		}
 	}
 }

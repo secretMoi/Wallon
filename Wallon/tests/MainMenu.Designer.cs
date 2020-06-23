@@ -1,6 +1,6 @@
 ﻿namespace Wallon.tests
 {
-	partial class MainMenu
+	sealed partial class MainMenu
 	{
 		/// <summary> 
 		/// Variable nécessaire au concepteur.
@@ -28,22 +28,32 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.panelContainer = new System.Windows.Forms.Panel();
+			this.components = new System.ComponentModel.Container();
+			this.timer = new System.Windows.Forms.Timer(this.components);
+			this.panelContainer = new System.Windows.Forms.FlowLayoutPanel();
 			this.SuspendLayout();
+			// 
+			// timer
+			// 
+			this.timer.Interval = 15;
+			this.timer.Tick += new System.EventHandler(this.timerMenuDeroulant_Tick);
 			// 
 			// panelContainer
 			// 
+			this.panelContainer.AutoScroll = true;
 			this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panelContainer.Location = new System.Drawing.Point(0, 0);
+			this.panelContainer.Margin = new System.Windows.Forms.Padding(0);
 			this.panelContainer.Name = "panelContainer";
 			this.panelContainer.Size = new System.Drawing.Size(488, 587);
 			this.panelContainer.TabIndex = 0;
 			// 
 			// MainMenu
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Controls.Add(this.panelContainer);
+			this.Margin = new System.Windows.Forms.Padding(0);
 			this.Name = "MainMenu";
 			this.Size = new System.Drawing.Size(488, 587);
 			this.ResumeLayout(false);
@@ -51,7 +61,7 @@
 		}
 
 		#endregion
-
-		private System.Windows.Forms.Panel panelContainer;
+		private System.Windows.Forms.Timer timer;
+		private System.Windows.Forms.FlowLayoutPanel panelContainer;
 	}
 }
