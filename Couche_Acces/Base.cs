@@ -33,11 +33,8 @@ namespace Couche_Acces
 		{
 			try
 			{
-				Commande.CommandTimeout = 2;
-				//_commande.Connection.Open();
-
-				//SqlCommand myCommand = new SqlCommand("select 1", _commande.Connection);
 				CreerCommande("select 1", false);
+
 				Commande.Connection.Open();
 				Commande.ExecuteScalar();
 				Commande.Connection.Close();

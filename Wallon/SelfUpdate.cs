@@ -18,7 +18,6 @@ namespace Wallon
 				try
 				{
 					info = ad.CheckForDetailedUpdate();
-
 				}
 				catch (DeploymentDownloadException dde)
 				{

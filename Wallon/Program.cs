@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Wallon.Fenetres;
+using Wallon.tests;
 
 namespace Wallon
 {
@@ -14,7 +15,8 @@ namespace Wallon
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new Form1());
+			Application.Run(new TestMenu());
+			//Application.Run(new Form1());
 		}
 	}
 }
