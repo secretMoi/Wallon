@@ -29,7 +29,8 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <param name="useGridView">Dgv où insérer les données trouvées</param>
 		public async Task GetDataAsync(UseGridView useGridView)
 		{
-			List<Couche_Classe.Taches> taches = _taches.Lire("id"); // récupère les données dans la bdd
+			//List<Couche_Classe.Taches> taches = _taches.Lire("id"); // récupère les données dans la bdd
+			List<Couche_Classe.Taches> taches = await _taches.LireAsync("id"); // récupère les données dans la bdd
 			List<Task> tasks = new List<Task>();
 
 			foreach (Couche_Classe.Taches tache in taches) // les lie à la dgv

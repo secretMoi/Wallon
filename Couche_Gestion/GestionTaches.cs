@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Couche_Acces;
 using Couche_Classe;
 
@@ -46,6 +47,7 @@ namespace Couche_Gestion
 
 		public List<Taches> Lire(string index)
 		{
+			//return await Task.Run(() => new AccesTaches(ChaineConnexion).Lire(index).ConvertAll(x => (Taches)x));
 			return new AccesTaches(ChaineConnexion).Lire(index).ConvertAll(x => (Taches)x);
 		}
 

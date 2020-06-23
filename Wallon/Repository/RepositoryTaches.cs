@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Couche_Classe;
 using Couche_Gestion;
 using Wallon.Controllers;
@@ -25,6 +26,11 @@ namespace Wallon.Repository
 			{
 				throw new Exception("Impossible de lire les tâches : \n" + ex.Message);
 			}
+		}
+
+		public async Task<List<Taches>> LireAsync(string index)
+		{
+			return await Task.Run(() => Lire(index));
 		}
 
 		public Taches LireId(int index)
