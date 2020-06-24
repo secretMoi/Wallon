@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using Couche_Gestion;
+using FlatControls;
 using FlatControls.Core;
 using Wallon.Pages.Vue;
 using Theme = FlatControls.Controls.Theme;
@@ -13,6 +14,7 @@ namespace Wallon.Fenetres
 		private bool _isResizing;
 		private Point _anciennePositionCurseur;
 		private Size _ancienneTailleFenetre;
+
 		public Form1()
 		{
 			InitializeComponent();
@@ -86,8 +88,8 @@ namespace Wallon.Fenetres
 			Reflection reflection = new Reflection(GetType());
 
 			string @namespace, @class;
-
-			if (chaine.Length == 3) // si c'est un bouton de sous-menu
+			//todo réparer click
+			if (mainMenu.IsSubMenu((Button)sender)) // si c'est un bouton de sous-menu
 			{
 				@namespace = reflection.FirstNamespace + ".Pages.Vue." + chaine[1];
 				@class = chaine[2];
@@ -187,22 +189,22 @@ namespace Wallon.Fenetres
 
 		private void pictureBoxClose_MouseEnter(object sender, EventArgs e)
 		{
-			Zoom(pictureBoxClose, 48);
+			new Animation(pictureBoxClose).Zoom(48);
 		}
 
 		private void pictureBoxClose_MouseLeave(object sender, EventArgs e)
 		{
-			Zoom(pictureBoxClose, 32);
+			new Animation(pictureBoxClose).Zoom(32);
 		}
 
 		private void pictureBoxReduce_MouseEnter(object sender, EventArgs e)
 		{
-			Zoom(pictureBoxReduce, 48);
+			new Animation(pictureBoxReduce).Zoom(48);
 		}
 
 		private void pictureBoxReduce_MouseLeave(object sender, EventArgs e)
 		{
-			Zoom(pictureBoxReduce, 32);
+			new Animation(pictureBoxReduce).Zoom(32);
 		}
 
 		private void Zoom(Control control, int taille)

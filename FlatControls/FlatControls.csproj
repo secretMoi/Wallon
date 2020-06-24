@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation.cs" />
     <Compile Include="Controls\Alerte.cs">
       <SubType>UserControl</SubType>
     </Compile>

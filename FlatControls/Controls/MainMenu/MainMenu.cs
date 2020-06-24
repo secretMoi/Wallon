@@ -123,6 +123,8 @@ namespace FlatControls.Controls.MainMenu
 			if (text == null)
 				text = name;
 
+			name = parent + "_" + name;
+
 			if (FindParent(parent, _panelMenu) == null) // si c'est le premier élément de sous-menu
 				_panelMenu.Add(CreatePanel(parent)); // crée le panel dédié
 
