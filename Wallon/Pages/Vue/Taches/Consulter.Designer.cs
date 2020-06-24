@@ -30,7 +30,7 @@ namespace Wallon.Pages.Vue.Taches
 		/// </summary>
 		private new void InitializeComponent()
 		{
-			this.flatDataGridView = new FlatDataGridView();
+			this.flatDataGridView = new FlatControls.Controls.FlatDataGridView();
 			this.panelTitre.SuspendLayout();
 			this.panelCorps.SuspendLayout();
 			this.SuspendLayout();

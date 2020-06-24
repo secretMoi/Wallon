@@ -11,11 +11,11 @@ namespace Wallon.Controllers
 
 		}
 
-		public int LocataireSuivant(int idTache)
+		public int LocataireSuivant(int idTache, int idLocataire)
 		{
 			List<int> liaison = new RepositoryLiaisonTachesLocataires().ListeLocataires(idTache); // liste des locataires participant à la tâche
 
-			int indexActuel = liaison.IndexOf(Settings.IdLocataire); // situe le locataire actuel dans la liste
+			int indexActuel = liaison.IndexOf(idLocataire); // situe le locataire actuel dans la liste
 			if(indexActuel == -1) // si la liste ne le contient pas
 				throw new Exception("Le locataire " + indexActuel + " n'est pas dans la tâche " + idTache);
 

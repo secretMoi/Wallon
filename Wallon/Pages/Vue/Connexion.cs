@@ -1,4 +1,5 @@
-﻿using Wallon.Controllers;
+﻿using Couche_Classe;
+using Wallon.Controllers;
 using Wallon.Pages.Controllers;
 
 namespace Wallon.Pages.Vue
@@ -26,6 +27,8 @@ namespace Wallon.Pages.Vue
 			SetColors();
 
 			flatTextBoxPassword.IsPassword = true;
+
+			//_controllerLocataires.Ajouter(new Locataire("Quentin", "test"));
 		}
 
 		private void flatButtonConnexion_Click(object sender, System.EventArgs e)

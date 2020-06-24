@@ -42,6 +42,7 @@ namespace Wallon.Fenetres
 			mainMenu.AddMenuItem("Utilisateurs", "multiple-users-silhouette.png");
 			mainMenu.AddSubMenuItem("Profil", "user.png");
 			mainMenu.AddSubMenuItem("Liste", "list.png");
+			mainMenu.AddSubMenuItem("Ajouter", "signs.png");
 
 			mainMenu.AddMenuItem("Taches", "list.png", "Tâches");
 			mainMenu.AddSubMenuItem("MesTaches", "list.png", "Mes tâches");
@@ -89,13 +90,19 @@ namespace Wallon.Fenetres
 
 		private void Menu_Click(object sender, EventArgs e)
 		{
+			if(!Settings.Auth)
+			{
+				Dialog.Show("Veuillez vous identifier afin d'accéder au programme !");
+				return; // si le locataire n'est pas authentifié, on il n'a pas accès au menu
+			}
+
 			string nom = ((Button)sender).Name; // récupère le nom du controle appelant
 			string[] chaine = nom.Split('_'); // scinde le nom pour avoir les 2 parties
 
 			Reflection reflection = new Reflection(GetType());
 
 			string @namespace, @class;
-			//todo réparer click
+
 			if (mainMenu.IsSubMenu((Button)sender)) // si c'est un bouton de sous-menu
 			{
 				@namespace = reflection.FirstNamespace + ".Pages.Vue." + chaine[1];

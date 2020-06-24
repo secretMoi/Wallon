@@ -18,6 +18,8 @@ namespace Wallon.Pages.Vue.Taches
 			flatList.Add(_controllerAjouter.ListeLocataires());
 
 			SetColors();
+
+			flatTextBoxDatteDebut.Text = _controllerAjouter.FillFieldDate(); // pré-rempli la datte pour faciliter l'encodage
 		}
 
 		/// <summary>

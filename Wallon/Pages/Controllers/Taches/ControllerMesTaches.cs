@@ -78,7 +78,7 @@ namespace Wallon.Pages.Controllers.Taches
 
 			if (colonne == _flatDataGridView.GetColumnId("Valider")) // si la colonne cliquée correspond
 			{
-				int locataireSuivant = new ControllerTaches().LocataireSuivant(_taches[ligne].Id); // récupère l'id du locataire suivant
+				int locataireSuivant = new ControllerTaches().LocataireSuivant(_taches[ligne].Id, Settings.IdLocataire); // récupère l'id du locataire suivant
 
 				_repositoryTaches.ModifierLocataireCourant(_taches[ligne].Id, locataireSuivant); // modifie le locataire devant effectuer la tâche
 

@@ -101,7 +101,7 @@ namespace FlatControls
 					_timer.Stop();
 					return;
 				}
-				else if (_control.Size.Width <= tailleFinale && sensZoom == -1)
+				if (_control.Size.Width <= tailleFinale && sensZoom == -1)
 				{
 					_timer.Stop();
 					ControlsUsed.Remove(_control);

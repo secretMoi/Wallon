@@ -31,21 +31,21 @@ namespace Wallon.Pages.Vue.Taches
 		/// </summary>
 		private new void InitializeComponent()
 		{
-			this.flatList = new FlatList();
-			this.flatButtonAjouter = new FlatButton();
-			this.flatTextBoxDatteDebut = new FlatTextBox();
-			this.flatLabelDateDebut = new FlatLabel();
-			this.flatTextName = new FlatTextBox();
-			this.flatLabelNom = new FlatLabel();
-			this.flatTextBoxCycle = new FlatTextBox();
-			this.flatLabelCycle = new FlatLabel();
+			this.flatList = new FlatControls.Controls.FlatList();
+			this.flatButtonAjouter = new FlatControls.Controls.Buttons.FlatButton();
+			this.flatTextBoxDatteDebut = new FlatControls.Controls.FlatTextBox();
+			this.flatLabelDateDebut = new FlatControls.Controls.FlatLabel();
+			this.flatTextName = new FlatControls.Controls.FlatTextBox();
+			this.flatLabelNom = new FlatControls.Controls.FlatLabel();
+			this.flatTextBoxCycle = new FlatControls.Controls.FlatTextBox();
+			this.flatLabelCycle = new FlatControls.Controls.FlatLabel();
 			this.panelTitre.SuspendLayout();
 			this.panelCorps.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panelTitre
 			// 
-			this.panelTitre.Size = new System.Drawing.Size(1539, 120);
+			this.panelTitre.Size = new System.Drawing.Size(1856, 120);
 			// 
 			// panelCorps
 			// 
@@ -57,14 +57,14 @@ namespace Wallon.Pages.Vue.Taches
 			this.panelCorps.Controls.Add(this.flatTextName);
 			this.panelCorps.Controls.Add(this.flatLabelNom);
 			this.panelCorps.Controls.Add(this.flatList);
-			this.panelCorps.Size = new System.Drawing.Size(1539, 436);
+			this.panelCorps.Size = new System.Drawing.Size(1856, 773);
 			// 
 			// flatList
 			// 
 			this.flatList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.flatList.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.flatList.BackColor = System.Drawing.Color.White;
-			this.flatList.Location = new System.Drawing.Point(1292, 18);
+			this.flatList.Location = new System.Drawing.Point(1609, 18);
 			this.flatList.Name = "flatList";
 			this.flatList.Size = new System.Drawing.Size(235, 317);
 			this.flatList.TabIndex = 0;
@@ -152,7 +152,7 @@ namespace Wallon.Pages.Vue.Taches
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Name = "Ajouter";
-			this.Size = new System.Drawing.Size(1539, 556);
+			this.Size = new System.Drawing.Size(1856, 893);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();
 			this.panelCorps.ResumeLayout(false);

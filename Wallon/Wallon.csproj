@@ -26,7 +26,7 @@
     <InstallUrl>\\Iridium\Docs\DeployWallons\</InstallUrl>
     <ProductName>Wallons</ProductName>
     <PublisherName>Quentin</PublisherName>
-    <ApplicationRevision>26</ApplicationRevision>
+    <ApplicationRevision>29</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -114,6 +114,7 @@
     <Compile Include="Core\Formulaire.cs" />
     <Compile Include="Pages\Controllers\ControllerConnection.cs" />
     <Compile Include="Pages\Controllers\Taches\ControllerMesTaches.cs" />
+    <Compile Include="Pages\Controllers\Utilisateurs\ControllerAjouter.cs" />
     <Compile Include="Pages\Vue\Taches\MesTaches.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -155,6 +156,12 @@
     </Compile>
     <Compile Include="Pages\Vue\Taches\Consulter.Designer.cs">
       <DependentUpon>Consulter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Vue\Utilisateurs\Ajouter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\Vue\Utilisateurs\Ajouter.Designer.cs">
+      <DependentUpon>Ajouter.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\Vue\Utilisateurs\Liste.cs">
       <SubType>UserControl</SubType>
@@ -226,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Vue\Taches\Consulter.resx">
       <DependentUpon>Consulter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Vue\Utilisateurs\Ajouter.resx">
+      <DependentUpon>Ajouter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Vue\Utilisateurs\Liste.resx">
       <DependentUpon>Liste.cs</DependentUpon>

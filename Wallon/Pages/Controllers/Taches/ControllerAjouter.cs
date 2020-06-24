@@ -20,7 +20,6 @@ namespace Wallon.Pages.Controllers.Taches
 			_associeIdListAndLocataires = new List<(int, int)>();
 		}
 
-
 		/// <summary>
 		/// Génère une liste complète des noms de locataires, associe l'id d'ordre de la flatlist avec l'id des locataires
 		/// </summary>
@@ -103,6 +102,11 @@ namespace Wallon.Pages.Controllers.Taches
 				);
 
 			Dialog.Show("La tâche " + name + " a bien été ajoutée");
+		}
+
+		public string FillFieldDate()
+		{
+			return DateTime.Now.ToShortDateString();
 		}
 	}
 }
