@@ -19,6 +19,8 @@ namespace Wallon.tests
 			mainMenu1.AddMenuItem("test3", "test3", Image.FromFile("Ressources/Images/box.png"));
 			mainMenu1.AddSubMenuItem("test3", "test6", "2", Image.FromFile("Ressources/Images/box.png"));
 			mainMenu1.AddSubMenuItem("test3", "test7", "3", Image.FromFile("Ressources/Images/box.png"));
+			mainMenu1.AddSubMenuItem("test3", "test7", "3", Image.FromFile("Ressources/Images/box.png"));
+			mainMenu1.AddSubMenuItem("test3", "test7", "3", Image.FromFile("Ressources/Images/box.png"));
 			mainMenu1.AddMenuItem("test4", "test4", Image.FromFile("Ressources/Images/box.png"));
 			mainMenu1.AddSubMenuItem("test4", "test5", "1", Image.FromFile("Ressources/Images/box.png"));
 		}
@@ -30,6 +32,7 @@ namespace Wallon.tests
 			string[] chaine = nom.Split('_'); // scinde le nom pour avoir les 2 parties
 
 			Panel panel = mainMenu1.PanelList.Find(x => x.Name == "panelSousMenu_" + chaine[1]);
+
 			if (panel != null) // si un panel existe
 				mainMenu1.ShowSubMenu(panel);
 

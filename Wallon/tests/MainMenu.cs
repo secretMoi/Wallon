@@ -8,16 +8,16 @@ namespace Wallon.tests
 {
 	public sealed partial class MainMenu : UserControl
 	{
-		private readonly List<FlatButton> _menuItems; // élément de menu de base
+		private readonly List<MenuFlatButton> _menuItems; // élément de menu de base
 		private readonly List<Panel> _panelMenu; // panel pour menu déroulant
-		private readonly List<(FlatButton, FlatButton)> _subMenuItems; // élément de sous-menu
+		private readonly List<(MenuFlatButton, MenuFlatButton)> _subMenuItems; // élément de sous-menu (parent + lui-même)
 
 		private readonly List<Panel> _subMenuPanelToHide = new List<Panel>();
 		private Panel _subMenuPanelToShow;
 
 		public EventHandler DefaultCallback { get; set; }
 
-		public int HeightItem { get; set; } = 70;
+		public int HeightItem { get; set; } = 80;
 		public int SpeedStep { get; set; } = 7;
 
 		public new Color BackColor { get => panelContainer.BackColor; set => panelContainer.BackColor = value; }
@@ -27,25 +27,25 @@ namespace Wallon.tests
 		{
 			InitializeComponent();
 
-			_menuItems = new List<FlatButton>();
+			_menuItems = new List<MenuFlatButton>();
 			_panelMenu = new List<Panel>();
-			_subMenuItems = new List<(FlatButton, FlatButton)>();
+			_subMenuItems = new List<(MenuFlatButton, MenuFlatButton)>();
 
 			// désactive les barres de scroll
 			panelContainer.AutoScroll = false;
 			panelContainer.VerticalScroll.Enabled = false;
+			panelContainer.VerticalScroll.Visible = false;
+			panelContainer.VerticalScroll.Maximum = 0;
 
 			panelContainer.HorizontalScroll.Enabled = false;
 			panelContainer.HorizontalScroll.Visible = false;
 			panelContainer.HorizontalScroll.Maximum = 0;
 			panelContainer.AutoScroll = true;
-
-			//panelContainer.MaximumSize = new Size(Width + 50, panelContainer.MaximumSize.Height);
 		}
 
 		public void AddMenuItem(string name, string text, Image image)
 		{
-			FlatButton button = CreateButton(name, text, image);
+			MenuFlatButton button = CreateButton(name, text, image);
 			_menuItems.Add(button);
 
 			panelContainer.Controls.Add(button);
@@ -83,12 +83,13 @@ namespace Wallon.tests
 			Panel panel = new Panel
 			{
 				Name = "panelSousMenu_" + parent,
-				//BackColor = BackColor,
-				BackColor = Color.Tomato,
+				BackColor = BackColor,
 				Dock = DockStyle.Top,
 				Location = new Point(0, 0),
 				MaximumSize = new Size(Width, 0),
-				Size = new Size(Width, 0)
+				Size = new Size(Width, 0),
+				Padding = new Padding(0),
+				Margin = new Padding(0)
 			};
 
 			panelContainer.Controls.Add(panel);
@@ -105,22 +106,20 @@ namespace Wallon.tests
 			return null;
 		}
 
-		private FlatButton FindParent(string parentName)
+		private MenuFlatButton FindParent(string parentName)
 		{
-			foreach (FlatButton button in _menuItems)
+			foreach (MenuFlatButton button in _menuItems)
 				if (button.Name.Contains(parentName))
 					return button;
 
 			return null;
 		}
 
-		private FlatButton CreateButton(string name, string text, Image image)
+		private MenuFlatButton CreateButton(string name, string text, Image image)
 		{
-			FlatButton button = new FlatButton
+			MenuFlatButton button = new MenuFlatButton
 			{
 				Text = @"   " + text,
-				Width = Width,
-				Height = HeightItem,
 				Image = image,
 				Dock = DockStyle.Top,
 				BackColor = BackColor,
@@ -130,7 +129,11 @@ namespace Wallon.tests
 				Location = new Point(0,0),
 				Name = "menu_" + name,
 				Size = new Size(Width, HeightItem),
-				TextImageRelation = TextImageRelation.ImageBeforeText
+				TextImageRelation = TextImageRelation.ImageBeforeText,
+				FlatStyle = FlatStyle.Flat,
+				UseVisualStyleBackColor = false,
+				Padding = new Padding(0),
+				Margin = new Padding(0)
 			};
 
 			button.Click += DefaultCallback;

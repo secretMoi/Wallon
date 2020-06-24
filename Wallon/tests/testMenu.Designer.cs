@@ -36,7 +36,6 @@
 			this.mainMenu1.AutoScroll = true;
 			this.mainMenu1.DefaultCallback = null;
 			this.mainMenu1.Dock = System.Windows.Forms.DockStyle.Left;
-			this.mainMenu1.HeightItem = 70;
 			this.mainMenu1.Location = new System.Drawing.Point(0, 0);
 			this.mainMenu1.Margin = new System.Windows.Forms.Padding(0);
 			this.mainMenu1.Name = "mainMenu1";
