@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using FlatControls.Controls.Buttons;
 
@@ -9,6 +10,7 @@ namespace FlatControls.Controls.MainMenu
 	public sealed partial class MainMenu : UserControl
 	{
 		private readonly List<MenuFlatButton> _menuItems; // élément de menu de base
+		private readonly List<MenuFlatButton> _menuBottomItems; // élément de menu de base en bas
 		private readonly List<FlowLayoutPanel> _panelMenu; // panel pour menu déroulant
 		private readonly List<(MenuFlatButton, MenuFlatButton)> _subMenuItems; // élément de sous-menu (parent + lui-même)
 		private MenuFlatButton _lastParent; // sauvegarde le dernier parent créé afin que les enfants n'aient pas besoin de le rappeler
@@ -79,6 +81,7 @@ namespace FlatControls.Controls.MainMenu
 			_menuItems = new List<MenuFlatButton>();
 			_panelMenu = new List<FlowLayoutPanel>();
 			_subMenuItems = new List<(MenuFlatButton, MenuFlatButton)>();
+			_menuBottomItems = new List<MenuFlatButton>();
 
 			// désactive les barres de scroll mais rend le scroll possible
 			panelContainer.AutoScroll = false;
@@ -90,6 +93,8 @@ namespace FlatControls.Controls.MainMenu
 			panelContainer.HorizontalScroll.Visible = false;
 			panelContainer.HorizontalScroll.Maximum = 0;
 			panelContainer.AutoScroll = true;
+
+			flowLayoutPanelBottom.Size = new Size(Width, 0);
 		}
 
 		/// <summary>
@@ -109,6 +114,33 @@ namespace FlatControls.Controls.MainMenu
 			_lastParent = button;
 
 			panelContainer.Controls.Add(button);
+		}
+
+		/// <summary>
+		/// Ajoute un item de menu principal en bas
+		/// </summary>
+		/// <param name="name">Nom du control</param>
+		/// <param name="image">Chemin de l'image à afficher</param>
+		/// <param name="callBack">Méthode à rappeler lors du clic</param>
+		/// <param name="text">Texte à afficher si différent du nom</param>
+		public void AddMenuBottomItem(string name, string image, EventHandler callBack = null, string text = null)
+		{
+			if (text == null)
+				text = name;
+
+			MenuFlatButton button = CreateButton(Type.MainMenu, name, text, image);
+
+			if(callBack != null)
+				button.Click += callBack;
+
+			_menuBottomItems.Add(button);
+
+			_lastParent = button;
+
+			button.Dock = DockStyle.Bottom;
+
+			flowLayoutPanelBottom.Controls.Add(button);
+			flowLayoutPanelBottom.Size = new Size(Width, flowLayoutPanelBottom.Height + HeightItem);
 		}
 
 		/// <summary>

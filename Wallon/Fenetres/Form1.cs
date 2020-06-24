@@ -47,6 +47,8 @@ namespace Wallon.Fenetres
 			mainMenu.AddSubMenuItem("MesTaches", "list.png", "Mes tâches");
 			mainMenu.AddSubMenuItem("Ajouter", "signs.png");
 			mainMenu.AddSubMenuItem("Consulter", "pie-chart.png");
+
+			mainMenu.AddMenuBottomItem("Quitter", "logout.png", Quitter_Click);
 		}
 
 		private void SetColors()
@@ -78,6 +80,11 @@ namespace Wallon.Fenetres
 			}
 
 			return result;
+		}
+
+		public void Quitter_Click(object sender, EventArgs e)
+		{
+			Close();
 		}
 
 		private void Menu_Click(object sender, EventArgs e)
