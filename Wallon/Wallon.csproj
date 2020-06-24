@@ -270,6 +270,7 @@
     <Content Include="Ressources\Images\box.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Ressources\Images\browser.png" />
     <Content Include="Ressources\Images\checkup.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -306,6 +307,9 @@
     <Content Include="Ressources\Images\jobs.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Ressources\Images\list.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Ressources\Images\loading.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -322,6 +326,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Ressources\Images\minus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\Images\multiple-users-silhouette.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Ressources\Images\pack.png">
@@ -343,6 +350,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Ressources\Images\up-arrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\Images\user.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

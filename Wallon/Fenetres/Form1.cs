@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using Couche_Gestion;
@@ -14,9 +13,6 @@ namespace Wallon.Fenetres
 		private bool _isResizing;
 		private Point _anciennePositionCurseur;
 		private Size _ancienneTailleFenetre;
-
-		private readonly List<Panel> _subMenuPanelToHide = new List<Panel>();
-		private Panel _subMenuPanelToShow;
 		public Form1()
 		{
 			InitializeComponent();
@@ -26,9 +22,29 @@ namespace Wallon.Fenetres
 
 			Resize += Form1_Resize;
 
-			SetSubMenus();
-
 			SetColors();
+
+			SetMenu();
+		}
+
+		private void SetMenu()
+		{
+			mainMenu.BackColor = Theme.BackDark;
+			mainMenu.BackColorSub = Theme.BackLight;
+			mainMenu.DefaultCallback = Menu_Click;
+
+			mainMenu.DefaultPath = "Ressources/Images/";
+
+			mainMenu.AddMenuItem("Accueil", "box.png");
+
+			mainMenu.AddMenuItem("Utilisateurs", "multiple-users-silhouette.png");
+			mainMenu.AddSubMenuItem("Profil", "user.png");
+			mainMenu.AddSubMenuItem("Liste", "list.png");
+
+			mainMenu.AddMenuItem("Taches", "list.png", "Tâches");
+			mainMenu.AddSubMenuItem("MesTaches", "list.png", "Mes tâches");
+			mainMenu.AddSubMenuItem("Ajouter", "signs.png");
+			mainMenu.AddSubMenuItem("Consulter", "pie-chart.png");
 		}
 
 		private void SetColors()
@@ -62,63 +78,6 @@ namespace Wallon.Fenetres
 			return result;
 		}
 
-		private void SetSubMenus()
-		{
-			panelSousMenuTaches.Size = new Size(panelSousMenuTaches.Size.Width, 0);
-			panelSousMenuClients.Size = new Size(panelSousMenuClients.Size.Width, 0);
-			panelSousMenuFournisseurs.Size = new Size(panelSousMenuFournisseurs.Size.Width, 0);
-			panelSousMenuUtilisateurs.Size = new Size(panelSousMenuUtilisateurs.Size.Width, 0);
-
-			menu_Clients.Size = new Size(menu_Clients.Width, 0);
-			menu_Fournisseurs.Size = new Size(menu_Fournisseurs.Width, 0);
-		}
-
-		private void HideSubMenu()
-		{
-			if (panelSousMenuTaches.Size.Height >= panelSousMenuTaches.MinimumSize.Height && panelSousMenuTaches != _subMenuPanelToShow)
-				_subMenuPanelToHide.Add(panelSousMenuTaches);
-
-			if (panelSousMenuUtilisateurs.Size.Height >= panelSousMenuUtilisateurs.MinimumSize.Height &&
-			    panelSousMenuUtilisateurs != _subMenuPanelToShow)
-				_subMenuPanelToHide.Add(panelSousMenuUtilisateurs);
-
-			if (panelSousMenuClients.Size.Height >= panelSousMenuClients.MinimumSize.Height &&
-					 panelSousMenuClients != _subMenuPanelToShow)
-				_subMenuPanelToHide.Add(panelSousMenuClients);
-
-			if (panelSousMenuFournisseurs.Size.Height >= panelSousMenuFournisseurs.MinimumSize.Height &&
-					 panelSousMenuFournisseurs != _subMenuPanelToShow)
-				_subMenuPanelToHide.Add(panelSousMenuFournisseurs);
-		}
-
-		private void ShowSubMenu(Panel subMenu)
-		{
-			if (panelSousMenuTaches.Size.Height == panelSousMenuTaches.MinimumSize.Height)
-			{
-				_subMenuPanelToShow = subMenu;
-				HideSubMenu(); // cache les autres sous-menus
-			}
-			else if (panelSousMenuUtilisateurs.Size.Height == panelSousMenuUtilisateurs.MinimumSize.Height)
-			{
-				_subMenuPanelToShow = subMenu;
-				HideSubMenu(); // cache les autres sous-menus
-			}
-			else if(panelSousMenuClients.Size.Height == panelSousMenuClients.MinimumSize.Height)
-			{
-				_subMenuPanelToShow = subMenu;
-				HideSubMenu(); // cache les autres sous-menus
-			}
-			else if (panelSousMenuFournisseurs.Size.Height == panelSousMenuFournisseurs.MinimumSize.Height)
-			{
-				_subMenuPanelToShow = subMenu;
-				HideSubMenu(); // cache les autres sous-menus
-			}
-			else
-				_subMenuPanelToHide.Add(subMenu);
-
-			timerMenuDeroulant.Start();
-		}
-
 		private void Menu_Click(object sender, EventArgs e)
 		{
 			string nom = ((Button)sender).Name; // récupère le nom du controle appelant
@@ -138,11 +97,6 @@ namespace Wallon.Fenetres
 				// charge directement la page
 				@namespace = reflection.FirstNamespace + ".Pages.Vue";
 				@class = chaine[1];
-
-				// trouve le panel correspondant
-				Control[] panel = Controls.Find("PanelSousMenu" + chaine[1], true);
-				if(panel.Length > 0) // si un panel existe
-					ShowSubMenu((Panel)panel[0]);
 			}
 
 			LoadPage(@namespace + "." + @class);
@@ -229,31 +183,6 @@ namespace Wallon.Fenetres
 		private void Form1_Resize(object sender, EventArgs e)
 		{
 			Update();
-		}
-
-		private void timerMenuDeroulant_Tick(object sender, EventArgs e)
-		{
-			foreach (Panel panelToHide in _subMenuPanelToHide.ToArray())
-			{
-					panelToHide.Height -= 7;
-
-					if (panelToHide.Size.Height == panelToHide.MinimumSize.Height)
-						_subMenuPanelToHide.Remove(panelToHide);
-			}
-
-			bool hideDone = !(_subMenuPanelToHide.Count > 0);
-
-			if (_subMenuPanelToShow != null)
-			{
-				_subMenuPanelToShow.Height += 7;
-
-				if (_subMenuPanelToShow.Size.Height == _subMenuPanelToShow.MaximumSize.Height)
-					_subMenuPanelToShow = null;
-			}
-
-			// si tous les panels ont atteint leur position finale
-			if(_subMenuPanelToShow == null && hideDone)
-				timerMenuDeroulant.Stop();
 		}
 
 		private void pictureBoxClose_MouseEnter(object sender, EventArgs e)
