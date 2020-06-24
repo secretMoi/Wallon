@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using FlatControls.Controls.Buttons;
 
-namespace Wallon.tests
+namespace FlatControls.Controls.MainMenu
 {
 	public sealed partial class MainMenu : UserControl
 	{

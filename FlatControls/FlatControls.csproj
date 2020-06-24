@@ -116,6 +116,12 @@
     <Compile Include="Controls\GraphicRepartition.Designer.cs">
       <DependentUpon>GraphicRepartition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MainMenu\MainMenu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MainMenu\MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Theme.cs" />
     <Compile Include="Controls\Utilisation.cs">
       <SubType>UserControl</SubType>
@@ -169,9 +175,13 @@
     <EmbeddedResource Include="Controls\GraphicRepartition.resx">
       <DependentUpon>GraphicRepartition.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MainMenu\MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\Utilisation.resx">
       <DependentUpon>Utilisation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

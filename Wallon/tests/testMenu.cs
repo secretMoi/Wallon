@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using FlatControls.Controls;
+using FlatControls.Controls.Buttons;
 using FlatControls.Core;
 
 namespace Wallon.tests
@@ -13,6 +14,7 @@ namespace Wallon.tests
 			InitializeComponent();
 
 			mainMenu1.BackColor = Theme.BackDark;
+			mainMenu1.BackColorSub = Theme.BackLight;
 			mainMenu1.DefaultCallback = Menu_Click;
 			mainMenu1.AddMenuItem("test1", "test1", Image.FromFile("Ressources/Images/box.png"));
 			mainMenu1.AddMenuItem("test2", "test2", Image.FromFile("Ressources/Images/box.png"));
@@ -35,6 +37,9 @@ namespace Wallon.tests
 
 			if (panel != null) // si un panel existe
 				mainMenu1.ShowSubMenu(panel);
+
+			if (mainMenu1.IsSubMenu((Button) sender))
+				MessageBox.Show(nom);
 
 			/*Reflection reflection = new Reflection(GetType());
 
