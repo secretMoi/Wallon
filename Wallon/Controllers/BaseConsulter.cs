@@ -43,22 +43,23 @@ namespace Wallon.Controllers
 			return objet;
 		}
 
-		protected virtual void AfterLoad()
+		protected virtual async void AfterLoad()
 		{
 			_flatDataGridView.AddClickMethod(EffetClic); // s'inscrit aux event de clic dans la dgv
 
-			_flatDataGridView.DataSource = _useGridView.Liens; // ajout(liage) des colonnes à la gridview
+			//_flatDataGridView.DataSource = _useGridView.Liens; // ajout(liage) des colonnes à la gridview
+			await _flatDataGridView.DataSourceAsync(_useGridView.Liens); // ajout(liage) des colonnes à la gridview
 
-			//var test = _flatDataGridView.Test.Columns;
+			var test = _flatDataGridView.Column;
 
-			if (_editEnabled && _flatDataGridView.Column.Contains("Editer"))
+			if (_editEnabled)
 				_flatDataGridView.Column["Editer"].Width = 150;
-			if (_deleteEnabled && _flatDataGridView.Column.Contains("Supprimer"))
+			if (_deleteEnabled)
 				_flatDataGridView.Column["Supprimer"].Width = 200;
-			if (_seeEnabled && _flatDataGridView.Column.Contains("Voir"))
+			if (_seeEnabled)
 				_flatDataGridView.Column["Voir"].Width = 150;
-			if (_validateEnabled && _flatDataGridView.Column.Contains("Valider"))
-				_flatDataGridView.Column["Valider"].Width = 150;
+			if (_validateEnabled)
+				_flatDataGridView.Column["Valider"].Width = 100;
 		}
 
 		protected void SetColonnes(params string[] titres)

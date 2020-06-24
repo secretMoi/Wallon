@@ -1,5 +1,4 @@
-﻿using System.Data;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlatControls.Core;
 
@@ -32,41 +31,82 @@ namespace FlatControls.Controls
 		/// <param name="value">DataSource à envoyer dans la dgv</param>
 		public BindingSource DataSource
 		{
-			set => BindData(value); // todo remettre le async
+			// todo remettre le async
+			set
+			{
+				DisableRenderWhilePopulating();
+
+				BindData(value);
+
+				HideRenderedColoumns();
+
+				EnableRenderWhilePopulating();
+			}
 		}
 
-		private void BindData(BindingSource bindingSource)
+		/// <summary>
+		/// Permet de lier les données à la dgv de manière asynchrone
+		/// </summary>
+		/// <param name="bindingSource">Données à insérer dans la dgv</param>
+		public async Task DataSourceAsync(BindingSource bindingSource)
+		{
+			DisableRenderWhilePopulating();
+
+			await BindDataAsync(bindingSource);
+
+			HideRenderedColoumns();
+
+			EnableRenderWhilePopulating();
+		}
+
+		/// <summary>
+		/// Désactive le rendu et la mise à l'échelle des colonnes pendant le remplissage de la dgv
+		/// </summary>
+		private void DisableRenderWhilePopulating()
 		{
 			dataGridView.SuspendLayout(); // met en suspentles dessins
 			dataGridView.RowHeadersVisible = false;
 			dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+		}
 
-			dataGridView.DataSource = bindingSource; // lie les données
-
+		/// <summary>
+		/// Masque les colonnes marquées comme invisible
+		/// </summary>
+		private void HideRenderedColoumns()
+		{
 			foreach (string colonne in _hidedColumns) // masque les colonnes masquées
 			{
 				if (dataGridView.Columns.Contains(colonne))
 					dataGridView.Columns[colonne].Visible = false;
 			}
+		}
 
+		/// <summary>
+		/// Réactive le rendu et la mise à l'échelle des colonnes après le remplissage de la dgv
+		/// </summary>
+		private void EnableRenderWhilePopulating()
+		{
 			dataGridView.ResumeLayout(); // reprend l'affichage
 			dataGridView.RowHeadersVisible = false;
 			dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
 		}
 
-		private async void BindDataAsync(BindingSource bindingSource)
+		/// <summary>
+		/// Insère des données dans la dgv
+		/// </summary>
+		/// <param name="bindingSource">Données à insérer</param>
+		private void BindData(BindingSource bindingSource)
 		{
-			dataGridView.SuspendLayout(); // met en suspentles dessins
+			dataGridView.DataSource = bindingSource; // lie les données
+		}
 
+		/// <summary>
+		/// Insère des données dans la dgv de manière asynchrone
+		/// </summary>
+		/// <param name="bindingSource">Données à insérer</param>
+		private async Task BindDataAsync(BindingSource bindingSource)
+		{
 			dataGridView.DataSource = await Task.Run(() => bindingSource); // lie les données
-
-			foreach (string colonne in _hidedColumns) // masque les colonnes masquées
-			{
-				if (dataGridView.Columns.Contains(colonne))
-					dataGridView.Columns[colonne].Visible = false;
-			}
-
-			dataGridView.ResumeLayout(); // reprend l'affichage
 		}
 
 		public DataGridViewColumnCollection Column => dataGridView.Columns;
