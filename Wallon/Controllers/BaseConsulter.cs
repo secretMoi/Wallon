@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -47,6 +48,8 @@ namespace Wallon.Controllers
 			_flatDataGridView.AddClickMethod(EffetClic); // s'inscrit aux event de clic dans la dgv
 
 			_flatDataGridView.DataSource = _useGridView.Liens; // ajout(liage) des colonnes à la gridview
+
+			//var test = _flatDataGridView.Test.Columns;
 
 			if (_editEnabled && _flatDataGridView.Column.Contains("Editer"))
 				_flatDataGridView.Column["Editer"].Width = 150;

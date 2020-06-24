@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Data;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlatControls.Core;
 
@@ -31,7 +32,26 @@ namespace FlatControls.Controls
 		/// <param name="value">DataSource à envoyer dans la dgv</param>
 		public BindingSource DataSource
 		{
-			set => BindDataAsync(value);
+			set => BindData(value); // todo remettre le async
+		}
+
+		private void BindData(BindingSource bindingSource)
+		{
+			dataGridView.SuspendLayout(); // met en suspentles dessins
+			dataGridView.RowHeadersVisible = false;
+			dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+
+			dataGridView.DataSource = bindingSource; // lie les données
+
+			foreach (string colonne in _hidedColumns) // masque les colonnes masquées
+			{
+				if (dataGridView.Columns.Contains(colonne))
+					dataGridView.Columns[colonne].Visible = false;
+			}
+
+			dataGridView.ResumeLayout(); // reprend l'affichage
+			dataGridView.RowHeadersVisible = false;
+			dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
 		}
 
 		private async void BindDataAsync(BindingSource bindingSource)

@@ -35,6 +35,7 @@
 			this.flatLabelNom = new FlatControls.Controls.FlatLabel();
 			this.alerte = new FlatControls.Controls.Alerte();
 			this.panelTitre.SuspendLayout();
+			this.panelCorps.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panelTitre
@@ -46,6 +47,11 @@
 			// 
 			// panelCorps
 			// 
+			this.panelCorps.Controls.Add(this.flatButtonAjouter);
+			this.panelCorps.Controls.Add(this.flatTextBoxPassword);
+			this.panelCorps.Controls.Add(this.flatLabelPassword);
+			this.panelCorps.Controls.Add(this.flatTextName);
+			this.panelCorps.Controls.Add(this.flatLabelNom);
 			this.panelCorps.Size = new System.Drawing.Size(1856, 773);
 			// 
 			// flatButtonAjouter
@@ -56,7 +62,7 @@
 			this.flatButtonAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.flatButtonAjouter.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flatButtonAjouter.ForeColor = System.Drawing.Color.White;
-			this.flatButtonAjouter.Location = new System.Drawing.Point(824, 514);
+			this.flatButtonAjouter.Location = new System.Drawing.Point(824, 276);
 			this.flatButtonAjouter.Name = "flatButtonAjouter";
 			this.flatButtonAjouter.Size = new System.Drawing.Size(215, 56);
 			this.flatButtonAjouter.TabIndex = 15;
@@ -69,7 +75,7 @@
 			this.flatTextBoxPassword.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.flatTextBoxPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
 			this.flatTextBoxPassword.IsPassword = false;
-			this.flatTextBoxPassword.Location = new System.Drawing.Point(937, 411);
+			this.flatTextBoxPassword.Location = new System.Drawing.Point(937, 173);
 			this.flatTextBoxPassword.Margin = new System.Windows.Forms.Padding(0);
 			this.flatTextBoxPassword.Name = "flatTextBoxPassword";
 			this.flatTextBoxPassword.Size = new System.Drawing.Size(215, 40);
@@ -81,7 +87,7 @@
 			this.flatLabelPassword.AutoSize = true;
 			this.flatLabelPassword.Font = new System.Drawing.Font("Yu Gothic UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flatLabelPassword.ForeColor = System.Drawing.Color.Black;
-			this.flatLabelPassword.Location = new System.Drawing.Point(705, 411);
+			this.flatLabelPassword.Location = new System.Drawing.Point(705, 173);
 			this.flatLabelPassword.Name = "flatLabelPassword";
 			this.flatLabelPassword.Size = new System.Drawing.Size(192, 40);
 			this.flatLabelPassword.TabIndex = 13;
@@ -92,7 +98,7 @@
 			this.flatTextName.Anchor = System.Windows.Forms.AnchorStyles.Top;
 			this.flatTextName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
 			this.flatTextName.IsPassword = false;
-			this.flatTextName.Location = new System.Drawing.Point(937, 322);
+			this.flatTextName.Location = new System.Drawing.Point(937, 84);
 			this.flatTextName.Margin = new System.Windows.Forms.Padding(0);
 			this.flatTextName.Name = "flatTextName";
 			this.flatTextName.Size = new System.Drawing.Size(215, 40);
@@ -104,7 +110,7 @@
 			this.flatLabelNom.AutoSize = true;
 			this.flatLabelNom.Font = new System.Drawing.Font("Yu Gothic UI", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flatLabelNom.ForeColor = System.Drawing.Color.Black;
-			this.flatLabelNom.Location = new System.Drawing.Point(705, 322);
+			this.flatLabelNom.Location = new System.Drawing.Point(705, 84);
 			this.flatLabelNom.Name = "flatLabelNom";
 			this.flatLabelNom.Size = new System.Drawing.Size(82, 40);
 			this.flatLabelNom.TabIndex = 11;
@@ -126,24 +132,13 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-			this.Controls.Add(this.flatButtonAjouter);
-			this.Controls.Add(this.flatTextBoxPassword);
-			this.Controls.Add(this.flatLabelPassword);
-			this.Controls.Add(this.flatTextName);
-			this.Controls.Add(this.flatLabelNom);
 			this.Name = "Ajouter";
 			this.Size = new System.Drawing.Size(1856, 893);
-			this.Controls.SetChildIndex(this.panelTitre, 0);
-			this.Controls.SetChildIndex(this.panelCorps, 0);
-			this.Controls.SetChildIndex(this.flatLabelNom, 0);
-			this.Controls.SetChildIndex(this.flatTextName, 0);
-			this.Controls.SetChildIndex(this.flatLabelPassword, 0);
-			this.Controls.SetChildIndex(this.flatTextBoxPassword, 0);
-			this.Controls.SetChildIndex(this.flatButtonAjouter, 0);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();
+			this.panelCorps.ResumeLayout(false);
+			this.panelCorps.PerformLayout();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
 		}
 

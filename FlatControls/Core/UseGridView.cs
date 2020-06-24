@@ -47,7 +47,7 @@ namespace FlatControls.Core
 				_table.Columns.Add(title, typeof(Bitmap)); // ajoute la colonne
 				compteur++;
 			}
-				
+
 			return indexColonne;
 		}
 
