@@ -1,5 +1,4 @@
-﻿using Couche_Classe;
-using Wallon.Controllers;
+﻿using Wallon.Controllers;
 using Wallon.Pages.Controllers;
 
 namespace Wallon.Pages.Vue

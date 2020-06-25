@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using Wallon.Fenetres;
-using Wallon.tests;
 
 namespace Wallon
 {

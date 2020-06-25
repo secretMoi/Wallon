@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using Couche_Classe;
 using FluentValidation.Results;
 using Wallon.Controllers.Validators;
 using Wallon.Core;
 using Wallon.Fenetres;
-using Wallon.Pages.Vue.Taches;
 using Wallon.Repository;
 
 namespace Wallon.Pages.Controllers.Taches
@@ -106,11 +104,19 @@ namespace Wallon.Pages.Controllers.Taches
 			Dialog.Show("La tâche " + name + " a bien été ajoutée");
 		}
 
+		/// <summary>
+		/// Trouve la date d'aujourd'hui
+		/// </summary>
+		/// <returns>Renvoie une chaine de caractère représentant uniquement la date d'aujourd'hui</returns>
 		public string FillFieldDate()
 		{
 			return DateTime.Now.ToShortDateString();
 		}
 
+		/// <summary>
+		/// Récupère une tâche grâce à son id dans la base de données
+		/// </summary>
+		/// <param name="idTache">Id de la tâche à trouver</param>
 		public Couche_Classe.Taches GetTache(int idTache)
 		{
 			return new RepositoryTaches().LireId(idTache);

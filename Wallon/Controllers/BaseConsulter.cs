@@ -44,6 +44,9 @@ namespace Wallon.Controllers
 			return objet;
 		}
 
+		/// <summary>
+		/// Charge les données qui ont été calculées dans la dgv
+		/// </summary>
 		protected virtual async void AfterLoad()
 		{
 			_flatDataGridView.AddClickMethod(EffetClic); // s'inscrit aux event de clic dans la dgv
@@ -61,11 +64,19 @@ namespace Wallon.Controllers
 				_flatDataGridView.Column["Valider"].Width = 100;
 		}
 
+		/// <summary>
+		/// Crée de nouvelles colonnes de texte
+		/// </summary>
+		/// <param name="titres">Liste des titres de chaque colonne</param>
 		public void SetColonnes(params string[] titres)
 		{
 			_useGridView = new UseGridView(titres);
 		}
 
+		/// <summary>
+		/// Crée de nouvelles colonnes d'images
+		/// </summary>
+		/// <param name="titres">Liste des titres de chaque colonne</param>
 		protected void SetColonnesCliquables(params string[] titres)
 		{
 			_flatDataGridView.SetColonnesCliquables(
@@ -73,6 +84,10 @@ namespace Wallon.Controllers
 			);
 		}
 
+		/// <summary>
+		/// Active certaines colonnes connues par défaut
+		/// </summary>
+		/// <param name="colonnes">Liste des colonnes à activer</param>
 		public void EnableColumn(params string[] colonnes)
 		{
 			if (colonnes.Contains("editer"))
@@ -103,6 +118,12 @@ namespace Wallon.Controllers
 			}
 		}
 
+		/// <summary>
+		/// Redimensionne une image dans une colonne
+		/// </summary>
+		/// <param name="image">Image à redimensionner</param>
+		/// <param name="size">Taille que l'image doit atteindre</param>
+		/// <param name="preserveAspectRatio">Booléen indiquant si l'image peut être déformée ou non, ratio préservé par défaut</param>
 		public static Image ResizeImage(Image image, Size size, bool preserveAspectRatio = true)
 		{
 			int newWidth;
@@ -140,6 +161,11 @@ namespace Wallon.Controllers
 			return newImage;
 		}
 
+		/// <summary>
+		/// Méthode pouvant être redéfinie afin de customiser les events de clic dans la dgv
+		/// </summary>
+		/// <param name="sender">Control lançant l'event</param>
+		/// <param name="e">Arguments éventuels</param>
 		public virtual void EffetClic(object sender, DataGridViewCellMouseEventArgs e)
 		{
 

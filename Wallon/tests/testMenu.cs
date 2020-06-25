@@ -2,8 +2,6 @@
 using System.Drawing;
 using System.Windows.Forms;
 using FlatControls.Controls;
-using FlatControls.Controls.Buttons;
-using FlatControls.Core;
 
 namespace Wallon.tests
 {
