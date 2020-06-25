@@ -43,6 +43,10 @@ namespace Wallon.Pages.Vue.Taches
 			flatTextBoxDatteDebut.Text = tache.DatteFin.ToShortDateString();
 			flatTextBoxCycle.Text = tache.Cycle.ToString();
 
+			flatListBoxLocataireCourant.Text = _controllerAjouter.FillFieldLocataireCourant(tache.LocataireCourant);
+
+			flatListBoxLocataireCourant.Add(_controllerAjouter.FillListLocataireCourant(idTache));
+
 			flatButtonAjouter.Text = @"Modifier"; // modifie le texte du bouton de validation
 		}
 

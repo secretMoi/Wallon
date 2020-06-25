@@ -11,7 +11,7 @@ namespace FlatControls.Controls
 	{
 		private bool _state; // état ouvert/fermé
 		private int _vitesse;
-		private readonly int _vitesseOrigine;
+		private readonly int _vitessePas;
 
 		private readonly Image _menuFerme;
 		private readonly Image _menuOuvert;
@@ -28,9 +28,11 @@ namespace FlatControls.Controls
 		{
 			InitializeComponent();
 
-			_vitesse = _vitesseOrigine = 1;
+			_vitesse = 3; 
+			_vitessePas = 1;
 
 			// désactive les barres de scroll mais rend le panel scrollable
+			panelCorps.AutoScroll = false;
 			panelCorps.HorizontalScroll.Enabled = false;
 			panelCorps.HorizontalScroll.Visible = false;
 			panelCorps.HorizontalScroll.Maximum = 0;
@@ -47,7 +49,7 @@ namespace FlatControls.Controls
 			panelCorps.Size = new Size(Width, 0);
 
 			flatButtonUp.Location = new Point(0,0);
-			flatButtonDown.Location = new Point(0,0);
+			flatButtonDown.Location = new Point(0,_hauteurCase);
 
 			try
 			{
@@ -59,6 +61,18 @@ namespace FlatControls.Controls
 			pictureBox.Image = _menuFerme;
 		}
 
+		protected override void OnSizeChanged(EventArgs e)
+		{
+			base.OnSizeChanged(e);
+
+			panelCorps.Width = Width;
+			if(_elements != null)
+				panelCorps.MaximumSize = new Size(Width, (2 + _elements.Count) * _hauteurCase);
+
+			flatButtonUp.Width = Width;
+			flatButtonDown.Width = Width;
+		}
+
 		public void Add(string text, EventHandler click = null)
 		{
 			FlatButton flatButton = new FlatButton
@@ -67,9 +81,9 @@ namespace FlatControls.Controls
 				Text = @"   " + text,
 				BackColor = Theme.Back,
 				TextAlign = ContentAlignment.MiddleLeft,
-				Width = panelCorps.Width, // fit la largeur du bouton au panel
+				Width = Width, // fit la largeur du bouton au panel
 				Location = new Point(0, (_elements.Count + 1) * _hauteurCase),
-				AutoSize = true // agrandit le bouton pour afficher le texte si il est trop long
+				//AutoSize = true // agrandit le bouton pour afficher le texte si il est trop long
 			};
 
 			flatButton.Name = Name + "Sub_" + _elements.Count;
@@ -80,20 +94,18 @@ namespace FlatControls.Controls
 				flatButton.Click += click; // abonne la fonction de retour à l'event click du bouton
 			flatButton.Click += Click; // abonne la fonction de cette classe, permettant d'ouvrir/fermer le menu
 
+			_vitesse += _vitessePas; // augmente la vitesse à chaque création de bouton pour que le temps d'ouverture/fermeture reste le même
+
 			if (_elements.Count == 1) // si c'est le premier élément, on rajoute l'espace pour les 2 flèches
 			{
-				_vitesse += 2 * _vitesseOrigine; // augmente la vitesse à chaque création de bouton pour que le temps d'ouverture/fermeture reste le même
-
-				panelCorps.MaximumSize = new Size(panelCorps.Width, panelCorps.MaximumSize.Height + _hauteurCase * 2);
-				MaximumSize = new Size(panelCorps.Width, MaximumSize.Height + _hauteurCase * 2);
+				panelCorps.MaximumSize = new Size(Width, _hauteurCase * 3);
+				MaximumSize = new Size(Width, _hauteurCase * 3);
 			}
 
 			if (_elements.Count <= _nbElementsMax - 2) // évite que le menu n'aille trop bas
 			{
-				_vitesse += _vitesseOrigine; // augmente la vitesse à chaque création de bouton pour que le temps d'ouverture/fermeture reste le même
-
-				panelCorps.MaximumSize = new Size(panelCorps.Width, panelCorps.MaximumSize.Height + _hauteurCase);
-				MaximumSize = new Size(panelCorps.Width, MaximumSize.Height + _hauteurCase);
+				panelCorps.MaximumSize = new Size(Width, panelCorps.MaximumSize.Height + _hauteurCase);
+				MaximumSize = new Size(Width, MaximumSize.Height + _hauteurCase);
 			}
 
 			flatButtonDown.Location = new Point(0, (_elements.Count + 1) * _hauteurCase);
@@ -105,6 +117,8 @@ namespace FlatControls.Controls
 		{
 			foreach (string text in texts)
 				Add(text, click);
+
+			var test = _elements;
 		}
 
 		public void SetDataMasquee(int positionColonne, object data)
@@ -124,6 +138,7 @@ namespace FlatControls.Controls
 			if (!_state) // si fermé à ouvert
 			{
 				panelCorps.Height += _vitesse;
+				Height += _vitesse;
 				if (panelCorps.Size.Height == panelCorps.MaximumSize.Height)
 				{
 					timer.Stop();
@@ -134,6 +149,7 @@ namespace FlatControls.Controls
 			else // sinon ouvert à fermé
 			{
 				panelCorps.Height -= _vitesse;
+				Height -= _vitesse;
 				if (panelCorps.Size.Height == panelCorps.MinimumSize.Height)
 				{
 					timer.Stop();

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Couche_Classe;
 using FluentValidation.Results;
+using Wallon.Controllers;
 using Wallon.Controllers.Validators;
 using Wallon.Core;
 using Wallon.Fenetres;
@@ -120,6 +122,23 @@ namespace Wallon.Pages.Controllers.Taches
 		public Couche_Classe.Taches GetTache(int idTache)
 		{
 			return new RepositoryTaches().LireId(idTache);
+		}
+
+		public string FillFieldLocataireCourant(int idLocataire)
+		{
+			return new ControllerLocataires().GetById(idLocataire).Nom;
+		}
+
+		public string[] FillListLocataireCourant(int idTache)
+		{
+			List<int> listeIdLocataires = new RepositoryLiaisonTachesLocataires().ListeLocataires(idTache);
+
+			List<Locataire> listeLocataires = new List<Locataire>(listeIdLocataires.Count);
+
+			foreach (int idLocataire in listeIdLocataires)
+				listeLocataires.Add(new ControllerLocataires().GetById(idLocataire));
+
+			return listeLocataires.Select(x => x.Nom).ToArray();
 		}
 	}
 }
