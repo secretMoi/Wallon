@@ -44,6 +44,11 @@ namespace Wallon.Pages.Vue
 					_arguments.Add(arg);
 		}
 
+		protected bool AnyArgs()
+		{
+			return _arguments.Count > 0;
+		}
+
 		public void LoadPage(string page, params object[] arguments)
 		{
 			string @namespace = new Reflection(GetType()).FirstNamespace;

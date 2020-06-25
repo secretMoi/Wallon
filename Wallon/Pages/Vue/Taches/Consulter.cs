@@ -1,4 +1,5 @@
-﻿using Wallon.Controllers;
+﻿using System.Windows.Forms;
+using Wallon.Controllers;
 using Wallon.Pages.Controllers.Taches;
 
 namespace Wallon.Pages.Vue.Taches
@@ -20,13 +21,16 @@ namespace Wallon.Pages.Vue.Taches
 		{
 			_flatDataGridView = flatDataGridView;
 
-			SetColonnes(
-			_controllerConsulter.ListeColonnes()
-			);
+			_controllerConsulter.ListeColonnes(this); // init les colonnes
 
-			await _controllerConsulter.GetDataAsync(_useGridView);
+			await _controllerConsulter.GetDataAsync(_useGridView); // rempli les données
 
 			AfterLoad();
+		}
+
+		public override void EffetClic(object sender, DataGridViewCellMouseEventArgs e)
+		{
+			_controllerConsulter.Clic(sender, e);
 		}
 	}
 }

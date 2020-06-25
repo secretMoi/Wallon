@@ -71,14 +71,15 @@ namespace Wallon.Pages.Vue.Taches
 			// 
 			// flatButtonAjouter
 			// 
+			this.flatButtonAjouter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.flatButtonAjouter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
 			this.flatButtonAjouter.FlatAppearance.BorderSize = 0;
 			this.flatButtonAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.flatButtonAjouter.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flatButtonAjouter.ForeColor = System.Drawing.Color.White;
-			this.flatButtonAjouter.Location = new System.Drawing.Point(117, 279);
+			this.flatButtonAjouter.Location = new System.Drawing.Point(215, 699);
 			this.flatButtonAjouter.Name = "flatButtonAjouter";
-			this.flatButtonAjouter.Size = new System.Drawing.Size(215, 56);
+			this.flatButtonAjouter.Size = new System.Drawing.Size(237, 56);
 			this.flatButtonAjouter.TabIndex = 15;
 			this.flatButtonAjouter.Text = "Ajouter";
 			this.flatButtonAjouter.UseVisualStyleBackColor = false;

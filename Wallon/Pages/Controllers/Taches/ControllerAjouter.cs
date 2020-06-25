@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 using Couche_Classe;
 using FluentValidation.Results;
 using Wallon.Controllers.Validators;
 using Wallon.Core;
 using Wallon.Fenetres;
+using Wallon.Pages.Vue.Taches;
 using Wallon.Repository;
 
 namespace Wallon.Pages.Controllers.Taches
@@ -107,6 +109,11 @@ namespace Wallon.Pages.Controllers.Taches
 		public string FillFieldDate()
 		{
 			return DateTime.Now.ToShortDateString();
+		}
+
+		public Couche_Classe.Taches GetTache(int idTache)
+		{
+			return new RepositoryTaches().LireId(idTache);
 		}
 	}
 }

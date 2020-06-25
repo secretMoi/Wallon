@@ -31,10 +31,10 @@ namespace Wallon.Pages.Controllers.Taches
 		{
 			return new[]
 			{
-			"Id",
-			"Nom",
-			"Temps restant (en jours)"
-		};
+				"Id",
+				"Nom",
+				"Temps restant (en jours)"
+			};
 		}
 
 		public void ColonnesCliquables(BaseConsulter baseConsulter)
@@ -61,7 +61,7 @@ namespace Wallon.Pages.Controllers.Taches
 					tache.Id,
 					tache.Nom,
 					(tache.DatteFin - DateTime.Now.Date).Days,
-					baseConsulter._imageValider
+					baseConsulter.ImageValider
 				);
 			}
 		}

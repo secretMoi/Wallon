@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -16,15 +15,17 @@ namespace Wallon.Controllers
 		protected UseGridView _useGridView;
 		protected FlatDataGridView _flatDataGridView;
 
-		public Image _imageEditer;
-		public Image _imageSupprimer;
-		public Image _imageVoir;
-		public Image _imageValider;
+		public Image ImageEditer;
+		public Image ImageSupprimer;
+		public Image ImageVoir;
+		public Image ImageValider;
 
 		private bool _editEnabled;
 		private bool _deleteEnabled;
 		private bool _seeEnabled;
 		private bool _validateEnabled;
+
+		public FlatDataGridView FlatDataGridView => _flatDataGridView;
 
 		public BaseConsulter()
 		{
@@ -60,7 +61,7 @@ namespace Wallon.Controllers
 				_flatDataGridView.Column["Valider"].Width = 100;
 		}
 
-		protected void SetColonnes(params string[] titres)
+		public void SetColonnes(params string[] titres)
 		{
 			_useGridView = new UseGridView(titres);
 		}
@@ -78,27 +79,27 @@ namespace Wallon.Controllers
 			{
 				_editEnabled = true;
 				SetColonnesCliquables("Editer");
-				_imageEditer = Image.FromFile("Ressources/Images/editer.png");
+				ImageEditer = Image.FromFile("Ressources/Images/editer.png");
 			}
 			if (colonnes.Contains("supprimer"))
 			{
 				_deleteEnabled = true;
 				SetColonnesCliquables("Supprimer");
-				_imageSupprimer = Image.FromFile("Ressources/Images/supprimer.png");
+				ImageSupprimer = Image.FromFile("Ressources/Images/supprimer.png");
 			}
 			if (colonnes.Contains("voir"))
 			{
 				_seeEnabled = true;
 				SetColonnesCliquables("Voir");
-				_imageVoir = Image.FromFile("Ressources/Images/loupe.png");
+				ImageVoir = Image.FromFile("Ressources/Images/loupe.png");
 			}
 			if (colonnes.Contains("valider"))
 			{
 				_validateEnabled = true;
 				SetColonnesCliquables("Valider");
 
-				_imageValider = Image.FromFile("Ressources/Images/correct.png");
-				_imageValider = ResizeImage(_imageValider, new Size(32, 32));
+				ImageValider = Image.FromFile("Ressources/Images/correct.png");
+				ImageValider = ResizeImage(ImageValider, new Size(32, 32));
 			}
 		}
 

@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Couche_Classe;
 using FlatControls.Core;
 using Wallon.Controllers;
+using Wallon.Pages.Vue.Taches;
 using Wallon.Repository;
 
 namespace Wallon.Pages.Controllers.Taches
@@ -13,6 +15,7 @@ namespace Wallon.Pages.Controllers.Taches
 	{
 		private readonly RepositoryTaches _taches;
 		private readonly Mutex _mutex = new Mutex();
+		private Consulter _page;
 
 		private readonly List<object[]> _list;
 
@@ -26,9 +29,15 @@ namespace Wallon.Pages.Controllers.Taches
 		/// Indique la liste des colonnes à afficher dans la dgv
 		/// </summary>
 		/// <returns>Un tableau du nom des colonnes</returns>
-		public string[] ListeColonnes()
+		public void ListeColonnes(Consulter page)
 		{
-			return new[] { "Nom", "Locataire en charge", "Prochain locataire", "Date de fin" };
+			_page = page;
+
+			_page.SetColonnes("Id", "Nom", "Locataire en charge", "Prochain locataire", "Date de fin" );
+
+			_page.FlatDataGridView.HideColonne("Id");
+
+			_page.EnableColumn("editer");
 		}
 
 		/// <summary>
@@ -80,14 +89,40 @@ namespace Wallon.Pages.Controllers.Taches
 			_list.Add(
 				new object[]
 				{
+					tache.Id,
 					tache.Nom,
 					_taches.NomLocataireCourant(tache.LocataireCourant),
 					locataireSuivant.Nom,
-					dateFin
+					dateFin,
+					_page.ImageEditer
 				}
 			);
 
 			_mutex.ReleaseMutex();
+		}
+
+		/// <summary>
+		/// Event lors du clic sur un élément de la dgv
+		/// </summary>
+		/// <param name="sender">Objet qui lance l'event</param>
+		/// <param name="args">Arguments optionnels</param>
+		public void Clic(object sender, DataGridViewCellMouseEventArgs args)
+		{
+			int ligne = args.RowIndex;
+			int colonne = args.ColumnIndex;
+
+			if (colonne == _page.FlatDataGridView.GetColumnId("Editer")) // si la colonne cliquée correspond
+			{
+				int? idColonne = _page.FlatDataGridView.GetColumnId("Id"); // trouve l'idde la colonne Id
+
+				if(idColonne == null) // si pas trouvé on sort
+					return;
+
+				int idTache = Convert.ToInt32(_page.FlatDataGridView.Get(ligne, (int) idColonne)); // récupère l'id de la tâche à passer en paramètre
+
+				// charge la page d'ajout afin de modifier la tâche avec en paramètre l'id de la tâche
+				_page.LoadPage("Taches.Ajouter", idTache);
+			}
 		}
 	}
 }
