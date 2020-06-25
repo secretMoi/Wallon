@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Couche_Classe;
@@ -36,22 +37,26 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <param name="useGridView">Dgv où insérer les données trouvées</param>
 		public async Task GetDataAsync(UseGridView useGridView)
 		{
-			//List<Couche_Classe.Taches> taches = _taches.Lire("id"); // récupère les données dans la bdd
-			List<Couche_Classe.Taches> taches = await _taches.LireAsync("id"); // récupère les données dans la bdd
-			List<Task> tasks = new List<Task>();
+			List<Couche_Classe.Taches> taches = await _taches.LireAsync("datteFin"); // récupère les données dans la bdd
+
+			// parrallel async mais problème de désordre
+			/*List<Task> tasks = new List<Task>();
 
 			foreach (Couche_Classe.Taches tache in taches) // les lie à la dgv
 			{
 
 				tasks.Add(Task.Run(() => AddToDgv(tache)));
+			}*/
+
+			foreach (Couche_Classe.Taches tache in taches) // les lie à la dgv
+			{
+				await Task.Run(() => AddToDgv(tache));
 			}
 
-			await Task.WhenAll(tasks);
+			//await Task.WhenAll(tasks);
 
 			foreach (object[] element in _list)
-			{
 				useGridView.Add(element);
-			}
 		}
 
 		/// <summary>

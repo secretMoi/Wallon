@@ -31,7 +31,6 @@ namespace FlatControls.Controls
 		/// <param name="value">DataSource à envoyer dans la dgv</param>
 		public BindingSource DataSource
 		{
-			// todo remettre le async
 			set
 			{
 				DisableRenderWhilePopulating();

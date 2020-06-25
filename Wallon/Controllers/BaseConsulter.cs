@@ -50,8 +50,6 @@ namespace Wallon.Controllers
 			//_flatDataGridView.DataSource = _useGridView.Liens; // ajout(liage) des colonnes à la gridview
 			await _flatDataGridView.DataSourceAsync(_useGridView.Liens); // ajout(liage) des colonnes à la gridview
 
-			var test = _flatDataGridView.Column;
-
 			if (_editEnabled)
 				_flatDataGridView.Column["Editer"].Width = 150;
 			if (_deleteEnabled)
