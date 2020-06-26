@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using FlatControls.Core;
 using Couche_Classe;
+using Wallon.Pages.Vue.Utilisateurs;
 using Wallon.Repository;
 
 namespace Wallon.Pages.Controllers.Utilisateurs
@@ -17,16 +19,14 @@ namespace Wallon.Pages.Controllers.Utilisateurs
 		/// <summary>
 		/// Indique la liste des colonnes à afficher dans la dgv
 		/// </summary>
-		/// <returns>Un tableau du nom des colonnes</returns>
-		public string[] ListeColonnes()
+		/// <param name="page">Page contenant les méthodes pour peupler les colonnes</param>
+		public void ListeColonnes(Liste page)
 		{
-			/*List<(string, Type)> locataire = new Locataire().GetChamps();
-			string[] listeColonnes = new string[locataire.Count];
+			page.SetColonnes("Nom");
 
-			for (int i = 0; i < locataire.Count; i++)
-				listeColonnes[i] = locataire[i].Item1;*/
-
-			return new []{"Nom"};
+			page.AddColumnsFill(
+				("Nom", DataGridViewAutoSizeColumnMode.Fill)
+			);
 		}
 
 		/// <summary>

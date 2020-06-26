@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -14,34 +14,35 @@ namespace Wallon.Controllers
 	{
 		protected UseGridView _useGridView;
 		protected FlatDataGridView _flatDataGridView;
+		protected List<(string, DataGridViewAutoSizeColumnMode)> _columnToFill;
 
 		public Image ImageEditer;
 		public Image ImageSupprimer;
 		public Image ImageVoir;
 		public Image ImageValider;
+		public Image ImageUp;
+		public Image ImageDown;
 
 		private bool _editEnabled;
 		private bool _deleteEnabled;
 		private bool _seeEnabled;
 		private bool _validateEnabled;
+		private bool _upEnabled;
+		private bool _downEnabled;
 
 		public FlatDataGridView FlatDataGridView => _flatDataGridView;
 
 		public BaseConsulter()
 		{
 			InitializeComponent();
+
+			_columnToFill = new List<(string, DataGridViewAutoSizeColumnMode)>();
 		}
 
-		protected object ArgumentsValides(Type type, params object[] args)
+		public void AddColumnsFill(params (string, DataGridViewAutoSizeColumnMode)[] colonnes)
 		{
-			if (args.Length < 1) // vérifie qu'il y a bien un argument
-				return null;
-
-			Type typ = GetType();
-
-			object objet = args[0]; // cast l'argument
-
-			return objet;
+			foreach ((string, DataGridViewAutoSizeColumnMode) colonne in colonnes)
+				_columnToFill.Add(colonne);
 		}
 
 		/// <summary>
@@ -54,14 +55,9 @@ namespace Wallon.Controllers
 			//_flatDataGridView.DataSource = _useGridView.Liens; // ajout(liage) des colonnes à la gridview
 			await _flatDataGridView.DataSourceAsync(_useGridView.Liens); // ajout(liage) des colonnes à la gridview
 
-			if (_editEnabled)
-				_flatDataGridView.Column["Editer"].Width = 150;
-			if (_deleteEnabled)
-				_flatDataGridView.Column["Supprimer"].Width = 200;
-			if (_seeEnabled)
-				_flatDataGridView.Column["Voir"].Width = 150;
-			if (_validateEnabled)
-				_flatDataGridView.Column["Valider"].Width = 100;
+			foreach ((string, DataGridViewAutoSizeColumnMode) colonne in _columnToFill)
+				if(_flatDataGridView.Column.Contains(colonne.Item1))
+					_flatDataGridView.Column[colonne.Item1].AutoSizeMode = colonne.Item2;
 		}
 
 		/// <summary>
@@ -90,32 +86,55 @@ namespace Wallon.Controllers
 		/// <param name="colonnes">Liste des colonnes à activer</param>
 		public void EnableColumn(params string[] colonnes)
 		{
+			//todo automatiser avec dictionnaire + enum
 			if (colonnes.Contains("editer"))
 			{
 				_editEnabled = true;
 				SetColonnesCliquables("Editer");
-				ImageEditer = Image.FromFile("Ressources/Images/editer.png");
+
+				SetImage(ref ImageEditer, "editer");
 			}
 			if (colonnes.Contains("supprimer"))
 			{
 				_deleteEnabled = true;
 				SetColonnesCliquables("Supprimer");
-				ImageSupprimer = Image.FromFile("Ressources/Images/supprimer.png");
+
+				SetImage(ref ImageSupprimer, "supprimer");
 			}
 			if (colonnes.Contains("voir"))
 			{
 				_seeEnabled = true;
 				SetColonnesCliquables("Voir");
-				ImageVoir = Image.FromFile("Ressources/Images/loupe.png");
+
+				SetImage(ref ImageVoir, "loupe");
 			}
 			if (colonnes.Contains("valider"))
 			{
 				_validateEnabled = true;
 				SetColonnesCliquables("Valider");
 
-				ImageValider = Image.FromFile("Ressources/Images/correct.png");
-				ImageValider = ResizeImage(ImageValider, new Size(32, 32));
+				SetImage(ref ImageValider, "correct");
 			}
+			if (colonnes.Contains("up"))
+			{
+				_upEnabled = true;
+				SetColonnesCliquables("Monter");
+
+				SetImage(ref ImageUp, "arrow-up-sign-to-navigate");
+			}
+			if (colonnes.Contains("down"))
+			{
+				_downEnabled = true;
+				SetColonnesCliquables("Descendre");
+
+				SetImage(ref ImageDown, "arrow-down-sign-to-navigate");
+			}
+		}
+
+		private void SetImage(ref Image image, string path)
+		{
+			image = Image.FromFile("Ressources/Images/" + path + ".png");
+			image = ResizeImage(image, new Size(32, 32));
 		}
 
 		/// <summary>
@@ -168,7 +187,17 @@ namespace Wallon.Controllers
 		/// <param name="e">Arguments éventuels</param>
 		public virtual void EffetClic(object sender, DataGridViewCellMouseEventArgs e)
 		{
+			int ligne = e.RowIndex;
+			int colonne = e.ColumnIndex;
 
+			if (colonne == _flatDataGridView.GetColumnId("Monter") && ligne > 0) // si la colonne cliquée correspond
+			{
+				_flatDataGridView.SwapRow(ligne, ligne - 1);
+			}
+			if (colonne == _flatDataGridView.GetColumnId("Descendre") && ligne < _flatDataGridView.Rows.Count - 1) // si la colonne cliquée correspond
+			{
+				_flatDataGridView.SwapRow(ligne, ligne + 1);
+			}
 		}
 
 		protected DialogResult DialogDelete(string question)

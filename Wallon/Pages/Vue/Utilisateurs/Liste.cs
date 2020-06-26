@@ -21,9 +21,7 @@ namespace Wallon.Pages.Vue.Utilisateurs
 		{
 			_flatDataGridView = flatDataGridView;
 
-			SetColonnes(
-				_controllerListe.ListeColonnes()
-			);
+			_controllerListe.ListeColonnes(this);
 
 			_controllerListe.GetData(_useGridView);
 

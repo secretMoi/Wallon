@@ -31,6 +31,8 @@ namespace Wallon.Pages.Vue.Taches
 		/// </summary>
 		private new void InitializeComponent()
 		{
+			this.flatDataGridView = new FlatControls.Controls.FlatDataGridView();
+			this.flatListBoxLocataireCourant = new FlatControls.Controls.FlatListBox();
 			this.flatLabelLocataireCourant = new FlatControls.Controls.FlatLabel();
 			this.flatTextBoxCycle = new FlatControls.Controls.FlatTextBox();
 			this.flatLabelCycle = new FlatControls.Controls.FlatLabel();
@@ -40,17 +42,13 @@ namespace Wallon.Pages.Vue.Taches
 			this.flatTextName = new FlatControls.Controls.FlatTextBox();
 			this.flatLabelNom = new FlatControls.Controls.FlatLabel();
 			this.flatList = new FlatControls.Controls.FlatList();
-			this.flatListBoxLocataireCourant = new FlatControls.Controls.FlatListBox();
 			this.panelTitre.SuspendLayout();
 			this.panelCorps.SuspendLayout();
 			this.SuspendLayout();
 			// 
-			// panelTitre
-			// 
-			this.panelTitre.Size = new System.Drawing.Size(1856, 120);
-			// 
 			// panelCorps
 			// 
+			this.panelCorps.Controls.Add(this.flatDataGridView);
 			this.panelCorps.Controls.Add(this.flatListBoxLocataireCourant);
 			this.panelCorps.Controls.Add(this.flatLabelLocataireCourant);
 			this.panelCorps.Controls.Add(this.flatTextBoxCycle);
@@ -61,7 +59,25 @@ namespace Wallon.Pages.Vue.Taches
 			this.panelCorps.Controls.Add(this.flatTextName);
 			this.panelCorps.Controls.Add(this.flatLabelNom);
 			this.panelCorps.Controls.Add(this.flatList);
-			this.panelCorps.Size = new System.Drawing.Size(1856, 773);
+			// 
+			// flatDataGridView
+			// 
+			this.flatDataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.flatDataGridView.Location = new System.Drawing.Point(1497, 6);
+			this.flatDataGridView.Name = "flatDataGridView";
+			this.flatDataGridView.Size = new System.Drawing.Size(356, 434);
+			this.flatDataGridView.TabIndex = 20;
+			// 
+			// flatListBoxLocataireCourant
+			// 
+			this.flatListBoxLocataireCourant.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+			this.flatListBoxLocataireCourant.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
+			this.flatListBoxLocataireCourant.Location = new System.Drawing.Point(191, 276);
+			this.flatListBoxLocataireCourant.Margin = new System.Windows.Forms.Padding(0);
+			this.flatListBoxLocataireCourant.MinimumSize = new System.Drawing.Size(150, 40);
+			this.flatListBoxLocataireCourant.Name = "flatListBoxLocataireCourant";
+			this.flatListBoxLocataireCourant.Size = new System.Drawing.Size(237, 40);
+			this.flatListBoxLocataireCourant.TabIndex = 19;
 			// 
 			// flatLabelLocataireCourant
 			// 
@@ -78,7 +94,7 @@ namespace Wallon.Pages.Vue.Taches
 			// 
 			this.flatTextBoxCycle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
 			this.flatTextBoxCycle.IsPassword = false;
-			this.flatTextBoxCycle.Location = new System.Drawing.Point(215, 190);
+			this.flatTextBoxCycle.Location = new System.Drawing.Point(191, 190);
 			this.flatTextBoxCycle.Margin = new System.Windows.Forms.Padding(0);
 			this.flatTextBoxCycle.Name = "flatTextBoxCycle";
 			this.flatTextBoxCycle.Size = new System.Drawing.Size(237, 40);
@@ -103,7 +119,7 @@ namespace Wallon.Pages.Vue.Taches
 			this.flatButtonAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.flatButtonAjouter.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flatButtonAjouter.ForeColor = System.Drawing.Color.White;
-			this.flatButtonAjouter.Location = new System.Drawing.Point(215, 699);
+			this.flatButtonAjouter.Location = new System.Drawing.Point(215, 701);
 			this.flatButtonAjouter.Name = "flatButtonAjouter";
 			this.flatButtonAjouter.Size = new System.Drawing.Size(237, 56);
 			this.flatButtonAjouter.TabIndex = 15;
@@ -115,7 +131,7 @@ namespace Wallon.Pages.Vue.Taches
 			// 
 			this.flatTextBoxDatteDebut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
 			this.flatTextBoxDatteDebut.IsPassword = false;
-			this.flatTextBoxDatteDebut.Location = new System.Drawing.Point(215, 104);
+			this.flatTextBoxDatteDebut.Location = new System.Drawing.Point(191, 104);
 			this.flatTextBoxDatteDebut.Margin = new System.Windows.Forms.Padding(0);
 			this.flatTextBoxDatteDebut.Name = "flatTextBoxDatteDebut";
 			this.flatTextBoxDatteDebut.Size = new System.Drawing.Size(237, 40);
@@ -136,7 +152,7 @@ namespace Wallon.Pages.Vue.Taches
 			// 
 			this.flatTextName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
 			this.flatTextName.IsPassword = false;
-			this.flatTextName.Location = new System.Drawing.Point(215, 18);
+			this.flatTextName.Location = new System.Drawing.Point(191, 18);
 			this.flatTextName.Margin = new System.Windows.Forms.Padding(0);
 			this.flatTextName.Name = "flatTextName";
 			this.flatTextName.Size = new System.Drawing.Size(237, 40);
@@ -158,28 +174,17 @@ namespace Wallon.Pages.Vue.Taches
 			this.flatList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.flatList.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.flatList.BackColor = System.Drawing.Color.White;
-			this.flatList.Location = new System.Drawing.Point(1609, 18);
+			this.flatList.Location = new System.Drawing.Point(2000, 18);
 			this.flatList.Name = "flatList";
 			this.flatList.Size = new System.Drawing.Size(235, 317);
 			this.flatList.TabIndex = 0;
-			// 
-			// flatListBoxLocataireCourant
-			// 
-			this.flatListBoxLocataireCourant.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-			this.flatListBoxLocataireCourant.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
-			this.flatListBoxLocataireCourant.Location = new System.Drawing.Point(215, 276);
-			this.flatListBoxLocataireCourant.Margin = new System.Windows.Forms.Padding(0);
-			this.flatListBoxLocataireCourant.MinimumSize = new System.Drawing.Size(150, 40);
-			this.flatListBoxLocataireCourant.Name = "flatListBoxLocataireCourant";
-			this.flatListBoxLocataireCourant.Size = new System.Drawing.Size(237, 40);
-			this.flatListBoxLocataireCourant.TabIndex = 19;
 			// 
 			// Ajouter
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Name = "Ajouter";
-			this.Size = new System.Drawing.Size(1856, 893);
+			this.Load += new System.EventHandler(this.Ajouter_Load);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();
 			this.panelCorps.ResumeLayout(false);
@@ -200,5 +205,6 @@ namespace Wallon.Pages.Vue.Taches
 		private FlatLabel flatLabelCycle;
 		private FlatLabel flatLabelLocataireCourant;
 		private FlatListBox flatListBoxLocataireCourant;
+		private FlatDataGridView flatDataGridView;
 	}
 }

@@ -1,8 +1,13 @@
-﻿using Wallon.Pages.Controllers.Taches;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
+using Couche_Classe;
+using Wallon.Controllers;
+using Wallon.Pages.Controllers.Taches;
+using Wallon.Repository;
 
 namespace Wallon.Pages.Vue.Taches
 {
-	public partial class Ajouter : ThemePanel
+	public partial class Ajouter : BaseConsulter
 	{
 		private readonly ControllerAjouter _controllerAjouter;
 
@@ -20,6 +25,9 @@ namespace Wallon.Pages.Vue.Taches
 			SetColors();
 
 			flatTextBoxDatteDebut.Text = _controllerAjouter.FillFieldDate(); // pré-rempli la datte pour faciliter l'encodage
+
+			flatLabelLocataireCourant.Visible = false;
+			flatListBoxLocataireCourant.Visible = false;
 		}
 
 		/// <summary>
@@ -30,9 +38,9 @@ namespace Wallon.Pages.Vue.Taches
 		{
 			base.Hydrate(args);
 
-			if(!AnyArgs()) return;
+			if(!AnyArgs()) return; // si aucun argument on arrête
 
-			int idTache = (int) _arguments[0];
+			int idTache = (int) _arguments[0]; // sinon récupère l'id de la tâche
 
 			Couche_Classe.Taches tache = _controllerAjouter.GetTache(idTache); // récupère la tâche
 
@@ -43,6 +51,8 @@ namespace Wallon.Pages.Vue.Taches
 			flatTextBoxDatteDebut.Text = tache.DatteFin.ToShortDateString();
 			flatTextBoxCycle.Text = tache.Cycle.ToString();
 
+			flatLabelLocataireCourant.Visible = true;
+			flatListBoxLocataireCourant.Visible = true;
 			flatListBoxLocataireCourant.Text = _controllerAjouter.FillFieldLocataireCourant(tache.LocataireCourant);
 
 			flatListBoxLocataireCourant.Add(_controllerAjouter.FillListLocataireCourant(idTache));
@@ -63,6 +73,27 @@ namespace Wallon.Pages.Vue.Taches
 				flatTextBoxCycle.Text,
 				flatList.SelectedId()
 			);
+		}
+
+		private void Ajouter_Load(object sender, System.EventArgs e)
+		{
+			_flatDataGridView = flatDataGridView;
+
+			SetColonnes("Locataire");
+			EnableColumn("up", "down");
+			AddColumnsFill(("Locataire", DataGridViewAutoSizeColumnMode.Fill));
+
+			List<Locataire> locataires = new RepositoryLocataires().Lire("id"); // récupère les données dans la bdd
+
+			foreach (Locataire locataire in locataires) // les lie à la dgv
+				_useGridView.Add(
+					locataire.Nom,
+					ImageUp,
+					ImageDown
+				);
+
+
+			AfterLoad();
 		}
 	}
 }

@@ -124,11 +124,22 @@ namespace Wallon.Pages.Controllers.Taches
 			return new RepositoryTaches().LireId(idTache);
 		}
 
+		/// <summary>
+		/// Trouve le locataire grâce à son id
+		/// </summary>
+		/// <param name="idLocataire">Id du locataire à récupérer</param>
+		/// <returns>Le nom du locataire</returns>
 		public string FillFieldLocataireCourant(int idLocataire)
 		{
 			return new ControllerLocataires().GetById(idLocataire).Nom;
 		}
 
+
+		/// <summary>
+		/// Récupère la liste des locataires associés à une tâche
+		/// </summary>
+		/// <param name="idTache">Id de la tâche</param>
+		/// <returns>Tableau des noms des locataires</returns>
 		public string[] FillListLocataireCourant(int idTache)
 		{
 			List<int> listeIdLocataires = new RepositoryLiaisonTachesLocataires().ListeLocataires(idTache);

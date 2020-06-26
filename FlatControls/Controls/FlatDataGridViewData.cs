@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlatControls.Core;
 
@@ -143,6 +144,28 @@ namespace FlatControls.Controls
 				return Column[name]?.DisplayIndex;
 
 			return null;
+		}
+
+		/// <summary>
+		/// Echange 2 lignes de la dgv
+		/// </summary>
+		/// <param name="ligneSource">Ligne source qui doit se déplacer</param>
+		/// <param name="ligneDestination">Ligne d'arrivée qui va swaper sa place</param>
+		public void SwapRow(int ligneSource, int ligneDestination)
+		{
+			DataGridViewRow donneesAMonter = dataGridView.Rows[ligneSource]; // backup les données monter
+
+			DataGridViewRow swapRow = dataGridView.Rows[ligneDestination];
+			object[] values = new object[swapRow.Cells.Count];
+
+			foreach (DataGridViewCell cell in swapRow.Cells)
+			{
+				values[cell.ColumnIndex] = cell.Value;
+				cell.Value = donneesAMonter.Cells[cell.ColumnIndex].Value;
+			}
+
+			foreach (DataGridViewCell cell in donneesAMonter.Cells)
+				cell.Value = values[cell.ColumnIndex];
 		}
 
 		/// <summary>

@@ -40,6 +40,8 @@ namespace Wallon.Pages.Controllers.Taches
 		public void ColonnesCliquables(BaseConsulter baseConsulter)
 		{
 			baseConsulter.EnableColumn("valider");
+
+			baseConsulter.AddColumnsFill(("Nom", DataGridViewAutoSizeColumnMode.Fill));
 		}
 
 		/// <summary>

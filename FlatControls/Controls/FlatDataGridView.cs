@@ -59,6 +59,8 @@ namespace FlatControls.Controls
 			// désactive les barres de scroll mais rend le panel scrollable
 			dataGridView.ScrollBars = ScrollBars.None;
 			this.dataGridView.MouseWheel += Mouse_Wheel;
+
+			dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.ColumnHeader;
 		}
 
 		// permet de subscribe une méthode à l'event
@@ -142,5 +144,7 @@ namespace FlatControls.Controls
 			else if (e.Delta < 0) // descendre
 				dataGridView.FirstDisplayedScrollingRowIndex++;
 		}
+
+		
 	}
 }

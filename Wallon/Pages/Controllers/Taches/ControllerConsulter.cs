@@ -33,7 +33,13 @@ namespace Wallon.Pages.Controllers.Taches
 		{
 			_page = page;
 
-			_page.SetColonnes("Id", "Nom", "Locataire en charge", "Prochain locataire", "Date de fin" );
+			_page.SetColonnes("Id", "Nom", "Locataire en charge", "Prochain", "Date de fin" );
+
+			_page.AddColumnsFill(
+				("Nom", DataGridViewAutoSizeColumnMode.Fill),
+				("Prochain", DataGridViewAutoSizeColumnMode.DisplayedCells),
+				("Date de fin", DataGridViewAutoSizeColumnMode.AllCellsExceptHeader)
+				);
 
 			_page.FlatDataGridView.HideColonne("Id");
 

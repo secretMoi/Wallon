@@ -274,6 +274,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Ressources\Images\arrow-down-sign-to-navigate.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\Images\arrow-up-sign-to-navigate.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Ressources\Images\bag.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
