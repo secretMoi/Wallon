@@ -12,7 +12,7 @@ namespace Wallon.Controllers
 {
 	public class BaseConsulter : ThemePanel
 	{
-		protected UseGridView _useGridView;
+		public UseGridView _useGridView;
 		protected FlatDataGridView _flatDataGridView;
 		protected List<(string, DataGridViewAutoSizeColumnMode)> _columnToFill;
 

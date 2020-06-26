@@ -19,15 +19,23 @@ namespace Wallon.Pages.Vue.Taches
 
 			_controllerAjouter = new ControllerAjouter();
 
-			flatList.Text = @"Liste des locataires";
-			flatList.Add(_controllerAjouter.ListeLocataires());
-
 			SetColors();
 
 			flatTextBoxDatteDebut.Text = _controllerAjouter.FillFieldDate(); // pré-rempli la datte pour faciliter l'encodage
 
 			flatLabelLocataireCourant.Visible = false;
 			flatListBoxLocataireCourant.Visible = false;
+		}
+
+		private void Ajouter_Load(object sender, System.EventArgs e)
+		{
+			_flatDataGridView = flatDataGridView;
+
+			_controllerAjouter.InitColonnes(this);
+
+			_controllerAjouter.FillDgv(this);
+
+			AfterLoad();
 		}
 
 		/// <summary>
@@ -39,6 +47,8 @@ namespace Wallon.Pages.Vue.Taches
 			base.Hydrate(args);
 
 			if(!AnyArgs()) return; // si aucun argument on arrête
+
+
 
 			int idTache = (int) _arguments[0]; // sinon récupère l'id de la tâche
 
@@ -71,29 +81,8 @@ namespace Wallon.Pages.Vue.Taches
 				flatTextName.Text,
 				flatTextBoxDatteDebut.Text,
 				flatTextBoxCycle.Text,
-				flatList.SelectedId()
+				flatDataGridView
 			);
-		}
-
-		private void Ajouter_Load(object sender, System.EventArgs e)
-		{
-			_flatDataGridView = flatDataGridView;
-
-			SetColonnes("Locataire");
-			EnableColumn("up", "down");
-			AddColumnsFill(("Locataire", DataGridViewAutoSizeColumnMode.Fill));
-
-			List<Locataire> locataires = new RepositoryLocataires().Lire("id"); // récupère les données dans la bdd
-
-			foreach (Locataire locataire in locataires) // les lie à la dgv
-				_useGridView.Add(
-					locataire.Nom,
-					ImageUp,
-					ImageDown
-				);
-
-
-			AfterLoad();
 		}
 	}
 }
