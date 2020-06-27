@@ -28,12 +28,21 @@ namespace Wallon.Controllers.BaseConsulter
 			};
 		}
 
+		/// <summary>
+		/// Active une liste de colonnes
+		/// </summary>
+		/// <param name="colonnes">Liste des colonnes à ajouter</param>
 		public void Enable(params (string, Cliquable)[] colonnes)
 		{
 			foreach ((string, Cliquable) colonne in colonnes)
 				_enabled.Add((colonne.Item1, colonne.Item2));
 		}
 
+		/// <summary>
+		/// Récupère un tableau des titres de colonnes
+		/// </summary>
+		/// <returns>Liste des titres de colonnes</returns>
+		/// <returns>Image</returns>
 		public string[] GetTitlesColumn()
 		{
 			string[] titles = new string[_enabled.Count];
@@ -48,11 +57,21 @@ namespace Wallon.Controllers.BaseConsulter
 			return titles;
 		}
 
+		/// <summary>
+		/// Retourne l'image d'un type de colonne
+		/// </summary>
+		/// <param name="type">Type de la colonne</param>
+		/// <returns>Image</returns>
 		public Image GetImage(Cliquable type)
 		{
 			return _images[type];
 		}
 
+		/// <summary>
+		/// Crée une image et la redimensionne
+		/// </summary>
+		/// <param name="path">Nom de l'image</param>
+		/// <returns>L'image</returns>
 		private Image SetImage(string path)
 		{
 			string finalPath = "Ressources/Images/" + path + ".png";

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using FlatControls.Core;
 using Wallon.Fenetres;
@@ -15,13 +14,6 @@ namespace Wallon.Controllers.BaseConsulter
 		protected FlatDataGridView _flatDataGridView;
 		protected List<(string, DataGridViewAutoSizeColumnMode)> _columnToResize;
 		protected BaseConsulterColonnesCliquables _gestionColonnesCliquables;
-
-		public Image ImageEditer;
-		public Image ImageSupprimer;
-		public Image ImageVoir;
-		public Image ImageValider;
-		public Image ImageUp;
-		public Image ImageDown;
 
 		public FlatDataGridView FlatDataGridView => _flatDataGridView;
 
@@ -73,6 +65,11 @@ namespace Wallon.Controllers.BaseConsulter
 			);
 		}
 
+		/// <summary>
+		/// Retourne l'image d'un type de colonne
+		/// </summary>
+		/// <param name="type">Type de la colonne</param>
+		/// <returns>Image</returns>
 		public Image GetImageColumn(BaseConsulterColonnesCliquables.Cliquable type)
 		{
 			return _gestionColonnesCliquables.GetImage(type);
