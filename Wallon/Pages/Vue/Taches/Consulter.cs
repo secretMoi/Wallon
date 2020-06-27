@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using Wallon.Controllers;
+using Wallon.Controllers.BaseConsulter;
 using Wallon.Pages.Controllers.Taches;
 
 namespace Wallon.Pages.Vue.Taches

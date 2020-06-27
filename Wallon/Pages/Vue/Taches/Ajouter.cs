@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Couche_Classe;
 using Wallon.Controllers;
+using Wallon.Controllers.BaseConsulter;
 using Wallon.Pages.Controllers.Taches;
 using Wallon.Repository;
 

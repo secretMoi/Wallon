@@ -6,6 +6,7 @@ using Couche_Classe;
 using FlatControls.Controls;
 using FluentValidation.Results;
 using Wallon.Controllers;
+using Wallon.Controllers.BaseConsulter;
 using Wallon.Controllers.Validators;
 using Wallon.Core;
 using Wallon.Fenetres;
@@ -34,7 +35,12 @@ namespace Wallon.Pages.Controllers.Taches
 		{
 			_page.SetColonnes("Id", "Locataire", "Inclu");
 			_page.FlatDataGridView.HideColonne("Id");
-			_page.EnableColumn("valider", "supprimer", "up", "down");
+			_page.EnableColumn(
+				("Ajouter", BaseConsulterColonnesCliquables.Cliquable.Add),
+				("Supprimer", BaseConsulterColonnesCliquables.Cliquable.Delete),
+				("Monter", BaseConsulterColonnesCliquables.Cliquable.Up),
+				("Descendre", BaseConsulterColonnesCliquables.Cliquable.Down)
+			);
 			_page.AddColumnsFill(("Locataire", DataGridViewAutoSizeColumnMode.Fill));
 		}
 
@@ -50,10 +56,10 @@ namespace Wallon.Pages.Controllers.Taches
 					locataire.Id,
 					locataire.Nom,
 					"Non",
-					_page.ImageValider,
-					_page.ImageSupprimer,
-					_page.ImageUp,
-					_page.ImageDown
+					_page.GetImageColumn(BaseConsulterColonnesCliquables.Cliquable.Add),
+					_page.GetImageColumn(BaseConsulterColonnesCliquables.Cliquable.Delete),
+					_page.GetImageColumn(BaseConsulterColonnesCliquables.Cliquable.Up),
+					_page.GetImageColumn(BaseConsulterColonnesCliquables.Cliquable.Down)
 				);
 		}
 
@@ -189,7 +195,7 @@ namespace Wallon.Pages.Controllers.Taches
 
 			FlatDataGridView flatDataGridView = _page.FlatDataGridView;
 
-			if (colonne == flatDataGridView.GetColumnId("Valider")) // si la colonne cliquée correspond
+			if (colonne == flatDataGridView.GetColumnId("Ajouter")) // si la colonne cliquée correspond
 			{
 				flatDataGridView.Set(ligne, (int) flatDataGridView.GetColumnId("Inclu"), "Oui");
 			}

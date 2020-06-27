@@ -130,6 +130,7 @@
     <Compile Include="Controls\Utilisation.Designer.cs">
       <DependentUpon>Utilisation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Core\CoreImage.cs" />
     <Compile Include="Core\Couple.cs" />
     <Compile Include="Core\Element.cs" />
     <Compile Include="Core\Figures\Arc.cs" />

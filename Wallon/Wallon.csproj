@@ -106,9 +106,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\BaseConsulter.cs">
+    <Compile Include="Controllers\BaseConsulter\BaseConsulter.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controllers\BaseConsulter\BaseConsulterColonnesCliquables.cs" />
     <Compile Include="Controllers\ControllerTaches.cs" />
     <Compile Include="Core\Cryptage.cs" />
     <Compile Include="Core\Formulaire.cs" />
@@ -207,7 +208,7 @@
     <Compile Include="tests\testMenu.Designer.cs">
       <DependentUpon>testMenu.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Controllers\BaseConsulter.resx">
+    <EmbeddedResource Include="Controllers\BaseConsulter\BaseConsulter.resx">
       <DependentUpon>BaseConsulter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Vue\Taches\MesTaches.resx">

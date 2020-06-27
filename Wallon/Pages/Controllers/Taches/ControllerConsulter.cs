@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Couche_Classe;
 using FlatControls.Core;
 using Wallon.Controllers;
+using Wallon.Controllers.BaseConsulter;
 using Wallon.Pages.Vue.Taches;
 using Wallon.Repository;
 
@@ -43,7 +44,9 @@ namespace Wallon.Pages.Controllers.Taches
 
 			_page.FlatDataGridView.HideColonne("Id");
 
-			_page.EnableColumn("editer");
+			_page.EnableColumn(
+				("Modifier", BaseConsulterColonnesCliquables.Cliquable.Edit)
+			);
 		}
 
 		/// <summary>
@@ -100,7 +103,7 @@ namespace Wallon.Pages.Controllers.Taches
 					_taches.NomLocataireCourant(tache.LocataireCourant),
 					locataireSuivant.Nom,
 					dateFin,
-					_page.ImageEditer
+					_page.GetImageColumn(BaseConsulterColonnesCliquables.Cliquable.Edit)
 				}
 			);
 
@@ -117,7 +120,7 @@ namespace Wallon.Pages.Controllers.Taches
 			int ligne = args.RowIndex;
 			int colonne = args.ColumnIndex;
 
-			if (colonne == _page.FlatDataGridView.GetColumnId("Editer")) // si la colonne cliquée correspond
+			if (colonne == _page.FlatDataGridView.GetColumnId("Modifier")) // si la colonne cliquée correspond
 			{
 				int? idColonne = _page.FlatDataGridView.GetColumnId("Id"); // trouve l'idde la colonne Id
 

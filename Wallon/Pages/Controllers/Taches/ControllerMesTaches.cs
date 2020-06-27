@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using FlatControls.Controls;
 using FlatControls.Core;
 using Wallon.Controllers;
+using Wallon.Controllers.BaseConsulter;
 using Wallon.Pages.Vue;
 using Wallon.Repository;
 
@@ -39,7 +40,9 @@ namespace Wallon.Pages.Controllers.Taches
 
 		public void ColonnesCliquables(BaseConsulter baseConsulter)
 		{
-			baseConsulter.EnableColumn("valider");
+			baseConsulter.EnableColumn(
+				("Valider", BaseConsulterColonnesCliquables.Cliquable.Add)
+			);
 
 			baseConsulter.AddColumnsFill(("Nom", DataGridViewAutoSizeColumnMode.Fill));
 		}
@@ -63,7 +66,7 @@ namespace Wallon.Pages.Controllers.Taches
 					tache.Id,
 					tache.Nom,
 					(tache.DatteFin - DateTime.Now.Date).Days,
-					baseConsulter.ImageValider
+					baseConsulter.GetImageColumn(BaseConsulterColonnesCliquables.Cliquable.Add)
 				);
 			}
 		}
