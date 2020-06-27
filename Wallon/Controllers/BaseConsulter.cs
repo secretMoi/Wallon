@@ -87,47 +87,50 @@ namespace Wallon.Controllers
 		public void EnableColumn(params string[] colonnes)
 		{
 			//todo automatiser avec dictionnaire + enum
-			if (colonnes.Contains("editer"))
+			foreach (string colonne in colonnes)
 			{
-				_editEnabled = true;
-				SetColonnesCliquables("Editer");
+				if (colonne == "editer")
+				{
+					_editEnabled = true;
+					SetColonnesCliquables("Editer");
 
-				SetImage(ref ImageEditer, "editer");
-			}
-			if (colonnes.Contains("supprimer"))
-			{
-				_deleteEnabled = true;
-				SetColonnesCliquables("Supprimer");
+					SetImage(ref ImageEditer, "editer");
+				}
+				else if (colonne == "supprimer")
+				{
+					_deleteEnabled = true;
+					SetColonnesCliquables("Supprimer");
 
-				SetImage(ref ImageSupprimer, "supprimer");
-			}
-			if (colonnes.Contains("voir"))
-			{
-				_seeEnabled = true;
-				SetColonnesCliquables("Voir");
+					SetImage(ref ImageSupprimer, "supprimer");
+				}
+				else if (colonne == "voir")
+				{
+					_seeEnabled = true;
+					SetColonnesCliquables("Voir");
 
-				SetImage(ref ImageVoir, "loupe");
-			}
-			if (colonnes.Contains("valider"))
-			{
-				_validateEnabled = true;
-				SetColonnesCliquables("Valider");
+					SetImage(ref ImageVoir, "loupe");
+				}
+				else if (colonne == "valider")
+				{
+					_validateEnabled = true;
+					SetColonnesCliquables("Valider");
 
-				SetImage(ref ImageValider, "correct");
-			}
-			if (colonnes.Contains("up"))
-			{
-				_upEnabled = true;
-				SetColonnesCliquables("Monter");
+					SetImage(ref ImageValider, "correct");
+				}
+				else if (colonne == "up")
+				{
+					_upEnabled = true;
+					SetColonnesCliquables("Monter");
 
-				SetImage(ref ImageUp, "arrow-up-sign-to-navigate");
-			}
-			if (colonnes.Contains("down"))
-			{
-				_downEnabled = true;
-				SetColonnesCliquables("Descendre");
+					SetImage(ref ImageUp, "arrow-up-sign-to-navigate");
+				}
+				else if (colonne == "down")
+				{
+					_downEnabled = true;
+					SetColonnesCliquables("Descendre");
 
-				SetImage(ref ImageDown, "arrow-down-sign-to-navigate");
+					SetImage(ref ImageDown, "arrow-down-sign-to-navigate");
+				}
 			}
 		}
 

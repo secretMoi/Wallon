@@ -62,7 +62,7 @@ namespace Wallon.Pages.Vue.Taches
 			// 
 			this.flatListBoxLocataireCourant.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
 			this.flatListBoxLocataireCourant.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
-			this.flatListBoxLocataireCourant.Location = new System.Drawing.Point(256, 285);
+			this.flatListBoxLocataireCourant.Location = new System.Drawing.Point(256, 231);
 			this.flatListBoxLocataireCourant.Margin = new System.Windows.Forms.Padding(0);
 			this.flatListBoxLocataireCourant.MinimumSize = new System.Drawing.Size(150, 40);
 			this.flatListBoxLocataireCourant.Name = "flatListBoxLocataireCourant";
@@ -74,7 +74,7 @@ namespace Wallon.Pages.Vue.Taches
 			this.flatLabelLocataireCourant.AutoSize = true;
 			this.flatLabelLocataireCourant.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flatLabelLocataireCourant.ForeColor = System.Drawing.Color.Black;
-			this.flatLabelLocataireCourant.Location = new System.Drawing.Point(5, 276);
+			this.flatLabelLocataireCourant.Location = new System.Drawing.Point(5, 231);
 			this.flatLabelLocataireCourant.Name = "flatLabelLocataireCourant";
 			this.flatLabelLocataireCourant.Size = new System.Drawing.Size(188, 32);
 			this.flatLabelLocataireCourant.TabIndex = 18;
@@ -84,7 +84,7 @@ namespace Wallon.Pages.Vue.Taches
 			// 
 			this.flatTextBoxCycle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
 			this.flatTextBoxCycle.IsPassword = false;
-			this.flatTextBoxCycle.Location = new System.Drawing.Point(256, 199);
+			this.flatTextBoxCycle.Location = new System.Drawing.Point(256, 163);
 			this.flatTextBoxCycle.Margin = new System.Windows.Forms.Padding(0);
 			this.flatTextBoxCycle.Name = "flatTextBoxCycle";
 			this.flatTextBoxCycle.Size = new System.Drawing.Size(237, 40);
@@ -95,7 +95,7 @@ namespace Wallon.Pages.Vue.Taches
 			this.flatLabelCycle.AutoSize = true;
 			this.flatLabelCycle.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flatLabelCycle.ForeColor = System.Drawing.Color.Black;
-			this.flatLabelCycle.Location = new System.Drawing.Point(5, 190);
+			this.flatLabelCycle.Location = new System.Drawing.Point(5, 163);
 			this.flatLabelCycle.Name = "flatLabelCycle";
 			this.flatLabelCycle.Size = new System.Drawing.Size(177, 32);
 			this.flatLabelCycle.TabIndex = 16;
@@ -109,7 +109,7 @@ namespace Wallon.Pages.Vue.Taches
 			this.flatButtonAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.flatButtonAjouter.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flatButtonAjouter.ForeColor = System.Drawing.Color.White;
-			this.flatButtonAjouter.Location = new System.Drawing.Point(1688, 677);
+			this.flatButtonAjouter.Location = new System.Drawing.Point(1688, 679);
 			this.flatButtonAjouter.Name = "flatButtonAjouter";
 			this.flatButtonAjouter.Size = new System.Drawing.Size(165, 56);
 			this.flatButtonAjouter.TabIndex = 15;
@@ -121,7 +121,7 @@ namespace Wallon.Pages.Vue.Taches
 			// 
 			this.flatTextBoxDatteDebut.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(211)))));
 			this.flatTextBoxDatteDebut.IsPassword = false;
-			this.flatTextBoxDatteDebut.Location = new System.Drawing.Point(256, 113);
+			this.flatTextBoxDatteDebut.Location = new System.Drawing.Point(256, 95);
 			this.flatTextBoxDatteDebut.Margin = new System.Windows.Forms.Padding(0);
 			this.flatTextBoxDatteDebut.Name = "flatTextBoxDatteDebut";
 			this.flatTextBoxDatteDebut.Size = new System.Drawing.Size(237, 40);
@@ -132,7 +132,7 @@ namespace Wallon.Pages.Vue.Taches
 			this.flatLabelDateDebut.AutoSize = true;
 			this.flatLabelDateDebut.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flatLabelDateDebut.ForeColor = System.Drawing.Color.Black;
-			this.flatLabelDateDebut.Location = new System.Drawing.Point(5, 104);
+			this.flatLabelDateDebut.Location = new System.Drawing.Point(5, 95);
 			this.flatLabelDateDebut.Name = "flatLabelDateDebut";
 			this.flatLabelDateDebut.Size = new System.Drawing.Size(138, 32);
 			this.flatLabelDateDebut.TabIndex = 13;
@@ -161,7 +161,7 @@ namespace Wallon.Pages.Vue.Taches
 			// 
 			// flatDataGridView
 			// 
-			this.flatDataGridView.Location = new System.Drawing.Point(11, 328);
+			this.flatDataGridView.Location = new System.Drawing.Point(3, 297);
 			this.flatDataGridView.Name = "flatDataGridView";
 			this.flatDataGridView.Size = new System.Drawing.Size(591, 239);
 			this.flatDataGridView.TabIndex = 20;

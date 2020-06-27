@@ -17,7 +17,7 @@ namespace Wallon.Pages.Vue.Taches
 
 			SetTitre("Ajouter une tâche");
 
-			_controllerAjouter = new ControllerAjouter();
+			_controllerAjouter = new ControllerAjouter(this);
 
 			SetColors();
 
@@ -31,9 +31,9 @@ namespace Wallon.Pages.Vue.Taches
 		{
 			_flatDataGridView = flatDataGridView;
 
-			_controllerAjouter.InitColonnes(this);
+			_controllerAjouter.InitColonnes();
 
-			_controllerAjouter.FillDgv(this);
+			_controllerAjouter.FillDgv();
 
 			AfterLoad();
 		}
@@ -80,9 +80,14 @@ namespace Wallon.Pages.Vue.Taches
 			_controllerAjouter.Ajouter(
 				flatTextName.Text,
 				flatTextBoxDatteDebut.Text,
-				flatTextBoxCycle.Text,
-				flatDataGridView
+				flatTextBoxCycle.Text
 			);
+		}
+
+		public override void EffetClic(object sender, DataGridViewCellMouseEventArgs e)
+		{
+			base.EffetClic(sender, e);
+			_controllerAjouter.Clic(sender, e);
 		}
 	}
 }

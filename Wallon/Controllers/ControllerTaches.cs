@@ -16,8 +16,9 @@ namespace Wallon.Controllers
 			List<int> liaison = new RepositoryLiaisonTachesLocataires().ListeLocataires(idTache); // liste des locataires participant à la tâche
 
 			int indexActuel = liaison.IndexOf(idLocataire); // situe le locataire actuel dans la liste
-			if(indexActuel == -1) // si la liste ne le contient pas
-				throw new Exception("Le locataire " + indexActuel + " n'est pas dans la tâche " + idTache);
+			if (indexActuel == -1) // si la liste ne le contient pas
+				return idLocataire;
+				//throw new Exception("Le locataire " + indexActuel + " n'est pas dans la tâche " + idTache);
 
 			return ProchainLocataire(indexActuel, liaison); // renvoie l'id du prochain locataire
 		}

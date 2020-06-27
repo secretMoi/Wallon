@@ -17,81 +17,44 @@ namespace Wallon.Pages.Controllers.Taches
 	public class ControllerAjouter
 	{
 		private readonly RepositoryTaches _taches;
-		private readonly List<(int, int)> _associeIdListAndLocataires; // id1 ordre, id2 id réel bdd
+		//private readonly List<(int, int)> _associeIdListAndLocataires; // id1 ordre, id2 id réel bdd
+		private readonly Ajouter _page;
 
-		public ControllerAjouter()
+		public ControllerAjouter(Ajouter page)
 		{
+			_page = page;
 			_taches = new RepositoryTaches();
-			_associeIdListAndLocataires = new List<(int, int)>();
+			//_associeIdListAndLocataires = new List<(int, int)>();
 		}
 
 		/// <summary>
 		/// Initialise les colonnes de la dgv
-		/// <param name="page">Page contenant les méthodes à utiliser</param>
 		/// </summary>
-		public void InitColonnes(Ajouter page)
+		public void InitColonnes()
 		{
-			page.SetColonnes("Locataire", "Inclu");
-			page.EnableColumn("valider", "up", "down");
-			page.AddColumnsFill(("Locataire", DataGridViewAutoSizeColumnMode.Fill));
+			_page.SetColonnes("Id", "Locataire", "Inclu");
+			_page.FlatDataGridView.HideColonne("Id");
+			_page.EnableColumn("valider", "supprimer", "up", "down");
+			_page.AddColumnsFill(("Locataire", DataGridViewAutoSizeColumnMode.Fill));
 		}
 
 		/// <summary>
 		/// Initialise les données de la dgv
-		/// <param name="page">Page contenant les méthodes à utiliser</param>
 		/// </summary>
-		public void FillDgv(Ajouter page)
+		public void FillDgv()
 		{
 			List<Locataire> locataires = new RepositoryLocataires().Lire("id"); // récupère les données dans la bdd
 
 			foreach (Locataire locataire in locataires) // les lie à la dgv
-				page._useGridView.Add(
+				_page._useGridView.Add(
+					locataire.Id,
 					locataire.Nom,
 					"Non",
-					page.ImageValider,
-					page.ImageUp,
-					page.ImageDown
+					_page.ImageValider,
+					_page.ImageSupprimer,
+					_page.ImageUp,
+					_page.ImageDown
 				);
-
-			foreach (Locataire locataire in locataires) // les lie à la dgv
-				page._useGridView.Add(
-					locataire.Nom,
-					"Non",
-					page.ImageValider,
-					page.ImageUp,
-					page.ImageDown
-				);
-
-			foreach (Locataire locataire in locataires) // les lie à la dgv
-				page._useGridView.Add(
-					locataire.Nom,
-					"Non",
-					page.ImageValider,
-					page.ImageUp,
-					page.ImageDown
-				);
-		}
-
-		/// <summary>
-		/// Génère une liste complète des noms de locataires, associe l'id d'ordre de la flatlist avec l'id des locataires
-		/// </summary>
-		/// <returns>Liste des noms des locataires</returns>
-		public List<string> ListeLocataires()
-		{
-			List<Locataire> locataires = new RepositoryLocataires().Lire("id");
-			List<string> noms = new List<string>();
-
-			for (int i = 0; i < locataires.Count; i++)
-			{
-				_associeIdListAndLocataires.Add((
-					i,
-					locataires[i].Id
-					));
-
-				noms.Add(locataires[i].Nom);
-			}
-
-			return noms;
 		}
 
 		/// <summary>
@@ -100,10 +63,9 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <param name="name">Nom de la tâche</param>
 		/// <param name="datte">Datte de début de la tâche</param>
 		/// <param name="cycleInput">Cycle en jours pour répéter la tâche</param>
-		/// <param name="flatDataGridView">Dgv contenant les locataires désirés</param>
-		public void Ajouter(string name, string datte, string cycleInput, FlatDataGridView flatDataGridView)
+		public void Ajouter(string name, string datte, string cycleInput)
 		{
-			/*if (!Formulaire.IsValid(name, datte, cycleInput))
+			if (!Formulaire.IsValid(name, datte, cycleInput))
 			{
 				Dialog.Show("Le formulaire n'est pas correctement rempli");
 				return;
@@ -126,12 +88,30 @@ namespace Wallon.Pages.Controllers.Taches
 				return;
 			}
 
+			FlatDataGridView flatDataGridView = _page.FlatDataGridView;
+
+			// récupère la liste des id des locataires inclus dans la dgv
+			List<int> idLocataires = new List<int>();
+			for (int i = 0; i < flatDataGridView.Rows.Count; i++)
+			{
+				if(flatDataGridView.Get(i, (int)flatDataGridView.GetColumnId("Inclu")) == "Oui" )
+					idLocataires.Add(
+						Convert.ToInt32(flatDataGridView.Get(i, (int) flatDataGridView.GetColumnId("Id")))
+					);
+			}
+
+			if (idLocataires.Count == 0)
+			{
+				Dialog.Show("Aucun locataire sélectionné !");
+				return;
+			}
+
 			// Crée la tâche
 			Couche_Classe.Taches tache = new Couche_Classe.Taches(
 				name,
 				datteDebut,
 				true,
-				_associeIdListAndLocataires[selectedId[0]].Item2,
+				idLocataires[0],
 				cycle
 			);
 
@@ -147,13 +127,13 @@ namespace Wallon.Pages.Controllers.Taches
 			int idTache = _taches.Ajouter(tache);
 
 			// Ajout les locataires à la tâche dans la bdd (table liaison)
-			foreach (int idSelected in selectedId)
+			foreach (int idSelected in idLocataires)
 				new RepositoryLiaisonTachesLocataires().Ajouter(
-					_associeIdListAndLocataires[idSelected].Item2,
+					idSelected,
 					idTache
 				);
 
-			Dialog.Show("La tâche " + name + " a bien été ajoutée");*/
+			Dialog.Show("La tâche " + name + " a bien été ajoutée");
 		}
 
 		/// <summary>
@@ -200,6 +180,23 @@ namespace Wallon.Pages.Controllers.Taches
 				listeLocataires.Add(new ControllerLocataires().GetById(idLocataire));
 
 			return listeLocataires.Select(x => x.Nom).ToArray();
+		}
+
+		public void Clic(object sender, DataGridViewCellMouseEventArgs e)
+		{
+			int ligne = e.RowIndex;
+			int colonne = e.ColumnIndex;
+
+			FlatDataGridView flatDataGridView = _page.FlatDataGridView;
+
+			if (colonne == flatDataGridView.GetColumnId("Valider")) // si la colonne cliquée correspond
+			{
+				flatDataGridView.Set(ligne, (int) flatDataGridView.GetColumnId("Inclu"), "Oui");
+			}
+			if (colonne == flatDataGridView.GetColumnId("Supprimer")) // si la colonne cliquée correspond
+			{
+				flatDataGridView.Set(ligne, (int)flatDataGridView.GetColumnId("Inclu"), "Non");
+			}
 		}
 	}
 }

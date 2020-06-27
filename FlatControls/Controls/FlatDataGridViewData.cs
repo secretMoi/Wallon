@@ -134,6 +134,35 @@ namespace FlatControls.Controls
 		}
 
 		/// <summary>
+		/// Remplace les données d'une cellule
+		/// </summary>
+		/// <param name="coordonnees">Couple définissant les coodonnées (x définissant la ligne et y la colonne)</param>
+		/// /// <param name="value">Valeur à insérer</param>
+		/// <returns>true si la modification s'est bien passée, false sinon</returns>
+		public bool Set(Couple coordonnees, object value)
+		{
+			if (dataGridView.Rows.Count > coordonnees.Xi && dataGridView.ColumnCount > coordonnees.Yi)
+			{
+				dataGridView.Rows[coordonnees.Xi].Cells[coordonnees.Yi].Value = value;
+				return true;
+			}
+
+			return false;
+		}
+
+		/// <summary>
+		/// Remplace les données d'une cellule
+		/// </summary>
+		/// <param name="x">Position en ligne</param>
+		/// <param name="y">Position en colonne</param>
+		/// <param name="value">Valeur à insérer</param>
+		/// <returns>true si la modification s'est bien passée, false sinon</returns>
+		public bool Set(int x, int y, object value)
+		{
+			return Set(new Couple(x, y), value);
+		}
+
+		/// <summary>
 		/// Récupère l'id du nom d'une colonne
 		/// </summary>
 		/// <param name="name">Nom de la colonne</param>
@@ -153,6 +182,7 @@ namespace FlatControls.Controls
 		/// <param name="ligneDestination">Ligne d'arrivée qui va swaper sa place</param>
 		public void SwapRow(int ligneSource, int ligneDestination)
 		{
+			if(ligneSource < 0 || ligneDestination < 0) return;
 			DataGridViewRow donneesAMonter = dataGridView.Rows[ligneSource]; // backup les données monter
 
 			DataGridViewRow swapRow = dataGridView.Rows[ligneDestination];
