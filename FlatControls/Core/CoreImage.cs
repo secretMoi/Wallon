@@ -12,6 +12,8 @@ namespace FlatControls.Core
 			_image = Image.FromFile(path);
 		}
 
+		public Image Image => _image;
+
 		/// <summary>
 		/// Redimensionne une image dans une colonne
 		/// </summary>

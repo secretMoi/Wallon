@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Couche_Classe;
+using FlatControls.Controls;
 using Wallon.Controllers;
 using Wallon.Controllers.BaseConsulter;
 using Wallon.Pages.Vue.Taches;
@@ -17,11 +19,14 @@ namespace Wallon.Pages.Controllers.Taches
 		private readonly RepositoryTaches _taches;
 		private readonly Mutex _mutex = new Mutex();
 		private Consulter _page;
+		private Waiting _waiting;
 
 		private readonly List<object[]> _list;
 
-		public ControllerConsulter()
+		public ControllerConsulter(Consulter page)
 		{
+			_page = page;
+
 			_taches = new RepositoryTaches();
 			_list = new List<object[]>();
 		}
@@ -30,17 +35,15 @@ namespace Wallon.Pages.Controllers.Taches
 		/// Indique la liste des colonnes à afficher dans la dgv
 		/// </summary>
 		/// <returns>Un tableau du nom des colonnes</returns>
-		public void ListeColonnes(Consulter page)
+		public void ListeColonnes()
 		{
-			_page = page;
-
 			_page.SetColonnes("Id", "Nom", "Locataire en charge", "Prochain", "Date de fin" );
 
 			_page.AddColumnsFill(
 				("Nom", DataGridViewAutoSizeColumnMode.Fill),
 				("Prochain", DataGridViewAutoSizeColumnMode.DisplayedCells),
 				("Date de fin", DataGridViewAutoSizeColumnMode.AllCellsExceptHeader)
-				);
+			);
 
 			_page.FlatDataGridView.HideColonne("Id");
 
@@ -57,18 +60,13 @@ namespace Wallon.Pages.Controllers.Taches
 			List<Couche_Classe.Taches> taches = await _taches.LireAsync("datteFin"); // récupère les données dans la bdd
 
 			// parrallel async mais problème de désordre
-			/*List<Task> tasks = new List<Task>();
+			//List<Task> tasks = new List<Task>();
+
+			/*foreach (Couche_Classe.Taches tache in taches) // les lie à la dgv
+				tasks.Add(Task.Run(() => AddToDgv(tache)));*/
 
 			foreach (Couche_Classe.Taches tache in taches) // les lie à la dgv
-			{
-
-				tasks.Add(Task.Run(() => AddToDgv(tache)));
-			}*/
-
-			foreach (Couche_Classe.Taches tache in taches) // les lie à la dgv
-			{
 				await Task.Run(() => AddToDgv(tache));
-			}
 
 			//await Task.WhenAll(tasks);
 
@@ -82,7 +80,7 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <param name="tache">Données à insérer</param>
 		private void AddToDgv(Couche_Classe.Taches tache)
 		{
-			_mutex.WaitOne();
+			//_mutex.WaitOne();
 
 			string dateFin;
 
@@ -105,7 +103,7 @@ namespace Wallon.Pages.Controllers.Taches
 				}
 			);
 
-			_mutex.ReleaseMutex();
+			//_mutex.ReleaseMutex();
 		}
 
 		/// <summary>
@@ -130,6 +128,48 @@ namespace Wallon.Pages.Controllers.Taches
 				// charge la page d'ajout afin de modifier la tâche avec en paramètre l'id de la tâche
 				_page.LoadPage("Taches.Ajouter", idTache);
 			}
+		}
+
+		public void HideControls(params Type[] controlsArray)
+		{
+			/*List<Type> types = new List<Type>(controlsArray.Length);
+
+			foreach (Control control in controlsArray)
+				types.Add(control.GetType());*/
+
+			foreach (Control control in _page.Controls) // parcours tous les controles
+				if(controlsArray.Contains(control.GetType()))
+					control.Visible = false;
+		}
+
+		public void SetLoading(Panel panel, bool state)
+		{
+			if (state)
+			{
+				if(_waiting == null)
+					_waiting = new Waiting();
+				_waiting.Name = "waiting";
+				_waiting.Location = new Point(
+					(panel.Width - _waiting.Width) / 2,
+					(panel.Height - _waiting.Height) / 2
+				);
+
+				panel.Controls.Add(_waiting);
+
+				_page.FlatDataGridView.DataSourceChanged(DataAddedToDgv);
+				_page.FlatDataGridView.Visible = false;
+			}
+			else
+			{
+				_page.Controls.RemoveByKey("waiting");
+
+				_page.FlatDataGridView.Visible = true;
+			}
+		}
+
+		public void DataAddedToDgv(object sender, EventArgs e)
+		{
+			SetLoading(null, false);
 		}
 	}
 }

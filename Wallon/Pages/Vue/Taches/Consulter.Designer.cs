@@ -53,6 +53,7 @@ namespace Wallon.Pages.Vue.Taches
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Name = "Consulter";
 			this.Load += new System.EventHandler(this.Consulter_Load);
+			this.SizeChanged += new System.EventHandler(this.Consulter_SizeChanged);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();
 			this.panelCorps.ResumeLayout(false);

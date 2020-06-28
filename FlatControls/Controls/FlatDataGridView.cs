@@ -145,6 +145,9 @@ namespace FlatControls.Controls
 				dataGridView.FirstDisplayedScrollingRowIndex++;
 		}
 
-		
+		public void DataSourceChanged(EventHandler callback)
+		{
+			dataGridView.DataSourceChanged += callback;
+		}
 	}
 }

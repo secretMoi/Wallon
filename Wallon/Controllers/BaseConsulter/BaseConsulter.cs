@@ -22,7 +22,6 @@ namespace Wallon.Controllers.BaseConsulter
 			InitializeComponent();
 
 			_columnToResize = new List<(string, DataGridViewAutoSizeColumnMode)>();
-			_gestionColonnesCliquables = new ColonnesCliquables();
 		}
 
 		/// <summary>
@@ -41,6 +40,12 @@ namespace Wallon.Controllers.BaseConsulter
 		/// </summary>
 		public void FillDgv(params object[] data)
 		{
+			if (_gestionColonnesCliquables == null)
+			{
+				_useGridView.Add(data); // envoie la ligne vers la dgv
+				return;
+			}
+
 			object[] images = new object[_gestionColonnesCliquables.GetTitlesColumn().Length];
 
 			// récupère les colonnes cliquables
@@ -115,6 +120,9 @@ namespace Wallon.Controllers.BaseConsulter
 		/// <param name="colonnes">Liste des colonnes à activer</param>
 		public void EnableColumn(params (string, ColonnesCliquables.Cliquable)[] colonnes)
 		{
+			if(_gestionColonnesCliquables == null)
+				_gestionColonnesCliquables = new ColonnesCliquables();
+
 			_gestionColonnesCliquables.Enable(colonnes);
 
 			SetColonnesCliquables(_gestionColonnesCliquables.GetTitlesColumn());

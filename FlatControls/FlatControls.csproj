@@ -130,6 +130,12 @@
     <Compile Include="Controls\Utilisation.Designer.cs">
       <DependentUpon>Utilisation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Waiting.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\Waiting.Designer.cs">
+      <DependentUpon>Waiting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Core\CoreImage.cs" />
     <Compile Include="Core\Couple.cs" />
     <Compile Include="Core\Element.cs" />
@@ -182,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Utilisation.resx">
       <DependentUpon>Utilisation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\Waiting.resx">
+      <DependentUpon>Waiting.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
