@@ -36,10 +36,10 @@ namespace Wallon.Pages.Controllers.Taches
 			_page.SetColonnes("Id", "Locataire", "Inclu");
 			_page.FlatDataGridView.HideColonne("Id");
 			_page.EnableColumn(
-				("Ajouter", BaseConsulterColonnesCliquables.Cliquable.Add),
-				("Supprimer", BaseConsulterColonnesCliquables.Cliquable.Delete),
-				("Monter", BaseConsulterColonnesCliquables.Cliquable.Up),
-				("Descendre", BaseConsulterColonnesCliquables.Cliquable.Down)
+				("Ajouter", ColonnesCliquables.Cliquable.Add),
+				("Supprimer", ColonnesCliquables.Cliquable.Delete),
+				("Monter", ColonnesCliquables.Cliquable.Up),
+				("Descendre", ColonnesCliquables.Cliquable.Down)
 			);
 			_page.AddColumnsFill(("Locataire", DataGridViewAutoSizeColumnMode.Fill));
 		}
@@ -52,14 +52,10 @@ namespace Wallon.Pages.Controllers.Taches
 			List<Locataire> locataires = new RepositoryLocataires().Lire("id"); // récupère les données dans la bdd
 
 			foreach (Locataire locataire in locataires) // les lie à la dgv
-				_page._useGridView.Add(
+				_page.FillDgv(
 					locataire.Id,
 					locataire.Nom,
-					"Non",
-					_page.GetImageColumn(BaseConsulterColonnesCliquables.Cliquable.Add),
-					_page.GetImageColumn(BaseConsulterColonnesCliquables.Cliquable.Delete),
-					_page.GetImageColumn(BaseConsulterColonnesCliquables.Cliquable.Up),
-					_page.GetImageColumn(BaseConsulterColonnesCliquables.Cliquable.Down)
+					"Non"
 				);
 		}
 

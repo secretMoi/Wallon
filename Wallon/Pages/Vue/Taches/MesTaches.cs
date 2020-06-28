@@ -38,7 +38,7 @@ namespace Wallon.Pages.Vue.Taches
 
 			_controllerMesTaches.ColonnesCliquables(this);
 
-			_controllerMesTaches.GetData(_useGridView, this);
+			_controllerMesTaches.GetData(this);
 
 			AfterLoad();
 		}

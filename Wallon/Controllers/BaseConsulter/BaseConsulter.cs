@@ -10,10 +10,10 @@ namespace Wallon.Controllers.BaseConsulter
 {
 	public class BaseConsulter : ThemePanel
 	{
-		public UseGridView _useGridView;
-		protected FlatDataGridView _flatDataGridView;
-		protected List<(string, DataGridViewAutoSizeColumnMode)> _columnToResize;
-		protected BaseConsulterColonnesCliquables _gestionColonnesCliquables;
+		public UseGridView _useGridView; // permet d'insérer les données à transmettre à la dgv
+		protected FlatDataGridView _flatDataGridView; // permet d'accéder en direct à la dgv
+		protected List<(string, DataGridViewAutoSizeColumnMode)> _columnToResize; // gère les colonnes à redimensionner
+		protected ColonnesCliquables _gestionColonnesCliquables; // gère les colonnes cliquables
 
 		public FlatDataGridView FlatDataGridView => _flatDataGridView;
 
@@ -22,12 +22,46 @@ namespace Wallon.Controllers.BaseConsulter
 			InitializeComponent();
 
 			_columnToResize = new List<(string, DataGridViewAutoSizeColumnMode)>();
+			_gestionColonnesCliquables = new ColonnesCliquables();
 		}
 
+		/// <summary>
+		/// Permet de redimensionner une colonne (string) avec un mode donné (DataGridViewAutoSizeColumnMode)
+		/// <param name="colonnes">Tableau de tuples (string, typeTailleColonne)</param>
+		/// </summary>
 		public void AddColumnsFill(params (string, DataGridViewAutoSizeColumnMode)[] colonnes)
 		{
-			foreach ((string, DataGridViewAutoSizeColumnMode) colonne in colonnes)
+			foreach ((string, DataGridViewAutoSizeColumnMode) colonne in colonnes) // pour chaque colonne passée en paramètre
 				_columnToResize.Add(colonne);
+		}
+
+		/// <summary>
+		/// Rempli les données dans la dgv et y ajoute les images de colonnes associés à leur type
+		/// <param name="data">Tableau de de données constituant une ligne</param>
+		/// </summary>
+		public void FillDgv(params object[] data)
+		{
+			object[] images = new object[_gestionColonnesCliquables.GetTitlesColumn().Length];
+
+			// récupère les colonnes cliquables
+			for (int i = 0; i < _gestionColonnesCliquables.GetTitlesColumn().Length; i++)
+			{
+				ColonnesCliquables.Cliquable imageType = _gestionColonnesCliquables.TypeFromId(i);
+				images[i] = _gestionColonnesCliquables.GetImage(imageType);
+			}
+
+			object[] finalData = new object[data.Length + images.Length]; // ligne finale à insérer
+
+			// construit la ligne finale
+			for (int i = 0; i < finalData.Length; i++)
+			{
+				if (i < data.Length) // si c'est une donnée normale (en param)
+					finalData[i] = data[i];
+				else // sinon c'est une image à rajouter
+					finalData[i] = images[i - data.Length];
+			}
+
+			_useGridView.Add(finalData); // envoie la ligne vers la dgv
 		}
 
 		/// <summary>
@@ -70,7 +104,7 @@ namespace Wallon.Controllers.BaseConsulter
 		/// </summary>
 		/// <param name="type">Type de la colonne</param>
 		/// <returns>Image</returns>
-		public Image GetImageColumn(BaseConsulterColonnesCliquables.Cliquable type)
+		public Image GetImageColumn(ColonnesCliquables.Cliquable type)
 		{
 			return _gestionColonnesCliquables.GetImage(type);
 		}
@@ -79,11 +113,8 @@ namespace Wallon.Controllers.BaseConsulter
 		/// Active certaines colonnes connues par défaut
 		/// </summary>
 		/// <param name="colonnes">Liste des colonnes à activer</param>
-		public void EnableColumn(params (string, BaseConsulterColonnesCliquables.Cliquable)[] colonnes)
+		public void EnableColumn(params (string, ColonnesCliquables.Cliquable)[] colonnes)
 		{
-			if(_gestionColonnesCliquables == null)
-				_gestionColonnesCliquables = new BaseConsulterColonnesCliquables();
-
 			_gestionColonnesCliquables.Enable(colonnes);
 
 			SetColonnesCliquables(_gestionColonnesCliquables.GetTitlesColumn());

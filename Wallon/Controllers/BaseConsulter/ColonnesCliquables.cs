@@ -4,7 +4,7 @@ using FlatControls.Core;
 
 namespace Wallon.Controllers.BaseConsulter
 {
-	public class BaseConsulterColonnesCliquables
+	public class ColonnesCliquables
 	{
 		private readonly Dictionary<Cliquable, Image> _images;
 		private readonly List<(string, Cliquable)> _enabled; // stock le nom d'affichage de la colonne ainsi que son type
@@ -14,7 +14,7 @@ namespace Wallon.Controllers.BaseConsulter
 			Edit, Delete, See, Add, Up, Down
 		}
 
-		public BaseConsulterColonnesCliquables()
+		public ColonnesCliquables()
 		{
 			_enabled = new List<(string, Cliquable)>();
 			_images = new Dictionary<Cliquable, Image>
@@ -26,6 +26,16 @@ namespace Wallon.Controllers.BaseConsulter
 				{Cliquable.Up, SetImage("arrow-up-sign-to-navigate")},
 				{Cliquable.Down, SetImage("arrow-down-sign-to-navigate")}
 			};
+		}
+
+		/// <summary>
+		/// Récupère le type d'une colonne grâce à sa position
+		/// </summary>
+		/// <param name="position">Position de la colonne dans la liste interne _enabled</param>
+		/// <returns>Le type de la colonne demandé</returns>
+		public Cliquable TypeFromId(int position)
+		{
+			return _enabled[position].Item2;
 		}
 
 		/// <summary>
@@ -75,7 +85,7 @@ namespace Wallon.Controllers.BaseConsulter
 		private Image SetImage(string path)
 		{
 			string finalPath = "Ressources/Images/" + path + ".png";
-			return new CoreImage(finalPath).ResizeImage(32, 32);
+			return new CoreImage(finalPath).Resize(32, 32);
 		}
 	}
 }

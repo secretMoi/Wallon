@@ -18,9 +18,9 @@ namespace FlatControls.Core
 		/// <param name="width">Largeur que l'image doit atteindre</param>
 		/// <param name="height">Hauteur que l'image doit atteindre</param>
 		/// <param name="preserveAspectRatio">Booléen indiquant si l'image peut être déformée ou non, ratio préservé par défaut</param>
-		public Image ResizeImage(int width, int height, bool preserveAspectRatio = true)
+		public Image Resize(int width, int height, bool preserveAspectRatio = true)
 		{
-			return ResizeImage(new Size(width, height), preserveAspectRatio);
+			return Resize(new Size(width, height), preserveAspectRatio);
 		}
 
 		/// <summary>
@@ -28,7 +28,7 @@ namespace FlatControls.Core
 		/// </summary>
 		/// <param name="size">Taille que l'image doit atteindre</param>
 		/// <param name="preserveAspectRatio">Booléen indiquant si l'image peut être déformée ou non, ratio préservé par défaut</param>
-		public Image ResizeImage(Size size, bool preserveAspectRatio = true)
+		public Image Resize(Size size, bool preserveAspectRatio = true)
 		{
 			int newWidth;
 			int newHeight;

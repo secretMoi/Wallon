@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Couche_Classe;
-using FlatControls.Core;
 using Wallon.Controllers;
 using Wallon.Controllers.BaseConsulter;
 using Wallon.Pages.Vue.Taches;
@@ -45,15 +45,14 @@ namespace Wallon.Pages.Controllers.Taches
 			_page.FlatDataGridView.HideColonne("Id");
 
 			_page.EnableColumn(
-				("Modifier", BaseConsulterColonnesCliquables.Cliquable.Edit)
+				("Modifier", ColonnesCliquables.Cliquable.Edit)
 			);
 		}
 
 		/// <summary>
 		/// Récupère les données demandées et les ajoute à la dgv
 		/// </summary>
-		/// <param name="useGridView">Dgv où insérer les données trouvées</param>
-		public async Task GetDataAsync(UseGridView useGridView)
+		public async Task GetDataAsync()
 		{
 			List<Couche_Classe.Taches> taches = await _taches.LireAsync("datteFin"); // récupère les données dans la bdd
 
@@ -74,7 +73,7 @@ namespace Wallon.Pages.Controllers.Taches
 			//await Task.WhenAll(tasks);
 
 			foreach (object[] element in _list)
-				useGridView.Add(element);
+				_page.FillDgv(element);
 		}
 
 		/// <summary>
@@ -102,8 +101,7 @@ namespace Wallon.Pages.Controllers.Taches
 					tache.Nom,
 					_taches.NomLocataireCourant(tache.LocataireCourant),
 					locataireSuivant.Nom,
-					dateFin,
-					_page.GetImageColumn(BaseConsulterColonnesCliquables.Cliquable.Edit)
+					dateFin
 				}
 			);
 

@@ -109,7 +109,7 @@
     <Compile Include="Controllers\BaseConsulter\BaseConsulter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controllers\BaseConsulter\BaseConsulterColonnesCliquables.cs" />
+    <Compile Include="Controllers\BaseConsulter\ColonnesCliquables.cs" />
     <Compile Include="Controllers\ControllerTaches.cs" />
     <Compile Include="Core\Cryptage.cs" />
     <Compile Include="Core\Formulaire.cs" />

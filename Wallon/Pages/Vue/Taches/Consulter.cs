@@ -24,7 +24,7 @@ namespace Wallon.Pages.Vue.Taches
 
 			_controllerConsulter.ListeColonnes(this); // init les colonnes
 
-			await _controllerConsulter.GetDataAsync(_useGridView); // rempli les données
+			await _controllerConsulter.GetDataAsync(); // rempli les données
 
 			AfterLoad();
 		}

@@ -41,7 +41,7 @@ namespace Wallon.Pages.Controllers.Taches
 		public void ColonnesCliquables(BaseConsulter baseConsulter)
 		{
 			baseConsulter.EnableColumn(
-				("Valider", BaseConsulterColonnesCliquables.Cliquable.Add)
+				("Valider", Wallon.Controllers.BaseConsulter.ColonnesCliquables.Cliquable.Add)
 			);
 
 			baseConsulter.AddColumnsFill(("Nom", DataGridViewAutoSizeColumnMode.Fill));
@@ -50,9 +50,8 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <summary>
 		/// Récupère les données demandées et les ajoute à la dgv
 		/// </summary>
-		/// <param name="useGridView">Dgv où insérer les données trouvées</param>
 		/// <param name="baseConsulter">Classe contenant les images à afficher dans les colonnes</param>
-		public void GetData(UseGridView useGridView, BaseConsulter baseConsulter)
+		public void GetData(BaseConsulter baseConsulter)
 		{
 			_flatDataGridView.HideColonne("Id");
 
@@ -62,11 +61,10 @@ namespace Wallon.Pages.Controllers.Taches
 			foreach (Couche_Classe.Taches tache in _taches)
 			{
 				// ajoute à la dgv
-				useGridView.Add(
+				baseConsulter.FillDgv(
 					tache.Id,
 					tache.Nom,
-					(tache.DatteFin - DateTime.Now.Date).Days,
-					baseConsulter.GetImageColumn(BaseConsulterColonnesCliquables.Cliquable.Add)
+					(tache.DatteFin - DateTime.Now.Date).Days
 				);
 			}
 		}
