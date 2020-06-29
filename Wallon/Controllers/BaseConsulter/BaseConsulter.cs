@@ -74,7 +74,7 @@ namespace Wallon.Controllers.BaseConsulter
 		/// </summary>
 		protected virtual async void AfterLoad()
 		{
-			_flatDataGridView.AddClickMethod(EffetClic); // s'inscrit aux event de clic dans la dgv
+			
 
 			//_flatDataGridView.DataSource = UseGridView.Liens; // ajout(liage) des colonnes à la gridview
 			await _flatDataGridView.DataSourceAsync(UseGridView.Liens); // ajout(liage) des colonnes à la gridview
@@ -90,6 +90,7 @@ namespace Wallon.Controllers.BaseConsulter
 		/// <param name="titres">Liste des titres de chaque colonne</param>
 		public void SetColonnes(params string[] titres)
 		{
+			_flatDataGridView.AddClickMethod(EffetClic); // s'inscrit aux event de clic dans la dgv
 			UseGridView = new UseGridView(titres);
 		}
 

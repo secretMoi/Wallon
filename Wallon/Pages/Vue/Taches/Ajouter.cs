@@ -50,7 +50,7 @@ namespace Wallon.Pages.Vue.Taches
 			UseGridView.ResetAllData();
 			
 			flatDataGridView.DgvFilled += _controllerAjouter.UpdateDgv;
-			_controllerAjouter.InitColonnes();
+			//_controllerAjouter.InitColonnes();
 			_controllerAjouter.FillDgv(); // rempli la dgv
 			AfterLoad();
 
