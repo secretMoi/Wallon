@@ -64,20 +64,21 @@ namespace Wallon.Pages.Controllers.Taches
 		/// </summary>
 		public void UpdateDgv(object sender, EventArgs e)
 		{
-			//todo restore l'ordre des locataires
 			List<int> locatairesInclus = new RepositoryLiaisonTachesLocataires().ListeLocataires((int) IdTache); // récupère la liste des locataires inclus dans la tâche
 
-			for (int i = 0; i < _page.FlatDataGridView.Rows.Count; i++)
+			for (int i = 0; i < _page.FlatDataGridView.Rows.Count; i++) // parcours la dgv
 			{
-				if (locatairesInclus.Contains(
-					int.Parse(
-						_page.FlatDataGridView.Get(
-							i,
-							"Id"
-						))
-				))
+				// récupère l'id du locataire dans la colonne masquée Id
+				int idLocaire = int.Parse(
+					_page.FlatDataGridView.Get(
+						i,
+						"Id"
+					));
+
+				if (locatairesInclus.Contains(idLocaire)) // si un locataire de la tâche dans la bdd est dans la dgv
 				{
-					_page.FlatDataGridView.Set(i, "Inclu", "Oui");
+					_page.FlatDataGridView.Set(i, "Inclu", "Oui"); // indique le ce locataire est inclu
+					_page.FlatDataGridView.SwapRow(i, locatairesInclus.IndexOf(idLocaire)); // remet les locataires dans l'odre choisi
 				}
 			}
 		}

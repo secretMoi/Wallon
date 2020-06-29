@@ -147,7 +147,7 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <param name="panel">Panel dans lequel insérer l'animation de chargement, null si pas de chargement</param>
 		public void SetLoading(Panel panel)
 		{
-			if (panel != null) // si on active le chargement
+			if (panel != null && _page.FlatDataGridView.Rows.Count == 0) // si on active le chargement
 			{
 				if(_waiting == null)
 					_waiting = new Waiting(); // crée le control si pas encore fait

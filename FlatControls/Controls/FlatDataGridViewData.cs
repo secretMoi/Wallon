@@ -32,6 +32,7 @@ namespace FlatControls.Controls
 		/// <param name="value">DataSource à envoyer dans la dgv</param>
 		public BindingSource DataSource
 		{
+			get => dataGridView.DataSource as BindingSource;
 			set
 			{
 				DisableRenderWhilePopulating();

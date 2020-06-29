@@ -30,7 +30,6 @@ namespace Wallon.Pages.Vue.Taches
 		{
 			_flatDataGridView = flatDataGridView;
 			
-
 			_controllerConsulter.ListeColonnes(); // init les colonnes
 
 			await _controllerConsulter.GetDataAsync(); // rempli les données

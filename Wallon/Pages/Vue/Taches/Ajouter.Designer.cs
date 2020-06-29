@@ -109,7 +109,7 @@ namespace Wallon.Pages.Vue.Taches
 			this.flatButtonAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.flatButtonAjouter.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flatButtonAjouter.ForeColor = System.Drawing.Color.White;
-			this.flatButtonAjouter.Location = new System.Drawing.Point(1688, 682);
+			this.flatButtonAjouter.Location = new System.Drawing.Point(1688, 679);
 			this.flatButtonAjouter.Name = "flatButtonAjouter";
 			this.flatButtonAjouter.Size = new System.Drawing.Size(165, 56);
 			this.flatButtonAjouter.TabIndex = 15;
@@ -161,6 +161,7 @@ namespace Wallon.Pages.Vue.Taches
 			// 
 			// flatDataGridView
 			// 
+			this.flatDataGridView.DataSource = null;
 			this.flatDataGridView.Location = new System.Drawing.Point(3, 297);
 			this.flatDataGridView.Name = "flatDataGridView";
 			this.flatDataGridView.Size = new System.Drawing.Size(591, 239);

@@ -29,10 +29,6 @@ namespace Wallon.Pages.Vue.Taches
 			_flatDataGridView = flatDataGridView;
 
 			_controllerAjouter.InitColonnes();
-
-			_controllerAjouter.FillDgv();
-
-			AfterLoad();
 		}
 
 		/// <summary>
@@ -41,11 +37,17 @@ namespace Wallon.Pages.Vue.Taches
 		/// <param name="args">Arguments pouvant être passé en paramètre lors du chargement d'une page</param>
 		public override void Hydrate(params object[] args)
 		{
+			_controllerAjouter.FillDgv(); // rempli la dgv, place ici pour être plus près de la méthode update
+
+			AfterLoad();
+
 			base.Hydrate(args);
 
 			if(!AnyArgs()) return; // si aucun argument on arrête
 
 			_controllerAjouter.IdTache = (int)_arguments[0]; // sinon récupère l'id de la tâche
+
+			flatDataGridView.DataSourceChanged(_controllerAjouter.UpdateDgv);
 
 			Couche_Classe.Taches tache = _controllerAjouter.GetTache(); // récupère la tâche
 
@@ -61,8 +63,6 @@ namespace Wallon.Pages.Vue.Taches
 			flatListBoxLocataireCourant.Text = _controllerAjouter.FillFieldLocataireCourant(tache.LocataireCourant);
 
 			flatListBoxLocataireCourant.Add(_controllerAjouter.FillListLocataireCourant());
-
-			_flatDataGridView.DataSourceChanged(_controllerAjouter.UpdateDgv);
 
 			flatButtonAjouter.Text = @"Modifier"; // modifie le texte du bouton de validation
 		}
