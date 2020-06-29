@@ -42,6 +42,8 @@ namespace FlatControls.Controls
 				HideRenderedColoumns();
 
 				EnableRenderWhilePopulating();
+
+				LaunchEvent(new EventArgs(), DgvFilled);
 			}
 		}
 
@@ -58,6 +60,8 @@ namespace FlatControls.Controls
 			HideRenderedColoumns();
 
 			EnableRenderWhilePopulating();
+
+			LaunchEvent(new EventArgs(), DgvFilled);
 		}
 
 		/// <summary>
@@ -98,9 +102,7 @@ namespace FlatControls.Controls
 		/// <param name="bindingSource">Données à insérer</param>
 		private void BindData(BindingSource bindingSource)
 		{
-			dataGridView.DataSource = null;
 			dataGridView.DataSource = bindingSource; // lie les données
-			LaunchEvent(new EventArgs(), DgvFilled);
 		}
 
 		/// <summary>
@@ -109,9 +111,7 @@ namespace FlatControls.Controls
 		/// <param name="bindingSource">Données à insérer</param>
 		private async Task BindDataAsync(BindingSource bindingSource)
 		{
-			dataGridView.DataSource = null;
 			dataGridView.DataSource = await Task.Run(() => bindingSource); // lie les données
-			LaunchEvent(new EventArgs(), DgvFilled);
 		}
 
 		public DataGridViewColumnCollection Column => dataGridView.Columns;

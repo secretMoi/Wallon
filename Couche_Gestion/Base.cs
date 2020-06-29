@@ -19,7 +19,7 @@
 			return new Couche_Acces.Base(ChaineConnexion).TestConnection();
 		}
 
-		public void Supprimer(int id)
+		public virtual void Supprimer(int id)
 		{
 			new Couche_Acces.Base(ChaineConnexion).Supprimer(id);
 		}

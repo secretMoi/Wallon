@@ -68,7 +68,7 @@ namespace Wallon.Pages.Controllers.Taches
 		{
 			List<int> locatairesInclus = _liaison.ListeLocataires((int) IdTache); // récupère la liste des locataires inclus dans la tâche
 
-			for (int i = 0; i < _page.FlatDataGridView.Rows.Count; i++) // parcours la dgv
+			for (int i = 0; i < _page.UseGridView.Table.Rows.Count; i++) // parcours la dgv
 			{
 				// récupère l'id du locataire dans la colonne masquée Id
 				int idLocaire = int.Parse(

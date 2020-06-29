@@ -35,9 +35,9 @@ namespace Couche_Gestion
 			return new AccesLiaisonTachesLocataires(ChaineConnexion).LireId(id) as LiaisonTachesLocataires;
 		}
 
-		public int Supprimer(int id)
+		public override void Supprimer(int id)
 		{
-			return new AccesLiaisonTachesLocataires(ChaineConnexion).Supprimer(id);
+			new AccesLiaisonTachesLocataires(ChaineConnexion).Supprimer(id);
 		}
 
 		public List<int> LireTachesLocataire(int idLocataire)

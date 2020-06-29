@@ -30,7 +30,7 @@ namespace Wallon.Pages.Vue.Taches
 
 			_controllerAjouter.InitColonnes();
 
-			_controllerAjouter.FillDgv(); // rempli la dgv, place ici pour être plus près de la méthode update
+			_controllerAjouter.FillDgv(); // rempli la dgv
 
 			AfterLoad();
 		}
@@ -45,9 +45,14 @@ namespace Wallon.Pages.Vue.Taches
 
 			if (!AnyArgs()) return; // si aucun argument on arrête
 
-			flatDataGridView.DgvFilled += _controllerAjouter.UpdateDgv;
+			_controllerAjouter.IdTache = (int)_arguments[0]; // récupère l'id de la tâche
 
-			_controllerAjouter.IdTache = (int)_arguments[0]; // sinon récupère l'id de la tâche
+			UseGridView.ResetAllData();
+			
+			flatDataGridView.DgvFilled += _controllerAjouter.UpdateDgv;
+			_controllerAjouter.InitColonnes();
+			_controllerAjouter.FillDgv(); // rempli la dgv
+			AfterLoad();
 
 			Couche_Classe.Taches tache = _controllerAjouter.GetTache(); // récupère la tâche
 
@@ -58,11 +63,11 @@ namespace Wallon.Pages.Vue.Taches
 			flatTextBoxDatteDebut.Text = tache.DatteFin.ToShortDateString();
 			flatTextBoxCycle.Text = tache.Cycle.ToString();
 
-			flatLabelLocataireCourant.Visible = true;
-			flatListBoxLocataireCourant.Visible = true;
-			flatListBoxLocataireCourant.Text = _controllerAjouter.FillFieldLocataireCourant(tache.LocataireCourant);
+			//flatLabelLocataireCourant.Visible = true;
+			//flatListBoxLocataireCourant.Visible = true;
+			//flatListBoxLocataireCourant.Text = _controllerAjouter.FillFieldLocataireCourant(tache.LocataireCourant);
 
-			flatListBoxLocataireCourant.Add(_controllerAjouter.FillListLocataireCourant());
+			//flatListBoxLocataireCourant.Add(_controllerAjouter.FillListLocataireCourant());
 
 			flatButtonAjouter.Text = @"Modifier"; // modifie le texte du bouton de validation
 		}

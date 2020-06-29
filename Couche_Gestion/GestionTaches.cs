@@ -44,6 +44,11 @@ namespace Couche_Gestion
 			);
 		}
 
+		public override void Supprimer(int id)
+		{
+			new AccesTaches(ChaineConnexion).Supprimer(id);
+		}
+
 		public List<Taches> Lire(string index)
 		{
 			//return await Task.Run(() => new AccesTaches(ChaineConnexion).Lire(index).ConvertAll(x => (Taches)x));

@@ -26,7 +26,7 @@
     <InstallUrl>\\Iridium\Docs\DeployWallons\</InstallUrl>
     <ProductName>Wallons</ProductName>
     <PublisherName>Quentin</PublisherName>
-    <ApplicationRevision>29</ApplicationRevision>
+    <ApplicationRevision>30</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

@@ -6,9 +6,8 @@ namespace FlatControls.Core
 {
 	public class UseGridView
 	{
-		private readonly DataTable _table;
-		private readonly BindingSource _liens;
-		private int _nombreElements;
+		private readonly DataTable _table; // table pour formatter les données
+		private readonly BindingSource _liens; // permet de lier les données à une dgv
 
 		public UseGridView()
 		{
@@ -57,12 +56,19 @@ namespace FlatControls.Core
 		/// <param name="records">Données à ajouter aux colonnes</param>
 		public void Add(params object[] records)
 		{
-			_table.Rows.Add(records);
-			_liens.DataSource = _table;
-			_nombreElements++;
+			_table.Rows.Add(records); // structure les données en tableau
+			_liens.DataSource = _table; // prepare à envoyer à une dgv
 		}
 
-		public int Count => _nombreElements;
+		/// <summary>
+		/// Remet à 0 toutes les données
+		/// </summary>
+		public void ResetAllData()
+		{
+			_table.Rows.Clear();
+			_liens.DataSource = _table;
+		}
+
 		public BindingSource Liens => _liens;
 		public DataTable Table => _table;
 	}

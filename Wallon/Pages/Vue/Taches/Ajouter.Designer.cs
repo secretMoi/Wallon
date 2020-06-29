@@ -31,11 +31,11 @@ namespace Wallon.Pages.Vue.Taches
 		/// </summary>
 		private new void InitializeComponent()
 		{
+			this.flatButtonAjouter = new FlatControls.Controls.Buttons.FlatButton();
 			this.flatListBoxLocataireCourant = new FlatControls.Controls.FlatListBox();
 			this.flatLabelLocataireCourant = new FlatControls.Controls.FlatLabel();
 			this.flatTextBoxCycle = new FlatControls.Controls.FlatTextBox();
 			this.flatLabelCycle = new FlatControls.Controls.FlatLabel();
-			this.flatButtonAjouter = new FlatControls.Controls.Buttons.FlatButton();
 			this.flatTextBoxDatteDebut = new FlatControls.Controls.FlatTextBox();
 			this.flatLabelDateDebut = new FlatControls.Controls.FlatLabel();
 			this.flatTextName = new FlatControls.Controls.FlatTextBox();
@@ -47,7 +47,6 @@ namespace Wallon.Pages.Vue.Taches
 			// 
 			// panelCorps
 			// 
-			this.panelCorps.Controls.Add(this.flatButtonAjouter);
 			this.panelCorps.Controls.Add(this.flatListBoxLocataireCourant);
 			this.panelCorps.Controls.Add(this.flatLabelLocataireCourant);
 			this.panelCorps.Controls.Add(this.flatTextBoxCycle);
@@ -57,6 +56,23 @@ namespace Wallon.Pages.Vue.Taches
 			this.panelCorps.Controls.Add(this.flatTextName);
 			this.panelCorps.Controls.Add(this.flatLabelNom);
 			this.panelCorps.Controls.Add(this.flatDataGridView);
+			this.panelCorps.Controls.Add(this.flatButtonAjouter);
+			// 
+			// flatButtonAjouter
+			// 
+			this.flatButtonAjouter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.flatButtonAjouter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
+			this.flatButtonAjouter.FlatAppearance.BorderSize = 0;
+			this.flatButtonAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.flatButtonAjouter.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.flatButtonAjouter.ForeColor = System.Drawing.Color.White;
+			this.flatButtonAjouter.Location = new System.Drawing.Point(1688, 676);
+			this.flatButtonAjouter.Name = "flatButtonAjouter";
+			this.flatButtonAjouter.Size = new System.Drawing.Size(165, 56);
+			this.flatButtonAjouter.TabIndex = 15;
+			this.flatButtonAjouter.Text = "Ajouter";
+			this.flatButtonAjouter.UseVisualStyleBackColor = false;
+			this.flatButtonAjouter.Click += new System.EventHandler(this.flatButtonAjouter_Click);
 			// 
 			// flatListBoxLocataireCourant
 			// 
@@ -100,22 +116,6 @@ namespace Wallon.Pages.Vue.Taches
 			this.flatLabelCycle.Size = new System.Drawing.Size(177, 32);
 			this.flatLabelCycle.TabIndex = 16;
 			this.flatLabelCycle.Text = "Temps en jours";
-			// 
-			// flatButtonAjouter
-			// 
-			this.flatButtonAjouter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-			this.flatButtonAjouter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(245)))));
-			this.flatButtonAjouter.FlatAppearance.BorderSize = 0;
-			this.flatButtonAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.flatButtonAjouter.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.flatButtonAjouter.ForeColor = System.Drawing.Color.White;
-			this.flatButtonAjouter.Location = new System.Drawing.Point(10968, 4544);
-			this.flatButtonAjouter.Name = "flatButtonAjouter";
-			this.flatButtonAjouter.Size = new System.Drawing.Size(165, 56);
-			this.flatButtonAjouter.TabIndex = 15;
-			this.flatButtonAjouter.Text = "Ajouter";
-			this.flatButtonAjouter.UseVisualStyleBackColor = false;
-			this.flatButtonAjouter.Click += new System.EventHandler(this.flatButtonAjouter_Click);
 			// 
 			// flatTextBoxDatteDebut
 			// 
