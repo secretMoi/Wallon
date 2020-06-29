@@ -64,5 +64,6 @@ namespace FlatControls.Core
 
 		public int Count => _nombreElements;
 		public BindingSource Liens => _liens;
+		public DataTable Table => _table;
 	}
 }

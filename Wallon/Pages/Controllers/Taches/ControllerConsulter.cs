@@ -18,7 +18,7 @@ namespace Wallon.Pages.Controllers.Taches
 	{
 		private readonly RepositoryTaches _taches;
 		private readonly Mutex _mutex = new Mutex();
-		private Consulter _page;
+		private readonly Consulter _page;
 		private Waiting _waiting;
 
 		private readonly List<object[]> _list;
@@ -130,46 +130,52 @@ namespace Wallon.Pages.Controllers.Taches
 			}
 		}
 
+		/// <summary>
+		/// Permet de cacher les types de controls demandés
+		/// </summary>
+		/// <param name="controlsArray">Liste des types de controls à masquer</param>
 		public void HideControls(params Type[] controlsArray)
 		{
-			/*List<Type> types = new List<Type>(controlsArray.Length);
-
-			foreach (Control control in controlsArray)
-				types.Add(control.GetType());*/
-
 			foreach (Control control in _page.Controls) // parcours tous les controles
-				if(controlsArray.Contains(control.GetType()))
-					control.Visible = false;
+				if(controlsArray.Contains(control.GetType())) // si le control est dans la liste
+					control.Visible = false; // le masque
 		}
 
-		public void SetLoading(Panel panel, bool state)
+		/// <summary>
+		/// Définit si l'animation de chargement soit s'afficher ou non
+		/// </summary>
+		/// <param name="panel">Panel dans lequel insérer l'animation de chargement, null si pas de chargement</param>
+		public void SetLoading(Panel panel)
 		{
-			if (state)
+			if (panel != null) // si on active le chargement
 			{
 				if(_waiting == null)
-					_waiting = new Waiting();
-				_waiting.Name = "waiting";
+					_waiting = new Waiting(); // crée le control si pas encore fait
+				_waiting.Name = "waiting"; // nom permettant de le supprimer plus facilement
 				_waiting.Location = new Point(
 					(panel.Width - _waiting.Width) / 2,
 					(panel.Height - _waiting.Height) / 2
 				);
 
-				panel.Controls.Add(_waiting);
+				panel.Controls.Add(_waiting); // ajout l'animation de chargement au panel
 
-				_page.FlatDataGridView.DataSourceChanged(DataAddedToDgv);
-				_page.FlatDataGridView.Visible = false;
+				_page.FlatDataGridView.DataSourceChanged(DataAddedToDgv); // méthode de callback à appeler lorsque les données sont chargées (fin du chargement)
+				_page.FlatDataGridView.Visible = false; // désactive la dgv durant le chargement
 			}
 			else
 			{
-				_page.Controls.RemoveByKey("waiting");
+				_page.Controls.RemoveByKey("waiting"); // retire l'animation de chargement
 
-				_page.FlatDataGridView.Visible = true;
+				_page.FlatDataGridView.Visible = true; // affiche les données
 			}
 		}
 
+		/// <summary>
+		/// Méthode appelée lors de la fin du chargement des données
+		/// </summary>
 		public void DataAddedToDgv(object sender, EventArgs e)
 		{
-			SetLoading(null, false);
+			SetLoading(null);
 		}
 	}
 }

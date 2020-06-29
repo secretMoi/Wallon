@@ -24,7 +24,7 @@ namespace Wallon.Pages.Vue.Utilisateurs
 
 			_controllerListe.ListeColonnes(this);
 
-			_controllerListe.GetData(_useGridView);
+			_controllerListe.GetData(UseGridView);
 
 			AfterLoad();
 		}

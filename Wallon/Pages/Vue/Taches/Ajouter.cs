@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
-using Couche_Classe;
-using Wallon.Controllers;
+﻿using System.Windows.Forms;
 using Wallon.Controllers.BaseConsulter;
 using Wallon.Pages.Controllers.Taches;
-using Wallon.Repository;
 
 namespace Wallon.Pages.Vue.Taches
 {
@@ -49,11 +45,9 @@ namespace Wallon.Pages.Vue.Taches
 
 			if(!AnyArgs()) return; // si aucun argument on arrête
 
+			_controllerAjouter.IdTache = (int)_arguments[0]; // sinon récupère l'id de la tâche
 
-
-			int idTache = (int) _arguments[0]; // sinon récupère l'id de la tâche
-
-			Couche_Classe.Taches tache = _controllerAjouter.GetTache(idTache); // récupère la tâche
+			Couche_Classe.Taches tache = _controllerAjouter.GetTache(); // récupère la tâche
 
 			SetTitre("Modification de la tâche " + tache.Nom); // modifie le titre
 
@@ -66,7 +60,9 @@ namespace Wallon.Pages.Vue.Taches
 			flatListBoxLocataireCourant.Visible = true;
 			flatListBoxLocataireCourant.Text = _controllerAjouter.FillFieldLocataireCourant(tache.LocataireCourant);
 
-			flatListBoxLocataireCourant.Add(_controllerAjouter.FillListLocataireCourant(idTache));
+			flatListBoxLocataireCourant.Add(_controllerAjouter.FillListLocataireCourant());
+
+			_flatDataGridView.DataSourceChanged(_controllerAjouter.UpdateDgv);
 
 			flatButtonAjouter.Text = @"Modifier"; // modifie le texte du bouton de validation
 		}
@@ -78,7 +74,7 @@ namespace Wallon.Pages.Vue.Taches
 		/// <param name="e">Arguments</param>
 		private void flatButtonAjouter_Click(object sender, System.EventArgs e)
 		{
-			_controllerAjouter.Ajouter(
+			_controllerAjouter.Envoyer(
 				flatTextName.Text,
 				flatTextBoxDatteDebut.Text,
 				flatTextBoxCycle.Text

@@ -45,7 +45,7 @@ namespace Wallon.Pages.Vue.Taches
 
 		private void Consulter_SizeChanged(object sender, EventArgs e)
 		{
-			_controllerConsulter.SetLoading(panelCorps, true);
+			_controllerConsulter.SetLoading(panelCorps);
 		}
 	}
 }

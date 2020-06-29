@@ -18,15 +18,15 @@ namespace Wallon.Pages.Controllers.Taches
 	public class ControllerAjouter
 	{
 		private readonly RepositoryTaches _taches;
-		//private readonly List<(int, int)> _associeIdListAndLocataires; // id1 ordre, id2 id réel bdd
 		private readonly Ajouter _page;
 
 		public ControllerAjouter(Ajouter page)
 		{
 			_page = page;
 			_taches = new RepositoryTaches();
-			//_associeIdListAndLocataires = new List<(int, int)>();
 		}
+
+		public int? IdTache { get; set; }
 
 		/// <summary>
 		/// Initialise les colonnes de la dgv
@@ -60,20 +60,52 @@ namespace Wallon.Pages.Controllers.Taches
 		}
 
 		/// <summary>
+		/// Modifie le champ inclu dans la dgv lors de la modification
+		/// </summary>
+		public void UpdateDgv(object sender, EventArgs e)
+		{
+			//todo restore l'ordre des locataires
+			List<int> locatairesInclus = new RepositoryLiaisonTachesLocataires().ListeLocataires((int) IdTache); // récupère la liste des locataires inclus dans la tâche
+
+			for (int i = 0; i < _page.FlatDataGridView.Rows.Count; i++)
+			{
+				if (locatairesInclus.Contains(
+					int.Parse(
+						_page.FlatDataGridView.Get(
+							i,
+							"Id"
+						))
+				))
+				{
+					_page.FlatDataGridView.Set(i, "Inclu", "Oui");
+				}
+			}
+		}
+
+		/// <summary>
 		/// Permet d'ajouter une tâche et sa liaison
 		/// </summary>
 		/// <param name="name">Nom de la tâche</param>
 		/// <param name="datte">Datte de début de la tâche</param>
 		/// <param name="cycleInput">Cycle en jours pour répéter la tâche</param>
-		public void Ajouter(string name, string datte, string cycleInput)
+		public void Envoyer(string name, string datte, string cycleInput)
+		{
+			DateTime datteDebut = default;
+			int cycle = 0;
+			List<int> idLocataires = new List<int>();
+			if (!ValidateInput(name, datte, cycleInput, ref datteDebut, ref cycle, idLocataires)) return;
+
+			Ajouter(name, datteDebut, cycle, idLocataires);
+		}
+
+		private bool ValidateInput(string name, string datte, string cycleInput, ref DateTime datteDebut, ref int cycle, List<int> idLocataires)
 		{
 			if (!Formulaire.IsValid(name, datte, cycleInput))
 			{
 				Dialog.Show("Le formulaire n'est pas correctement rempli");
-				return;
+				return false;
 			}
 
-			DateTime datteDebut;
 			try
 			{
 				datteDebut = Convert.ToDateTime(datte);
@@ -81,33 +113,36 @@ namespace Wallon.Pages.Controllers.Taches
 			catch
 			{
 				Dialog.Show("La datte " + datte + " n'est pas valide");
-				return;
+				return false;
 			}
 
-			if (!int.TryParse(cycleInput, out int cycle))
+			if (!int.TryParse(cycleInput, out cycle))
 			{
 				Dialog.Show("Le cycle " + cycleInput + " n'est pas valide");
-				return;
+				return false;
 			}
 
 			FlatDataGridView flatDataGridView = _page.FlatDataGridView;
-
 			// récupère la liste des id des locataires inclus dans la dgv
-			List<int> idLocataires = new List<int>();
 			for (int i = 0; i < flatDataGridView.Rows.Count; i++)
 			{
-				if(flatDataGridView.Get(i, (int)flatDataGridView.GetColumnId("Inclu")) == "Oui" )
+				if (flatDataGridView.Get(i, (int)flatDataGridView.GetColumnId("Inclu")) == "Oui")
 					idLocataires.Add(
-						Convert.ToInt32(flatDataGridView.Get(i, (int) flatDataGridView.GetColumnId("Id")))
+						Convert.ToInt32(flatDataGridView.Get(i, (int)flatDataGridView.GetColumnId("Id")))
 					);
 			}
 
 			if (idLocataires.Count == 0)
 			{
 				Dialog.Show("Aucun locataire sélectionné !");
-				return;
+				return false;
 			}
 
+			return true;
+		}
+
+		private void Ajouter(string name, DateTime datteDebut, int cycle, List<int> idLocataires)
+		{
 			// Crée la tâche
 			Couche_Classe.Taches tache = new Couche_Classe.Taches(
 				name,
@@ -150,10 +185,9 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <summary>
 		/// Récupère une tâche grâce à son id dans la base de données
 		/// </summary>
-		/// <param name="idTache">Id de la tâche à trouver</param>
-		public Couche_Classe.Taches GetTache(int idTache)
+		public Couche_Classe.Taches GetTache()
 		{
-			return _taches.LireId(idTache);
+			return _taches.LireId((int) IdTache);
 		}
 
 		/// <summary>
@@ -170,11 +204,10 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <summary>
 		/// Récupère la liste des locataires associés à une tâche
 		/// </summary>
-		/// <param name="idTache">Id de la tâche</param>
 		/// <returns>Tableau des noms des locataires</returns>
-		public string[] FillListLocataireCourant(int idTache)
+		public string[] FillListLocataireCourant()
 		{
-			List<int> listeIdLocataires = new RepositoryLiaisonTachesLocataires().ListeLocataires(idTache);
+			List<int> listeIdLocataires = new RepositoryLiaisonTachesLocataires().ListeLocataires((int) IdTache);
 
 			List<Locataire> listeLocataires = new List<Locataire>(listeIdLocataires.Count);
 
@@ -184,6 +217,9 @@ namespace Wallon.Pages.Controllers.Taches
 			return listeLocataires.Select(x => x.Nom).ToArray();
 		}
 
+		/// <summary>
+		/// Actions à effectuer lors du clic sur les colonnes cliquables
+		/// </summary>
 		public void Clic(object sender, DataGridViewCellMouseEventArgs e)
 		{
 			int ligne = e.RowIndex;

@@ -115,6 +115,7 @@ namespace FlatControls.Controls
 		/// Récupère les données de la dgv à une position donnée
 		/// </summary>
 		/// <param name="coordonnees">Couple définissant les coodonnées (x définissant la ligne et y la colonne)</param>
+		/// <returns>Le texte trouvé</returns>
 		public string Get(Couple coordonnees)
 		{
 			if (dataGridView.Rows.Count > coordonnees.Xi && dataGridView.ColumnCount > coordonnees.Yi)
@@ -128,9 +129,26 @@ namespace FlatControls.Controls
 		/// </summary>
 		/// <param name="x">Position en ligne</param>
 		/// <param name="y">Position en colonne</param>
+		/// <returns>Le texte trouvé</returns>
 		public string Get(int x, int y)
 		{
 			return Get(new Couple(x, y));
+		}
+
+		/// <summary>
+		/// Récupère les données de la dgv à une position donnée
+		/// </summary>
+		/// <param name="x">Position en ligne</param>
+		/// <param name="columnName">Nom de la colonne</param>
+		/// <returns>Le texte trouvé</returns>
+		public string Get(int x, string columnName)
+		{
+			int? y = GetColumnId(columnName);
+
+			if (y == null)
+				throw new Exception($"Colonne {columnName} non trouvée dans la datagridview");
+
+			return Get(new Couple(x, (int) y));
 		}
 
 		/// <summary>
@@ -160,6 +178,23 @@ namespace FlatControls.Controls
 		public bool Set(int x, int y, object value)
 		{
 			return Set(new Couple(x, y), value);
+		}
+
+		/// <summary>
+		/// Remplace les données d'une cellule
+		/// </summary>
+		/// <param name="x">Position en ligne</param>
+		/// <param name="columnName">Nom de la colonne</param>
+		/// /// <param name="value">Valeur à insérer</param>
+		/// <returns>true si la modification s'est bien passée, false sinon</returns>
+		public bool Set(int x, string columnName, object value)
+		{
+			int? y = GetColumnId(columnName);
+
+			if (y == null)
+				throw new Exception($"Colonne {columnName} non trouvée dans la datagridview");
+
+			return Set(new Couple(x, (int) y), value);
 		}
 
 		/// <summary>

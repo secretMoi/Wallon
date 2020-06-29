@@ -10,7 +10,7 @@ namespace Wallon.Controllers.BaseConsulter
 {
 	public class BaseConsulter : ThemePanel
 	{
-		public UseGridView _useGridView; // permet d'insérer les données à transmettre à la dgv
+		public UseGridView UseGridView; // permet d'insérer les données à transmettre à la dgv
 		protected FlatDataGridView _flatDataGridView; // permet d'accéder en direct à la dgv
 		protected List<(string, DataGridViewAutoSizeColumnMode)> _columnToResize; // gère les colonnes à redimensionner
 		protected ColonnesCliquables _gestionColonnesCliquables; // gère les colonnes cliquables
@@ -42,7 +42,7 @@ namespace Wallon.Controllers.BaseConsulter
 		{
 			if (_gestionColonnesCliquables == null)
 			{
-				_useGridView.Add(data); // envoie la ligne vers la dgv
+				UseGridView.Add(data); // envoie la ligne vers la dgv
 				return;
 			}
 
@@ -66,7 +66,7 @@ namespace Wallon.Controllers.BaseConsulter
 					finalData[i] = images[i - data.Length];
 			}
 
-			_useGridView.Add(finalData); // envoie la ligne vers la dgv
+			UseGridView.Add(finalData); // envoie la ligne vers la dgv
 		}
 
 		/// <summary>
@@ -77,7 +77,7 @@ namespace Wallon.Controllers.BaseConsulter
 			_flatDataGridView.AddClickMethod(EffetClic); // s'inscrit aux event de clic dans la dgv
 
 			//_flatDataGridView.DataSource = _useGridView.Liens; // ajout(liage) des colonnes à la gridview
-			await _flatDataGridView.DataSourceAsync(_useGridView.Liens); // ajout(liage) des colonnes à la gridview
+			await _flatDataGridView.DataSourceAsync(UseGridView.Liens); // ajout(liage) des colonnes à la gridview
 
 			foreach ((string, DataGridViewAutoSizeColumnMode) colonne in _columnToResize)
 				if(_flatDataGridView.Column.Contains(colonne.Item1))
@@ -90,7 +90,7 @@ namespace Wallon.Controllers.BaseConsulter
 		/// <param name="titres">Liste des titres de chaque colonne</param>
 		public void SetColonnes(params string[] titres)
 		{
-			_useGridView = new UseGridView(titres);
+			UseGridView = new UseGridView(titres);
 		}
 
 		/// <summary>
@@ -100,7 +100,7 @@ namespace Wallon.Controllers.BaseConsulter
 		protected void SetColonnesCliquables(params string[] titres)
 		{
 			_flatDataGridView.SetColonnesCliquables(
-				_useGridView.CreateImageColumn(titres)
+				UseGridView.CreateImageColumn(titres)
 			);
 		}
 
