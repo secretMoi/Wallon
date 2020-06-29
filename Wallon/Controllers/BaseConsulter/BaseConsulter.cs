@@ -76,7 +76,7 @@ namespace Wallon.Controllers.BaseConsulter
 		{
 			_flatDataGridView.AddClickMethod(EffetClic); // s'inscrit aux event de clic dans la dgv
 
-			//_flatDataGridView.DataSource = _useGridView.Liens; // ajout(liage) des colonnes à la gridview
+			//_flatDataGridView.DataSource = UseGridView.Liens; // ajout(liage) des colonnes à la gridview
 			await _flatDataGridView.DataSourceAsync(UseGridView.Liens); // ajout(liage) des colonnes à la gridview
 
 			foreach ((string, DataGridViewAutoSizeColumnMode) colonne in _columnToResize)

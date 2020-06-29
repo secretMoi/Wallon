@@ -26,6 +26,18 @@ namespace Wallon.Repository
 			}
 		}
 
+		public void Supprimer(int id)
+		{
+			try
+			{
+				_gestion.Supprimer(id);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception($"Impossible de supprimer l'id de liaison : {id} \n" + ex.Message);
+			}
+		}
+
 		public List<int> LireTachesLocataire(int idLocataire)
 		{
 			try

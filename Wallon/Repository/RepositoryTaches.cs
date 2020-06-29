@@ -45,6 +45,18 @@ namespace Wallon.Repository
 			}
 		}
 
+		public void Supprimer(int id)
+		{
+			try
+			{
+				_gestion.Supprimer(id);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception($"Impossible de supprimer l'id de la tâche : {id} \n" + ex.Message);
+			}
+		}
+
 		/// <summary>
 		/// Récupère les tâches que le locataire doit effectuer
 		/// </summary>

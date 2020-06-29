@@ -16,6 +16,8 @@ namespace FlatControls.Controls
 
 		private readonly List<string> _hidedColumns;
 
+		public event EventHandler<EventArgs> DgvFilled;
+
 		public FlatDataGridView()
 		{
 			InitializeComponent();
@@ -145,9 +147,34 @@ namespace FlatControls.Controls
 				dataGridView.FirstDisplayedScrollingRowIndex++;
 		}
 
+		/// <summary>
+		/// Ajoute une méthode de callback à appeler lorsque la dgv est remplie
+		/// </summary>
+		/// <param name="callback">Méthode à appeler</param>
+		public void DataSourceFilled(EventHandler<EventArgs> callback)
+		{
+			DgvFilled += callback;
+		}
+
+		/// <summary>
+		/// Lance l'event de DgvFilled et informe tous ses subscribers
+		/// </summary>
+		/// <param name="e">Classe d'arguments</param>
+		/// <param name="handler">Permet de changer le type d'event si besoin à l'avenir</param>
+		private void LaunchEvent(EventArgs e, EventHandler<EventArgs> handler)
+		{
+			handler?.Invoke(this, e);
+			DgvFilled -= handler;
+		}
+
 		public void DataSourceChanged(EventHandler callback)
 		{
 			dataGridView.DataSourceChanged += callback;
+		}
+
+		public void DataBindingComplete(DataGridViewBindingCompleteEventHandler callback)
+		{
+			dataGridView.DataBindingComplete += callback;
 		}
 	}
 }

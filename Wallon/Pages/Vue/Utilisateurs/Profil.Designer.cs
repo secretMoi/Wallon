@@ -41,7 +41,7 @@
 			// panelTitre
 			// 
 			this.panelTitre.Controls.Add(this.alerte);
-			this.panelTitre.Size = new System.Drawing.Size(1539, 120);
+			this.panelTitre.Size = new System.Drawing.Size(1856, 120);
 			this.panelTitre.Controls.SetChildIndex(this.labelTitre, 0);
 			this.panelTitre.Controls.SetChildIndex(this.alerte, 0);
 			// 
@@ -52,7 +52,7 @@
 			this.panelCorps.Controls.Add(this.flatTextBoxNom);
 			this.panelCorps.Controls.Add(this.flatLabelPassword);
 			this.panelCorps.Controls.Add(this.flatLabelNom);
-			this.panelCorps.Size = new System.Drawing.Size(1539, 435);
+			this.panelCorps.Size = new System.Drawing.Size(1856, 773);
 			// 
 			// flatLabelNom
 			// 
@@ -83,7 +83,7 @@
 			this.flatTextBoxNom.Location = new System.Drawing.Point(192, 19);
 			this.flatTextBoxNom.Margin = new System.Windows.Forms.Padding(0);
 			this.flatTextBoxNom.Name = "flatTextBoxNom";
-			this.flatTextBoxNom.Size = new System.Drawing.Size(150, 40);
+			this.flatTextBoxNom.Size = new System.Drawing.Size(257, 40);
 			this.flatTextBoxNom.TabIndex = 2;
 			// 
 			// flatTextBoxPassword
@@ -93,7 +93,7 @@
 			this.flatTextBoxPassword.Location = new System.Drawing.Point(192, 81);
 			this.flatTextBoxPassword.Margin = new System.Windows.Forms.Padding(0);
 			this.flatTextBoxPassword.Name = "flatTextBoxPassword";
-			this.flatTextBoxPassword.Size = new System.Drawing.Size(150, 40);
+			this.flatTextBoxPassword.Size = new System.Drawing.Size(257, 40);
 			this.flatTextBoxPassword.TabIndex = 3;
 			// 
 			// flatButtonUpdate
@@ -105,7 +105,7 @@
 			this.flatButtonUpdate.ForeColor = System.Drawing.Color.White;
 			this.flatButtonUpdate.Location = new System.Drawing.Point(192, 143);
 			this.flatButtonUpdate.Name = "flatButtonUpdate";
-			this.flatButtonUpdate.Size = new System.Drawing.Size(150, 36);
+			this.flatButtonUpdate.Size = new System.Drawing.Size(257, 36);
 			this.flatButtonUpdate.TabIndex = 4;
 			this.flatButtonUpdate.Text = "Mettre à jour";
 			this.flatButtonUpdate.UseVisualStyleBackColor = false;
@@ -128,7 +128,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Name = "Profil";
-			this.Size = new System.Drawing.Size(1539, 555);
+			this.Size = new System.Drawing.Size(1856, 893);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();
 			this.panelCorps.ResumeLayout(false);

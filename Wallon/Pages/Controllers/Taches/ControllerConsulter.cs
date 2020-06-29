@@ -162,7 +162,7 @@ namespace Wallon.Pages.Controllers.Taches
 				_page.FlatDataGridView.DataSourceChanged(DataAddedToDgv); // méthode de callback à appeler lorsque les données sont chargées (fin du chargement)
 				_page.FlatDataGridView.Visible = false; // désactive la dgv durant le chargement
 			}
-			else
+			else if(_page.FlatDataGridView.Rows.Count != 0)
 			{
 				_page.Controls.RemoveByKey("waiting"); // retire l'animation de chargement
 

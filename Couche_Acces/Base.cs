@@ -219,7 +219,7 @@ namespace Couche_Acces
 		/// <param name="id">Id de l'enregistrement à supprimer</param>
 		public int Supprimer(int id)
 		{
-			CreerCommande(Table + "Supprimer");
+			CreerCommande("Supprimer");
 
 			AddTableAsParam();
 

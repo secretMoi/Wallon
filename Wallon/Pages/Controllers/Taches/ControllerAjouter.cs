@@ -18,12 +18,14 @@ namespace Wallon.Pages.Controllers.Taches
 	public class ControllerAjouter
 	{
 		private readonly RepositoryTaches _taches;
+		private readonly RepositoryLiaisonTachesLocataires _liaison;
 		private readonly Ajouter _page;
 
 		public ControllerAjouter(Ajouter page)
 		{
 			_page = page;
 			_taches = new RepositoryTaches();
+			_liaison = new RepositoryLiaisonTachesLocataires();
 		}
 
 		public int? IdTache { get; set; }
@@ -64,7 +66,7 @@ namespace Wallon.Pages.Controllers.Taches
 		/// </summary>
 		public void UpdateDgv(object sender, EventArgs e)
 		{
-			List<int> locatairesInclus = new RepositoryLiaisonTachesLocataires().ListeLocataires((int) IdTache); // récupère la liste des locataires inclus dans la tâche
+			List<int> locatairesInclus = _liaison.ListeLocataires((int) IdTache); // récupère la liste des locataires inclus dans la tâche
 
 			for (int i = 0; i < _page.FlatDataGridView.Rows.Count; i++) // parcours la dgv
 			{
@@ -96,7 +98,13 @@ namespace Wallon.Pages.Controllers.Taches
 			List<int> idLocataires = new List<int>();
 			if (!ValidateInput(name, datte, cycleInput, ref datteDebut, ref cycle, idLocataires)) return;
 
-			Ajouter(name, datteDebut, cycle, idLocataires);
+			if(IdTache == null) // mode ajout
+				Ajouter(name, datteDebut, cycle, idLocataires);
+			else // mode update
+			{
+				Supprimer();
+				Ajouter(name, datteDebut, cycle, idLocataires);
+			}
 		}
 
 		private bool ValidateInput(string name, string datte, string cycleInput, ref DateTime datteDebut, ref int cycle, List<int> idLocataires)
@@ -166,12 +174,23 @@ namespace Wallon.Pages.Controllers.Taches
 
 			// Ajout les locataires à la tâche dans la bdd (table liaison)
 			foreach (int idSelected in idLocataires)
-				new RepositoryLiaisonTachesLocataires().Ajouter(
+				_liaison.Ajouter(
 					idSelected,
 					idTache
 				);
 
 			Dialog.Show("La tâche " + name + " a bien été ajoutée");
+		}
+
+		private void Supprimer()
+		{
+			List<int> liaisonsASupprimer = _liaison.ListeLocataires((int) IdTache);
+			foreach (int liaison in liaisonsASupprimer)
+			{
+				_liaison.Supprimer(liaison);
+			}
+
+			_taches.Supprimer((int) IdTache);
 		}
 
 		/// <summary>
@@ -208,7 +227,7 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <returns>Tableau des noms des locataires</returns>
 		public string[] FillListLocataireCourant()
 		{
-			List<int> listeIdLocataires = new RepositoryLiaisonTachesLocataires().ListeLocataires((int) IdTache);
+			List<int> listeIdLocataires = _liaison.ListeLocataires((int) IdTache);
 
 			List<Locataire> listeLocataires = new List<Locataire>(listeIdLocataires.Count);
 

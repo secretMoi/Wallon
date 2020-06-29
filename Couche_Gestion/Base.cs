@@ -2,10 +2,6 @@
 {
 	public class Base
 	{
-		#region Données membres
-		string _chaineConnexion;
-		#endregion
-
 		#region Constructeurs
 		public Base()
 		{
@@ -23,12 +19,14 @@
 			return new Couche_Acces.Base(ChaineConnexion).TestConnection();
 		}
 
-		#region Accesseur
-		public string ChaineConnexion
+		public void Supprimer(int id)
 		{
-			get => _chaineConnexion;
-			set => _chaineConnexion = value;
+			new Couche_Acces.Base(ChaineConnexion).Supprimer(id);
 		}
+
+		#region Accesseur
+		public string ChaineConnexion { get; set; }
+
 		#endregion
 	}
 }
