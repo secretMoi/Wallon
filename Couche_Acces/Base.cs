@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text;
 
 namespace Couche_Acces
 {
@@ -319,6 +320,13 @@ namespace Couche_Acces
 			for (int i = 0; i < _classesBase.GetChamps().Count; i++)
 			{
 				champ = _classesBase.GetChamps()[i];
+
+				if (champ.Item2 == typeof(byte[])) // si le champ est un tableau d'octets
+				{
+					arguments[i] = sqlDataReader[champ.Item1];
+					continue;
+				}
+
 				valeur = LireChamp(sqlDataReader, champ.Item1);
 
 				if (champ.Item2 == typeof(string)) // si le champ est de type string

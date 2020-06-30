@@ -1,7 +1,9 @@
-﻿using Wallon.Controllers;
-using Wallon.Fenetres;
+﻿using System;
+using System.IO;
+using System.Security.Cryptography;
+using Couche_Classe;
+using Wallon.Controllers;
 using Wallon.Pages.Controllers;
-using Wallon.Repository;
 
 namespace Wallon.Pages.Vue
 {
@@ -29,12 +31,33 @@ namespace Wallon.Pages.Vue
 
 			flatTextBoxPassword.IsPassword = true;
 
+			/*using (Aes myAes = Aes.Create())
+			{
+
+				// Encrypt the string to an array of bytes.
+				byte[] encrypted = EncryptStringToBytes_Aes(original, myAes.Key, myAes.IV);
+
+				using (StreamWriter file = new StreamWriter(@"debug.txt", true))
+				{
+					file.WriteLine(myAes.Key);
+					file.WriteLine(myAes.IV);
+					myAes.
+				}
+
+				// Decrypt the bytes to a string.
+				string roundtrip = DecryptStringFromBytes_Aes(encrypted, myAes.Key, myAes.IV);
+
+				//Display the original data and the decrypted data.
+				Console.WriteLine("Original:   {0}", original);
+				Console.WriteLine("Round Trip: {0}", roundtrip);
+			}*/
+
 			//Dialog.Show(new RepositoryLocataires().);
 
-			//_controllerLocataires.Ajouter(new Locataire("Quentin", "test"));
+			//_controllerLocataires.Ajouter(new Locataire("w", "x"));
 		}
 
-		private void flatButtonConnexion_Click(object sender, System.EventArgs e)
+		private void flatButtonConnexion_Click(object sender, EventArgs e)
 		{
 			// récupère les text des champs
 			string nom = flatTextName.Text;

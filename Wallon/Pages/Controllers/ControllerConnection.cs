@@ -1,4 +1,5 @@
-﻿using Wallon.Controllers;
+﻿using System.Text;
+using Wallon.Controllers;
 using Wallon.Core;
 
 namespace Wallon.Pages.Controllers
@@ -39,7 +40,8 @@ namespace Wallon.Pages.Controllers
 		public void Save(string nom, string password)
 		{
 			LocalOptions.SetOption(ChampNom, nom);
-			LocalOptions.SetOption(ChampPassword, Cryptage.Crypt(password));
+			//LocalOptions.SetOption(ChampPassword, Cryptage.Crypt(password));
+			LocalOptions.SetOption(ChampPassword,  Encoding.ASCII.GetString(Cryptage.Crypt(password)));
 
 			LocalOptions.Enregistre();
 		}

@@ -15,12 +15,12 @@ namespace Couche_Gestion
 		{
 		}
 
-		public int Ajouter(string nom, string password)
+		public int Ajouter(string nom, byte[] password)
 		{
 			return new Acces_Locataire(ChaineConnexion).Ajouter(nom, password);
 		}
 
-		public int Modifier(int id, string nom, string password)
+		public int Modifier(int id, string nom, byte[] password)
 		{
 			return new Acces_Locataire(ChaineConnexion).Modifier(id, nom, password);
 		}

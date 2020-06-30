@@ -77,7 +77,7 @@
       <HintPath>..\Couche_Acces\obj\Debug\Couche_Acces.dll</HintPath>
     </Reference>
     <Reference Include="Couche_Classe">
-      <HintPath>..\Couche_Classe\obj\Debug\Couche_Classe.dll</HintPath>
+      <HintPath>..\Couche_Classe\bin\Debug\Couche_Classe.dll</HintPath>
     </Reference>
     <Reference Include="Couche_Gestion">
       <HintPath>..\Couche_Gestion\obj\Debug\Couche_Gestion.dll</HintPath>
@@ -389,6 +389,8 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

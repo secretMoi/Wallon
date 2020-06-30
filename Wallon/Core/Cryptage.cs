@@ -7,8 +7,8 @@ namespace Wallon.Core
 {
 	public static class Cryptage
 	{
-		private static readonly byte[] Cle = Encoding.UTF8.GetBytes("$R!JtG?3R3(NnV@/");
-		private static readonly byte[] Iv = Encoding.UTF8.GetBytes("42dkR3L/w8F)NQne");
+		private static readonly byte[] Cle = Aes.Create().Key = Encoding.UTF8.GetBytes("$R!JtG?3R3(NnV@/");
+		private static readonly byte[] Iv = Aes.Create().IV = Encoding.UTF8.GetBytes("42dkR3L/w8F)NQne");
 
 		public static byte[] Crypt(string plainText)
 		{
@@ -44,6 +44,16 @@ namespace Wallon.Core
 
 			// Return the encrypted bytes from the memory stream.
 			return encrypted;
+		}
+
+		public static byte[] Crypt(byte[] plainText)
+		{
+			return Crypt(Encoding.ASCII.GetString(plainText));
+		}
+
+		public static string Uncrypt(string cipherText)
+		{
+			return Uncrypt(Encoding.ASCII.GetBytes(cipherText));
 		}
 
 		public static string Uncrypt(byte[] cipherText)

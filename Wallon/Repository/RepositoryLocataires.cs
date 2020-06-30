@@ -76,7 +76,7 @@ namespace Wallon.Repository
 				throw new Exception("Impossible de modifier le locataire " + locataire.Nom + "  : \n" + ex.Message);
 			}
 		}
-		public int Modifier(int id, string nom, string password)
+		public int Modifier(int id, string nom, byte[] password)
 		{
 			return Modifier(new Locataire(id, nom, password));
 		}

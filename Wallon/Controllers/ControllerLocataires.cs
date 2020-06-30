@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using Couche_Classe;
 using Wallon.Core;
 using Wallon.Repository;
@@ -46,11 +47,15 @@ namespace Wallon.Controllers
 
 			_idValid = locataire.Id;
 
+			var t1 = locataire.Password;
+			var t2 = Cryptage.Crypt(password);
+
+
 			using (StreamWriter file =
 				new StreamWriter(@"debug.txt", true))
 			{
-				file.WriteLine("1 - " + Cryptage.Uncrypt(locataire.Password));
-				file.WriteLine("2 - " + password);
+				file.WriteLine("1 - " + Encoding.ASCII.GetString(locataire.Password));
+				file.WriteLine("2 - " + Encoding.ASCII.GetString(Cryptage.Crypt( password)));
 			}
 
 			return Cryptage.Uncrypt(locataire.Password) == password;
