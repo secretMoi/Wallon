@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using Couche_Classe;
 using Wallon.Core;
 using Wallon.Repository;
@@ -8,13 +9,6 @@ namespace Wallon.Controllers
 	public class ControllerLocataires
 	{
 		private int _idValid;
-
-		public ControllerLocataires()
-		{ 
-			/*Ajouter(
-				new Locataire("q", "s")
-			);*/
-		}
 
 		public int Ajouter(Locataire locataire)
 		{
@@ -27,7 +21,7 @@ namespace Wallon.Controllers
 		/// Vérifie que le nom du locataire passé en paramètres existe dans la bdd
 		/// </summary>
 		/// <param name="nom">Le nom du locataire</param>
-		/// <returns>true si le locataire se trouve dans la bdd, false sinon</returns>
+		/// <returns>Renvoie un objet locataire si trouvé, null sinon</returns>
 		public Locataire Existe(string nom)
 		{
 			List<Locataire> locataires = new RepositoryLocataires().Lire("id");
@@ -51,6 +45,13 @@ namespace Wallon.Controllers
 			if (locataire == null) return false;
 
 			_idValid = locataire.Id;
+
+			using (StreamWriter file =
+				new StreamWriter(@"debug.txt", true))
+			{
+				file.WriteLine("1 - " + Cryptage.Uncrypt(locataire.Password));
+				file.WriteLine("2 - " + password);
+			}
 
 			return Cryptage.Uncrypt(locataire.Password) == password;
 		}

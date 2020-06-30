@@ -12,21 +12,22 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>\\Iridium\Docs\DeployWallons\</PublishUrl>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>\\I7-4790K\Wallons\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Unc</InstallFrom>
+    <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>\\Iridium\Docs\DeployWallons\</InstallUrl>
+    <MapFileExtensions>false</MapFileExtensions>
+    <InstallUrl>http://192.168.1.124:80/</InstallUrl>
+    <UpdateUrl>http://192.168.1.124:80/</UpdateUrl>
     <ProductName>Wallons</ProductName>
     <PublisherName>Quentin</PublisherName>
-    <ApplicationRevision>30</ApplicationRevision>
+    <ApplicationRevision>44</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

@@ -10,8 +10,8 @@
 
 			//new GestionTaches(Connexion).Ajouter("test", DateTime.Now, true);
 
-			if(!Settings.Auth)
-				LoadPage("Connexion");
+			//if(!Settings.Auth)
+				//LoadPage("Utilisateurs.Liste");
 		}
 	}
 }

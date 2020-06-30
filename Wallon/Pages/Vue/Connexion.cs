@@ -1,5 +1,7 @@
 ﻿using Wallon.Controllers;
+using Wallon.Fenetres;
 using Wallon.Pages.Controllers;
+using Wallon.Repository;
 
 namespace Wallon.Pages.Vue
 {
@@ -26,6 +28,8 @@ namespace Wallon.Pages.Vue
 			SetColors();
 
 			flatTextBoxPassword.IsPassword = true;
+
+			//Dialog.Show(new RepositoryLocataires().);
 
 			//_controllerLocataires.Ajouter(new Locataire("Quentin", "test"));
 		}
