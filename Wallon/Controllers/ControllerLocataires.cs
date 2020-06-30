@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Couche_Classe;
 using Wallon.Core;
@@ -58,7 +59,7 @@ namespace Wallon.Controllers
 				file.WriteLine("2 - " + Encoding.ASCII.GetString(Cryptage.Crypt( password)));
 			}
 
-			return Cryptage.Uncrypt(locataire.Password) == password;
+			return locataire.Password.SequenceEqual(Cryptage.Crypt(password));
 		}
 
 		public Locataire GetById(int id)

@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using Wallon.Controllers;
 using Wallon.Core;
 
@@ -23,7 +26,7 @@ namespace Wallon.Pages.Controllers
 		/// <returns>true si les identifiants sont trouvés et valides, false sinon</returns>
 		public bool AuthInCacheValid(ControllerLocataires controllerLocataires)
 		{
-			(string, string) result = Get();
+			(string, byte[]) result = Get();
 
 			if (result.Item1 != null && result.Item2 != null)
 				if (controllerLocataires.Authentifie(result.Item1,  Cryptage.Uncrypt(result.Item2)))
@@ -40,8 +43,7 @@ namespace Wallon.Pages.Controllers
 		public void Save(string nom, string password)
 		{
 			LocalOptions.SetOption(ChampNom, nom);
-			//LocalOptions.SetOption(ChampPassword, Cryptage.Crypt(password));
-			LocalOptions.SetOption(ChampPassword,  Encoding.ASCII.GetString(Cryptage.Crypt(password)));
+			LocalOptions.SetOption(ChampPassword,  Cryptage.Crypt(password));
 
 			LocalOptions.Enregistre();
 		}
@@ -50,12 +52,19 @@ namespace Wallon.Pages.Controllers
 		/// Récupère les identifiants dans le fichier local du pc
 		/// </summary>
 		/// <returns>Item1 le nom d'utilisateur, item2 le mot de passe</returns>
-		public (string, string) Get()
+		public (string, byte[]) Get()
 		{
-			(string, string) result;
+			(string, byte[]) result;
 
-			result.Item1 = LocalOptions.GetOption(ChampNom);
-			result.Item2 = LocalOptions.GetOption(ChampPassword);
+			result.Item1 = LocalOptions.GetOption(ChampNom) as string;
+
+			string password = LocalOptions.GetOption(ChampPassword) as string;
+			if (password == null)
+			{
+				result.Item2 = null;
+				return result;
+			}
+			result.Item2 = Convert.FromBase64String(password);
 
 			return result;
 		}

@@ -8,7 +8,7 @@ namespace Wallon
 	public class LocalOptions
 	{
 		private const string FichierConfiguration = @"config.ini";
-		private Dictionary<string, string> _elementConfiguration;
+		private Dictionary<string, object> _elementConfiguration;
 
 		private static readonly LocalOptions instance = new LocalOptions();
 
@@ -27,7 +27,7 @@ namespace Wallon
 
 		private void ChargeFichier()
 		{
-			_elementConfiguration = new Dictionary<string, string>();
+			_elementConfiguration = new Dictionary<string, object>();
 
 			string nom = null, valeur = null;
 			XmlReader xReader;
@@ -72,15 +72,15 @@ namespace Wallon
 			xReader.Close();
 		}
 
-		public string GetOption(string cle)
+		public object GetOption(string cle)
 		{
-			if (_elementConfiguration.TryGetValue(cle, out string valeur))
+			if (_elementConfiguration.TryGetValue(cle, out object valeur))
 				return valeur;
 
 			return null;
 		}
 
-		public void SetOption(string cle, string valeur)
+		public void SetOption(string cle, object valeur)
 		{
 			if (_elementConfiguration.ContainsKey(cle))
 				_elementConfiguration[cle] = valeur;
@@ -110,10 +110,13 @@ namespace Wallon
 			xmlWriter.WriteStartDocument();
 			xmlWriter.WriteStartElement("config");
 
-			foreach (KeyValuePair<string, string> element in _elementConfiguration)
+			foreach (KeyValuePair<string, object> element in _elementConfiguration)
 			{
 				xmlWriter.WriteStartElement(element.Key);
-				xmlWriter.WriteString(element.Value);
+				if (element.Value is string)
+					xmlWriter.WriteString(element.Value.ToString());
+				else if (element.Value is byte[] bytes)
+					xmlWriter.WriteBase64(bytes, 0, bytes.Length);
 				xmlWriter.WriteEndElement();
 			}
 
