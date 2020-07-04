@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Couche_Gestion", "Couche_Ge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlatControls", "FlatControls\FlatControls.csproj", "{70E7D56F-DF43-4FE9-A6CC-D762A5CD7F4B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestServer", "RestServer\RestServer.csproj", "{4A9F87D5-1EA1-495A-AC6A-B492823A6A6D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{70E7D56F-DF43-4FE9-A6CC-D762A5CD7F4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70E7D56F-DF43-4FE9-A6CC-D762A5CD7F4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70E7D56F-DF43-4FE9-A6CC-D762A5CD7F4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A9F87D5-1EA1-495A-AC6A-B492823A6A6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A9F87D5-1EA1-495A-AC6A-B492823A6A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A9F87D5-1EA1-495A-AC6A-B492823A6A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A9F87D5-1EA1-495A-AC6A-B492823A6A6D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

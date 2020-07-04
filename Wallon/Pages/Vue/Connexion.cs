@@ -54,7 +54,9 @@ namespace Wallon.Pages.Vue
 
 			//Dialog.Show(new RepositoryLocataires().);
 
-			//_controllerLocataires.Ajouter(new Locataire("w", "x"));
+			/*_controllerLocataires.Ajouter(new Locataire("Quentin", "test"));
+			_controllerLocataires.Ajouter(new Locataire("Laura", "mdp"));
+			_controllerLocataires.Ajouter(new Locataire("Andy", "mdp"));*/
 		}
 
 		private void flatButtonConnexion_Click(object sender, EventArgs e)
