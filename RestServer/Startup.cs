@@ -1,3 +1,5 @@
+using System;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -5,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RestServer.Data;
+using RestServer.Data.Locataires;
 
 namespace RestServer
 {
@@ -22,10 +25,17 @@ namespace RestServer
 		{
 			// initialise le service de connexion à la bdd
 			services.AddDbContext<WallonsContext>(opt => opt.UseSqlServer(
-				Configuration.GetConnectionString("CommanderConnection")
+				Configuration.GetConnectionString("WallonsConnection")
 			));
 
 			services.AddControllers();
+
+			// initialise l'auto mapper
+			services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+			// ajoute une instance d'objet par client
+			// le 2è arg permet de switcher facilement d'un repo à l'autre par dépendance d'injection (grâce à l'interface)
+			services.AddScoped<ILocataireRepo, LocataireRepo>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
