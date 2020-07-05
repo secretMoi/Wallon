@@ -89,7 +89,9 @@ namespace RestServer.Controllers
 		/// </summary>
 		/// <param name="id">Id du locataire</param>
 		/// <param name="locataireUpdateDto">Données du locataire à enregistrer</param>
-		/// <returns>Renvoie le status 204 NoContent</returns>
+		/// <returns>Renvoie le status 204 NoContent <br />
+		/// Renvoie le status 404 NotFound si l'id du locataire n'existe pas
+		/// </returns>
 		[HttpPut("{id}")]
 		public ActionResult Update(int id, LocataireUpdateDto locataireUpdateDto)
 		{

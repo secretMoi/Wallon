@@ -28,17 +28,26 @@ namespace RestServer.Controllers
 		}
 
 		// GET api/commands
+		/// <summary>
+		/// Récupère tous les enregistrements des taches sous format JSON
+		/// </summary>
+		/// <returns>Renvoie une liste des taches encapsulées dans le status 200 OK</returns>
 		[HttpGet] // indique que cette méthode répond à une requete http
 		public ActionResult<IEnumerable<TacheReadDto>> GetAll()
 		{
 			IEnumerable<Tache> taches = _repository.GetAll();
 
-			// mapper, mets l'objet commandItems dans CommandReadDto
 			return Ok(_mapper.Map<IEnumerable<TacheReadDto>>(taches)); // méthode Ok définie dans controllerBase
 		}
 
 		// GET api/commands/5
 		// GET api/commands/{id}
+		/// <summary>
+		/// Récupère une tâche via son id sous format JSON
+		/// </summary>
+		/// <param name="id">Id de la tâche</param>
+		/// <returns>Renvoie une tâche encapsulée dans le status 200 OK<br />
+		/// Renvoie le status NotFound 404 si la tâche n'est pas trouvée</returns>
 		[HttpGet("{id}", Name = "GetTacheById")] // indique que cette méthode répond à une requete http
 		public ActionResult<TacheReadDto> GetTacheById(int id)
 		{
@@ -51,6 +60,11 @@ namespace RestServer.Controllers
 		}
 
 		// POST api/commands
+		/// <summary>
+		/// Enregistre une tâche en JSON dans la bdd
+		/// </summary>
+		/// <param name="tacheCreateDto">Données de la tâche à enregistrer</param>
+		/// <returns>Renvoie la tâche tout juste créée et encapsulée dans le status 200 OK</returns>
 		[HttpPost]
 		public ActionResult<TacheReadDto> Create(TacheCreateDto tacheCreateDto)
 		{
@@ -58,28 +72,30 @@ namespace RestServer.Controllers
 			_repository.Create(tache); // crée la command en ram
 			_repository.SaveChanges(); // sauvegarde les changements dans la bdd
 
-			// mapper, mets l'objet commandModel dans CommandReadDto
 			TacheReadDto tacheReadDto = _mapper.Map<TacheReadDto>(tache);
 			tacheReadDto.LocataireCourant = new LocataireRepo(_repository.Context).GetById(tacheReadDto.LocataireId);
 
-
-			// renvoie l'uri permettant d'accéder à l'élément créé
-			// fonction gérant la route à appeler (GET api/commands/{id})
-			// paramètre à passer à la route (l'id créé)
-			// classe pour formatter les données
 			//return CreatedAtRoute(nameof(GetById), new { Id = commandReadDto.Id }, commandReadDto);
 			return Ok(tacheReadDto);
 		}
 
 		// PUT api/commands/{id}
+		/// <summary>
+		/// Modifie toutes les données d'une tâche selon son id
+		/// </summary>
+		/// <param name="id">Id de la tâche</param>
+		/// <param name="tacheUpdateDto">Données de la tâche à enregistrer</param>
+		/// <returns>Renvoie le status 204 NoContent <br />
+		/// Renvoie le status 404 NotFound si l'id de la tâche n'existe pas
+		/// </returns>
 		[HttpPut("{id}")]
 		public ActionResult Update(int id, TacheUpdateDto tacheUpdateDto)
 		{
 			Tache tache = _repository.GetById(id); // cherche l'objet dans la bdd
 			if (tache == null)
 				return NotFound(); // si il n'existe pas on quitte et envoie 404
-			// met commandUpdateDto dans commandModelFromRepo
-			_mapper.Map(tacheUpdateDto, tache);
+			
+			_mapper.Map(tacheUpdateDto, tache); // met commandUpdateDto dans commandModelFromRepo
 
 			_repository.Update(tache); // update l'objet
 
