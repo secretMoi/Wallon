@@ -38,8 +38,8 @@ namespace RestServer.Controllers
 
 		// GET api/commands/5
 		// GET api/commands/{id}
-		[HttpGet("{id}", Name = "GetById")] // indique que cette méthode répond à une requete http
-		public ActionResult<LocataireReadDto> GetById(int id)
+		[HttpGet("{id}", Name = "GetLocataireById")] // indique que cette méthode répond à une requete http
+		public ActionResult<LocataireReadDto> GetLocataireById(int id)
 		{
 			Locataire locataire = _repository.GetById(id);
 

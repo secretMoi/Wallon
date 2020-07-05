@@ -12,6 +12,7 @@ namespace RestServer.Profiles
 			// source -> target
 			CreateMap<Tache, TacheReadDto>();
 			CreateMap<TacheCreateDto, Tache>();
+			CreateMap<TacheUpdateDto, Tache>();
 		}
 	}
 }
