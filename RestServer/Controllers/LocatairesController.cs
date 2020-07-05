@@ -27,6 +27,10 @@ namespace RestServer.Controllers
 		}
 
 		// GET api/commands
+		/// <summary>
+		/// Récupère tous les enregistrements des locataires sous format JSON
+		/// </summary>
+		/// <returns>Renvoie une liste des locataires encapsulés dans le status 200 OK</returns>
 		[HttpGet] // indique que cette méthode répond à une requete http
 		public ActionResult<IEnumerable<LocataireReadDto>> GetAll()
 		{
@@ -38,6 +42,12 @@ namespace RestServer.Controllers
 
 		// GET api/commands/5
 		// GET api/commands/{id}
+		/// <summary>
+		/// Récupère un locataire via son id sous format JSON
+		/// </summary>
+		/// <param name="id">Id du locataire</param>
+		/// <returns>Renvoie un locataire encapsulé dans le status 200 OK<br />
+		/// Renvoie le status NotFound 404 si le locataire n'est pas trouvé</returns>
 		[HttpGet("{id}", Name = "GetLocataireById")] // indique que cette méthode répond à une requete http
 		public ActionResult<LocataireReadDto> GetLocataireById(int id)
 		{
@@ -50,10 +60,15 @@ namespace RestServer.Controllers
 		}
 
 		// POST api/commands
+		/// <summary>
+		/// Enregistre un locataire en JSON dans la bdd
+		/// </summary>
+		/// <param name="locataireCreateDto">Données du locataire à enregistrer</param>
+		/// <returns>Renvoie le locataire tout juste créé encapsulé dans le status 200 OK</returns>
 		[HttpPost]
-		public ActionResult<LocataireReadDto> Create(LocataireCreateDto commandCreateDto)
+		public ActionResult<LocataireReadDto> Create(LocataireCreateDto locataireCreateDto)
 		{
-			Locataire locataireModel = _mapper.Map<Locataire>(commandCreateDto); // trouve le model à utiliser
+			Locataire locataireModel = _mapper.Map<Locataire>(locataireCreateDto); // trouve le model à utiliser
 			_repository.Create(locataireModel); // crée la command en ram
 			_repository.SaveChanges(); // sauvegarde les changements dans la bdd
 
@@ -69,6 +84,12 @@ namespace RestServer.Controllers
 		}
 
 		// PUT api/commands/{id}
+		/// <summary>
+		/// Modifie toutes les données d'un locataire selon son id
+		/// </summary>
+		/// <param name="id">Id du locataire</param>
+		/// <param name="locataireUpdateDto">Données du locataire à enregistrer</param>
+		/// <returns>Renvoie le status 204 NoContent</returns>
 		[HttpPut("{id}")]
 		public ActionResult Update(int id, LocataireUpdateDto locataireUpdateDto)
 		{
