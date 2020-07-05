@@ -9,7 +9,7 @@ namespace RestServer.Dtos.Taches
 	{
 		public int Id { get; set; }
 
-		public int Nom { get; set; }
+		public string Nom { get; set; }
 
 		public DateTime DatteFin { get; set; }
 

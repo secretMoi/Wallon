@@ -8,6 +8,7 @@ namespace RestServer.Data.Taches
 	public class TacheRepo : ITacheRepo
 	{
 		private readonly WallonsContext _context;
+		public WallonsContext Context => _context;
 
 		public TacheRepo(WallonsContext context)
 		{

@@ -9,6 +9,8 @@ namespace RestServer.Data.Locataires
 	{
 		private readonly WallonsContext _context;
 
+		public WallonsContext Context => _context;
+
 		public LocataireRepo(WallonsContext context)
 		{
 			_context = context;

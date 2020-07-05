@@ -13,7 +13,7 @@ namespace RestServer.Models
 		[Required]
 		[MaxLength(256)]
 		[Column(TypeName = "varchar(256)")]
-		public int Nom { get; set; }
+		public string Nom { get; set; }
 
 		[Required]
 		public DateTime DatteFin { get; set; }

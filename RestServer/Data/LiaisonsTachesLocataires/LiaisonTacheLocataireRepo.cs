@@ -9,6 +9,8 @@ namespace RestServer.Data.LiaisonsTachesLocataires
 	{
 		private readonly WallonsContext _context;
 
+		public WallonsContext Context => _context;
+
 		public LiaisonTacheLocataireRepo(WallonsContext context)
 		{
 			_context = context;
