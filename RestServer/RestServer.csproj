@@ -18,9 +18,5 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dtos\LiaisonsTachesLocataires\" />
-  </ItemGroup>
-
 
 </Project>

@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace RestServer.Models
 {
@@ -11,11 +9,11 @@ namespace RestServer.Models
 
 		[Required]
 		public int LocataireId { get; set; } // foreign key
-		public Locataire Locataire { get; set; } // contenu de status lié à l'objet
+		public Locataire Locataire { get; set; } // contenu lié à l'objet
 
 
 		[Required]
 		public int TacheId { get; set; } // foreign key
-		public Tache Tache { get; set; } // contenu de status lié à l'objet
+		public Tache Tache { get; set; } // contenu lié à l'objet
 	}
 }

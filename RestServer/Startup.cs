@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RestServer.Data;
+using RestServer.Data.LiaisonsTachesLocataires;
 using RestServer.Data.Locataires;
 using RestServer.Data.Taches;
 
@@ -38,6 +39,7 @@ namespace RestServer
 			// le 2è arg permet de switcher facilement d'un repo à l'autre par dépendance d'injection (grâce à l'interface)
 			services.AddScoped<ILocataireRepo, LocataireRepo>();
 			services.AddScoped<ITacheRepo, TacheRepo>();
+			services.AddScoped<ILiaisonTacheLocataireRepo, LiaisonTacheLocataireRepo>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
