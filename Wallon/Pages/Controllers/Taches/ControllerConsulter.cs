@@ -19,6 +19,8 @@ namespace Wallon.Pages.Controllers.Taches
 		private readonly RepositoryTaches _taches;
 		private readonly Mutex _mutex = new Mutex();
 		private readonly Consulter _page;
+		private bool _pageLoaded;
+		private FlatLabel _labelNoItem;
 		private Waiting _waiting;
 
 		private readonly List<object[]> _list;
@@ -147,7 +149,8 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <param name="panel">Panel dans lequel insérer l'animation de chargement, null si pas de chargement</param>
 		public void SetLoading(Panel panel)
 		{
-			if (panel != null && _page.FlatDataGridView.Rows.Count == 0) // si on active le chargement
+			// débute le chargement
+			if (panel != null && _pageLoaded == false) // si on active le chargement
 			{
 				if(_waiting == null)
 					_waiting = new Waiting(); // crée le control si pas encore fait
@@ -162,11 +165,38 @@ namespace Wallon.Pages.Controllers.Taches
 				_page.FlatDataGridView.DataSourceChanged(DataAddedToDgv); // méthode de callback à appeler lorsque les données sont chargées (fin du chargement)
 				_page.FlatDataGridView.Visible = false; // désactive la dgv durant le chargement
 			}
-			else if(_page.FlatDataGridView.Rows.Count != 0)
+			// fin du chargement et présence de donnée
+			else if(_page.FlatDataGridView.Rows.Count != 0 && _pageLoaded == true)
 			{
-				_page.Controls.RemoveByKey("waiting"); // retire l'animation de chargement
+				_waiting.Dispose(); // retire l'animation de chargement
 
 				_page.FlatDataGridView.Visible = true; // affiche les données
+			}
+			// fin du chargement et absence de donnée
+			else if (_page.FlatDataGridView.Rows.Count == 0 && _pageLoaded == true)
+			{
+				Control parent;
+
+				if (!_waiting.IsDisposed)
+				{
+					parent = _waiting.Parent;
+					_waiting.Dispose();
+
+					_labelNoItem = new FlatLabel()
+					{
+						ForeColor = Theme.BackLight,
+						AutoSize = true,
+						Font = new Font(Theme.Font.FontFamily, 24, FontStyle.Bold),
+						Text = @"Aucune tâche à afficher"
+					};
+
+					parent.Controls.Add(_labelNoItem);
+				}
+				else
+					parent = _labelNoItem.Parent;
+
+				_labelNoItem.Left = (parent.Width - _labelNoItem.Width) / 2;
+				_labelNoItem.Top = (parent.Height - _labelNoItem.Height) / 2;
 			}
 		}
 
@@ -175,6 +205,7 @@ namespace Wallon.Pages.Controllers.Taches
 		/// </summary>
 		public void DataAddedToDgv(object sender, EventArgs e)
 		{
+			_pageLoaded = true;
 			SetLoading(null);
 		}
 	}

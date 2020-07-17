@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using RestServer.Data.Taches;
-using RestServer.Dtos.LiaisonsTachesLocataires;
 using RestServer.Models;
 
 namespace RestServer.Data.LiaisonsTachesLocataires
@@ -59,11 +56,9 @@ namespace RestServer.Data.LiaisonsTachesLocataires
 
 		public IEnumerable<LiaisonTacheLocataire> GetTachesFromLocataire(int idLocataire)
 		{
-			IEnumerable<LiaisonTacheLocataire> liaisons = _context.LiaisonTachesLocataires
+			return _context.LiaisonTachesLocataires
 				.Where(liaison => liaison.LocataireId == idLocataire)
 				.ToList();
-
-			return liaisons;
 		}
 	}
 }

@@ -92,6 +92,9 @@ namespace RestServer.Controllers
 			IList<LiaisonTacheLocataire> liaisons =
 				new LiaisonTacheLocataireRepo(_repository.Context).GetTachesFromLocataire(id) as IList<LiaisonTacheLocataire>;
 
+			if (liaisons == null)
+				return Content("Liste de liaisons nulle");
+
 			IList<TacheReadDto> tachesReadDtos = new List<TacheReadDto>(liaisons.Count);
 
 			for (int i = 0; i < liaisons.Count; i++)
