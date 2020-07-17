@@ -27,12 +27,35 @@ namespace RestServer.Controllers
 			//_mapper = new LocatairesProfile();
 		}
 
+		// GET api/commands/5
+		// GET api/commands/{id}
+		/// <summary>
+		/// Récupère une liaison via son id sous format JSON
+		/// </summary>
+		/// <param name="id">Id de la liaison</param>
+		/// <returns>Renvoie une liaison encapsulée dans le status 200 OK<br />
+		/// Renvoie le status NotFound 404 si la liaison n'est pas trouvée</returns>
+		[HttpGet("{id:int}", Name = "GetLiaisonById")] // indique que cette méthode répond à une requete http
+		public ActionResult<LiaisonReadDto> GetLiaisonById(int id)
+		{
+			LiaisonTacheLocataire liaison = _repository.GetById(id);
+
+			if (liaison == null)
+				return NotFound(); // si pas trouvé renvoie 404 not found
+
+			LiaisonReadDto liaisonReadDto = _mapper.Map<LiaisonReadDto>(liaison);
+			liaisonReadDto.Locataire = new LocataireRepo(_repository.Context).GetById(liaisonReadDto.LocataireId);
+			liaisonReadDto.Tache = new TacheRepo(_repository.Context).GetById(liaisonReadDto.TacheId);
+
+			return Ok(liaisonReadDto); // map commandItem en CommandReadDto pour renvoyer les données formattées au client
+		}
+
 		// POST api/commands
 		/// <summary>
-		/// Enregistre une tâche en JSON dans la bdd
+		/// Enregistre une liaison en JSON dans la bdd
 		/// </summary>
-		/// <param name="liaisonCreateDto">Données de la tâche à enregistrer</param>
-		/// <returns>Renvoie la tâche tout juste créée et encapsulée dans le status 200 OK</returns>
+		/// <param name="liaisonCreateDto">Données de la liaison à enregistrer</param>
+		/// <returns>Renvoie la liaison tout juste créée et encapsulée dans le status 200 OK</returns>
 		[HttpPost]
 		public ActionResult<LiaisonReadDto> Create(LiaisonCreateDto liaisonCreateDto)
 		{
@@ -46,6 +69,25 @@ namespace RestServer.Controllers
 
 			//return CreatedAtRoute(nameof(GetById), new { Id = commandReadDto.Id }, commandReadDto);
 			return Ok(liaisonReadDto);
+		}
+
+		// DELETE api/commands/{id}
+		/// <summary>
+		/// Supprime une liaison de la bdd par son id
+		/// </summary>
+		/// <param name="id">Id de la liaison à supprimer</param>
+		/// <returns>Renvoie 204 NoContent si supprimé, 404 NotFound si l'id de la liaison n'existe pas dans la bdd</returns>
+		[HttpDelete("{id:int}")]
+		public ActionResult DeleteCommand(int id)
+		{
+			LiaisonTacheLocataire liaisonTacheLocataire = _repository.GetById(id); // cherche l'objet dans la bdd
+			if (liaisonTacheLocataire == null)
+				return NotFound(); // si il n'existe pas on quitte et envoie 404
+
+			_repository.Delete(liaisonTacheLocataire); // supprime l'id dans l'objet
+			_repository.SaveChanges(); // sauvegarde dans la bdd
+
+			return NoContent();
 		}
 	}
 }

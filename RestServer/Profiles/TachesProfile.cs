@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using AutoMapper;
 using RestServer.Dtos.Taches;
 using RestServer.Models;
 
@@ -13,6 +14,7 @@ namespace RestServer.Profiles
 			CreateMap<Tache, TacheReadDto>();
 			CreateMap<TacheCreateDto, Tache>();
 			CreateMap<TacheUpdateDto, Tache>();
+			CreateMap<LiaisonTacheLocataire, TacheReadDto>();
 		}
 	}
 }
