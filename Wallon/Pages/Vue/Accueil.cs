@@ -1,17 +1,26 @@
-﻿namespace Wallon.Pages.Vue
+﻿using System.Collections.Generic;
+using RestApiClient.Controllers;
+using RestServer.Dtos.Locataires;
+using Wallon.Pages.Controllers;
+
+namespace Wallon.Pages.Vue
 {
 	public partial class Accueil : ThemePanel
 	{
+		ControllerAccueil _controller = new ControllerAccueil();
+
 		public Accueil()
 		{
 			InitializeComponent();
 
 			SetTitre("Accueil");
+		}
 
-			//new GestionTaches(Connexion).Ajouter("test", DateTime.Now, true);
+		private async void Accueil_Load(object sender, System.EventArgs e)
+		{
+			RestApiClient.ApiHelper.InitializeClient();
 
-			//if(!Settings.Auth)
-				//LoadPage("Utilisateurs.Liste");
+			IEnumerable<LocataireReadDto> locataires = await LocatairesController.GetAllLocataires();
 		}
 	}
 }

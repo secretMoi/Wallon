@@ -33,11 +33,11 @@
 			// 
 			// panelTitre
 			// 
-			this.panelTitre.Size = new System.Drawing.Size(1539, 120);
+			this.panelTitre.Size = new System.Drawing.Size(1472, 120);
 			// 
 			// panelCorps
 			// 
-			this.panelCorps.Size = new System.Drawing.Size(1539, 436);
+			this.panelCorps.Size = new System.Drawing.Size(1472, 1420);
 			// 
 			// Accueil
 			// 
@@ -45,7 +45,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.BackColor = System.Drawing.Color.White;
 			this.Name = "Accueil";
-			this.Size = new System.Drawing.Size(1539, 556);
+			this.Size = new System.Drawing.Size(1472, 1540);
+			this.Load += new System.EventHandler(this.Accueil_Load);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();
 			this.ResumeLayout(false);
