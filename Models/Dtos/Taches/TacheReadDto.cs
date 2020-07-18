@@ -1,7 +1,7 @@
 ﻿using System;
-using RestServer.Models;
+using Models.Models;
 
-namespace RestServer.Dtos.Taches
+namespace Models.Dtos.Taches
 {
 	// copié/collé de la classe Tache
 	// on retire les annotations car inutiles, on ne va pas dialoguer avec la bdd

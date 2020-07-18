@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
+using Models.Dtos.Locataires;
 using RestApiClient.Controllers;
-using RestApiClient.Dtos.Locataires;
-using RestServer.Dtos.Locataires;
 using Wallon.Pages.Controllers;
 
 namespace Wallon.Pages.Vue

@@ -1,7 +1,9 @@
-﻿namespace RestServer.Dtos.Locataires
+﻿namespace Models.Dtos.Locataires
 {
-	public class LocataireUpdateDto
+	public class LocataireReadDto
 	{
+		public int Id { get; set; }
+
 		public string Nom { get; set; }
 
 		public byte[] Password { get; set; }

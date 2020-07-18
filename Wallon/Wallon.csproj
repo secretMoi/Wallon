@@ -394,6 +394,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{2d3d5c1c-c704-467a-bf93-35cbfe56be49}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RestApiClient\RestApiClient.csproj">
       <Project>{3394dc73-908f-4f3b-b915-91b9a7fa2552}</Project>
       <Name>RestApiClient</Name>

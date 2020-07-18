@@ -1,6 +1,6 @@
-﻿using RestServer.Models;
+﻿using Models.Models;
 
-namespace RestServer.Dtos.LiaisonsTachesLocataires
+namespace Models.Dtos.LiaisonsTachesLocataires
 {
 	public class LiaisonReadDto
 	{

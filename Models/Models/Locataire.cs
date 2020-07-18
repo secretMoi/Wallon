@@ -1,6 +1,8 @@
-﻿namespace RestServer.Dtos.Locataires
+﻿using System.ComponentModel;
+
+namespace Models.Models
 {
-	public class LocataireReadDto
+	public class Locataire
 	{
 		public int Id { get; set; }
 
@@ -8,6 +10,7 @@
 
 		public byte[] Password { get; set; }
 
+		[DefaultValue(true)]
 		public bool Actif { get; set; }
 	}
 }

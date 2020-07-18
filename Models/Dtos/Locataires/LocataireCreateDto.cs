@@ -1,4 +1,4 @@
-﻿namespace RestApiClient.Dtos.Locataires
+﻿namespace Models.Dtos.Locataires
 {
 	public class LocataireCreateDto
 	{

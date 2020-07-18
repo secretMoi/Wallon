@@ -1,4 +1,4 @@
-﻿namespace RestServer.Dtos.LiaisonsTachesLocataires
+﻿namespace Models.Dtos.LiaisonsTachesLocataires
 {
 	public class LiaisonCreateDto
 	{

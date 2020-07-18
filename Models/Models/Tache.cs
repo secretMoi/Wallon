@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace RestServer.Models
+namespace Models.Models
 {
 	public class Tache
 	{

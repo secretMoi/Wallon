@@ -1,4 +1,4 @@
-﻿namespace RestServer.Models
+﻿namespace Models.Models
 {
 	public class LiaisonTacheLocataire
 	{

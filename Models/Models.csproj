@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3394DC73-908F-4F3B-B915-91B9A7FA2552}</ProjectGuid>
+    <ProjectGuid>{2D3D5C1C-C704-467A-BF93-35CBFE56BE49}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RestApiClient</RootNamespace>
-    <AssemblyName>RestApiClient</AssemblyName>
+    <RootNamespace>Models</RootNamespace>
+    <AssemblyName>Models</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,14 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,19 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApiHelper.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\LocatairesController.cs" />
+    <Compile Include="Dtos\LiaisonsTachesLocataires\LiaisonCreateDto.cs" />
+    <Compile Include="Dtos\LiaisonsTachesLocataires\LiaisonReadDto.cs" />
+    <Compile Include="Dtos\LiaisonsTachesLocataires\LiaisonUpdateDto.cs" />
+    <Compile Include="Dtos\Locataires\LocataireCreateDto.cs" />
+    <Compile Include="Dtos\Locataires\LocataireReadDto.cs" />
+    <Compile Include="Dtos\Locataires\LocataireUpdateDto.cs" />
+    <Compile Include="Dtos\Taches\TacheCreateDto.cs" />
+    <Compile Include="Dtos\Taches\TacheReadDto.cs" />
+    <Compile Include="Dtos\Taches\TacheUpdateDto.cs" />
+    <Compile Include="Models\LiaisonTacheLocataire.cs" />
+    <Compile Include="Models\Locataire.cs" />
+    <Compile Include="Models\Tache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{2d3d5c1c-c704-467a-bf93-35cbfe56be49}</Project>
-      <Name>Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

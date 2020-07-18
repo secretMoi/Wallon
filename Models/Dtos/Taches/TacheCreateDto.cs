@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RestServer.Dtos.Taches
+namespace Models.Dtos.Taches
 {
 	public class TacheCreateDto
 	{
