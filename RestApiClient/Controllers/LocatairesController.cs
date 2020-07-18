@@ -66,5 +66,23 @@ namespace RestApiClient.Controllers
 
 			return result;
 		}
+
+		public static async Task<string> UpdateLocataire(int id, LocataireCreateDto locataire)
+		{
+			string url = "locataires/" + id;
+
+			// fais une req sur l'url et attend la réponse
+			string json = JsonConvert.SerializeObject(locataire);
+			StringContent data = new StringContent(json, Encoding.UTF8, "application/json");
+
+			string result;
+
+			using (HttpResponseMessage response = await ApiHelper.ApiClient.PutAsync(url, data))
+			{
+				result = response.Content.ReadAsStringAsync().Result;
+			}
+
+			return result;
+		}
 	}
 }

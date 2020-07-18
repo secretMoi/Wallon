@@ -22,7 +22,10 @@ namespace Wallon.Pages.Vue
 		{
 			RestApiClient.ApiHelper.InitializeClient();
 
+			// lire tout
 			//IEnumerable<LocataireReadDto> locataires = await LocatairesController.GetAllLocataires();
+
+			// post
 			/*LocataireCreateDto locataire = new LocataireCreateDto()
 			{
 				Nom = "test",
@@ -31,7 +34,17 @@ namespace Wallon.Pages.Vue
 
 			await LocatairesController.PostLocataire(locataire);*/
 
-			LocataireReadDto locataire = await LocatairesController.GetLocataireById(4);
+			// lire 1
+			//LocataireReadDto locataire = await LocatairesController.GetLocataireById(4);
+
+			// update
+			LocataireCreateDto locataire = new LocataireCreateDto()
+			{
+				Nom = "test4",
+				Password = Encoding.ASCII.GetBytes("test5")
+			};
+
+			await LocatairesController.UpdateLocataire(4, locataire);
 		}
 	}
 }
