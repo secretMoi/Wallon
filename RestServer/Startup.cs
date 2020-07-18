@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 using RestServer.Data;
 using RestServer.Data.LiaisonsTachesLocataires;
 using RestServer.Data.Locataires;
@@ -30,7 +31,9 @@ namespace RestServer
 				Configuration.GetConnectionString("WallonsConnection")
 			));
 
-			services.AddControllers();
+			services.AddControllers().AddNewtonsoftJson(s =>
+				s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver()
+			);
 
 			// initialise l'auto mapper
 			services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
