@@ -23,13 +23,15 @@ namespace Wallon.Pages.Vue
 			RestApiClient.ApiHelper.InitializeClient();
 
 			//IEnumerable<LocataireReadDto> locataires = await LocatairesController.GetAllLocataires();
-			LocataireCreateDto locataire = new LocataireCreateDto()
+			/*LocataireCreateDto locataire = new LocataireCreateDto()
 			{
 				Nom = "test",
 				Password = Encoding.ASCII.GetBytes("test")
 			};
 
-			await LocatairesController.PostLocataire(locataire);
+			await LocatairesController.PostLocataire(locataire);*/
+
+			LocataireReadDto locataire = await LocatairesController.GetLocataireById(4);
 		}
 	}
 }

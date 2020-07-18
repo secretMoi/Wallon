@@ -9,6 +9,7 @@ using RestServer.Dtos.Locataires;
 
 namespace RestApiClient.Controllers
 {
+	//todo héritage ?
 	public class LocatairesController
 	{
 		public static async Task<IEnumerable<LocataireReadDto>> GetAllLocataires()
@@ -21,9 +22,28 @@ namespace RestApiClient.Controllers
 				if (response.IsSuccessStatusCode)
 				{
 					// map le json lu dans la req http dans le model
-					IEnumerable<LocataireReadDto> comic = await response.Content.ReadAsAsync<IEnumerable<LocataireReadDto>>();
+					IEnumerable<LocataireReadDto> locatairesReadDtos = await response.Content.ReadAsAsync<IEnumerable<LocataireReadDto>>();
 
-					return comic;
+					return locatairesReadDtos;
+				}
+				else
+					throw new Exception(response.ReasonPhrase);
+			}
+		}
+
+		public static async Task<LocataireReadDto> GetLocataireById(int id)
+		{
+			string url = "locataires/" + id;
+
+			// fais une req sur l'url et attend la réponse
+			using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url))
+			{
+				if (response.IsSuccessStatusCode)
+				{
+					// map le json lu dans la req http dans le model
+					LocataireReadDto locataireReadDto = await response.Content.ReadAsAsync<LocataireReadDto>();
+
+					return locataireReadDto;
 				}
 				else
 					throw new Exception(response.ReasonPhrase);
