@@ -24,6 +24,7 @@ namespace Wallon.Pages.Vue
 
 			// lire tout
 			//IEnumerable<LocataireReadDto> locataires = await LocatairesController.GetAllLocataires();
+			//IEnumerable<LocataireReadDto> locataires = await new LocatairesController().GetAll<LocataireReadDto>();
 
 			// post
 			/*LocataireCreateDto locataire = new LocataireCreateDto()
@@ -31,8 +32,8 @@ namespace Wallon.Pages.Vue
 				Nom = "test",
 				Password = Encoding.ASCII.GetBytes("test")
 			};
-
-			await LocatairesController.PostLocataire(locataire);*/
+			await new LocatairesController().Post(locataire);*/
+			//await LocatairesController.PostLocataire(locataire);
 
 			// lire 1
 			//LocataireReadDto locataire = await LocatairesController.GetLocataireById(4);
@@ -40,11 +41,12 @@ namespace Wallon.Pages.Vue
 			// update
 			LocataireCreateDto locataire = new LocataireCreateDto()
 			{
-				Nom = "test4",
+				Nom = "45",
 				Password = Encoding.ASCII.GetBytes("test5")
 			};
+			string res = await new LocatairesController().Update(5, locataire);
 
-			await LocatairesController.UpdateLocataire(4, locataire);
+			/*await LocatairesController.UpdateLocataire(4, locataire);*/
 		}
 	}
 }

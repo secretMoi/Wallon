@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiHelper.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\LocatairesController.cs" />
     <Compile Include="Dtos\LiaisonsTachesLocataires\LiaisonCreateDto.cs" />
     <Compile Include="Dtos\LiaisonsTachesLocataires\LiaisonReadDto.cs" />
