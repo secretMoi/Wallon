@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using RestServer.Data.LiaisonsTachesLocataires;
 using RestServer.Data.Locataires;
 using RestServer.Data.Taches;
-using RestServer.Dtos.LiaisonsTachesLocataires;
-using RestServer.Models;
+using Models.Dtos.LiaisonsTachesLocataires;
+using Models.Models;
 
 namespace RestServer.Controllers
 {

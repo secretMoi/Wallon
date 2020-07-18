@@ -1,4 +1,4 @@
-﻿using RestServer.Models;
+﻿using Models.Models;
 
 namespace RestServer.Data.Locataires
 {

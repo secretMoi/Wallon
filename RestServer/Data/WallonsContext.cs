@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RestServer.Models;
+using Models.Models;
 
 namespace RestServer.Data
 {

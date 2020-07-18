@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
-using RestServer.Dtos.Taches;
-using RestServer.Models;
+using Models.Dtos.Taches;
+using Models.Models;
 
 namespace RestServer.Profiles
 {

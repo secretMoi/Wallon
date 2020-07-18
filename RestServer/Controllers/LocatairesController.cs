@@ -2,8 +2,8 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using RestServer.Data.Locataires;
-using RestServer.Dtos.Locataires;
-using RestServer.Models;
+using Models.Dtos.Locataires;
+using Models.Models;
 
 namespace RestServer.Controllers
 {

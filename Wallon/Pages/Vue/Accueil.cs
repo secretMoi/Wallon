@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Text;
 using Models.Dtos.Locataires;
 using RestApiClient.Controllers;
 using Wallon.Pages.Controllers;
@@ -37,12 +38,13 @@ namespace Wallon.Pages.Vue
 			//LocataireReadDto locataire = await LocatairesController.GetLocataireById(4);
 
 			// update
-			LocataireCreateDto locataire = new LocataireCreateDto()
+			LocataireUpdateDto locataire = new LocataireUpdateDto()
 			{
-				Nom = "45",
+				Id = 5,
+				Nom = "1",
 				Password = Encoding.ASCII.GetBytes("test5")
 			};
-			string res = await new LocatairesController().Update(5, locataire);
+			string res = await new LocatairesController().Update(locataire);
 
 			/*await LocatairesController.UpdateLocataire(4, locataire);*/
 		}

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using RestServer.Dtos.LiaisonsTachesLocataires;
-using RestServer.Models;
+using Models.Dtos.LiaisonsTachesLocataires;
+using Models.Models;
 
 namespace RestServer.Profiles
 {

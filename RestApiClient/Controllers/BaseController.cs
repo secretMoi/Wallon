@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Models.Dtos;
 using Newtonsoft.Json;
 
 namespace RestApiClient.Controllers
@@ -68,10 +69,9 @@ namespace RestApiClient.Controllers
 			}
 		}
 
-		// todo mettre l'id dans le dto
-		public async Task<string> Update<T>(int id, T data)
+		public async Task<string> Update<T>(T data) where T : IUpdate
 		{
-			string url = MakeUrl(id);
+			string url = MakeUrl(data.Id);
 
 			StringContent dataJson = SerializeAsJson(data);
 
