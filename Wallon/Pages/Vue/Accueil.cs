@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Text;
+using Models.Dtos.LiaisonsTachesLocataires;
 using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
 using RestApiClient.Controllers;
@@ -48,7 +48,9 @@ namespace Wallon.Pages.Vue
 			// get taches from locataire
 			//IEnumerable<TacheReadDto> taches = await new TachesController().GetTachesFromLocataire(1);
 
-			IEnumerable<TacheReadDto> taches = await new TachesController().GetAll<TacheReadDto>();
+			//IEnumerable<TacheReadDto> taches = await new TachesController().GetAll<TacheReadDto>();
+
+			LiaisonReadDto liaison = await new LiaisonsController().GetById<LiaisonReadDto>(3);
 		}
 	}
 }

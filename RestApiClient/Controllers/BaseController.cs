@@ -11,10 +11,26 @@ namespace RestApiClient.Controllers
 	public class BaseController
 	{
 		protected string Url;
+		protected List<BaseMethod> BaseMethods;
+
+		protected enum BaseMethod
+		{
+			GetAll,
+			GetId,
+			Update,
+			Post,
+			Delete
+		}
 
 		public BaseController()
 		{
+			BaseMethods = new List<BaseMethod>();
+		}
 
+		protected void FillBaseMethods(params BaseMethod[] methods)
+		{
+			foreach (BaseMethod method in methods)
+				BaseMethods.Add(method);
 		}
 
 		protected StringContent SerializeAsJson<T>(T dto)
@@ -43,6 +59,8 @@ namespace RestApiClient.Controllers
 
 		public virtual async Task<T> GetById<T>(int id)
 		{
+			if (!BaseMethods.Contains(BaseMethod.GetId)) return default;
+
 			string url = MakeUrl(id);
 
 			// fais une req sur l'url et attend la réponse
@@ -62,6 +80,8 @@ namespace RestApiClient.Controllers
 
 		public virtual async Task<IEnumerable<T>> GetAll<T>()
 		{
+			if (!BaseMethods.Contains(BaseMethod.GetAll)) return default;
+
 			string url = MakeUrl();
 
 			// fais une req sur l'url et attend la réponse
@@ -81,6 +101,8 @@ namespace RestApiClient.Controllers
 
 		public virtual async Task<string> Update<T>(T data) where T : IUpdate
 		{
+			if (!BaseMethods.Contains(BaseMethod.Update)) return default;
+
 			string url = MakeUrl(data.Id);
 
 			StringContent dataJson = SerializeAsJson(data);
@@ -98,6 +120,8 @@ namespace RestApiClient.Controllers
 
 		public virtual async Task<string> Post<T>(T data)
 		{
+			if (!BaseMethods.Contains(BaseMethod.Post)) return default;
+
 			string url = MakeUrl();
 
 			StringContent dataJson = SerializeAsJson(data);
@@ -111,6 +135,15 @@ namespace RestApiClient.Controllers
 			}
 
 			return result;
+		}
+
+		public virtual async Task Delete(int id)
+		{
+			if (!BaseMethods.Contains(BaseMethod.Delete)) return;
+
+			string url = MakeUrl(id);
+
+			await ApiHelper.ApiClient.DeleteAsync(url);
 		}
 	}
 }
