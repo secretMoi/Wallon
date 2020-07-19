@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using Models.Dtos.Locataires;
+using Models.Dtos.Taches;
 using RestApiClient.Controllers;
 using Wallon.Pages.Controllers;
 
@@ -22,7 +23,6 @@ namespace Wallon.Pages.Vue
 			RestApiClient.ApiHelper.InitializeClient();
 
 			// lire tout
-			//IEnumerable<LocataireReadDto> locataires = await LocatairesController.GetAllLocataires();
 			//IEnumerable<LocataireReadDto> locataires = await new LocatairesController().GetAll<LocataireReadDto>();
 
 			// post
@@ -32,21 +32,23 @@ namespace Wallon.Pages.Vue
 				Password = Encoding.ASCII.GetBytes("test")
 			};
 			await new LocatairesController().Post(locataire);*/
-			//await LocatairesController.PostLocataire(locataire);
 
 			// lire 1
 			//LocataireReadDto locataire = await LocatairesController.GetLocataireById(4);
 
 			// update
-			LocataireUpdateDto locataire = new LocataireUpdateDto()
+			/*LocataireUpdateDto locataire = new LocataireUpdateDto()
 			{
 				Id = 5,
 				Nom = "1",
 				Password = Encoding.ASCII.GetBytes("test5")
 			};
-			string res = await new LocatairesController().Update(locataire);
+			string res = await new LocatairesController().Update(locataire);*/
 
-			/*await LocatairesController.UpdateLocataire(4, locataire);*/
+			// get taches from locataire
+			//IEnumerable<TacheReadDto> taches = await new TachesController().GetTachesFromLocataire(1);
+
+			IEnumerable<TacheReadDto> taches = await new TachesController().GetAll<TacheReadDto>();
 		}
 	}
 }

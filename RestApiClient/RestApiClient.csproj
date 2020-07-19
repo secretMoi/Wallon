@@ -50,6 +50,7 @@
     <Compile Include="ApiHelper.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\LocatairesController.cs" />
+    <Compile Include="Controllers\TachesController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -23,12 +23,22 @@ namespace RestApiClient.Controllers
 			return new StringContent(json, Encoding.UTF8, "application/json");
 		}
 
-		protected string MakeUrl(int id = Int32.MinValue)
+		/*protected string MakeUrl(int id = Int32.MinValue)
 		{
 			if (id == Int32.MinValue)
 				return Url;
 			else
 				return $"{Url}/{id}";
+		}*/
+
+		protected string MakeUrl(params object[] suffix)
+		{
+			StringBuilder url = new StringBuilder(Url);
+
+			foreach (object element in suffix)
+				url.Append("/" + element.ToString());
+
+			return url.ToString();
 		}
 
 		public virtual async Task<T> GetById<T>(int id)
@@ -69,7 +79,7 @@ namespace RestApiClient.Controllers
 			}
 		}
 
-		public async Task<string> Update<T>(T data) where T : IUpdate
+		public virtual async Task<string> Update<T>(T data) where T : IUpdate
 		{
 			string url = MakeUrl(data.Id);
 
@@ -86,7 +96,7 @@ namespace RestApiClient.Controllers
 			return result;
 		}
 
-		public async Task<string> Post<T>(T data)
+		public virtual async Task<string> Post<T>(T data)
 		{
 			string url = MakeUrl();
 
