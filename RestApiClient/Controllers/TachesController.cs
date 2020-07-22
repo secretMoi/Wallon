@@ -11,6 +11,13 @@ namespace RestApiClient.Controllers
 		public TachesController()
 		{
 			Url = "taches";
+
+			FillBaseMethods(
+				BaseMethod.GetAll,
+				BaseMethod.GetId,
+				BaseMethod.Post,
+				BaseMethod.Update
+			);
 		}
 
 		public async Task<IEnumerable<TacheReadDto>> GetTachesFromLocataire(int id)

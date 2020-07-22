@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Couche_Classe;
 using FlatControls.Controls;
@@ -215,9 +216,9 @@ namespace Wallon.Pages.Controllers.Taches
 		/// </summary>
 		/// <param name="idLocataire">Id du locataire à récupérer</param>
 		/// <returns>Le nom du locataire</returns>
-		public string FillFieldLocataireCourant(int idLocataire)
+		public async Task<string> FillFieldLocataireCourant(int idLocataire)
 		{
-			return new ControllerLocataires().GetById(idLocataire).Nom;
+			return (await new RepositoryLocataires().LireId(idLocataire)).Nom;
 		}
 
 
@@ -225,7 +226,7 @@ namespace Wallon.Pages.Controllers.Taches
 		/// Récupère la liste des locataires associés à une tâche
 		/// </summary>
 		/// <returns>Tableau des noms des locataires</returns>
-		public string[] FillListLocataireCourant()
+		/*public string[] FillListLocataireCourant()
 		{
 			List<int> listeIdLocataires = _liaison.ListeLocataires((int) IdTache);
 
@@ -235,7 +236,7 @@ namespace Wallon.Pages.Controllers.Taches
 				listeLocataires.Add(new ControllerLocataires().GetById(idLocataire));
 
 			return listeLocataires.Select(x => x.Nom).ToArray();
-		}
+		}*/
 
 		/// <summary>
 		/// Actions à effectuer lors du clic sur les colonnes cliquables

@@ -13,13 +13,6 @@ namespace RestApiClient.Controllers
 				BaseMethod.Post,
 				BaseMethod.Delete
 			);
-
-			/*BaseMethods.AddRange(new List<BaseMethod>
-			{
-				BaseMethod.GetId,
-				BaseMethod.Post,
-				BaseMethod.Delete
-			});*/
 		}
 	}
 }

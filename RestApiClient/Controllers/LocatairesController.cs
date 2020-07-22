@@ -5,6 +5,13 @@
 		public LocatairesController()
 		{
 			Url = "locataires";
+
+			FillBaseMethods(
+				BaseMethod.GetAll,
+				BaseMethod.GetId,
+				BaseMethod.Post,
+				BaseMethod.Update
+			);
 		}
 	}
 }

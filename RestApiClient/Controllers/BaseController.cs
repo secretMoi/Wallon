@@ -39,20 +39,12 @@ namespace RestApiClient.Controllers
 			return new StringContent(json, Encoding.UTF8, "application/json");
 		}
 
-		/*protected string MakeUrl(int id = Int32.MinValue)
-		{
-			if (id == Int32.MinValue)
-				return Url;
-			else
-				return $"{Url}/{id}";
-		}*/
-
 		protected string MakeUrl(params object[] suffix)
 		{
 			StringBuilder url = new StringBuilder(Url);
 
 			foreach (object element in suffix)
-				url.Append("/" + element.ToString());
+				url.Append("/" + element);
 
 			return url.ToString();
 		}
@@ -78,7 +70,7 @@ namespace RestApiClient.Controllers
 			}
 		}
 
-		public virtual async Task<IEnumerable<T>> GetAll<T>()
+		public virtual async Task<IList<T>> GetAll<T>()
 		{
 			if (!BaseMethods.Contains(BaseMethod.GetAll)) return default;
 
@@ -90,7 +82,7 @@ namespace RestApiClient.Controllers
 				if (response.IsSuccessStatusCode)
 				{
 					// map le json lu dans la req http dans le model
-					IEnumerable<T> data = await response.Content.ReadAsAsync<IEnumerable<T>>();
+					IList<T> data = await response.Content.ReadAsAsync<IList<T>>();
 
 					return data;
 				}

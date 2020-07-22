@@ -2,7 +2,9 @@
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Couche_Classe;
+using Models.Dtos.Locataires;
 using Wallon.Core;
 using Wallon.Repository;
 
@@ -62,9 +64,9 @@ namespace Wallon.Controllers
 			return locataire.Password.SequenceEqual(Cryptage.Crypt(password));
 		}
 
-		public Locataire GetById(int id)
+		public async Task<LocataireReadDto> GetById(int id)
 		{
-			return new RepositoryLocataires().LireId(id);
+			return await new RepositoryLocataires().LireId(id);
 		}
 
 		public int IdValid => _idValid;

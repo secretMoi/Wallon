@@ -124,9 +124,9 @@ namespace Wallon.Repository
 		/// </summary>
 		/// <param name="id">Id du locataire</param>
 		/// <returns>Le nom du locataire</returns>
-		public string NomLocataireCourant(int id)
+		public async Task<string> NomLocataireCourant(int id)
 		{
-			return new ControllerLocataires().GetById(id).Nom;
+			return (await new ControllerLocataires().GetById(id)).Nom;
 		}
 	}
 }

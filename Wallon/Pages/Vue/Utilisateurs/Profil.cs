@@ -17,8 +17,11 @@ namespace Wallon.Pages.Vue.Utilisateurs
 			SetColors();
 
 			flatTextBoxPassword.IsPassword = true;
+		}
 
-			_controllerProfil.RempliChamps(flatTextBoxNom, flatTextBoxPassword);
+		private async void Profil_Load(object sender, System.EventArgs e)
+		{
+			await _controllerProfil.RempliChamps(flatTextBoxNom, flatTextBoxPassword);
 		}
 
 		private void flatButtonUpdate_Click(object sender, System.EventArgs e)

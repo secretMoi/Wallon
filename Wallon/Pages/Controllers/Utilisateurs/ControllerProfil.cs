@@ -1,5 +1,7 @@
-﻿using Couche_Classe;
+﻿using System.Threading.Tasks;
+using Couche_Classe;
 using FlatControls.Controls;
+using Models.Dtos.Locataires;
 using Wallon.Core;
 using Wallon.Repository;
 
@@ -29,9 +31,9 @@ namespace Wallon.Pages.Controllers.Utilisateurs
 		/// </summary>
 		/// <param name="flatTextBoxNom">Textbox pour modifier le nom du locataire</param>
 		/// <param name="flatTextBoxPassword">Textbox pour modifier le mot de passe du locataire</param>
-		public void RempliChamps(FlatTextBox flatTextBoxNom, FlatTextBox flatTextBoxPassword)
+		public async Task RempliChamps(FlatTextBox flatTextBoxNom, FlatTextBox flatTextBoxPassword)
 		{
-			Locataire locataireCourant = locataire.LireId(Settings.IdLocataire); // récupère le locataire dans la bdd
+			LocataireReadDto locataireCourant = await locataire.LireId(Settings.IdLocataire); // récupère le locataire dans la bdd
 
 			// modifie les champs
 			flatTextBoxNom.Text = locataireCourant.Nom;

@@ -129,6 +129,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Name = "Profil";
 			this.Size = new System.Drawing.Size(1856, 893);
+			this.Load += new System.EventHandler(this.Profil_Load);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();
 			this.panelCorps.ResumeLayout(false);

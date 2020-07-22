@@ -198,18 +198,6 @@
     <Compile Include="SelfUpdate.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Controllers\Validators\TacheValidator.cs" />
-    <Compile Include="tests\MainMenu.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="tests\MainMenu.Designer.cs">
-      <DependentUpon>MainMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="tests\testMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="tests\testMenu.Designer.cs">
-      <DependentUpon>testMenu.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Controllers\BaseConsulter\BaseConsulter.resx">
       <DependentUpon>BaseConsulter.cs</DependentUpon>
     </EmbeddedResource>
@@ -255,12 +243,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="tests\MainMenu.resx">
-      <DependentUpon>MainMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="tests\testMenu.resx">
-      <DependentUpon>testMenu.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

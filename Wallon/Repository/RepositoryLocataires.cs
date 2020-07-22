@@ -1,13 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Couche_Classe;
 using Couche_Gestion;
+using Models.Dtos.Locataires;
+using RestApiClient.Controllers;
 
 namespace Wallon.Repository
 {
 	public class RepositoryLocataires
 	{
 		private readonly Gestion_Locataire _gestion;
+		private static LocatairesController _locatairesController;
+
+		private LocatairesController Controller
+		{
+			get
+			{
+				if (_locatairesController == null)
+					_locatairesController = new LocatairesController();
+
+				return _locatairesController;
+			}
+			
+		}
 
 		public RepositoryLocataires()
 		{
@@ -26,15 +42,15 @@ namespace Wallon.Repository
 			}
 		}
 
-		public Locataire LireId(int index)
+		public async Task<LocataireReadDto> LireId(int id)
 		{
 			try
 			{
-				return _gestion.LireId(index);
+				return await Controller.GetById<LocataireReadDto>(id);
 			}
 			catch (Exception ex)
 			{
-				throw new Exception("Impossible de lire le locataire " + index + "  : \n" + ex.Message);
+				throw new Exception("Impossible de lire le locataire " + id + "  : \n" + ex.Message);
 			}
 		}
 

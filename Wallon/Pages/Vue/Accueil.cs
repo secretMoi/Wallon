@@ -4,6 +4,7 @@ using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
 using RestApiClient.Controllers;
 using Wallon.Pages.Controllers;
+using Wallon.Repository;
 
 namespace Wallon.Pages.Vue
 {
@@ -50,7 +51,11 @@ namespace Wallon.Pages.Vue
 
 			//IEnumerable<TacheReadDto> taches = await new TachesController().GetAll<TacheReadDto>();
 
-			LiaisonReadDto liaison = await new LiaisonsController().GetById<LiaisonReadDto>(3);
+			//LocataireReadDto locataire = await new LocatairesController().GetById<LocataireReadDto>(5);
+
+			//IList<LocataireReadDto> liaison = await new LocatairesController().GetAll<LocataireReadDto>();
+
+			//var test = await new RepositoryLocataires().LireTest(1);
 		}
 	}
 }

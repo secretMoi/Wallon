@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Couche_Classe;
 using FlatControls.Controls;
+using Models.Dtos.Locataires;
 using Wallon.Controllers;
 using Wallon.Controllers.BaseConsulter;
 using Wallon.Pages.Vue.Taches;
@@ -80,7 +81,7 @@ namespace Wallon.Pages.Controllers.Taches
 		/// Ajoute une tâche dans la dgv
 		/// </summary>
 		/// <param name="tache">Données à insérer</param>
-		private void AddToDgv(Couche_Classe.Taches tache)
+		private async void AddToDgv(Couche_Classe.Taches tache)
 		{
 			//_mutex.WaitOne();
 
@@ -92,7 +93,7 @@ namespace Wallon.Pages.Controllers.Taches
 				dateFin = tache.DatteFin.AddDays(tache.Cycle).ToShortDateString();
 
 			int idLocataireSuivant = new ControllerTaches().LocataireSuivant(tache.Id, tache.LocataireCourant); // récupère l'id du locataire suivant
-			Locataire locataireSuivant = new RepositoryLocataires().LireId(idLocataireSuivant);
+			LocataireReadDto locataireSuivant = await new RepositoryLocataires().LireId(idLocataireSuivant);
 
 			_list.Add(
 				new object[]
