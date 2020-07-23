@@ -59,6 +59,7 @@ namespace Wallon.Fenetres
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
+			RestApiClient.ApiHelper.InitializeClient();
 			ThemePanel.SetConnection(Settings.Connection); // initialise la connexion
 
 			if(!TestDatabaseConnection()) return; // si la bdd est injoignable on quitte

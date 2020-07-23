@@ -13,24 +13,25 @@ namespace Wallon.Controllers
 	public class ControllerLocataires
 	{
 		private int _idValid;
+		private readonly RepositoryLocataires _repositoryLocataires = RepositoryLocataires.Instance;
 
-		public int Ajouter(Locataire locataire)
+		/*public int Ajouter(Locataire locataire)
 		{
 			locataire.Password = Cryptage.Crypt(locataire.Password);
 
 			return new RepositoryLocataires().Ajouter(locataire);
-		}
+		}*/
 
 		/// <summary>
 		/// Vérifie que le nom du locataire passé en paramètres existe dans la bdd
 		/// </summary>
 		/// <param name="nom">Le nom du locataire</param>
 		/// <returns>Renvoie un objet locataire si trouvé, null sinon</returns>
-		public Locataire Existe(string nom)
+		public async Task<LocataireReadDto> Existe(string nom)
 		{
-			List<Locataire> locataires = new RepositoryLocataires().Lire("id");
+			IList<LocataireReadDto> locataires = await _repositoryLocataires.Lire();
 
-			foreach (Locataire locataire in locataires)
+			foreach (LocataireReadDto locataire in locataires)
 				if (locataire.Nom == nom)
 					return locataire;
 
@@ -43,16 +44,12 @@ namespace Wallon.Controllers
 		/// <param name="nom">Le nom du locataire</param>
 		/// <param name="password">Le mot de passe du locataire</param>
 		/// <returns>true si le nom et le mot de passe correspondent, false sinon</returns>
-		public bool Authentifie(string nom, string password)
+		public async Task<bool> Authentifie(string nom, string password)
 		{
-			Locataire locataire = Existe(nom);
+			LocataireReadDto locataire = await Existe(nom);
 			if (locataire == null) return false;
 
 			_idValid = locataire.Id;
-
-			var t1 = locataire.Password;
-			var t2 = Cryptage.Crypt(password);
-
 
 			using (StreamWriter file =
 				new StreamWriter(@"debug.txt", true))
@@ -66,7 +63,7 @@ namespace Wallon.Controllers
 
 		public async Task<LocataireReadDto> GetById(int id)
 		{
-			return await new RepositoryLocataires().LireId(id);
+			return await _repositoryLocataires.LireId(id);
 		}
 
 		public int IdValid => _idValid;

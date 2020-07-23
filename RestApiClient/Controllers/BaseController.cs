@@ -49,7 +49,7 @@ namespace RestApiClient.Controllers
 			return url.ToString();
 		}
 
-		public virtual async Task<T> GetById<T>(int id)
+		public virtual async Task<T> GetById<T>(int id) where T : IRead
 		{
 			if (!BaseMethods.Contains(BaseMethod.GetId)) return default;
 
@@ -70,7 +70,7 @@ namespace RestApiClient.Controllers
 			}
 		}
 
-		public virtual async Task<IList<T>> GetAll<T>()
+		public virtual async Task<IList<T>> GetAll<T>() where T : IRead
 		{
 			if (!BaseMethods.Contains(BaseMethod.GetAll)) return default;
 
@@ -91,39 +91,35 @@ namespace RestApiClient.Controllers
 			}
 		}
 
-		public virtual async Task<string> Update<T>(T data) where T : IUpdate
+		public virtual async Task Update<T>(T data) where T : IUpdate
 		{
-			if (!BaseMethods.Contains(BaseMethod.Update)) return default;
+			if (!BaseMethods.Contains(BaseMethod.Update)) return;
 
 			string url = MakeUrl(data.Id);
 
 			StringContent dataJson = SerializeAsJson(data);
 
-			string result;
-
 			// fais une req sur l'url et attend la réponse
 			using (HttpResponseMessage response = await ApiHelper.ApiClient.PutAsync(url, dataJson))
 			{
-				result = response.Content.ReadAsStringAsync().Result;
+				await response.Content.ReadAsStringAsync();
 			}
-
-			return result;
 		}
 
-		public virtual async Task<string> Post<T>(T data)
+		public virtual async Task<TU> Post<T, TU>(T input) where TU : IRead
 		{
 			if (!BaseMethods.Contains(BaseMethod.Post)) return default;
 
 			string url = MakeUrl();
 
-			StringContent dataJson = SerializeAsJson(data);
+			StringContent dataJson = SerializeAsJson(input);
 
-			string result;
+			TU result;
 
 			// fais une req sur l'url et attend la réponse
 			using (HttpResponseMessage response = await ApiHelper.ApiClient.PostAsync(url, dataJson))
 			{
-				result = response.Content.ReadAsStringAsync().Result;
+				result = await response.Content.ReadAsAsync<TU>();
 			}
 
 			return result;

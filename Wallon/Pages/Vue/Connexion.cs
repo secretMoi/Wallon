@@ -1,7 +1,5 @@
 ﻿using System;
-using System.IO;
-using System.Security.Cryptography;
-using Couche_Classe;
+using System.Threading.Tasks;
 using Wallon.Controllers;
 using Wallon.Pages.Controllers;
 
@@ -18,12 +16,6 @@ namespace Wallon.Pages.Vue
 
 			_controllerLocataires = new ControllerLocataires();
 			_controllerConnection = new ControllerConnection();
-
-			if (_controllerConnection.AuthInCacheValid(_controllerLocataires))
-			{
-				_controllerConnection.Auth(_controllerLocataires);
-				LoadPage("Accueil");
-			}
 
 			SetTitre("Connexion");
 
@@ -59,13 +51,22 @@ namespace Wallon.Pages.Vue
 			_controllerLocataires.Ajouter(new Locataire("Andy", "mdp"));*/
 		}
 
-		private void flatButtonConnexion_Click(object sender, EventArgs e)
+		private async void Connexion_Load(object sender, EventArgs e)
+		{
+			if (await _controllerConnection.AuthInCacheValid(_controllerLocataires))
+			{
+				_controllerConnection.Auth(_controllerLocataires);
+				LoadPage("Accueil");
+			}
+		}
+
+		private async void flatButtonConnexion_Click(object sender, EventArgs e)
 		{
 			// récupère les text des champs
 			string nom = flatTextName.Text;
 			string password = flatTextBoxPassword.Text;
 
-			if (_controllerLocataires.Authentifie(nom, password)) // si les identifiants entrés sont bons
+			if (await _controllerLocataires.Authentifie(nom, password)) // si les identifiants entrés sont bons
 			{
 				_controllerConnection.Save(nom, password); // enregistre la session dans le fichier local
 				_controllerConnection.Auth(_controllerLocataires); // authentifie dans le programme

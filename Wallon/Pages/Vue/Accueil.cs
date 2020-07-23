@@ -3,6 +3,7 @@ using Models.Dtos.LiaisonsTachesLocataires;
 using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
 using RestApiClient.Controllers;
+using Wallon.Fenetres;
 using Wallon.Pages.Controllers;
 using Wallon.Repository;
 
@@ -19,10 +20,8 @@ namespace Wallon.Pages.Vue
 			SetTitre("Accueil");
 		}
 
-		private async void Accueil_Load(object sender, System.EventArgs e)
+		private void Accueil_Load(object sender, System.EventArgs e)
 		{
-			RestApiClient.ApiHelper.InitializeClient();
-
 			// lire tout
 			//IEnumerable<LocataireReadDto> locataires = await new LocatairesController().GetAll<LocataireReadDto>();
 

@@ -106,7 +106,7 @@ namespace RestServer.Controllers
 				tachesReadDtos.Add(tacheReadDto);
 			}
 
-			return Ok(tachesReadDtos); // map commandItem en CommandReadDto pour renvoyer les données formattées au client
+			return Ok(tachesReadDtos);
 		}
 
 		// POST api/taches

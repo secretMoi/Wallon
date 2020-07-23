@@ -2,6 +2,7 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Threading.Tasks;
 using Wallon.Controllers;
 using Wallon.Core;
 
@@ -24,12 +25,12 @@ namespace Wallon.Pages.Controllers
 		/// </summary>
 		/// <param name="controllerLocataires">Accès au contrôleur de gestion de la table Locataires de la bdd</param>
 		/// <returns>true si les identifiants sont trouvés et valides, false sinon</returns>
-		public bool AuthInCacheValid(ControllerLocataires controllerLocataires)
+		public async Task<bool> AuthInCacheValid(ControllerLocataires controllerLocataires)
 		{
 			(string, byte[]) result = Get();
 
 			if (result.Item1 != null && result.Item2 != null)
-				if (controllerLocataires.Authentifie(result.Item1,  Cryptage.Uncrypt(result.Item2)))
+				if (await controllerLocataires.Authentifie(result.Item1,  Cryptage.Uncrypt(result.Item2)))
 					return true;
 
 			return false;

@@ -3,29 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AutoMapper;
 using Couche_Classe;
 using FlatControls.Controls;
 using FluentValidation.Results;
+using Models.Dtos.Locataires;
+using Models.Dtos.Taches;
 using Wallon.Controllers;
 using Wallon.Controllers.BaseConsulter;
 using Wallon.Controllers.Validators;
 using Wallon.Core;
 using Wallon.Fenetres;
 using Wallon.Pages.Vue.Taches;
+using Wallon.Profiles;
 using Wallon.Repository;
 
 namespace Wallon.Pages.Controllers.Taches
 {
 	public class ControllerAjouter
 	{
-		private readonly RepositoryTaches _taches;
+		private readonly RepositoryLocataires _repositoryLocataires = RepositoryLocataires.Instance;
+		private readonly RepositoryTaches _repositoryTaches = RepositoryTaches.Instance;
 		private readonly RepositoryLiaisonTachesLocataires _liaison;
 		private readonly Ajouter _page;
 
 		public ControllerAjouter(Ajouter page)
 		{
 			_page = page;
-			_taches = new RepositoryTaches();
 			_liaison = new RepositoryLiaisonTachesLocataires();
 		}
 
@@ -50,11 +54,11 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <summary>
 		/// Initialise les données de la dgv
 		/// </summary>
-		public void FillDgv()
+		public async Task FillDgv()
 		{
-			List<Locataire> locataires = new RepositoryLocataires().Lire("id"); // récupère les données dans la bdd
+			IList<LocataireReadDto> locataires = await _repositoryLocataires.Lire(); // récupère les données dans la bdd
 
-			foreach (Locataire locataire in locataires) // les lie à la dgv
+			foreach (LocataireReadDto locataire in locataires) // les lie à la dgv
 				_page.FillDgv(
 					locataire.Id,
 					locataire.Nom,
@@ -151,16 +155,17 @@ namespace Wallon.Pages.Controllers.Taches
 			return true;
 		}
 
-		private void Ajouter(string name, DateTime datteDebut, int cycle, List<int> idLocataires)
+		private async Task Ajouter(string name, DateTime datteDebut, int cycle, List<int> idLocataires)
 		{
 			// Crée la tâche
-			Couche_Classe.Taches tache = new Couche_Classe.Taches(
-				name,
-				datteDebut,
-				true,
-				idLocataires[0],
-				cycle
-			);
+			TacheReadDto tache = new TacheReadDto()
+			{
+				Nom = name,
+				DatteFin = datteDebut,
+				Active = true,
+				LocataireId = idLocataires[0],
+				Cycle = 0
+			};
 
 			// validation des données
 			ValidationResult result = new TacheValidator().Validate(tache);
@@ -170,8 +175,10 @@ namespace Wallon.Pages.Controllers.Taches
 				return;
 			}
 
+			TacheCreateDto tacheCreateDto = TachesProfile.ReadToCreate().Map<TacheCreateDto>(tache);
+
 			// Ajout de la tâche à la bdd
-			int idTache = _taches.Ajouter(tache);
+			int idTache = (await _repositoryTaches.Ajouter(tacheCreateDto)).Id;
 
 			// Ajout les locataires à la tâche dans la bdd (table liaison)
 			foreach (int idSelected in idLocataires)
@@ -191,7 +198,7 @@ namespace Wallon.Pages.Controllers.Taches
 				_liaison.Supprimer(liaison);
 			}
 
-			_taches.Supprimer((int) IdTache);
+			_repositoryTaches.Supprimer((int) IdTache);
 		}
 
 		/// <summary>
@@ -206,9 +213,9 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <summary>
 		/// Récupère une tâche grâce à son id dans la base de données
 		/// </summary>
-		public Couche_Classe.Taches GetTache()
+		public async Task<TacheReadDto> GetTache()
 		{
-			return _taches.LireId((int) IdTache);
+			return await _repositoryTaches.LireId((int) IdTache);
 		}
 
 		/// <summary>
@@ -218,7 +225,7 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <returns>Le nom du locataire</returns>
 		public async Task<string> FillFieldLocataireCourant(int idLocataire)
 		{
-			return (await new RepositoryLocataires().LireId(idLocataire)).Nom;
+			return (await _repositoryLocataires.LireId(idLocataire)).Nom;
 		}
 
 

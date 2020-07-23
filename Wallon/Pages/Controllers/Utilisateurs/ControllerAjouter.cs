@@ -1,4 +1,5 @@
 ﻿using Couche_Classe;
+using Models.Dtos.Locataires;
 using Wallon.Core;
 using Wallon.Repository;
 
@@ -6,19 +7,17 @@ namespace Wallon.Pages.Controllers.Utilisateurs
 {
 	public class ControllerAjouter
 	{
-		private readonly RepositoryLocataires _repositoryLocataires;
+		private readonly RepositoryLocataires _repositoryLocataires = RepositoryLocataires.Instance;
 
-		public ControllerAjouter()
+		public async void Add(string name, string password)
 		{
-			_repositoryLocataires = new RepositoryLocataires();
-		}
+			LocataireCreateDto locataireCreateDto = new LocataireCreateDto()
+			{
+				Nom = name,
+				Password = Cryptage.Crypt(password)
+			};
 
-		public void Add(string name, string password)
-		{
-			_repositoryLocataires.Ajouter(new Locataire(
-				name,
-				Cryptage.Crypt(password)
-			));
+			await _repositoryLocataires.Ajouter(locataireCreateDto);
 		}
 	}
 }

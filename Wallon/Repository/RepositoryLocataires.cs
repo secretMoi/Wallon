@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Couche_Classe;
-using Couche_Gestion;
 using Models.Dtos.Locataires;
 using RestApiClient.Controllers;
 
@@ -10,31 +8,33 @@ namespace Wallon.Repository
 {
 	public class RepositoryLocataires
 	{
-		private readonly Gestion_Locataire _gestion;
-		private static LocatairesController _locatairesController;
+		// singleton lazy et thread-safe
+		private static readonly Lazy<RepositoryLocataires> Lazy = new Lazy<RepositoryLocataires>(() => new RepositoryLocataires());
+
+		public static RepositoryLocataires Instance => Lazy.Value;
+
+		private RepositoryLocataires()
+		{
+		}
+
+		private static LocatairesController _apiClientController;
 
 		private LocatairesController Controller
 		{
 			get
 			{
-				if (_locatairesController == null)
-					_locatairesController = new LocatairesController();
+				if (_apiClientController == null)
+					_apiClientController = new LocatairesController();
 
-				return _locatairesController;
+				return _apiClientController;
 			}
-			
 		}
 
-		public RepositoryLocataires()
-		{
-			_gestion = new Gestion_Locataire(Settings.Connection);
-		}
-
-		public List<Locataire> Lire(string index)
+		public async Task<IList<LocataireReadDto>> Lire()
 		{
 			try
 			{
-				return _gestion.Lire(index);
+				return await Controller.GetAll<LocataireReadDto>();
 			}
 			catch (Exception ex)
 			{
@@ -54,7 +54,7 @@ namespace Wallon.Repository
 			}
 		}
 
-		public int Supprimer(int index)
+		/*public int Supprimer(int index)
 		{
 			try
 			{
@@ -64,16 +64,13 @@ namespace Wallon.Repository
 			{
 				throw new Exception("Impossible de supprimer le locataire avec l'id " + index + "  : \n" + ex.Message);
 			}
-		}
+		}*/
 
-		public int Ajouter(Locataire locataire)
+		public async Task<LocataireReadDto> Ajouter(LocataireCreateDto locataire)
 		{
 			try
 			{
-				return _gestion.Ajouter(
-					locataire.Nom,
-					locataire.Password
-				);
+				return await Controller.Post<LocataireCreateDto, LocataireReadDto>(locataire);
 			}
 			catch (Exception ex)
 			{
@@ -81,20 +78,16 @@ namespace Wallon.Repository
 			}
 		}
 
-		public int Modifier(Locataire locataire)
+		public async Task Modifier(LocataireUpdateDto locataire)
 		{
 			try
 			{
-				return _gestion.Modifier(locataire.Id, locataire.Nom, locataire.Password);
+				await Controller.Update(locataire);
 			}
 			catch (Exception ex)
 			{
 				throw new Exception("Impossible de modifier le locataire " + locataire.Nom + "  : \n" + ex.Message);
 			}
-		}
-		public int Modifier(int id, string nom, byte[] password)
-		{
-			return Modifier(new Locataire(id, nom, password));
 		}
 	}
 }

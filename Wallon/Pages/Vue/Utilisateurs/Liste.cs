@@ -18,13 +18,13 @@ namespace Wallon.Pages.Vue.Utilisateurs
 			_controllerListe = new ControllerListe();
 		}
 
-		private void Liste_Load(object sender, EventArgs e)
+		private async void Liste_Load(object sender, EventArgs e)
 		{
 			_flatDataGridView = flatDataGridView;
 
 			_controllerListe.ListeColonnes(this);
 
-			_controllerListe.GetData(UseGridView);
+			await _controllerListe.GetData(UseGridView);
 
 			AfterLoad();
 		}

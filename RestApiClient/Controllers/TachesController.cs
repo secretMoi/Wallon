@@ -20,7 +20,7 @@ namespace RestApiClient.Controllers
 			);
 		}
 
-		public async Task<IEnumerable<TacheReadDto>> GetTachesFromLocataire(int id)
+		public async Task<IList<TacheReadDto>> GetTachesFromLocataire(int id)
 		{
 			string url = MakeUrl("duLocataire", id);
 
@@ -30,7 +30,7 @@ namespace RestApiClient.Controllers
 				if (response.IsSuccessStatusCode)
 				{
 					// map le json lu dans la req http dans le model
-					IEnumerable<TacheReadDto> data = await response.Content.ReadAsAsync<IEnumerable<TacheReadDto>>();
+					IList<TacheReadDto> data = await response.Content.ReadAsAsync<IList<TacheReadDto>>();
 
 					return data;
 				}

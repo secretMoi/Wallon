@@ -73,6 +73,9 @@
     <StartupObject>Wallon.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Couche_Acces">
       <HintPath>..\Couche_Acces\obj\Debug\Couche_Acces.dll</HintPath>
     </Reference>
@@ -178,6 +181,8 @@
     <Compile Include="Pages\Vue\Utilisateurs\Profil.Designer.cs">
       <DependentUpon>Profil.cs</DependentUpon>
     </Compile>
+    <Compile Include="Profiles\TachesProfile.cs" />
+    <Compile Include="Repository\BaseRepo.cs" />
     <Compile Include="Repository\RepositoryLiaisonTachesLocataires.cs" />
     <Compile Include="Repository\RepositoryLocataires.cs" />
     <Compile Include="Pages\Vue\Accueil.cs">
@@ -385,5 +390,6 @@
       <Name>RestApiClient</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

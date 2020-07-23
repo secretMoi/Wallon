@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlatControls.Core;
 using Couche_Classe;
+using Models.Dtos.Locataires;
 using Wallon.Pages.Vue.Utilisateurs;
 using Wallon.Repository;
 
@@ -9,12 +11,7 @@ namespace Wallon.Pages.Controllers.Utilisateurs
 {
 	public class ControllerListe
 	{
-		private readonly RepositoryLocataires _locataire;
-
-		public ControllerListe()
-		{
-			_locataire = new RepositoryLocataires();
-		}
+		private readonly RepositoryLocataires _repositoryLocataires = RepositoryLocataires.Instance;
 
 		/// <summary>
 		/// Indique la liste des colonnes à afficher dans la dgv
@@ -33,11 +30,11 @@ namespace Wallon.Pages.Controllers.Utilisateurs
 		/// Récupère les données demandées et les ajoute à la dgv
 		/// </summary>
 		/// <param name="useGridView">Dgv où insérer les données trouvées</param>
-		public void GetData(UseGridView useGridView)
+		public async Task GetData(UseGridView useGridView)
 		{
-			List<Locataire> locataires = _locataire.Lire("id"); // récupère les données dans la bdd
+			IList<LocataireReadDto> locataires = await _repositoryLocataires.Lire(); // récupère les données dans la bdd
 
-			foreach (Locataire locataire in locataires) // les lie à la dgv
+			foreach (LocataireReadDto locataire in locataires) // les lie à la dgv
 				useGridView.Add(
 					locataire.Nom
 				);

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dtos\IRead.cs" />
     <Compile Include="Dtos\IUpdate.cs" />
     <Compile Include="Dtos\LiaisonsTachesLocataires\LiaisonCreateDto.cs" />
     <Compile Include="Dtos\LiaisonsTachesLocataires\LiaisonReadDto.cs" />

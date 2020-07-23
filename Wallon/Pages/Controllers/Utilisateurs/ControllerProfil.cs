@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Couche_Classe;
 using FlatControls.Controls;
 using Models.Dtos.Locataires;
 using Wallon.Core;
@@ -9,13 +8,8 @@ namespace Wallon.Pages.Controllers.Utilisateurs
 {
 	public class ControllerProfil
 	{
+		private readonly RepositoryLocataires _repositoryLocataires = RepositoryLocataires.Instance;
 		private const string ChampNom = "Nom";
-		private readonly RepositoryLocataires locataire;
-
-		public ControllerProfil()
-		{
-			locataire = new RepositoryLocataires();
-		}
 
 		/// <summary>
 		/// Définit le titre de la page
@@ -33,7 +27,7 @@ namespace Wallon.Pages.Controllers.Utilisateurs
 		/// <param name="flatTextBoxPassword">Textbox pour modifier le mot de passe du locataire</param>
 		public async Task RempliChamps(FlatTextBox flatTextBoxNom, FlatTextBox flatTextBoxPassword)
 		{
-			LocataireReadDto locataireCourant = await locataire.LireId(Settings.IdLocataire); // récupère le locataire dans la bdd
+			LocataireReadDto locataireCourant = await _repositoryLocataires.LireId(Settings.IdLocataire); // récupère le locataire dans la bdd
 
 			// modifie les champs
 			flatTextBoxNom.Text = locataireCourant.Nom;
@@ -45,9 +39,16 @@ namespace Wallon.Pages.Controllers.Utilisateurs
 		/// </summary>
 		/// <param name="nom">Nouveau nom du locataire</param>
 		/// <param name="password">Nouveau mot de passe en clair du locataire</param>
-		public void Update(string nom, string password)
+		public async void Update(string nom, string password)
 		{
-			locataire.Modifier(Settings.IdLocataire, nom, Cryptage.Crypt(password));
+			LocataireUpdateDto locataireUpdateDto = new LocataireUpdateDto()
+			{
+				Id = Settings.IdLocataire,
+				Nom = nom,
+				Password = Cryptage.Crypt(password)
+			};
+
+			await _repositoryLocataires.Modifier(locataireUpdateDto);
 		}
 	}
 }

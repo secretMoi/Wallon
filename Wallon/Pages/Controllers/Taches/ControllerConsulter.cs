@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Couche_Classe;
 using FlatControls.Controls;
 using Models.Dtos.Locataires;
+using Models.Dtos.Taches;
 using Wallon.Controllers;
 using Wallon.Controllers.BaseConsulter;
 using Wallon.Pages.Vue.Taches;
@@ -17,7 +17,8 @@ namespace Wallon.Pages.Controllers.Taches
 {
 	public class ControllerConsulter
 	{
-		private readonly RepositoryTaches _taches;
+		private readonly RepositoryLocataires _repositoryLocataires = RepositoryLocataires.Instance;
+		private readonly RepositoryTaches _taches = RepositoryTaches.Instance;
 		private readonly Mutex _mutex = new Mutex();
 		private readonly Consulter _page;
 		private bool _pageLoaded;
@@ -30,7 +31,6 @@ namespace Wallon.Pages.Controllers.Taches
 		{
 			_page = page;
 
-			_taches = new RepositoryTaches();
 			_list = new List<object[]>();
 		}
 
@@ -60,7 +60,7 @@ namespace Wallon.Pages.Controllers.Taches
 		/// </summary>
 		public async Task GetDataAsync()
 		{
-			List<Couche_Classe.Taches> taches = await _taches.LireAsync("datteFin"); // récupère les données dans la bdd
+			IList<TacheReadDto> taches = await _taches.LireAsync(); // récupère les données dans la bdd
 
 			// parrallel async mais problème de désordre
 			//List<Task> tasks = new List<Task>();
@@ -68,7 +68,7 @@ namespace Wallon.Pages.Controllers.Taches
 			/*foreach (Couche_Classe.Taches tache in taches) // les lie à la dgv
 				tasks.Add(Task.Run(() => AddToDgv(tache)));*/
 
-			foreach (Couche_Classe.Taches tache in taches) // les lie à la dgv
+			foreach (TacheReadDto tache in taches) // les lie à la dgv
 				await Task.Run(() => AddToDgv(tache));
 
 			//await Task.WhenAll(tasks);
@@ -81,7 +81,7 @@ namespace Wallon.Pages.Controllers.Taches
 		/// Ajoute une tâche dans la dgv
 		/// </summary>
 		/// <param name="tache">Données à insérer</param>
-		private async void AddToDgv(Couche_Classe.Taches tache)
+		private async void AddToDgv(TacheReadDto tache)
 		{
 			//_mutex.WaitOne();
 
@@ -92,15 +92,15 @@ namespace Wallon.Pages.Controllers.Taches
 			else // sinon on ajoute le cycle à la date de fin
 				dateFin = tache.DatteFin.AddDays(tache.Cycle).ToShortDateString();
 
-			int idLocataireSuivant = new ControllerTaches().LocataireSuivant(tache.Id, tache.LocataireCourant); // récupère l'id du locataire suivant
-			LocataireReadDto locataireSuivant = await new RepositoryLocataires().LireId(idLocataireSuivant);
+			int idLocataireSuivant = new ControllerTaches().LocataireSuivant(tache.Id, tache.LocataireId); // récupère l'id du locataire suivant
+			LocataireReadDto locataireSuivant = await _repositoryLocataires.LireId(idLocataireSuivant);
 
 			_list.Add(
 				new object[]
 				{
 					tache.Id,
 					tache.Nom,
-					_taches.NomLocataireCourant(tache.LocataireCourant),
+					tache.LocataireCourant.Nom,
 					locataireSuivant.Nom,
 					dateFin
 				}

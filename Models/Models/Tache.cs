@@ -11,8 +11,9 @@ namespace Models.Models
 
 		[DefaultValue(true)]
 		public bool Active { get; set; }
-		public int LocataireId { get; set; } // foreign key
-		public Locataire LocataireCourant { get; set; } // contenu de status lié à l'objet
+		public int? LocataireId { get; set; } // foreign key
+		public Locataire Locataire { get; set; } // contenu de status lié à l'objet
+		//todo migrer le nouveau model
 		public int Cycle { get; set; }
 	}
 }

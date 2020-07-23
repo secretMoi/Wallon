@@ -1,26 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Couche_Classe;
-using Couche_Gestion;
+using AutoMapper;
+using Models.Dtos.Taches;
+using RestApiClient.Controllers;
 using Wallon.Controllers;
 
 namespace Wallon.Repository
 {
 	public class RepositoryTaches
 	{
-		private readonly GestionTaches _gestion;
+		/*private readonly GestionTaches _gestion;
 
 		public RepositoryTaches()
 		{
 			_gestion = new GestionTaches(Settings.Connection);
+		}*/
+
+		// singleton lazy et thread-safe
+		private static readonly Lazy<RepositoryTaches> Lazy = new Lazy<RepositoryTaches>(() => new RepositoryTaches());
+
+		public static RepositoryTaches Instance => Lazy.Value;
+
+		private RepositoryTaches()
+		{
 		}
 
-		public List<Taches> Lire(string index)
+		private static TachesController _apiClientController;
+
+		private TachesController Controller
+		{
+			get
+			{
+				if (_apiClientController == null)
+					_apiClientController = new TachesController();
+
+				return _apiClientController;
+			}
+		}
+
+		public async Task<IList<TacheReadDto>> Lire()
 		{
 			try
 			{
-				return _gestion.Lire(index);
+				return await Controller.GetAll<TacheReadDto>();
 			}
 			catch (Exception ex)
 			{
@@ -28,28 +51,28 @@ namespace Wallon.Repository
 			}
 		}
 
-		public async Task<List<Taches>> LireAsync(string index)
+		public async Task<IList<TacheReadDto>> LireAsync()
 		{
-			return await Task.Run(() => Lire(index));
+			return await Task.Run(() => Lire());
 		}
 
-		public Taches LireId(int index)
+		public async Task<TacheReadDto> LireId(int id)
 		{
 			try
 			{
-				return _gestion.LireId(index);
+				return await Controller.GetById<TacheReadDto>(id);
 			}
 			catch (Exception ex)
 			{
-				throw new Exception("Impossible de lire la tâche " + index + "  : \n" + ex.Message);
+				throw new Exception("Impossible de lire la tâche " + id + "  : \n" + ex.Message);
 			}
 		}
 
-		public void Supprimer(int id)
+		public async void Supprimer(int id)
 		{
 			try
 			{
-				_gestion.Supprimer(id);
+				await Controller.Delete(id);
 			}
 			catch (Exception ex)
 			{
@@ -62,11 +85,11 @@ namespace Wallon.Repository
 		/// </summary>
 		/// <param name="idLocataireCourant">Id du locataire</param>
 		/// <returns>La liste des tâches</returns>
-		public List<Taches> TachesCourantesDuLocataire(int idLocataireCourant)
+		public async Task<IList<TacheReadDto>> TachesCourantesDuLocataire(int idLocataireCourant)
 		{
 			try
 			{
-				return _gestion.TachesCourantesDuLocataire(idLocataireCourant);
+				return await Controller.GetTachesFromLocataire(idLocataireCourant);
 			}
 			catch (Exception ex)
 			{
@@ -86,11 +109,11 @@ namespace Wallon.Repository
 			}
 		}*/
 
-		public int Ajouter(Taches tache)
+		public async Task<TacheReadDto> Ajouter(TacheCreateDto tache)
 		{
 			try
 			{
-				return _gestion.Ajouter(tache);
+				return await Controller.Post<TacheCreateDto, TacheReadDto>(tache);
 			}
 			catch (Exception ex)
 			{
@@ -103,15 +126,25 @@ namespace Wallon.Repository
 		/// </summary>
 		/// <param name="id">Id de la tâche</param>
 		/// <param name="idLocataire">Id du locataire devant effectuer la tâche</param>
-		public int ModifierLocataireCourant(int id, int idLocataire)
+		public async Task ModifierLocataireCourant(int id, int idLocataire)
 		{
 			try
 			{
-				Taches tache = LireId(id); // récupère les infos sur la tâche
-				tache.DatteFin = tache.DatteFin.AddDays(tache.Cycle); // met à jour la datte de fin
-				tache.LocataireCourant = idLocataire; // met à jour le locataire courant
+				//todo optimiser avec un patch au lieu de put
+				TacheReadDto tacheReadDto = await Controller.GetById<TacheReadDto>(id);
 
-				return _gestion.Modifier(tache);
+				tacheReadDto.DatteFin = tacheReadDto.DatteFin.AddDays(tacheReadDto.Cycle); // met à jour la datte de fin
+				tacheReadDto.LocataireId = idLocataire; // met à jour le locataire courant
+
+				//Initialize the mapper
+				MapperConfiguration config = new MapperConfiguration(cfg =>
+					cfg.CreateMap<TacheReadDto, TacheUpdateDto>()
+				);
+				Mapper mapper = new Mapper(config);
+				TacheUpdateDto tacheUpdateDto = mapper.Map<TacheUpdateDto>(tacheReadDto);
+				//TacheUpdateDto tacheUpdateDto = mapper.Map<TacheReadDto, TacheUpdateDto>(tacheReadDto);
+
+				await Controller.Update(tacheUpdateDto);
 			}
 			catch (Exception ex)
 			{

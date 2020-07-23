@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestServer.Data;
 
 namespace RestServer.Migrations
 {
     [DbContext(typeof(WallonsContext))]
-    partial class WallonsContextModelSnapshot : ModelSnapshot
+    [Migration("20200723072933_ForeignKeyLocataireInTache")]
+    partial class ForeignKeyLocataireInTache
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -26,7 +26,7 @@
 		/// Méthode requise pour la prise en charge du concepteur - ne modifiez pas 
 		/// le contenu de cette méthode avec l'éditeur de code.
 		/// </summary>
-		private void InitializeComponent()
+		private new void InitializeComponent()
 		{
 			this.flatButtonAjouter = new FlatControls.Controls.Buttons.FlatButton();
 			this.flatTextBoxPassword = new FlatControls.Controls.FlatTextBox();

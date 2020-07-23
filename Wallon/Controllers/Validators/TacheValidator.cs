@@ -1,10 +1,10 @@
 ﻿using System;
-using Couche_Classe;
 using FluentValidation;
+using Models.Dtos.Taches;
 
 namespace Wallon.Controllers.Validators
 {
-	public class TacheValidator : AbstractValidator<Taches>
+	public class TacheValidator : AbstractValidator<TacheReadDto>
 	{
 		public TacheValidator()
 		{

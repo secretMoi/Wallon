@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlatControls.Controls;
-using FlatControls.Core;
+using Models.Dtos.Taches;
 using Wallon.Controllers;
 using Wallon.Controllers.BaseConsulter;
 using Wallon.Pages.Vue;
@@ -13,15 +14,14 @@ namespace Wallon.Pages.Controllers.Taches
 	public class ControllerMesTaches
 	{
 		private readonly FlatDataGridView _flatDataGridView;
-		private readonly RepositoryTaches _repositoryTaches;
-		private List<Couche_Classe.Taches> _taches; // associe id bdd et id dgv
+		private readonly RepositoryTaches _repositoryTaches = RepositoryTaches.Instance;
+		private IList<TacheReadDto> _taches; // associe id bdd et id dgv
 		private readonly ThemePanel _vue;
 
 		public ControllerMesTaches(FlatDataGridView flatDataGridView, ThemePanel vue)
 		{
 			_flatDataGridView = flatDataGridView;
 			_vue = vue;
-			_repositoryTaches = new RepositoryTaches();
 		}
 
 		/// <summary>
@@ -51,14 +51,14 @@ namespace Wallon.Pages.Controllers.Taches
 		/// Récupère les données demandées et les ajoute à la dgv
 		/// </summary>
 		/// <param name="baseConsulter">Classe contenant les images à afficher dans les colonnes</param>
-		public void GetData(BaseConsulter baseConsulter)
+		public async Task GetData(BaseConsulter baseConsulter)
 		{
 			_flatDataGridView.HideColonne("Id");
 
 			// récupère les tâches dont le locataire connecté est le locataireCourant
-			_taches = _repositoryTaches.TachesCourantesDuLocataire(Settings.IdLocataire);
+			_taches = await _repositoryTaches.TachesCourantesDuLocataire(Settings.IdLocataire);
 
-			foreach (Couche_Classe.Taches tache in _taches)
+			foreach (TacheReadDto tache in _taches)
 			{
 				// ajoute à la dgv
 				baseConsulter.FillDgv(
@@ -74,7 +74,7 @@ namespace Wallon.Pages.Controllers.Taches
 		/// </summary>
 		/// <param name="sender">Objet qui lance l'event</param>
 		/// <param name="args">Arguments optionnels</param>
-		public void Clic(object sender, DataGridViewCellMouseEventArgs args)
+		public async Task Clic(object sender, DataGridViewCellMouseEventArgs args)
 		{
 			int ligne = args.RowIndex;
 			int colonne = args.ColumnIndex;
@@ -83,7 +83,7 @@ namespace Wallon.Pages.Controllers.Taches
 			{
 				int locataireSuivant = new ControllerTaches().LocataireSuivant(_taches[ligne].Id, Settings.IdLocataire); // récupère l'id du locataire suivant
 
-				_repositoryTaches.ModifierLocataireCourant(_taches[ligne].Id, locataireSuivant); // modifie le locataire devant effectuer la tâche
+				await _repositoryTaches.ModifierLocataireCourant(_taches[ligne].Id, locataireSuivant); // modifie le locataire devant effectuer la tâche
 
 				// recharge la page avec un message de validation
 				string texteValide = "Vous avez validé la tâche " + _taches[ligne].Nom;
