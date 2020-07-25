@@ -37,19 +37,22 @@
 			// panelTitre
 			// 
 			this.panelTitre.Controls.Add(this.alerte);
+			this.panelTitre.Size = new System.Drawing.Size(2986, 120);
 			this.panelTitre.Controls.SetChildIndex(this.labelTitre, 0);
 			this.panelTitre.Controls.SetChildIndex(this.alerte, 0);
 			// 
 			// panelCorps
 			// 
 			this.panelCorps.Controls.Add(this.flatDataGridView);
+			this.panelCorps.Size = new System.Drawing.Size(2986, 1127);
 			// 
 			// flatDataGridView
 			// 
+			this.flatDataGridView.DataSource = null;
 			this.flatDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.flatDataGridView.Location = new System.Drawing.Point(0, 0);
 			this.flatDataGridView.Name = "flatDataGridView";
-			this.flatDataGridView.Size = new System.Drawing.Size(1856, 773);
+			this.flatDataGridView.Size = new System.Drawing.Size(2986, 1127);
 			this.flatDataGridView.TabIndex = 0;
 			// 
 			// alerte
@@ -69,6 +72,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Name = "MesTaches";
+			this.Size = new System.Drawing.Size(2986, 1247);
 			this.Load += new System.EventHandler(this.MesTaches_Load);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();

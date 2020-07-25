@@ -28,7 +28,7 @@ namespace Wallon.Pages.Vue.Taches
 			alerte.Show(args[0] as string);
 		}
 
-		private void MesTaches_Load(object sender, System.EventArgs e)
+		private async void MesTaches_Load(object sender, System.EventArgs e)
 		{
 			_flatDataGridView = flatDataGridView;
 
@@ -38,14 +38,14 @@ namespace Wallon.Pages.Vue.Taches
 
 			_controllerMesTaches.ColonnesCliquables(this);
 
-			_controllerMesTaches.GetData(this);
+			await _controllerMesTaches.GetData(this);
 
 			AfterLoad();
 		}
 
-		public override void EffetClic(object sender, DataGridViewCellMouseEventArgs e)
+		public override async void EffetClic(object sender, DataGridViewCellMouseEventArgs e)
 		{
-			_controllerMesTaches.Clic(sender, e);
+			await _controllerMesTaches.Clic(sender, e);
 		}
 	}
 }
