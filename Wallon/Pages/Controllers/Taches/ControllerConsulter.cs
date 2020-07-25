@@ -69,7 +69,8 @@ namespace Wallon.Pages.Controllers.Taches
 				tasks.Add(Task.Run(() => AddToDgv(tache)));*/
 
 			foreach (TacheReadDto tache in taches) // les lie à la dgv
-				await Task.Run(() => AddToDgv(tache));
+				await AddToDgv(tache);
+			//await Task.Run(() => AddToDgv(tache));
 
 			//await Task.WhenAll(tasks);
 
@@ -81,7 +82,7 @@ namespace Wallon.Pages.Controllers.Taches
 		/// Ajoute une tâche dans la dgv
 		/// </summary>
 		/// <param name="tache">Données à insérer</param>
-		private async void AddToDgv(TacheReadDto tache)
+		private async Task AddToDgv(TacheReadDto tache)
 		{
 			//_mutex.WaitOne();
 
@@ -94,7 +95,7 @@ namespace Wallon.Pages.Controllers.Taches
 
 			int idLocataireSuivant = new ControllerTaches().LocataireSuivant(tache.Id, tache.LocataireId); // récupère l'id du locataire suivant
 			LocataireReadDto locataireSuivant = await _repositoryLocataires.LireId(idLocataireSuivant);
-
+			// todo mettre la datte de fin en rouge si dépassée
 			_list.Add(
 				new object[]
 				{
@@ -121,7 +122,7 @@ namespace Wallon.Pages.Controllers.Taches
 
 			if (colonne == _page.FlatDataGridView.GetColumnId("Modifier")) // si la colonne cliquée correspond
 			{
-				int? idColonne = _page.FlatDataGridView.GetColumnId("Id"); // trouve l'idde la colonne Id
+				int? idColonne = _page.FlatDataGridView.GetColumnId("Id"); // trouve l'id de la colonne Id
 
 				if(idColonne == null) // si pas trouvé on sort
 					return;

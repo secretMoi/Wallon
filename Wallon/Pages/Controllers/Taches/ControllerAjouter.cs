@@ -164,7 +164,7 @@ namespace Wallon.Pages.Controllers.Taches
 				DateFin = datteDebut,
 				Active = true,
 				LocataireId = idLocataires[0],
-				Cycle = 0
+				Cycle = cycle
 			};
 
 			// validation des données
