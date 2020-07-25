@@ -133,7 +133,7 @@ namespace Wallon.Repository
 				//todo optimiser avec un patch au lieu de put
 				TacheReadDto tacheReadDto = await Controller.GetById<TacheReadDto>(id);
 
-				tacheReadDto.DatteFin = tacheReadDto.DatteFin.AddDays(tacheReadDto.Cycle); // met à jour la datte de fin
+				tacheReadDto.DateFin = tacheReadDto.DateFin.AddDays(tacheReadDto.Cycle); // met à jour la datte de fin
 				tacheReadDto.LocataireId = idLocataire; // met à jour le locataire courant
 
 				//Initialize the mapper

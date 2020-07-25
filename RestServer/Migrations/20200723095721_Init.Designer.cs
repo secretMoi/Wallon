@@ -10,8 +10,8 @@ using RestServer.Data;
 namespace RestServer.Migrations
 {
     [DbContext(typeof(WallonsContext))]
-    [Migration("20200723072933_ForeignKeyLocataireInTache")]
-    partial class ForeignKeyLocataireInTache
+    [Migration("20200723095721_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,6 +27,11 @@ namespace RestServer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool?>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<int>("LocataireId")
                         .HasColumnType("int");
@@ -50,13 +55,17 @@ namespace RestServer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Actif")
-                        .HasColumnType("bit");
+                    b.Property<bool?>("Actif")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("Nom")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Password")
+                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.HasKey("Id");
@@ -71,19 +80,22 @@ namespace RestServer.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                    b.Property<bool?>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<int>("Cycle")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DatteFin")
+                    b.Property<DateTime>("DateFin")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("LocataireId")
+                    b.Property<int>("LocataireId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nom")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -112,7 +124,9 @@ namespace RestServer.Migrations
                 {
                     b.HasOne("Models.Models.Locataire", "Locataire")
                         .WithMany()
-                        .HasForeignKey("LocataireId");
+                        .HasForeignKey("LocataireId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

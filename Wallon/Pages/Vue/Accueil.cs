@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 using Models.Dtos.LiaisonsTachesLocataires;
 using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
@@ -20,7 +21,7 @@ namespace Wallon.Pages.Vue
 			SetTitre("Accueil");
 		}
 
-		private void Accueil_Load(object sender, System.EventArgs e)
+		private async void Accueil_Load(object sender, System.EventArgs e)
 		{
 			// lire tout
 			//IEnumerable<LocataireReadDto> locataires = await new LocatairesController().GetAll<LocataireReadDto>();
@@ -31,7 +32,7 @@ namespace Wallon.Pages.Vue
 				Nom = "test",
 				Password = Encoding.ASCII.GetBytes("test")
 			};
-			await new LocatairesController().Post(locataire);*/
+			await RepositoryLocataires.Instance.Ajouter(locataire);*/
 
 			// lire 1
 			//LocataireReadDto locataire = await LocatairesController.GetLocataireById(4);

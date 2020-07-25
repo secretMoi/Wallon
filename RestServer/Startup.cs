@@ -27,13 +27,15 @@ namespace RestServer
 		public void ConfigureServices(IServiceCollection services)
 		{
 			// initialise le service de connexion à la bdd
-			services.AddDbContext<WallonsContext>(opt => opt.UseSqlServer(
+			services.AddDbContext<WallonsContext>(opt => opt.UseLazyLoadingProxies().UseSqlServer(
 				Configuration.GetConnectionString("WallonsConnection")
 			));
 
 			services.AddControllers().AddNewtonsoftJson(s =>
 				s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver()
 			);
+
+			//services.AddDbContext(options => options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
 			// initialise l'auto mapper
 			services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

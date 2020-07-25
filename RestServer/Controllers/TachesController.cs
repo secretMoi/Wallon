@@ -123,7 +123,7 @@ namespace RestServer.Controllers
 			_repository.SaveChanges(); // sauvegarde les changements dans la bdd
 
 			TacheReadDto tacheReadDto = _mapper.Map<TacheReadDto>(tache);
-			tacheReadDto.LocataireCourant = InstanceLocataire.GetById(tacheReadDto.LocataireId);
+			tacheReadDto.Locataire = InstanceLocataire.GetById((int) tacheReadDto.LocataireId);
 
 			//return CreatedAtRoute(nameof(GetById), new { Id = commandReadDto.Id }, commandReadDto);
 			return Ok(tacheReadDto);

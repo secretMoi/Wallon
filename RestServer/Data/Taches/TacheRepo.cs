@@ -29,7 +29,10 @@ namespace RestServer.Data.Taches
 		public Tache GetById(int id)
 		{
 			// retourne le premier dont l'id correspond
-			return _context.Taches.FirstOrDefault(p => p.Id == id);
+			return _context.Taches
+				//.Include(t => t.Locataire) // utilisé pour fill le lazy loading si foreign key null
+				.FirstOrDefault(p => p.Id == id);
+
 		}
 
 		public void Create(Tache tache)

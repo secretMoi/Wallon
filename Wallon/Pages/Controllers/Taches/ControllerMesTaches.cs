@@ -64,7 +64,7 @@ namespace Wallon.Pages.Controllers.Taches
 				baseConsulter.FillDgv(
 					tache.Id,
 					tache.Nom,
-					(tache.DatteFin - DateTime.Now.Date).Days
+					(tache.DateFin - DateTime.Now.Date).Days
 				);
 			}
 		}

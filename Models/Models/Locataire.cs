@@ -10,7 +10,6 @@ namespace Models.Models
 
 		public byte[] Password { get; set; }
 
-		[DefaultValue(true)]
-		public bool Actif { get; set; }
+		public bool? Actif { get; set; }
 	}
 }

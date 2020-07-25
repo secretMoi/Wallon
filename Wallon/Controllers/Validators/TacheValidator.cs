@@ -16,7 +16,7 @@ namespace Wallon.Controllers.Validators
 				.MaximumLength(50)
 				.WithMessage("Le {PropertyName} ne peut pas contenir plus de 50 caractères, {TotalLength} founis");
 
-			RuleFor(tache => tache.DatteFin)
+			RuleFor(tache => tache.DateFin)
 				.Cascade(CascadeMode.StopOnFirstFailure)
 				.NotEmpty().WithMessage("La datte de fin ne peut pas être nulle")
 				.Must(ValidDatteFin).WithMessage("La datte de fin doit être supérieure au " + DateTime.Now.ToShortDateString());

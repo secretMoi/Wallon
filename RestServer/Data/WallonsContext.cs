@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 using Models.Models;
+using RestServer.Validations;
 
 namespace RestServer.Data
 {
@@ -8,6 +10,14 @@ namespace RestServer.Data
 		public WallonsContext(DbContextOptions<WallonsContext> options) : base(options)
 		{
 			
+		}
+
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+			/*modelBuilder.AddConfiguration(new LocatairesValidation());
+			modelBuilder.AddConfiguration(new TachesValidation());
+			modelBuilder.AddConfiguration(new LiaisonsValidation());*/
 		}
 
 		// liste des tables

@@ -161,7 +161,7 @@ namespace Wallon.Pages.Controllers.Taches
 			TacheReadDto tache = new TacheReadDto()
 			{
 				Nom = name,
-				DatteFin = datteDebut,
+				DateFin = datteDebut,
 				Active = true,
 				LocataireId = idLocataires[0],
 				Cycle = 0

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using Models.Models;
 
 namespace Models.Dtos.Taches
@@ -11,12 +12,14 @@ namespace Models.Dtos.Taches
 
 		public string Nom { get; set; }
 
-		public DateTime DatteFin { get; set; }
+		public DateTime DateFin { get; set; }
 
-		public bool Active { get; set; }
+		public bool? Active { get; set; }
 
 		public int LocataireId { get; set; } // foreign key
-		public Locataire LocataireCourant { get; set; } // contenu de status lié à l'objet
+
+		[ForeignKey("LocataireId")]
+		public virtual Locataire Locataire { get; set; } // contenu de status lié à l'objet
 
 		public int Cycle { get; set; }
 	}

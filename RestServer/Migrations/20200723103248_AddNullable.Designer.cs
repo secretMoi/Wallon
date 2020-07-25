@@ -10,8 +10,8 @@ using RestServer.Data;
 namespace RestServer.Migrations
 {
     [DbContext(typeof(WallonsContext))]
-    [Migration("20200704131058_Init")]
-    partial class Init
+    [Migration("20200723103248_AddNullable")]
+    partial class AddNullable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,12 +21,17 @@ namespace RestServer.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("RestServer.Models.LiaisonTacheLocataire", b =>
+            modelBuilder.Entity("Models.Models.LiaisonTacheLocataire", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool?>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<int>("LocataireId")
                         .HasColumnType("int");
@@ -43,54 +48,55 @@ namespace RestServer.Migrations
                     b.ToTable("LiaisonTachesLocataires");
                 });
 
-            modelBuilder.Entity("RestServer.Models.Locataire", b =>
+            modelBuilder.Entity("Models.Models.Locataire", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Actif")
-                        .HasColumnType("bit");
+                    b.Property<bool?>("Actif")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("Nom")
                         .IsRequired()
-                        .HasColumnType("varchar(50)")
-                        .HasMaxLength(50);
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte[]>("Password")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)")
-                        .HasMaxLength(50);
+                        .HasColumnType("varbinary(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Locataires");
                 });
 
-            modelBuilder.Entity("RestServer.Models.Tache", b =>
+            modelBuilder.Entity("Models.Models.Tache", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
+                    b.Property<bool?>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<int>("Cycle")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("DatteFin")
+                    b.Property<DateTime>("DateFin")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("LocataireId")
+                    b.Property<int?>("LocataireId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nom")
                         .IsRequired()
-                        .HasColumnType("varchar(256)")
-                        .HasMaxLength(256);
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -99,28 +105,26 @@ namespace RestServer.Migrations
                     b.ToTable("Taches");
                 });
 
-            modelBuilder.Entity("RestServer.Models.LiaisonTacheLocataire", b =>
+            modelBuilder.Entity("Models.Models.LiaisonTacheLocataire", b =>
                 {
-                    b.HasOne("RestServer.Models.Locataire", "Locataire")
+                    b.HasOne("Models.Models.Locataire", "Locataire")
                         .WithMany()
                         .HasForeignKey("LocataireId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("RestServer.Models.Tache", "Tache")
+                    b.HasOne("Models.Models.Tache", "Tache")
                         .WithMany()
                         .HasForeignKey("TacheId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("RestServer.Models.Tache", b =>
+            modelBuilder.Entity("Models.Models.Tache", b =>
                 {
-                    b.HasOne("RestServer.Models.Locataire", "LocataireCourant")
+                    b.HasOne("Models.Models.Locataire", "Locataire")
                         .WithMany()
-                        .HasForeignKey("LocataireId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LocataireId");
                 });
 #pragma warning restore 612, 618
         }

@@ -13,9 +13,9 @@ namespace RestServer.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nom = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false),
-                    Password = table.Column<byte[]>(type: "varbinary(max)", maxLength: 50, nullable: false),
-                    Actif = table.Column<bool>(nullable: false)
+                    Nom = table.Column<string>(nullable: false),
+                    Password = table.Column<byte[]>(nullable: false),
+                    Actif = table.Column<bool>(nullable: true, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -28,9 +28,9 @@ namespace RestServer.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Nom = table.Column<string>(type: "varchar(256)", maxLength: 256, nullable: false),
-                    DatteFin = table.Column<DateTime>(nullable: false),
-                    Active = table.Column<bool>(nullable: false),
+                    Nom = table.Column<string>(nullable: false),
+                    DateFin = table.Column<DateTime>(nullable: false),
+                    Active = table.Column<bool>(nullable: true, defaultValue: true),
                     LocataireId = table.Column<int>(nullable: false),
                     Cycle = table.Column<int>(nullable: false)
                 },
@@ -51,6 +51,7 @@ namespace RestServer.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Active = table.Column<bool>(nullable: true, defaultValue: true),
                     LocataireId = table.Column<int>(nullable: false),
                     TacheId = table.Column<int>(nullable: false)
                 },

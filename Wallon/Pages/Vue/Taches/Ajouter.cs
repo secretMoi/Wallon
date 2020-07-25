@@ -61,12 +61,12 @@ namespace Wallon.Pages.Vue.Taches
 
 			// modifie les champs
 			flatTextName.Text = tache.Nom;
-			flatTextBoxDatteDebut.Text = tache.DatteFin.ToShortDateString();
+			flatTextBoxDatteDebut.Text = tache.DateFin.ToShortDateString();
 			flatTextBoxCycle.Text = tache.Cycle.ToString();
 
 			//flatLabelLocataireCourant.Visible = true;
 			//flatListBoxLocataireCourant.Visible = true;
-			//flatListBoxLocataireCourant.Text = _controllerAjouter.FillFieldLocataireCourant(tache.LocataireCourant);
+			//flatListBoxLocataireCourant.Text = _controllerAjouter.FillFieldLocataireCourant(tache.Locataire);
 
 			//flatListBoxLocataireCourant.Add(_controllerAjouter.FillListLocataireCourant());
 
