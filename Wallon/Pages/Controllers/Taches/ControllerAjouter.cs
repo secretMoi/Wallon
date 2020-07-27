@@ -3,13 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AutoMapper;
-using Couche_Classe;
 using FlatControls.Controls;
 using FluentValidation.Results;
 using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
-using Wallon.Controllers;
 using Wallon.Controllers.BaseConsulter;
 using Wallon.Controllers.Validators;
 using Wallon.Core;
@@ -24,13 +21,12 @@ namespace Wallon.Pages.Controllers.Taches
 	{
 		private readonly RepositoryLocataires _repositoryLocataires = RepositoryLocataires.Instance;
 		private readonly RepositoryTaches _repositoryTaches = RepositoryTaches.Instance;
-		private readonly RepositoryLiaisonTachesLocataires _liaison;
+		private readonly RepositoryLiaisonTachesLocataires _liaison = RepositoryLiaisonTachesLocataires.Instance;
 		private readonly Ajouter _page;
 
 		public ControllerAjouter(Ajouter page)
 		{
 			_page = page;
-			_liaison = new RepositoryLiaisonTachesLocataires();
 		}
 
 		public int? IdTache { get; set; }
@@ -69,9 +65,12 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <summary>
 		/// Modifie le champ inclu dans la dgv lors de la modification
 		/// </summary>
-		public void UpdateDgv(object sender, EventArgs e)
+		public async void UpdateDgv(object sender, EventArgs e)
 		{
-			List<int> locatairesInclus = _liaison.ListeLocataires((int) IdTache); // récupère la liste des locataires inclus dans la tâche
+			IList<int> locatairesInclus = (await _liaison.ListeLocataires((int) IdTache))
+				.ToList()
+				.Select(locataire => locataire.Id)
+				.ToList(); // récupère la liste des locataires inclus dans la tâche
 
 			for (int i = 0; i < _page.UseGridView.Table.Rows.Count; i++) // parcours la dgv
 			{
@@ -96,7 +95,7 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <param name="name">Nom de la tâche</param>
 		/// <param name="datte">Datte de début de la tâche</param>
 		/// <param name="cycleInput">Cycle en jours pour répéter la tâche</param>
-		public void Envoyer(string name, string datte, string cycleInput)
+		public async void Envoyer(string name, string datte, string cycleInput)
 		{
 			DateTime datteDebut = default;
 			int cycle = 0;
@@ -104,11 +103,11 @@ namespace Wallon.Pages.Controllers.Taches
 			if (!ValidateInput(name, datte, cycleInput, ref datteDebut, ref cycle, idLocataires)) return;
 
 			if(IdTache == null) // mode ajout
-				Ajouter(name, datteDebut, cycle, idLocataires);
+				await Ajouter(name, datteDebut, cycle, idLocataires);
 			else // mode update
 			{
-				Supprimer();
-				Ajouter(name, datteDebut, cycle, idLocataires);
+				await Supprimer();
+				await Ajouter(name, datteDebut, cycle, idLocataires);
 			}
 		}
 
@@ -182,7 +181,7 @@ namespace Wallon.Pages.Controllers.Taches
 
 			// Ajout les locataires à la tâche dans la bdd (table liaison)
 			foreach (int idSelected in idLocataires)
-				_liaison.Ajouter(
+				await _liaison.Ajouter(
 					idSelected,
 					idTache
 				);
@@ -190,12 +189,12 @@ namespace Wallon.Pages.Controllers.Taches
 			Dialog.Show("La tâche " + name + " a bien été ajoutée");
 		}
 
-		private void Supprimer()
+		private async Task Supprimer()
 		{
-			List<int> liaisonsASupprimer = _liaison.ListeLocataires((int) IdTache);
-			foreach (int liaison in liaisonsASupprimer)
+			IList<LocataireReadDto> liaisonsASupprimer = await _liaison.ListeLocataires((int) IdTache);
+			foreach (LocataireReadDto liaison in liaisonsASupprimer)
 			{
-				_liaison.Supprimer(liaison);
+				await _liaison.Supprimer(liaison.Id);
 			}
 
 			_repositoryTaches.Supprimer((int) IdTache);

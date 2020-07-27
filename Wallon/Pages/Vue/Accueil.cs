@@ -1,12 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using Models.Dtos.LiaisonsTachesLocataires;
-using Models.Dtos.Locataires;
-using Models.Dtos.Taches;
-using RestApiClient.Controllers;
-using Wallon.Fenetres;
-using Wallon.Pages.Controllers;
-using Wallon.Repository;
+﻿using Wallon.Pages.Controllers;
 
 namespace Wallon.Pages.Vue
 {

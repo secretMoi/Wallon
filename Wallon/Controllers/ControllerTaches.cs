@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Models.Dtos.Locataires;
 using Wallon.Repository;
 
 namespace Wallon.Controllers
 {
 	public class ControllerTaches
 	{
-		public ControllerTaches()
+		public async Task<LocataireReadDto> LocataireSuivant(int idTache, int idLocataire)
 		{
+			var test = await RepositoryLiaisonTachesLocataires.Instance.ListeLocataires(idTache);
+			List<LocataireReadDto> liaison = (await RepositoryLiaisonTachesLocataires.Instance.ListeLocataires(idTache)).ToList(); // liste des locataires participant à la tâche
 
-		}
-
-		public int LocataireSuivant(int idTache, int idLocataire)
-		{
-			List<int> liaison = new RepositoryLiaisonTachesLocataires().ListeLocataires(idTache); // liste des locataires participant à la tâche
-
-			int indexActuel = liaison.IndexOf(idLocataire); // situe le locataire actuel dans la liste
+			int indexActuel = liaison.FindIndex(l => l.Id == idLocataire); // situe le locataire actuel dans la liste
 			if (indexActuel == -1) // si la liste ne le contient pas
-				return idLocataire;
-				//throw new Exception("Le locataire " + indexActuel + " n'est pas dans la tâche " + idTache);
+				return null;
+			//throw new Exception("Le locataire " + indexActuel + " n'est pas dans la tâche " + idTache);
 
 			return ProchainLocataire(indexActuel, liaison); // renvoie l'id du prochain locataire
 		}
@@ -29,7 +27,7 @@ namespace Wallon.Controllers
 		/// <param name="indexActuel">Position actuelle dans la liste</param>
 		/// <param name="listeLocataires">Liste en lecture seule à parcourir</param>
 		/// <returns>La prochaine position dans la liste</returns>
-		private int ProchainLocataire(int indexActuel, IReadOnlyList<int> listeLocataires)
+		private LocataireReadDto ProchainLocataire(int indexActuel, IReadOnlyList<LocataireReadDto> listeLocataires)
 		{
 			if (indexActuel + 1 < listeLocataires.Count) // si il y encore des locataires dans la liste
 				return listeLocataires[indexActuel + 1]; // renvoie le suivant

@@ -10,13 +10,6 @@ namespace Wallon.Repository
 {
 	public class RepositoryTaches
 	{
-		/*private readonly GestionTaches _gestion;
-
-		public RepositoryTaches()
-		{
-			_gestion = new GestionTaches(Settings.Connection);
-		}*/
-
 		// singleton lazy et thread-safe
 		private static readonly Lazy<RepositoryTaches> Lazy = new Lazy<RepositoryTaches>(() => new RepositoryTaches());
 

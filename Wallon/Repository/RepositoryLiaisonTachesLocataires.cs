@@ -1,20 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Couche_Classe;
 using Couche_Gestion;
+using Models.Dtos.LiaisonsTachesLocataires;
+using Models.Dtos.Locataires;
+using Models.Dtos.Taches;
+using RestApiClient.Controllers;
 
 namespace Wallon.Repository
 {
 	public class RepositoryLiaisonTachesLocataires
 	{
-		private readonly GestionLiaisonTachesLocataires _gestion;
+		// singleton lazy et thread-safe
+		private static readonly Lazy<RepositoryLiaisonTachesLocataires> Lazy = new Lazy<RepositoryLiaisonTachesLocataires>(() => new RepositoryLiaisonTachesLocataires());
+
+		public static RepositoryLiaisonTachesLocataires Instance => Lazy.Value;
+
+		private RepositoryLiaisonTachesLocataires()
+		{
+		}
+
+		private static LiaisonsController _apiClientController;
+
+		private LiaisonsController Controller
+		{
+			get
+			{
+				if (_apiClientController == null)
+					_apiClientController = new LiaisonsController();
+
+				return _apiClientController;
+			}
+		}
+
+		/*private readonly GestionLiaisonTachesLocataires _gestion;
 
 		public RepositoryLiaisonTachesLocataires()
 		{
 			_gestion = new GestionLiaisonTachesLocataires(Settings.Connection);
-		}
+		}*/
 
-		public List<LiaisonTachesLocataires> Lire(string index)
+		/*public List<LiaisonTachesLocataires> Lire(string index)
 		{
 			try
 			{
@@ -24,13 +51,13 @@ namespace Wallon.Repository
 			{
 				throw new Exception("Impossible de lire la liaison : \n" + ex.Message);
 			}
-		}
+		}*/
 
-		public void Supprimer(int id)
+		public async Task Supprimer(int id)
 		{
 			try
 			{
-				_gestion.Supprimer(id);
+				await Controller.Delete(id);
 			}
 			catch (Exception ex)
 			{
@@ -38,7 +65,7 @@ namespace Wallon.Repository
 			}
 		}
 
-		public List<int> LireTachesLocataire(int idLocataire)
+		/*public List<int> LireTachesLocataire(int idLocataire)
 		{
 			try
 			{
@@ -48,13 +75,13 @@ namespace Wallon.Repository
 			{
 				throw new Exception("Impossible de lire la liaison : \n" + ex.Message);
 			}
-		}
+		}*/
 
-		public List<int> ListeLocataires(int idTache)
+		public async Task<IList<LocataireReadDto>> ListeLocataires(int idTache)
 		{
 			try
 			{
-				return _gestion.ListeLocataires(idTache);
+				return await Controller.ListeLocataires(idTache);
 			}
 			catch (Exception ex)
 			{
@@ -62,11 +89,11 @@ namespace Wallon.Repository
 			}
 		}
 
-		public int Ajouter(LiaisonTachesLocataires liaison)
+		public async Task<TacheReadDto> Ajouter(LiaisonCreateDto liaison)
 		{
 			try
 			{
-				return _gestion.Ajouter(liaison);
+				return await Controller.Post<LiaisonCreateDto, TacheReadDto>(liaison);
 			}
 			catch (Exception ex)
 			{
@@ -74,9 +101,15 @@ namespace Wallon.Repository
 			}
 		}
 
-		public int Ajouter(int locataire, int tache)
+		public async Task<TacheReadDto> Ajouter(int locataire, int tache)
 		{
-			return Ajouter(new LiaisonTachesLocataires(locataire, tache));
+			LiaisonCreateDto liaison = new LiaisonCreateDto()
+			{
+				LocataireId = locataire,
+				TacheId = tache
+			};
+
+			return await Ajouter(liaison);
 		}
 	}
 }

@@ -1,5 +1,4 @@
-﻿using Couche_Classe;
-using Models.Dtos.Locataires;
+﻿using Models.Dtos.Locataires;
 using Wallon.Core;
 using Wallon.Repository;
 

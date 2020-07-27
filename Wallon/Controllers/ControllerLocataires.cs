@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Couche_Classe;
 using Models.Dtos.Locataires;
 using Wallon.Core;
 using Wallon.Repository;

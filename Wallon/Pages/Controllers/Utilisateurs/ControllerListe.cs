@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlatControls.Core;
-using Couche_Classe;
 using Models.Dtos.Locataires;
 using Wallon.Pages.Vue.Utilisateurs;
 using Wallon.Repository;

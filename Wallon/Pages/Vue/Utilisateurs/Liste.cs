@@ -1,5 +1,4 @@
 ﻿using System;
-using Wallon.Controllers;
 using Wallon.Controllers.BaseConsulter;
 using Wallon.Pages.Controllers.Utilisateurs;
 

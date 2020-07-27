@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Models.Dtos.LiaisonsTachesLocataires;
+using Models.Dtos.Locataires;
 using Models.Models;
 
 namespace RestServer.Profiles
@@ -12,6 +13,7 @@ namespace RestServer.Profiles
 			// source -> target
 			CreateMap<LiaisonCreateDto, LiaisonTacheLocataire>();
 			CreateMap<LiaisonTacheLocataire, LiaisonReadDto>();
+			CreateMap<Locataire, LocataireReadDto>();
 		}
 	}
 }

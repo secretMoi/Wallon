@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Text;
-using System.Threading.Tasks;
-using Models.Dtos.Locataires;
 using Wallon.Controllers;
 using Wallon.Pages.Controllers;
-using Wallon.Repository;
 
 namespace Wallon.Pages.Vue
 {

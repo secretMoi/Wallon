@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using RestServer.Data.LiaisonsTachesLocataires;
@@ -89,21 +88,24 @@ namespace RestServer.Controllers
 			if (locataire == null)
 				return NotFound($"Locataire {id} introuvable"); // si pas trouvé renvoie 404 not found
 
+			// récupère toutes les tâches où le locataire est inscrit
 			IList<LiaisonTacheLocataire> liaisons =
-				new LiaisonTacheLocataireRepo(_repository.Context).GetTachesFromLocataire(id) as IList<LiaisonTacheLocataire>;
+				new LiaisonTacheLocataireRepo(_repository.Context).GetTachesFromLocataire(id) 
+					as IList<LiaisonTacheLocataire>;
 
-			if (liaisons == null)
+			if (liaisons == null) // si le locataire n'existe pas
 				return Content("Liste de liaisons nulle");
 
 			IList<TacheReadDto> tachesReadDtos = new List<TacheReadDto>(liaisons.Count);
+			TacheReadDto tacheReadDto;
 
-			for (int i = 0; i < liaisons.Count; i++)
+			foreach (LiaisonTacheLocataire liaison in liaisons)
 			{
-				Tache tache = _repository.GetById(liaisons.ElementAt(i).TacheId);
-				TacheReadDto tacheReadDto = new TacheReadDto();
-				_mapper.Map(tache, tacheReadDto);
+				tacheReadDto = new TacheReadDto();
+				_mapper.Map(liaison.Tache, tacheReadDto);
 
-				tachesReadDtos.Add(tacheReadDto);
+				if(tacheReadDto.LocataireId == id) // si le locataire actuel est celui renseigné en paramètre
+					tachesReadDtos.Add(tacheReadDto);
 			}
 
 			return Ok(tachesReadDtos);

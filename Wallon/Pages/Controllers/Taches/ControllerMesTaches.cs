@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlatControls.Controls;
+using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
 using Wallon.Controllers;
 using Wallon.Controllers.BaseConsulter;
@@ -81,9 +82,9 @@ namespace Wallon.Pages.Controllers.Taches
 
 			if (colonne == _flatDataGridView.GetColumnId("Valider")) // si la colonne cliquée correspond
 			{
-				int locataireSuivant = new ControllerTaches().LocataireSuivant(_taches[ligne].Id, Settings.IdLocataire); // récupère l'id du locataire suivant
+				LocataireReadDto locataireSuivant = await new ControllerTaches().LocataireSuivant(_taches[ligne].Id, Settings.IdLocataire); // récupère l'id du locataire suivant
 
-				await _repositoryTaches.ModifierLocataireCourant(_taches[ligne].Id, locataireSuivant); // modifie le locataire devant effectuer la tâche
+				await _repositoryTaches.ModifierLocataireCourant(_taches[ligne].Id, locataireSuivant.Id); // modifie le locataire devant effectuer la tâche
 
 				// recharge la page avec un message de validation
 				string texteValide = "Vous avez validé la tâche " + _taches[ligne].Nom;

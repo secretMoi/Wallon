@@ -1,9 +1,12 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using RestServer.Data.LiaisonsTachesLocataires;
 using RestServer.Data.Locataires;
 using RestServer.Data.Taches;
 using Models.Dtos.LiaisonsTachesLocataires;
+using Models.Dtos.Locataires;
 using Models.Models;
 
 namespace RestServer.Controllers
@@ -48,6 +51,31 @@ namespace RestServer.Controllers
 			liaisonReadDto.Tache = new TacheRepo(_repository.Context).GetById(liaisonReadDto.TacheId);
 
 			return Ok(liaisonReadDto); // map commandItem en CommandReadDto pour renvoyer les données formattées au client
+		}
+
+
+		// GET api/commands/fromTache/5
+		// GET api/commands/fromTache/{idTache}
+		/// <summary>
+		/// Récupère les locataires enregistré dans une tâche transmise en paramètre
+		/// </summary>
+		/// <param name="idTache">Id de la tâche</param>
+		/// <returns>Renvoie une liste de locataires encapsulée dans le status 200 OK</returns>
+		[HttpGet("fromTache/{idTache:int}", Name = "FromTache")] // indique que cette méthode répond à une requete http
+		public ActionResult<IEnumerable<LocataireReadDto>> FromTache(int idTache)
+		{
+			// todo potimiser req
+			List<LiaisonTacheLocataire> liaisonReadDtos = _repository
+				.GetAll()
+				.ToList(); // récupère toutes les liaisons
+			
+			liaisonReadDtos = liaisonReadDtos.FindAll(l => l.TacheId == idTache); // ne garde que celles correspondantes au param
+
+			IList<LocataireReadDto> locataires = new List<LocataireReadDto>();
+			foreach (LiaisonTacheLocataire liaison in liaisonReadDtos)
+				locataires.Add(_mapper.Map<LocataireReadDto>(liaison.Locataire));
+
+			return Ok(locataires);
 		}
 
 		// POST api/commands
