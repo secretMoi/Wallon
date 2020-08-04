@@ -94,6 +94,7 @@ namespace Wallon.Pages.Controllers.Taches
 				dateFin = tache.DateFin.AddDays(tache.Cycle).ToShortDateString();
 
 			LocataireReadDto idLocataireSuivant = await new ControllerTaches().LocataireSuivant(tache.Id, tache.LocataireId); // récupère l'id du locataire suivant
+			
 			LocataireReadDto locataireSuivant = await _repositoryLocataires.LireId(idLocataireSuivant.Id);
 			// todo mettre la datte de fin en rouge si dépassée
 			_list.Add(

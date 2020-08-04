@@ -1,4 +1,7 @@
-﻿using Wallon.Pages.Controllers;
+﻿using Couche_Classe;
+using RestApiClient.Controllers;
+using Wallon.Pages.Controllers;
+using Wallon.Repository;
 
 namespace Wallon.Pages.Vue
 {
@@ -15,6 +18,8 @@ namespace Wallon.Pages.Vue
 
 		private async void Accueil_Load(object sender, System.EventArgs e)
 		{
+			//await RepositoryLiaisonTachesLocataires.Instance.DeleteLiaisonsFromTache(11);
+
 			// lire tout
 			//IEnumerable<LocataireReadDto> locataires = await new LocatairesController().GetAll<LocataireReadDto>();
 

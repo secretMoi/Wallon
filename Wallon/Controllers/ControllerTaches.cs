@@ -10,7 +10,6 @@ namespace Wallon.Controllers
 	{
 		public async Task<LocataireReadDto> LocataireSuivant(int idTache, int idLocataire)
 		{
-			var test = await RepositoryLiaisonTachesLocataires.Instance.ListeLocataires(idTache);
 			List<LocataireReadDto> liaison = (await RepositoryLiaisonTachesLocataires.Instance.ListeLocataires(idTache)).ToList(); // liste des locataires participant à la tâche
 
 			int indexActuel = liaison.FindIndex(l => l.Id == idLocataire); // situe le locataire actuel dans la liste

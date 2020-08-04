@@ -191,11 +191,9 @@ namespace Wallon.Pages.Controllers.Taches
 
 		private async Task Supprimer()
 		{
-			IList<LocataireReadDto> liaisonsASupprimer = await _liaison.ListeLocataires((int) IdTache);
-			foreach (LocataireReadDto liaison in liaisonsASupprimer)
-			{
-				await _liaison.Supprimer(liaison.Id);
-			}
+			/*IList<LocataireReadDto> liaisonsASupprimer = await _liaison.ListeLocataires((int) IdTache);
+			foreach (LocataireReadDto liaison in liaisonsASupprimer)*/
+				await _liaison.DeleteLiaisonsFromTache((int)IdTache);
 
 			_repositoryTaches.Supprimer((int) IdTache);
 		}

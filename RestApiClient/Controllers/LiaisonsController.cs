@@ -37,5 +37,17 @@ namespace RestApiClient.Controllers
 					throw new Exception(response.ReasonPhrase);
 			}
 		}
+
+		public async Task DeleteLiaisonsFromTache(int idTache)
+		{
+			string url = MakeUrl("deleteFromTache", idTache);
+
+			// fais une req sur l'url et attend la réponse
+			using (HttpResponseMessage response = await ApiHelper.ApiClient.DeleteAsync(url))
+			{
+				if (!response.IsSuccessStatusCode)
+					throw new Exception(response.ReasonPhrase);
+			}
+		}
 	}
 }

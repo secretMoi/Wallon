@@ -49,10 +49,12 @@ namespace Wallon.Pages.Vue.Taches
 			_controllerAjouter.IdTache = (int)_arguments[0]; // récupère l'id de la tâche
 
 			UseGridView.ResetAllData();
-			
+			flatDataGridView.DataSource = null;
+			flatDataGridView.Rows.Clear();
+
 			flatDataGridView.DgvFilled += _controllerAjouter.UpdateDgv;
 			//_controllerAjouter.InitColonnes();
-			await _controllerAjouter.FillDgv(); // rempli la dgv
+			//await _controllerAjouter.FillDgv(); // rempli la dgv
 			AfterLoad();
 
 			TacheReadDto tache = await _controllerAjouter.GetTache(); // récupère la tâche
@@ -64,6 +66,7 @@ namespace Wallon.Pages.Vue.Taches
 			flatTextBoxDatteDebut.Text = tache.DateFin.ToShortDateString();
 			flatTextBoxCycle.Text = tache.Cycle.ToString();
 
+			// todo reactiver locataire courant
 			//flatLabelLocataireCourant.Visible = true;
 			//flatListBoxLocataireCourant.Visible = true;
 			//flatListBoxLocataireCourant.Text = _controllerAjouter.FillFieldLocataireCourant(tache.Locataire);

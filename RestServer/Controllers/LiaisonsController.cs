@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -114,6 +115,28 @@ namespace RestServer.Controllers
 
 			_repository.Delete(liaisonTacheLocataire); // supprime l'id dans l'objet
 			_repository.SaveChanges(); // sauvegarde dans la bdd
+
+			return NoContent();
+		}
+
+		// DELETE api/commands/{id}
+		/// <summary>
+		/// Supprime les liaisons d'une tâche
+		/// </summary>
+		/// <param name="idTache">Id de la tâche</param>
+		/// <returns>Renvoie 204 NoContent liaisons supprimées</returns>
+		[HttpDelete("deleteFromTache/{idTache:int}")]
+		public ActionResult DeleteFromTache(int idTache)
+		{
+			ICollection<LiaisonTacheLocataire> liaisons = _repository
+				.GetAll()
+				.Where(liaison => liaison.TacheId == idTache)
+				.ToList();
+
+			foreach (LiaisonTacheLocataire liaison in liaisons)
+				_repository.Delete(liaison);
+
+			_repository.SaveChanges();
 
 			return NoContent();
 		}

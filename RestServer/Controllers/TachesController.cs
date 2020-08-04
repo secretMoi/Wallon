@@ -125,7 +125,7 @@ namespace RestServer.Controllers
 			_repository.SaveChanges(); // sauvegarde les changements dans la bdd
 
 			TacheReadDto tacheReadDto = _mapper.Map<TacheReadDto>(tache);
-			tacheReadDto.Locataire = InstanceLocataire.GetById((int) tacheReadDto.LocataireId);
+			tacheReadDto.Locataire = InstanceLocataire.GetById(tacheReadDto.LocataireId);
 
 			//return CreatedAtRoute(nameof(GetById), new { Id = commandReadDto.Id }, commandReadDto);
 			return Ok(tacheReadDto);
@@ -152,6 +152,25 @@ namespace RestServer.Controllers
 			_repository.Update(tache); // update l'objet
 
 			_repository.SaveChanges(); // sauvegarde l'état de l'objet dans la bdd
+
+			return NoContent();
+		}
+
+		// DELETE api/commands/{id}
+		/// <summary>
+		/// Supprime une tache via son id
+		/// </summary>
+		/// <param name="id">Id de la tâche à supprimer</param>
+		/// <returns>Renvoie 204 NoContent si supprimé, 404 NotFound si l'id de la tâche n'existe pas dans la bdd</returns>
+		[HttpDelete("{id:int}")]
+		public ActionResult DeleteCommand(int id)
+		{
+			Tache tache = _repository.GetById(id); // cherche l'objet dans la bdd
+			if (tache == null)
+				return NotFound(); // si il n'existe pas on quitte et envoie 404
+
+			_repository.Delete(tache); // supprime l'id dans l'objet
+			_repository.SaveChanges(); // sauvegarde dans la bdd
 
 			return NoContent();
 		}

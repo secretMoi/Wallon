@@ -65,6 +65,18 @@ namespace Wallon.Repository
 			}
 		}
 
+		public async Task DeleteLiaisonsFromTache(int idTache)
+		{
+			try
+			{
+				await Controller.DeleteLiaisonsFromTache(idTache);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception($"Impossible de supprimer les liaisons de la tâche : {idTache} \n" + ex.Message);
+			}
+		}
+
 		/*public List<int> LireTachesLocataire(int idLocataire)
 		{
 			try
