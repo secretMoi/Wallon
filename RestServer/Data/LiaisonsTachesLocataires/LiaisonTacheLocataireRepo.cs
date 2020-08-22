@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Models.Models;
 
 namespace RestServer.Data.LiaisonsTachesLocataires
@@ -25,6 +27,11 @@ namespace RestServer.Data.LiaisonsTachesLocataires
 		public IEnumerable<LiaisonTacheLocataire> GetAll()
 		{
 			return _context.LiaisonTachesLocataires.ToList(); // retourne la liste des commandes
+		}
+
+		public async Task<ICollection<LiaisonTacheLocataire>> LiaisonsFromTache(int idTache)
+		{
+			return await _context.LiaisonTachesLocataires.Where(liaison => liaison.TacheId == idTache).ToListAsync();
 		}
 
 		public LiaisonTacheLocataire GetById(int id)
@@ -54,11 +61,11 @@ namespace RestServer.Data.LiaisonsTachesLocataires
 			_context.LiaisonTachesLocataires.Remove(liaison);
 		}
 
-		public IEnumerable<LiaisonTacheLocataire> GetTachesFromLocataire(int idLocataire)
+		public async Task<IEnumerable<LiaisonTacheLocataire>> GetTachesFromLocataire(int idLocataire)
 		{
-			return _context.LiaisonTachesLocataires
+			return await _context.LiaisonTachesLocataires
 				.Where(liaison => liaison.LocataireId == idLocataire)
-				.ToList();
+				.ToListAsync();
 		}
 	}
 }

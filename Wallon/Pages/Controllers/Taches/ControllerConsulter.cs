@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlatControls.Controls;
@@ -19,7 +18,6 @@ namespace Wallon.Pages.Controllers.Taches
 	{
 		private readonly RepositoryLocataires _repositoryLocataires = RepositoryLocataires.Instance;
 		private readonly RepositoryTaches _taches = RepositoryTaches.Instance;
-		private readonly Mutex _mutex = new Mutex();
 		private readonly Consulter _page;
 		private bool _pageLoaded;
 		private FlatLabel _labelNoItem;
@@ -84,8 +82,6 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <param name="tache">Données à insérer</param>
 		private async Task AddToDgv(TacheReadDto tache)
 		{
-			//_mutex.WaitOne();
-
 			string dateFin;
 
 			if (tache.Cycle == 0) // si la tâche n'a pas de cycle fixe
@@ -107,8 +103,6 @@ namespace Wallon.Pages.Controllers.Taches
 					dateFin
 				}
 			);
-
-			//_mutex.ReleaseMutex();
 		}
 
 		/// <summary>
@@ -169,14 +163,14 @@ namespace Wallon.Pages.Controllers.Taches
 				_page.FlatDataGridView.Visible = false; // désactive la dgv durant le chargement
 			}
 			// fin du chargement et présence de donnée
-			else if(_page.FlatDataGridView.Rows.Count != 0 && _pageLoaded == true)
+			else if(_page.FlatDataGridView.Rows.Count != 0 && _pageLoaded)
 			{
 				_waiting.Dispose(); // retire l'animation de chargement
 
 				_page.FlatDataGridView.Visible = true; // affiche les données
 			}
 			// fin du chargement et absence de donnée
-			else if (_page.FlatDataGridView.Rows.Count == 0 && _pageLoaded == true)
+			else if (_page.FlatDataGridView.Rows.Count == 0 && _pageLoaded)
 			{
 				Control parent;
 

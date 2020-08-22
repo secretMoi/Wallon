@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Couche_Classe;
-using Couche_Gestion;
 using Models.Dtos.LiaisonsTachesLocataires;
 using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
@@ -34,25 +32,6 @@ namespace Wallon.Repository
 			}
 		}
 
-		/*private readonly GestionLiaisonTachesLocataires _gestion;
-
-		public RepositoryLiaisonTachesLocataires()
-		{
-			_gestion = new GestionLiaisonTachesLocataires(Settings.Connection);
-		}*/
-
-		/*public List<LiaisonTachesLocataires> Lire(string index)
-		{
-			try
-			{
-				return _gestion.Lire(index);
-			}
-			catch (Exception ex)
-			{
-				throw new Exception("Impossible de lire la liaison : \n" + ex.Message);
-			}
-		}*/
-
 		public async Task Supprimer(int id)
 		{
 			try
@@ -76,18 +55,6 @@ namespace Wallon.Repository
 				throw new Exception($"Impossible de supprimer les liaisons de la tâche : {idTache} \n" + ex.Message);
 			}
 		}
-
-		/*public List<int> LireTachesLocataire(int idLocataire)
-		{
-			try
-			{
-				return _gestion.LireTachesLocataire(idLocataire);
-			}
-			catch (Exception ex)
-			{
-				throw new Exception("Impossible de lire la liaison : \n" + ex.Message);
-			}
-		}*/
 
 		public async Task<IList<LocataireReadDto>> ListeLocataires(int idTache)
 		{

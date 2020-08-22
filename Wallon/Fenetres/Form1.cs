@@ -3,9 +3,10 @@ using System.Drawing;
 using System.Windows.Forms;
 using Couche_Gestion;
 using FlatControls;
+using FlatControls.Controls;
 using FlatControls.Core;
+using Wallon.Pages.Controllers;
 using Wallon.Pages.Vue;
-using Theme = FlatControls.Controls.Theme;
 
 namespace Wallon.Fenetres
 {
@@ -49,6 +50,7 @@ namespace Wallon.Fenetres
 			mainMenu.AddSubMenuItem("Ajouter", "signs.png");
 			mainMenu.AddSubMenuItem("Consulter", "pie-chart.png");
 
+			mainMenu.AddMenuBottomItem("Se Déconnecter", "broken-cable.png", Disconnect_Click);
 			mainMenu.AddMenuBottomItem("Quitter", "logout.png", Quitter_Click);
 		}
 
@@ -82,6 +84,14 @@ namespace Wallon.Fenetres
 			}
 
 			return result;
+		}
+
+		public void Disconnect_Click(object sender, EventArgs e)
+		{
+			ControllerConnection.Disconnect();
+
+			panelContainer.Controls.Clear();
+			panelContainer.Controls.Add(new Connexion());
 		}
 
 		public void Quitter_Click(object sender, EventArgs e)
@@ -220,23 +230,6 @@ namespace Wallon.Fenetres
 		private void pictureBoxReduce_MouseLeave(object sender, EventArgs e)
 		{
 			new Animation(pictureBoxReduce).Zoom(32);
-		}
-
-		private void Zoom(Control control, int taille)
-		{
-			int sensZoom = 1;
-
-			Size ancienneTaille = control.Size;
-
-			if (taille > ancienneTaille.Width)
-				sensZoom = -1;
-
-			Point nouvellePosition = new Point(
-				control.Location.X + sensZoom * Math.Abs(taille - ancienneTaille.Width) / 2,
-				control.Location.Y + sensZoom * Math.Abs(taille - ancienneTaille.Height) / 2
-			);
-			control.Location = nouvellePosition;
-			control.Size = new Size(taille, taille);
 		}
 	}
 }

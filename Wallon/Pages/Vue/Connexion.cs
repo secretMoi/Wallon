@@ -22,43 +22,15 @@ namespace Wallon.Pages.Vue
 
 			flatTextBoxPassword.IsPassword = true;
 
-			/*using (Aes myAes = Aes.Create())
+			if (ControllerConnection.Disconnected)
 			{
-
-				// Encrypt the string to an array of bytes.
-				byte[] encrypted = EncryptStringToBytes_Aes(original, myAes.Key, myAes.IV);
-
-				using (StreamWriter file = new StreamWriter(@"debug.txt", true))
-				{
-					file.WriteLine(myAes.Key);
-					file.WriteLine(myAes.IV);
-					myAes.
-				}
-
-				// Decrypt the bytes to a string.
-				string roundtrip = DecryptStringFromBytes_Aes(encrypted, myAes.Key, myAes.IV);
-
-				//Display the original data and the decrypted data.
-				Console.WriteLine("Original:   {0}", original);
-				Console.WriteLine("Round Trip: {0}", roundtrip);
-			}*/
-
-			//Dialog.Show(new RepositoryLocataires().);
-
-			/*_controllerLocataires.Ajouter(new Locataire("Quentin", "test"));
-			_controllerLocataires.Ajouter(new Locataire("Laura", "mdp"));
-			_controllerLocataires.Ajouter(new Locataire("Andy", "mdp"));*/
+				alerte.Show("Vous avez bien été déconnecté");
+				ControllerConnection.Disconnected = false;
+			}
 		}
 
 		private async void Connexion_Load(object sender, EventArgs e)
 		{
-			/*LocataireCreateDto locataire = new LocataireCreateDto()
-			{
-				Nom = "test",
-				Password = Encoding.ASCII.GetBytes("test")
-			};
-			await RepositoryLocataires.Instance.Ajouter(locataire);*/
-
 			if (await _controllerConnection.AuthInCacheValid(_controllerLocataires))
 			{
 				_controllerConnection.Auth(_controllerLocataires);

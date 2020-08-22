@@ -55,7 +55,7 @@ namespace Wallon.Pages.Vue
 			this.panelCorps.Controls.Add(this.flatLabelPassword);
 			this.panelCorps.Controls.Add(this.flatTextName);
 			this.panelCorps.Controls.Add(this.flatLabelNom);
-			this.panelCorps.Size = new System.Drawing.Size(1856, 773);
+			this.panelCorps.Size = new System.Drawing.Size(1856, 772);
 			// 
 			// flatLabelNom
 			// 
@@ -136,7 +136,7 @@ namespace Wallon.Pages.Vue
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Name = "Connexion";
-			this.Size = new System.Drawing.Size(1856, 893);
+			this.Size = new System.Drawing.Size(1856, 892);
 			this.Load += new System.EventHandler(this.Connexion_Load);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();

@@ -53,8 +53,8 @@ namespace Wallon.Controllers
 			using (StreamWriter file =
 				new StreamWriter(@"debug.txt", true))
 			{
-				file.WriteLine("1 - " + Encoding.ASCII.GetString(locataire.Password));
-				file.WriteLine("2 - " + Encoding.ASCII.GetString(Cryptage.Crypt( password)));
+				await file.WriteLineAsync("1 - " + Encoding.ASCII.GetString(locataire.Password));
+				await file.WriteLineAsync("2 - " + Encoding.ASCII.GetString(Cryptage.Crypt(password)));
 			}
 
 			return locataire.Password.SequenceEqual(Cryptage.Crypt(password));

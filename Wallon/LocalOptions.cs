@@ -88,6 +88,13 @@ namespace Wallon
 				_elementConfiguration.Add(cle, valeur);
 		}
 
+		public void Remove(params string[] cles)
+		{
+			foreach (string cle in cles)
+				if (_elementConfiguration.ContainsKey(cle))
+					_elementConfiguration.Remove(cle);
+		}
+
 		public void Enregistre()
 		{
 			Thread threadConnect = new Thread(SaveInThread);

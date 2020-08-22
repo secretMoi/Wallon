@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using RestServer.Data.LiaisonsTachesLocataires;
@@ -63,17 +63,12 @@ namespace RestServer.Controllers
 		/// <param name="idTache">Id de la tâche</param>
 		/// <returns>Renvoie une liste de locataires encapsulée dans le status 200 OK</returns>
 		[HttpGet("fromTache/{idTache:int}", Name = "FromTache")] // indique que cette méthode répond à une requete http
-		public ActionResult<IEnumerable<LocataireReadDto>> FromTache(int idTache)
+		public async Task<ActionResult<IEnumerable<LocataireReadDto>>> FromTache(int idTache)
 		{
-			// todo potimiser req
-			List<LiaisonTacheLocataire> liaisonReadDtos = _repository
-				.GetAll()
-				.ToList(); // récupère toutes les liaisons
-			
-			liaisonReadDtos = liaisonReadDtos.FindAll(l => l.TacheId == idTache); // ne garde que celles correspondantes au param
+			ICollection<LiaisonTacheLocataire> liaisons = await _repository.LiaisonsFromTache(idTache);
 
 			IList<LocataireReadDto> locataires = new List<LocataireReadDto>();
-			foreach (LiaisonTacheLocataire liaison in liaisonReadDtos)
+			foreach (LiaisonTacheLocataire liaison in liaisons)
 				locataires.Add(_mapper.Map<LocataireReadDto>(liaison.Locataire));
 
 			return Ok(locataires);

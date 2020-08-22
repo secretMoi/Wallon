@@ -12,10 +12,7 @@ namespace Wallon.Pages.Controllers
 		private const string ChampNom = "Nom";
 		private const string ChampPassword = "Password";
 
-		public ControllerConnection()
-		{
-
-		}
+		public static bool Disconnected = false;
 
 		/// <summary>
 		/// Vérifie que les identifiants contenu sur le disque dur local sont valides avec la base de données
@@ -71,6 +68,26 @@ namespace Wallon.Pages.Controllers
 		{
 			Settings.Auth = true; // initialise la session
 			Settings.IdLocataire = controllerLocataires.IdValid; // sauvegarde l'id de la session courante
+		}
+
+
+		/// <summary>
+		/// Déconnecte l'utilisateur de sa session actuelle et du relog automatique
+		/// </summary>
+		/// <returns>Item1 le nom d'utilisateur, item2 le mot de passe</returns>
+		public static void Disconnect()
+		{
+			if(!Settings.Auth) return;
+
+			// deco session actuelle
+			Settings.Auth = false;
+			Settings.IdLocataire = 0;
+
+			// deco du relog automatique
+			LocalOptions.Remove(ChampNom, ChampPassword);
+			LocalOptions.Enregistre();
+
+			Disconnected = true;
 		}
 	}
 }

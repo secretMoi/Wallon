@@ -19,7 +19,8 @@ namespace RestApiClient
 			ApiClient = new HttpClient();
 
 			// set une addresse de base (ex : http://xkcd.com/ , qui permet de manipuler plusieurs liens api de ce site)
-			ApiClient.BaseAddress = new Uri("http://localhost:5000/api/");
+			//ApiClient.BaseAddress = new Uri("http://localhost:5000/api/");
+			ApiClient.BaseAddress = new Uri("http://aorus.aorus.ovh/restserver/");
 
 			ApiClient.DefaultRequestHeaders.Accept.Clear(); // nettoie les headers
 

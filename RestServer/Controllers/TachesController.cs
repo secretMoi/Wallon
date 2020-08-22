@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using RestServer.Data.LiaisonsTachesLocataires;
@@ -81,7 +82,7 @@ namespace RestServer.Controllers
 		/// <returns>Renvoie une liste de tâches encapsulée dans le status 200 OK<br />
 		/// Renvoie le status NotFound 404 si le locataire n'est pas trouvé</returns>
 		[HttpGet("duLocataire/{id:int}", Name = "GetTachesDuLocataire")] // indique que cette méthode répond à une requete http
-		public ActionResult<IEnumerable<TacheReadDto>> GetTachesDuLocataire(int id)
+		public async Task<ActionResult<IEnumerable<TacheReadDto>>> GetTachesDuLocataire(int id)
 		{
 			Locataire locataire = InstanceLocataire.GetById(id);
 
@@ -89,7 +90,7 @@ namespace RestServer.Controllers
 				return NotFound($"Locataire {id} introuvable"); // si pas trouvé renvoie 404 not found
 
 			// récupère toutes les tâches où le locataire est inscrit
-			IList<LiaisonTacheLocataire> liaisons =
+			IList<LiaisonTacheLocataire> liaisons = await
 				new LiaisonTacheLocataireRepo(_repository.Context).GetTachesFromLocataire(id) 
 					as IList<LiaisonTacheLocataire>;
 
