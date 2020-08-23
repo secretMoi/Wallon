@@ -91,7 +91,7 @@ namespace Wallon.Pages.Controllers.Taches
 				_vue.LoadPage("Taches.MesTaches", texteValide);
 			}
 
-			if (colonne == _flatDataGridView.GetColumnId("Nom")) // si la colonne cliquée correspond
+			else if (colonne == _flatDataGridView.GetColumnId("Nom")) // si la colonne cliquée correspond
 			{
 				int idTache = Convert.ToInt32(_flatDataGridView.Get(ligne, "Id"));
 

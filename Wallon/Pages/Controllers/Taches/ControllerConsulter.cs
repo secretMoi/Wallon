@@ -126,7 +126,7 @@ namespace Wallon.Pages.Controllers.Taches
 				_page.LoadPage("Taches.Ajouter", idTache);
 			}
 
-			if (colonne == _page.FlatDataGridView.GetColumnId("Supprimer")) // si la colonne cliquée correspond
+			else if (colonne == _page.FlatDataGridView.GetColumnId("Supprimer")) // si la colonne cliquée correspond
 			{
 				int? idTache = FindTache(ligne);
 				if(idTache == null) return;
@@ -139,6 +139,14 @@ namespace Wallon.Pages.Controllers.Taches
 				await new ControllerTaches().Delete((int) idTache);
 
 				_page.LoadPage("Taches.Consulter");
+			}
+
+			else if (colonne == _page.FlatDataGridView.GetColumnId("Nom")) // si la colonne cliquée correspond
+			{
+				int? idTache = FindTache(ligne);
+				if (idTache == null) return;
+
+				_page.LoadPage("Taches.Lecture", idTache);
 			}
 		}
 
