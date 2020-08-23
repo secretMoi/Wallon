@@ -19,9 +19,14 @@ namespace RestApiClient.Controllers
 			);
 		}
 
-		public async Task<IList<LocataireReadDto>> ListeLocataires(int id)
+		/// <summary>
+		/// Récupère tous les locataires d'une tâche donnée
+		/// </summary>
+		/// <param name="idTache">Id de la tâche</param>
+		/// <returns>Renvoie une liste des locataires</returns>
+		public async Task<IList<LocataireReadDto>> ListeLocataires(int idTache)
 		{
-			string url = MakeUrl("fromTache", id);
+			string url = MakeUrl("fromTache", idTache);
 
 			// fais une req sur l'url et attend la réponse
 			using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url))
@@ -38,6 +43,10 @@ namespace RestApiClient.Controllers
 			}
 		}
 
+		/// <summary>
+		/// Supprime les liaisons en rapport avec la tâche donnée en paramètre
+		/// </summary>
+		/// <param name="idTache">Id de la tâche</param>
 		public async Task DeleteLiaisonsFromTache(int idTache)
 		{
 			string url = MakeUrl("deleteFromTache", idTache);

@@ -49,7 +49,8 @@ namespace Wallon.Pages.Controllers.Taches
 			_page.FlatDataGridView.HideColonne("Id");
 
 			_page.EnableColumn(
-				("Modifier", ColonnesCliquables.Cliquable.Edit)
+				("Modifier", ColonnesCliquables.Cliquable.Edit),
+				("Supprimer", ColonnesCliquables.Cliquable.Delete)
 			);
 		}
 
@@ -110,7 +111,7 @@ namespace Wallon.Pages.Controllers.Taches
 		/// </summary>
 		/// <param name="sender">Objet qui lance l'event</param>
 		/// <param name="args">Arguments optionnels</param>
-		public void Clic(object sender, DataGridViewCellMouseEventArgs args)
+		public async Task Clic(object sender, DataGridViewCellMouseEventArgs args)
 		{
 			int ligne = args.RowIndex;
 			int colonne = args.ColumnIndex;
@@ -126,6 +127,20 @@ namespace Wallon.Pages.Controllers.Taches
 
 				// charge la page d'ajout afin de modifier la tâche avec en paramètre l'id de la tâche
 				_page.LoadPage("Taches.Ajouter", idTache);
+			}
+
+			if (colonne == _page.FlatDataGridView.GetColumnId("Supprimer")) // si la colonne cliquée correspond
+			{
+				int? idColonne = _page.FlatDataGridView.GetColumnId("Id"); // trouve l'id de la colonne Id
+
+				if (idColonne == null) // si pas trouvé on sort
+					return;
+
+				int idTache = Convert.ToInt32(_page.FlatDataGridView.Get(ligne, (int)idColonne)); // récupère l'id de la tâche à passer en paramètre
+
+				await new ControllerTaches().Delete(idTache);
+
+				_page.LoadPage("Taches.Consulter");
 			}
 		}
 

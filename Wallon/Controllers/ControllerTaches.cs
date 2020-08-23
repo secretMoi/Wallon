@@ -33,5 +33,15 @@ namespace Wallon.Controllers
 
 			return listeLocataires[0]; // renvoie le premier
 		}
+
+		/// <summary>
+		/// Supprime une tâche et ses liaisons
+		/// </summary>
+		/// <param name="idTache">Id de la tâche à supprimer</param>
+		public async Task Delete(int idTache)
+		{
+			await new RestApiClient.Controllers.LiaisonsController().DeleteLiaisonsFromTache(idTache);
+			await new RestApiClient.Controllers.TachesController().Delete(idTache);
+		}
 	}
 }

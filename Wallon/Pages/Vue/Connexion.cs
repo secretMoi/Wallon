@@ -24,6 +24,7 @@ namespace Wallon.Pages.Vue
 
 			if (ControllerConnection.Disconnected)
 			{
+				alerte.ThemeValid();
 				alerte.Show("Vous avez bien été déconnecté");
 				ControllerConnection.Disconnected = false;
 			}
@@ -52,7 +53,10 @@ namespace Wallon.Pages.Vue
 				LoadPage("Accueil"); // redirige vers la page d'accueil
 			}
 			else
+			{
+				alerte.ThemeError();
 				alerte.Show("Identifiants invalides");
+			}
 		}
 	}
 }
