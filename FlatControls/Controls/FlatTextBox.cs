@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using FlatControls.Core;
 
 namespace FlatControls.Controls
@@ -32,6 +33,21 @@ namespace FlatControls.Controls
 			textBox.Font = new Font(Theme.TypeFace, 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
 		}
 
+		[Description("TextAlign"), Category("Data"), Browsable(true)]
+		public HorizontalAlignment TextHorizontalAlign { get => textBox.TextAlign; set => textBox.TextAlign = value; }
+
+		[Description("Multiline"), Category("Data"), Browsable(true)]
+		public bool Multiline { get => textBox.Multiline; set => textBox.Multiline = value; }
+
+		[Description("SizeTextField"), Category("Data"), Browsable(true)]
+		public Size SizeTextField
+		{
+			get => textBox.Size;
+			set => textBox.Size = value;
+		}
+
+		//public VerticalAlignment TextVerticalAlignment { get => textBox; set => textBox.TextAlign = value; }
+
 		[Description("Text"), Category("Data"), Browsable(true)]
 		public override string Text
 		{
@@ -54,42 +70,17 @@ namespace FlatControls.Controls
 
 		private void ResizeControl(object sender, EventArgs e)
 		{
-			Couple nouvelleTaille = new Couple(textBox.Location.X, (Height - textBox.Height) / 2);
+			Couple nouvelleTaille;
+			if (textBox.Multiline)
+			{
+				nouvelleTaille = new Couple(textBox.Location.X, 10);
+			}
+			else
+			{
+				nouvelleTaille = new Couple(textBox.Location.X, (Height - textBox.Height) / 2);
+			}
+
 			textBox.Location = nouvelleTaille.ToPoint();
-		}
-
-		private void textBox_KeyDown(object sender, KeyEventArgs e)
-		{
-			
-		}
-
-		private char ConvertChar(KeyEventArgs e)
-		{
-			int keyValue = e.KeyValue;
-
-			// si c'est une minuscule
-			if (!e.Shift && keyValue >= (int)Keys.A && keyValue <= (int)Keys.Z)
-				return (char)(keyValue + 32);
-
-			return (char)keyValue; // sinon c'est une majuscule
-		}
-
-		private void textBox_TextChanged(object sender, EventArgs e)
-		{
-			/*if (!_isPassword || Text.Length < 1) return;
-
-			_clearPassword.Append(Text[Text.Length - 1]); // ajoute le caractère au mot de passe
-
-			StringBuilder text = new StringBuilder();
-
-			for (int i = 0; i < Text.Length; i++) // remplace les caractères
-				text.Append(@"*");
-
-			Text = text.ToString();
-
-			// place le curseur à la fin de la chaine
-			textBox.SelectionStart = Text.Length;
-			textBox.SelectionLength = 0;*/
 		}
 	}
 }

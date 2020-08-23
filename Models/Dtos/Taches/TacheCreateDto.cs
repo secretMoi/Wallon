@@ -6,6 +6,8 @@ namespace Models.Dtos.Taches
 	{
 		public string Nom { get; set; }
 
+		public string Description { get; set; }
+
 		public DateTime DateFin { get; set; }
 
 		public bool? Active { get; set; }

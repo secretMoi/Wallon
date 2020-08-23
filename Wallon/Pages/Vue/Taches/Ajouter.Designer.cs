@@ -57,6 +57,7 @@ namespace Wallon.Pages.Vue.Taches
 			this.panelCorps.Controls.Add(this.flatLabelNom);
 			this.panelCorps.Controls.Add(this.flatDataGridView);
 			this.panelCorps.Controls.Add(this.flatButtonAjouter);
+			this.panelCorps.Size = new System.Drawing.Size(1856, 772);
 			// 
 			// flatButtonAjouter
 			// 
@@ -66,7 +67,7 @@ namespace Wallon.Pages.Vue.Taches
 			this.flatButtonAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.flatButtonAjouter.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flatButtonAjouter.ForeColor = System.Drawing.Color.White;
-			this.flatButtonAjouter.Location = new System.Drawing.Point(1688, 676);
+			this.flatButtonAjouter.Location = new System.Drawing.Point(3544, 1448);
 			this.flatButtonAjouter.Name = "flatButtonAjouter";
 			this.flatButtonAjouter.Size = new System.Drawing.Size(165, 56);
 			this.flatButtonAjouter.TabIndex = 15;
@@ -172,6 +173,7 @@ namespace Wallon.Pages.Vue.Taches
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.Name = "Ajouter";
+			this.Size = new System.Drawing.Size(1856, 892);
 			this.Load += new System.EventHandler(this.Ajouter_Load);
 			this.panelTitre.ResumeLayout(false);
 			this.panelTitre.PerformLayout();

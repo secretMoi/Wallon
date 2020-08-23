@@ -61,6 +61,18 @@ namespace Wallon.Repository
 			}
 		}
 
+		public async Task Modifier(TacheUpdateDto tacheUpdateDto)
+		{
+			try
+			{
+				await Controller.Update(tacheUpdateDto);
+			}
+			catch (Exception ex)
+			{
+				throw new Exception($"Impossible de mettre à jour la tâche : {tacheUpdateDto.Id} \n" + ex.Message);
+			}
+		}
+
 		public async Task Supprimer(int id)
 		{
 			try

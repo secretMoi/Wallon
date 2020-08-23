@@ -16,7 +16,7 @@ namespace Wallon.Pages.Vue
 			SetTitre("Accueil");
 		}
 
-		private async void Accueil_Load(object sender, System.EventArgs e)
+		private void Accueil_Load(object sender, System.EventArgs e)
 		{
 			// lire tout
 			//IEnumerable<LocataireReadDto> locataires = await new LocatairesController().GetAll<LocataireReadDto>();

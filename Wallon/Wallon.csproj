@@ -27,7 +27,7 @@
     <UpdateUrl>http://192.168.1.124:80/</UpdateUrl>
     <ProductName>Wallons</ProductName>
     <PublisherName>Quentin</PublisherName>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -55,7 +55,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Ressources\Images\logo.ico</ApplicationIcon>
+    <ApplicationIcon>Ressources\Images\chicken.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
@@ -119,8 +119,15 @@
     <Compile Include="Core\Formulaire.cs" />
     <Compile Include="Pages\Controllers\ControllerAccueil.cs" />
     <Compile Include="Pages\Controllers\ControllerConnection.cs" />
+    <Compile Include="Pages\Controllers\Taches\ControllerLecture.cs" />
     <Compile Include="Pages\Controllers\Taches\ControllerMesTaches.cs" />
     <Compile Include="Pages\Controllers\Utilisateurs\ControllerAjouter.cs" />
+    <Compile Include="Pages\Vue\Taches\Lecture.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\Vue\Taches\Lecture.Designer.cs">
+      <DependentUpon>Lecture.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Vue\Taches\MesTaches.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -206,6 +213,9 @@
     <EmbeddedResource Include="Controllers\BaseConsulter\BaseConsulter.resx">
       <DependentUpon>BaseConsulter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Vue\Taches\Lecture.resx">
+      <DependentUpon>Lecture.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\Vue\Taches\MesTaches.resx">
       <DependentUpon>MesTaches.cs</DependentUpon>
     </EmbeddedResource>
@@ -264,6 +274,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="chicken.ico" />
     <Content Include="Ressources\Images\arrow-down-sign-to-navigate.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -281,6 +292,9 @@
     </Content>
     <Content Include="Ressources\Images\browser.png" />
     <Content Include="Ressources\Images\checkup.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Ressources\Images\chicken.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Ressources\Images\close.png">

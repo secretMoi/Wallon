@@ -90,6 +90,13 @@ namespace Wallon.Pages.Controllers.Taches
 				string texteValide = "Vous avez validé la tâche " + _taches[ligne].Nom;
 				_vue.LoadPage("Taches.MesTaches", texteValide);
 			}
+
+			if (colonne == _flatDataGridView.GetColumnId("Nom")) // si la colonne cliquée correspond
+			{
+				int idTache = Convert.ToInt32(_flatDataGridView.Get(ligne, "Id"));
+
+				_vue.LoadPage("Taches.Lecture", idTache);
+			}
 		}
 	}
 }
