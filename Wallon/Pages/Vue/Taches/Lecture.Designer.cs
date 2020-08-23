@@ -31,6 +31,7 @@
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.flatButtonModifier = new FlatControls.Controls.Buttons.FlatButton();
 			this.flatTextBoxDescription = new FlatControls.Controls.FlatTextBox();
+			this.alerte = new FlatControls.Controls.Alerte();
 			this.panelTitre.SuspendLayout();
 			this.panelCorps.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -38,7 +39,10 @@
 			// 
 			// panelTitre
 			// 
+			this.panelTitre.Controls.Add(this.alerte);
 			this.panelTitre.Size = new System.Drawing.Size(1856, 120);
+			this.panelTitre.Controls.SetChildIndex(this.labelTitre, 0);
+			this.panelTitre.Controls.SetChildIndex(this.alerte, 0);
 			// 
 			// panelCorps
 			// 
@@ -87,6 +91,19 @@
 			this.flatTextBoxDescription.TextHorizontalAlign = System.Windows.Forms.HorizontalAlignment.Left;
 			this.flatTextBoxDescription.Resize += new System.EventHandler(this.flatTextBoxDescription_Resize);
 			// 
+			// alerte
+			// 
+			this.alerte.BackColor = System.Drawing.Color.Tomato;
+			this.alerte.Dock = System.Windows.Forms.DockStyle.Top;
+			this.alerte.Enable = false;
+			this.alerte.HeightMax = 40;
+			this.alerte.Location = new System.Drawing.Point(0, 0);
+			this.alerte.Margin = new System.Windows.Forms.Padding(0);
+			this.alerte.Name = "alerte";
+			this.alerte.Size = new System.Drawing.Size(1856, 39);
+			this.alerte.TabIndex = 2;
+			this.alerte.Visible = false;
+			// 
 			// Lecture
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -107,5 +124,6 @@
 		private FlatControls.Controls.FlatTextBox flatTextBoxDescription;
 		private System.Windows.Forms.Panel panel1;
 		private FlatControls.Controls.Buttons.FlatButton flatButtonModifier;
+		private FlatControls.Controls.Alerte alerte;
 	}
 }

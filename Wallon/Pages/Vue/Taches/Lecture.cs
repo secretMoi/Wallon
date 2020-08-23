@@ -18,6 +18,16 @@ namespace Wallon.Pages.Vue.Taches
 			base.Hydrate(args);
 			if (!AnyArgs()) return; // si aucun argument on arrête
 
+			if (args.Length >= 2)
+			{
+				bool result = (bool) args[1];
+				if (result)
+				{
+					alerte.ThemeValid();
+					alerte.Show("La description de la tâche a bien sauvegardée.");
+				}
+			}
+
 			await _controllerLecture.Hydrate((int)_arguments[0]);
 
 			SetTitre("Lecture de la tâche " + _controllerLecture.Tache.Nom);
@@ -33,6 +43,7 @@ namespace Wallon.Pages.Vue.Taches
 		private async void flatButtonModifier_Click(object sender, System.EventArgs e)
 		{
 			await _controllerLecture.Modifier(flatTextBoxDescription.Text);
+			LoadPage("Taches.Lecture", _controllerLecture.Tache.Id, true);
 		}
 	}
 }
