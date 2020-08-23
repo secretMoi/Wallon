@@ -63,7 +63,7 @@ namespace Wallon.Pages.Vue.Taches
 
 			// modifie les champs
 			flatTextName.Text = tache.Nom;
-			flatTextBoxDatteDebut.Text = tache.DateFin.ToShortDateString();
+			flatTextBoxDatteDebut.Text = tache.DateFin.AddDays(-tache.Cycle).ToShortDateString();
 			flatTextBoxCycle.Text = tache.Cycle.ToString();
 
 			// todo reactiver locataire courant

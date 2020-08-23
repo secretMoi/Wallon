@@ -46,7 +46,7 @@ namespace Wallon.Repository
 
 		public async Task<IList<TacheReadDto>> LireAsync()
 		{
-			return await Task.Run(() => Lire());
+			return await Task.Run(Lire);
 		}
 
 		public async Task<TacheReadDto> LireId(int id)
@@ -61,7 +61,7 @@ namespace Wallon.Repository
 			}
 		}
 
-		public async void Supprimer(int id)
+		public async Task Supprimer(int id)
 		{
 			try
 			{
@@ -89,18 +89,6 @@ namespace Wallon.Repository
 				throw new Exception("Impossible de lire les tâches du locataire " + idLocataireCourant + "  : \n" + ex.Message);
 			}
 		}
-
-		/*public int Supprimer(int index)
-		{
-			try
-			{
-				return _gestion.Supprimer(index);
-			}
-			catch (Exception ex)
-			{
-				throw new Exception("Impossible de supprimer le locataire avec l'id " + index + "  : \n" + ex.Message);
-			}
-		}*/
 
 		public async Task<TacheReadDto> Ajouter(TacheCreateDto tache)
 		{
@@ -135,7 +123,6 @@ namespace Wallon.Repository
 				);
 				Mapper mapper = new Mapper(config);
 				TacheUpdateDto tacheUpdateDto = mapper.Map<TacheUpdateDto>(tacheReadDto);
-				//TacheUpdateDto tacheUpdateDto = mapper.Map<TacheReadDto, TacheUpdateDto>(tacheReadDto);
 
 				await Controller.Update(tacheUpdateDto);
 			}

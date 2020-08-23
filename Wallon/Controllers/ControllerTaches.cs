@@ -40,8 +40,8 @@ namespace Wallon.Controllers
 		/// <param name="idTache">Id de la tâche à supprimer</param>
 		public async Task Delete(int idTache)
 		{
-			await new RestApiClient.Controllers.LiaisonsController().DeleteLiaisonsFromTache(idTache);
-			await new RestApiClient.Controllers.TachesController().Delete(idTache);
+			await RepositoryLiaisonTachesLocataires.Instance.DeleteLiaisonsFromTache(idTache);
+			await RepositoryTaches.Instance.Supprimer(idTache);
 		}
 	}
 }

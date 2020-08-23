@@ -89,7 +89,7 @@ namespace Wallon.Pages.Controllers.Taches
 			if (tache.Cycle == 0) // si la tâche n'a pas de cycle fixe
 				dateFin = "";
 			else // sinon on ajoute le cycle à la date de fin
-				dateFin = tache.DateFin.AddDays(tache.Cycle).ToShortDateString();
+				dateFin = tache.DateFin.ToShortDateString();
 
 			LocataireReadDto idLocataireSuivant = await new ControllerTaches().LocataireSuivant(tache.Id, tache.LocataireId); // récupère l'id du locataire suivant
 			

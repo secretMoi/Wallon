@@ -103,11 +103,11 @@ namespace Wallon.Pages.Controllers.Taches
 			if (!ValidateInput(name, datte, cycleInput, ref datteDebut, ref cycle, idLocataires)) return;
 
 			if(IdTache == null) // mode ajout
-				await Ajouter(name, datteDebut, cycle, idLocataires);
+				await Ajouter(name, datteDebut.AddDays(cycle), cycle, idLocataires);
 			else // mode update
 			{
 				await Supprimer();
-				await Ajouter(name, datteDebut, cycle, idLocataires);
+				await Ajouter(name, datteDebut.AddDays(cycle), cycle, idLocataires);
 			}
 		}
 
@@ -195,7 +195,7 @@ namespace Wallon.Pages.Controllers.Taches
 			foreach (LocataireReadDto liaison in liaisonsASupprimer)*/
 				await _liaison.DeleteLiaisonsFromTache((int)IdTache);
 
-			_repositoryTaches.Supprimer((int) IdTache);
+			await _repositoryTaches.Supprimer((int) IdTache);
 		}
 
 		/// <summary>
