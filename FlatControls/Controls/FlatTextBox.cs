@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 using FlatControls.Core;
 
 namespace FlatControls.Controls
@@ -46,8 +45,6 @@ namespace FlatControls.Controls
 			set => textBox.Size = value;
 		}
 
-		//public VerticalAlignment TextVerticalAlignment { get => textBox; set => textBox.TextAlign = value; }
-
 		[Description("Text"), Category("Data"), Browsable(true)]
 		public override string Text
 		{
@@ -78,6 +75,7 @@ namespace FlatControls.Controls
 			else
 			{
 				nouvelleTaille = new Couple(textBox.Location.X, (Height - textBox.Height) / 2);
+				textBox.Size = new Size(Width - 10, textBox.Height);
 			}
 
 			textBox.Location = nouvelleTaille.ToPoint();
