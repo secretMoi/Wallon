@@ -9,6 +9,7 @@ using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
 using Wallon.Controllers;
 using Wallon.Controllers.BaseConsulter;
+using Wallon.Fenetres;
 using Wallon.Pages.Vue.Taches;
 using Wallon.Repository;
 
@@ -118,12 +119,8 @@ namespace Wallon.Pages.Controllers.Taches
 
 			if (colonne == _page.FlatDataGridView.GetColumnId("Modifier")) // si la colonne cliquée correspond
 			{
-				int? idColonne = _page.FlatDataGridView.GetColumnId("Id"); // trouve l'id de la colonne Id
-
-				if(idColonne == null) // si pas trouvé on sort
-					return;
-
-				int idTache = Convert.ToInt32(_page.FlatDataGridView.Get(ligne, (int) idColonne)); // récupère l'id de la tâche à passer en paramètre
+				int? idTache = FindTache(ligne);
+				if (idTache == null) return;
 
 				// charge la page d'ajout afin de modifier la tâche avec en paramètre l'id de la tâche
 				_page.LoadPage("Taches.Ajouter", idTache);
@@ -131,17 +128,33 @@ namespace Wallon.Pages.Controllers.Taches
 
 			if (colonne == _page.FlatDataGridView.GetColumnId("Supprimer")) // si la colonne cliquée correspond
 			{
-				int? idColonne = _page.FlatDataGridView.GetColumnId("Id"); // trouve l'id de la colonne Id
+				int? idTache = FindTache(ligne);
+				if(idTache == null) return;
 
-				if (idColonne == null) // si pas trouvé on sort
-					return;
+				DialogResult result =  Dialog.ShowYesNo(
+					$"Voulez-vous vraiment supprimer la tâche {_page.FlatDataGridView.Get(ligne, "Nom")} ?");
 
-				int idTache = Convert.ToInt32(_page.FlatDataGridView.Get(ligne, (int)idColonne)); // récupère l'id de la tâche à passer en paramètre
+				if(result == DialogResult.No) return;
 
-				await new ControllerTaches().Delete(idTache);
+				await new ControllerTaches().Delete((int) idTache);
 
 				_page.LoadPage("Taches.Consulter");
 			}
+		}
+
+		/// <summary>
+		/// Récupère l'id de la tâche lors du clic sur une ligne de la dgv
+		/// </summary>
+		/// <param name="ligne">Ligne cliquée</param>
+		/// <returns>Id de la tâche si trouvée, null sinon</returns>
+		private int? FindTache(int ligne)
+		{
+			int? idColonne = _page.FlatDataGridView.GetColumnId("Id"); // trouve l'id de la colonne Id
+
+			if (idColonne == null) // si pas trouvé on sort
+				return null;
+
+			return Convert.ToInt32(_page.FlatDataGridView.Get(ligne, (int)idColonne)); // récupère l'id de la tâche à passer en paramètre
 		}
 
 		/// <summary>

@@ -17,7 +17,6 @@ namespace Wallon.Pages.Vue.Taches
 
 			_controllerConsulter = new ControllerConsulter(this);
 
-			
 			//HideControls(typeof(FlatLabel));
 		}
 
@@ -37,9 +36,9 @@ namespace Wallon.Pages.Vue.Taches
 			AfterLoad();
 		}
 
-		public override void EffetClic(object sender, DataGridViewCellMouseEventArgs e)
+		public override async void EffetClic(object sender, DataGridViewCellMouseEventArgs e)
 		{
-			_controllerConsulter.Clic(sender, e);
+			await _controllerConsulter.Clic(sender, e);
 		}
 
 		private void Consulter_SizeChanged(object sender, EventArgs e)
