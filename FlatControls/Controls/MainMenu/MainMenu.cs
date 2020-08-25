@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 using FlatControls.Controls.Buttons;
 
@@ -33,6 +35,12 @@ namespace FlatControls.Controls.MainMenu
 		/// </summary>
 		/// <param name="value">Hauteur en pixel</param>
 		public int HeightItem { get; set; } = 80;
+
+		/// <summary>
+		/// Définit la hauteur de chacun des boutons du sous-menu
+		/// </summary>
+		/// <param name="value">Hauteur en pixel</param>
+		public int HeightSubItem { get; set; } = 60;
 
 		/// <summary>
 		/// Définit la vitesse d'ouverture et fermeture du menu pendant l'animation
@@ -173,11 +181,11 @@ namespace FlatControls.Controls.MainMenu
 
 			controlParent?.Controls.Add(button);
 
-			RefreshMaxHeight(controlParent);
+			RefreshMaxHeight(controlParent, button.Height);
 		}
 
 		/// <summary>
-		/// Ajoute un item de sous-menu
+		/// Ajoute un item de sous-menu au dernier parent créé
 		/// </summary>
 		/// <param name="name">Nom du control</param>
 		/// <param name="image">Chemin de l'image à afficher</param>
@@ -193,9 +201,10 @@ namespace FlatControls.Controls.MainMenu
 		/// Agrandit la taille maximale d'un control avec l'attribut HeightItem
 		/// </summary>
 		/// <param name="control">Control à redimensionner</param>
-		private void RefreshMaxHeight(Control control)
+		/// <param name="heightToAdd">Hauteur à ajouter au control</param>
+		private void RefreshMaxHeight(Control control, int heightToAdd)
 		{
-			control.MaximumSize = new Size(control.MaximumSize.Width, control.MaximumSize.Height + HeightItem);
+			control.MaximumSize = new Size(control.MaximumSize.Width, control.MaximumSize.Height + heightToAdd);
 		}
 
 		/// <summary>
@@ -251,6 +260,8 @@ namespace FlatControls.Controls.MainMenu
 
 			Color backColor = BackColor;
 
+			int height = WhatIsHeightItem(type);
+
 			if (type == Type.MainMenu)
 			{
 				name = "menu_" + name;
@@ -262,9 +273,11 @@ namespace FlatControls.Controls.MainMenu
 				backColor = BackColorSub;
 			}
 
+			image = ResizeImage(image, height - 20, height - 20);
+
 			MenuFlatButton button = new MenuFlatButton
 			{
-				Text = @"   " + text,
+				Text = @"     " + text,
 				Image = image,
 				Dock = DockStyle.Top,
 				BackColor = backColor,
@@ -273,7 +286,7 @@ namespace FlatControls.Controls.MainMenu
 				ImageAlign = ContentAlignment.MiddleLeft,
 				Location = new Point(0,0),
 				Name = name,
-				Size = new Size(Width, HeightItem),
+				Size = new Size(Width, height),
 				TextImageRelation = TextImageRelation.ImageBeforeText,
 				FlatStyle = FlatStyle.Flat,
 				UseVisualStyleBackColor = false,
@@ -370,6 +383,46 @@ namespace FlatControls.Controls.MainMenu
 			// si tous les panels ont atteint leur position finale
 			if (_subMenuPanelToShow == null && hideDone)
 				timer.Stop();
+		}
+
+		private int WhatIsHeightItem(Type type)
+		{
+			if (type == Type.MainMenu) return HeightItem;
+			else if (type == Type.SubMenu) return HeightSubItem;
+
+			return -1;
+		}
+
+		/// <summary>
+		/// Resize the image to the specified width and height.
+		/// </summary>
+		/// <param name="image">The image to resize.</param>
+		/// <param name="width">The width to resize to.</param>
+		/// <param name="height">The height to resize to.</param>
+		/// <returns>The resized image.</returns>
+		public Image ResizeImage(Image image, int width, int height)
+		{
+			var destRect = new Rectangle(0, 0, width, height);
+			var destImage = new Bitmap(width, height);
+
+			destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+			using (var graphics = Graphics.FromImage(destImage))
+			{
+				graphics.CompositingMode = CompositingMode.SourceCopy;
+				graphics.CompositingQuality = CompositingQuality.HighQuality;
+				graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+				graphics.SmoothingMode = SmoothingMode.HighQuality;
+				graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+				using (var wrapMode = new ImageAttributes())
+				{
+					wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+					graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+				}
+			}
+
+			return destImage;
 		}
 	}
 }

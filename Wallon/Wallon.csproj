@@ -27,7 +27,7 @@
     <UpdateUrl>http://192.168.1.124:80/</UpdateUrl>
     <ProductName>Wallons</ProductName>
     <PublisherName>Quentin</PublisherName>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
