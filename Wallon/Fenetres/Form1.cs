@@ -49,7 +49,12 @@ namespace Wallon.Fenetres
 
 		private async Task CheckForUpdate()
 		{
-			await Task.Run(async () =>
+			using (var mgr = UpdateManager.GitHubUpdateManager("https://github.com/secretMoi/Wallon"))
+			{
+				await mgr.Result.UpdateApp();
+			}
+
+			/*await Task.Run(async () =>
 			{
 				 using (var manager = new UpdateManager(@"http://192.168.1.124"))
 				 {
@@ -57,9 +62,9 @@ namespace Wallon.Fenetres
 					 {
 						 var updateInfo = await manager.CheckForUpdate();
 						 /*MessageBox.Show(updateInfo.FutureReleaseEntry.SHA1);
-						 MessageBox.Show(updateInfo.FutureReleaseEntry.Filesize.ToString());*/
+						 MessageBox.Show(updateInfo.FutureReleaseEntry.Filesize.ToString());*
 
-						 if (updateInfo.ReleasesToApply.Any())
+			if (updateInfo.ReleasesToApply.Any())
 							 await manager.UpdateApp();
 					 }
 					 catch (Exception ex)
@@ -68,7 +73,7 @@ namespace Wallon.Fenetres
 					 }
 				 }
 
-			});
+			});*/
 		}
 
 		private void SetMenu()
