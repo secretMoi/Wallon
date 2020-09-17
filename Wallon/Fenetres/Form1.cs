@@ -5,11 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Couche_Gestion;
 using FlatControls;
 using FlatControls.Controls;
 using FlatControls.Core;
-using Squirrel;
 using Wallon.Pages.Controllers;
 using Wallon.Pages.Vue;
 
@@ -36,23 +34,33 @@ namespace Wallon.Fenetres
 
 			AddVersionNumber();
 
-			CheckForUpdate();
+			//CheckForUpdate();
 		}
 
 		private void AddVersionNumber()
 		{
-			System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+			/*System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
 			FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
 
-			Text += $@" v.{versionInfo.FileVersion}";
+			Text += $@" v.{versionInfo.FileVersion}";*/
 		}
 
 		private async Task CheckForUpdate()
 		{
-			using (var mgr = UpdateManager.GitHubUpdateManager("https://github.com/secretMoi/Wallon"))
+			/*try
 			{
-				await mgr.Result.UpdateApp();
+				await Task.Run(async () =>
+				{
+					using (var mgr = UpdateManager.GitHubUpdateManager("https://github.com/secretMoi/Wallon"))
+					{
+						await mgr.Result.UpdateApp();
+					}
+				});
 			}
+			catch(Exception exception)
+			{
+				Dialog.Show($"Problème durant la mise à jour : \n{exception.Message}");
+			}*/
 
 			/*await Task.Run(async () =>
 			{
@@ -107,31 +115,13 @@ namespace Wallon.Fenetres
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			//await CheckForUpdate();
-
 			RestApiClient.ApiHelper.InitializeClient();
-			ThemePanel.SetConnection(Settings.Connection); // initialise la connexion
-
-			if(!TestDatabaseConnection()) return; // si la bdd est injoignable on quitte
 
 			Connexion accueil = new Connexion(); // charge la page de connexion comme page d'accueil
 
 			panelContainer.Controls.Add(accueil); // affiche la page
 
 			SelfUpdate.CheckUpdate(); // vérifie les maj
-		}
-
-		private bool TestDatabaseConnection()
-		{
-			bool result = new Base(Settings.Connection).TestConnection();
-
-			if(!result)
-			{
-				Dialog.Show("Erreur : Connexion à la base de données impossible !\nFermeture de l'application...");
-				Application.Exit();
-			}
-
-			return result;
 		}
 
 		public void Disconnect_Click(object sender, EventArgs e)
