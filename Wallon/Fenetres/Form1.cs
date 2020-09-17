@@ -1,10 +1,15 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Couche_Gestion;
 using FlatControls;
 using FlatControls.Controls;
 using FlatControls.Core;
+using Squirrel;
 using Wallon.Pages.Controllers;
 using Wallon.Pages.Vue;
 
@@ -28,6 +33,42 @@ namespace Wallon.Fenetres
 			SetColors();
 
 			SetMenu();
+
+			AddVersionNumber();
+
+			CheckForUpdate();
+		}
+
+		private void AddVersionNumber()
+		{
+			System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+			FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+
+			Text += $@" v.{versionInfo.FileVersion}";
+		}
+
+		private async Task CheckForUpdate()
+		{
+			await Task.Run(async () =>
+			{
+				 using (var manager = new UpdateManager(@"http://192.168.1.124"))
+				 {
+					 try
+					 {
+						 var updateInfo = await manager.CheckForUpdate();
+						 /*MessageBox.Show(updateInfo.FutureReleaseEntry.SHA1);
+						 MessageBox.Show(updateInfo.FutureReleaseEntry.Filesize.ToString());*/
+
+						 if (updateInfo.ReleasesToApply.Any())
+							 await manager.UpdateApp();
+					 }
+					 catch (Exception ex)
+					 {
+						 Dialog.Show($"Problème durant la mise à jour : \n{ex.Message}");
+					 }
+				 }
+
+			});
 		}
 
 		private void SetMenu()
@@ -61,6 +102,8 @@ namespace Wallon.Fenetres
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
+			//await CheckForUpdate();
+
 			RestApiClient.ApiHelper.InitializeClient();
 			ThemePanel.SetConnection(Settings.Connection); // initialise la connexion
 

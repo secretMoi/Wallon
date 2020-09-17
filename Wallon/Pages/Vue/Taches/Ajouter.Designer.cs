@@ -67,7 +67,7 @@ namespace Wallon.Pages.Vue.Taches
 			this.flatButtonAjouter.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.flatButtonAjouter.Font = new System.Drawing.Font("Yu Gothic UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.flatButtonAjouter.ForeColor = System.Drawing.Color.White;
-			this.flatButtonAjouter.Location = new System.Drawing.Point(3544, 1448);
+			this.flatButtonAjouter.Location = new System.Drawing.Point(1688, 680);
 			this.flatButtonAjouter.Name = "flatButtonAjouter";
 			this.flatButtonAjouter.Size = new System.Drawing.Size(165, 56);
 			this.flatButtonAjouter.TabIndex = 15;
@@ -103,9 +103,12 @@ namespace Wallon.Pages.Vue.Taches
 			this.flatTextBoxCycle.IsPassword = false;
 			this.flatTextBoxCycle.Location = new System.Drawing.Point(256, 163);
 			this.flatTextBoxCycle.Margin = new System.Windows.Forms.Padding(0);
+			this.flatTextBoxCycle.Multiline = false;
 			this.flatTextBoxCycle.Name = "flatTextBoxCycle";
 			this.flatTextBoxCycle.Size = new System.Drawing.Size(237, 40);
+			this.flatTextBoxCycle.SizeTextField = new System.Drawing.Size(227, 25);
 			this.flatTextBoxCycle.TabIndex = 17;
+			this.flatTextBoxCycle.TextHorizontalAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// flatLabelCycle
 			// 
@@ -124,9 +127,12 @@ namespace Wallon.Pages.Vue.Taches
 			this.flatTextBoxDatteDebut.IsPassword = false;
 			this.flatTextBoxDatteDebut.Location = new System.Drawing.Point(256, 95);
 			this.flatTextBoxDatteDebut.Margin = new System.Windows.Forms.Padding(0);
+			this.flatTextBoxDatteDebut.Multiline = false;
 			this.flatTextBoxDatteDebut.Name = "flatTextBoxDatteDebut";
 			this.flatTextBoxDatteDebut.Size = new System.Drawing.Size(237, 40);
+			this.flatTextBoxDatteDebut.SizeTextField = new System.Drawing.Size(227, 25);
 			this.flatTextBoxDatteDebut.TabIndex = 14;
+			this.flatTextBoxDatteDebut.TextHorizontalAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// flatLabelDateDebut
 			// 
@@ -145,9 +151,12 @@ namespace Wallon.Pages.Vue.Taches
 			this.flatTextName.IsPassword = false;
 			this.flatTextName.Location = new System.Drawing.Point(256, 27);
 			this.flatTextName.Margin = new System.Windows.Forms.Padding(0);
+			this.flatTextName.Multiline = false;
 			this.flatTextName.Name = "flatTextName";
 			this.flatTextName.Size = new System.Drawing.Size(237, 40);
+			this.flatTextName.SizeTextField = new System.Drawing.Size(227, 25);
 			this.flatTextName.TabIndex = 12;
+			this.flatTextName.TextHorizontalAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// flatLabelNom
 			// 
