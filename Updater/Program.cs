@@ -1,31 +1,22 @@
-﻿using System;
-using System.Net;
-using Updater.Downloads;
+﻿using System.Threading.Tasks;
+using Updater.Logs;
 
 namespace Updater
 {
 	class Program
 	{
-		static void Main(string[] args)
+		static async Task Main(string[] args)
 		{
-			Transferer transferer = new Transferer(new Http())
+			Run run = new Run();
+
+			string result = await run.Execute();
+
+			ILog logger = new Logger()
 			{
-				Source = "http://192.168.1.124/RELEASES",
-				Destination = "COUCOU3"
+				Path = "./",
+				File = "logs.txt"
 			};
-
-			transferer.Download();
-			transferer.WaitTasksForEnding();
-
-
-			/*Http ftp = new Http()
-			{
-				Source = "http://192.168.1.124/RELEASES",
-				Destination = "COUCOU3"
-			};
-
-			ftp.Download();
-			ftp.WaitTasksForEnding();*/
+			logger.Write(result);
 		}
 	}
 }

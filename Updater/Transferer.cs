@@ -14,6 +14,11 @@ namespace Updater
 			Protocol = protocol;
 		}
 
+		public async Task<bool> Exists()
+		{ 
+			return await Protocol.Exists();
+		}
+
 		public void Download()
 		{
 			TasksList.Add(Protocol.Download());

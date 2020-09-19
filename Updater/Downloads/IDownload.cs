@@ -8,5 +8,6 @@ namespace Updater.Downloads
 		public string Destination { get; set; }
 
 		public Task Download();
+		public Task<bool> Exists();
 	}
 }
