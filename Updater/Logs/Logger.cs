@@ -7,6 +7,11 @@ namespace Updater.Logs
 	{
 		public string Path { get; set; }
 		public string File { get; set; }
+
+		/**
+		 * <summary>Ajoute un texte dans le fichier de log</summary>
+		 * <param name="logText">Texte à ajouter</param>
+		 */
 		public void Write(string logText)
 		{
 			using (StreamWriter sw = System.IO.File.AppendText($"{Path}/{File}"))

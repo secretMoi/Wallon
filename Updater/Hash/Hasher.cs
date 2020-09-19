@@ -3,11 +3,15 @@ using System.Security.Cryptography;
 
 namespace Updater.Hash
 {
-	public class Hasher
+	public class Hasher : IHash
 	{
 		private readonly MD5 _hasher = MD5.Create();
 		public string FileName { get; set; }
 
+		/**
+		 * <summary>Hash un fichier</summary>
+		 * <returns>Le hash du fichier</returns>
+		 */
 		public string HashFile()
 		{
 			using (FileStream stream = File.OpenRead(FileName))

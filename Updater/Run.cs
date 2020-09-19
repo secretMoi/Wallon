@@ -38,6 +38,9 @@ namespace Updater
 			return "Update success";
 		}
 
+		/**
+		 * <summary>Nettoie le dossier d'extraction pour éviter des conflits</summary>
+		 */
 		private void InitDirectory()
 		{
 			// supprime les fichiers existants déjà
@@ -47,6 +50,11 @@ namespace Updater
 			Directory.CreateDirectory(_directory); // crée le répertoire pour extraire le nouveau code
 		}
 
+		/**
+		 * <summary>télécharge un fichier</summary>
+		 * <param name="file">Url du fichier à télécharger</param>
+		 * <returns>Null si tout s'est bien passé, le message de l'erreur sinon</returns>
+		 */
 		private async Task<string> Download(string file)
 		{
 			// initialise ce qu'on télécharge et où on le met
@@ -56,6 +64,7 @@ namespace Updater
 				Destination = $"{_directory}/{file}"
 			};
 
+			// vérifie que le fichier existe
 			bool result = await transferer.Exists();
 			if (result == false)
 				return $"File {file} not found on server"; 
@@ -66,6 +75,11 @@ namespace Updater
 			return null;
 		}
 
+		/**
+		 * <summary>Retourne le hash en texte</summary>
+		 * <param name="file">Fichier à hasher</param>
+		 * <returns>Le hash sous forme de string</returns>
+		 */
 		private string Hash(string file)
 		{
 			// récupère hash le fichier téléchargé
@@ -74,11 +88,12 @@ namespace Updater
 				FileName = $"{_directory}/{file}"
 			};
 
-			Console.WriteLine(hasher.HashFile());
-
 			return hasher.HashFile();
 		}
 
+		/**
+		 * <summary>Décompresse un fichier</summary>
+		 */
 		private void Decompress()
 		{
 			// décompresse le zip
@@ -87,6 +102,7 @@ namespace Updater
 				Source = $"{_directory}/{_file}",
 				Destination = _directory
 			};
+
 			decompress.Extract();
 		}
 	}

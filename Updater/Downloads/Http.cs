@@ -9,8 +9,9 @@ namespace Updater.Downloads
 		public string Source { get; set; }
 		public string Destination { get; set; }
 
-		private WebRequest _request;
-
+		/**
+		 * <summary>Télécharge un fichier</summary>
+		 */
 		public async Task Download()
 		{
 			using (WebClient client = new WebClient())
@@ -19,6 +20,10 @@ namespace Updater.Downloads
 			}
 		}
 
+		/**
+		 * <summary>Retourne le hash en texte</summary>
+		 * <returns>true si le fichier existe, false sinon</returns>
+		 */
 		public async Task<bool> Exists()
 		{
 			try
