@@ -38,25 +38,22 @@ namespace Wallon.Fenetres
 		{
 			System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
 			FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-			Text += $@" v.{versionInfo.FileVersion}";
+			Text += $@" V.{versionInfo.FileVersion}";
 		}
 
 		private async Task CheckForUpdate()
 		{
 			await Task.Run(async () =>
 			{
-				//using (var manager = new UpdateManager("http://192.168.1.124"))
 				using (var manager = UpdateManager.GitHubUpdateManager("https://github.com/secretMoi/Wallon"))
 				{
 					try
 					{
-
 						await manager.Result.UpdateApp();
-
 					}
 					catch (Exception exception)
 					{
-						MessageBox.Show("Erreur : " + exception.Message);
+						MessageBox.Show(@"Erreur : " + exception.Message);
 					}
 				}
 			});
@@ -120,7 +117,7 @@ namespace Wallon.Fenetres
 			if(!Settings.Auth)
 			{
 				Dialog.Show("Veuillez vous identifier afin d'accéder au programme !");
-				return; // si le locataire n'est pas authentifié, on il n'a pas accès au menu
+				return; // si le locataire n'est pas authentifié, il n'a pas accès au menu
 			}
 
 			string nom = ((Button)sender).Name; // récupère le nom du controle appelant
@@ -248,6 +245,7 @@ namespace Wallon.Fenetres
 			new Animation(pictureBoxReduce).Zoom(32);
 		}
 
+		// appelée lors du premier affichage de la fenêtre
 		private async void Form1_Shown(object sender, EventArgs e)
 		{
 			await CheckForUpdate();
