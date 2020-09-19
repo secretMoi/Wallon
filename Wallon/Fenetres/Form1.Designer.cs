@@ -126,8 +126,10 @@ namespace Wallon.Fenetres
 			// 
 			this.mainMenu.BackColorSub = System.Drawing.Color.Empty;
 			this.mainMenu.DefaultCallback = null;
+			this.mainMenu.DefaultPath = null;
 			this.mainMenu.Dock = System.Windows.Forms.DockStyle.Left;
 			this.mainMenu.HeightItem = 80;
+			this.mainMenu.HeightSubItem = 60;
 			this.mainMenu.Location = new System.Drawing.Point(0, 90);
 			this.mainMenu.Margin = new System.Windows.Forms.Padding(0);
 			this.mainMenu.Name = "mainMenu";
@@ -156,6 +158,7 @@ namespace Wallon.Fenetres
 			this.Text = "MySyno";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
 			this.Load += new System.EventHandler(this.Form1_Load);
+			this.Shown += new System.EventHandler(this.Form1_Shown);
 			this.Resize += new System.EventHandler(this.Form1_Resize);
 			this.panelHeader.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxReduce)).EndInit();

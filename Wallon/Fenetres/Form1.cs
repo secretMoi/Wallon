@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlatControls;
 using FlatControls.Controls;
 using FlatControls.Core;
+using Squirrel;
 using Wallon.Pages.Controllers;
 using Wallon.Pages.Vue;
 
@@ -33,55 +32,34 @@ namespace Wallon.Fenetres
 			SetMenu();
 
 			AddVersionNumber();
-
-			//CheckForUpdate();
 		}
 
 		private void AddVersionNumber()
 		{
-			/*System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+			System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
 			FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
-
-			Text += $@" v.{versionInfo.FileVersion}";*/
+			Text += $@" v.{versionInfo.FileVersion}";
 		}
 
 		private async Task CheckForUpdate()
 		{
-			/*try
+			await Task.Run(async () =>
 			{
-				await Task.Run(async () =>
+				//using (var manager = new UpdateManager("http://192.168.1.124"))
+				using (var manager = UpdateManager.GitHubUpdateManager("https://github.com/secretMoi/Wallon"))
 				{
-					using (var mgr = UpdateManager.GitHubUpdateManager("https://github.com/secretMoi/Wallon"))
+					try
 					{
-						await mgr.Result.UpdateApp();
+
+						await manager.Result.UpdateApp();
+
 					}
-				});
-			}
-			catch(Exception exception)
-			{
-				Dialog.Show($"Problème durant la mise à jour : \n{exception.Message}");
-			}*/
-
-			/*await Task.Run(async () =>
-			{
-				 using (var manager = new UpdateManager(@"http://192.168.1.124"))
-				 {
-					 try
-					 {
-						 var updateInfo = await manager.CheckForUpdate();
-						 /*MessageBox.Show(updateInfo.FutureReleaseEntry.SHA1);
-						 MessageBox.Show(updateInfo.FutureReleaseEntry.Filesize.ToString());*
-
-			if (updateInfo.ReleasesToApply.Any())
-							 await manager.UpdateApp();
-					 }
-					 catch (Exception ex)
-					 {
-						 Dialog.Show($"Problème durant la mise à jour : \n{ex.Message}");
-					 }
-				 }
-
-			});*/
+					catch (Exception exception)
+					{
+						MessageBox.Show("Erreur : " + exception.Message);
+					}
+				}
+			});
 		}
 
 		private void SetMenu()
@@ -268,6 +246,11 @@ namespace Wallon.Fenetres
 		private void pictureBoxReduce_MouseLeave(object sender, EventArgs e)
 		{
 			new Animation(pictureBoxReduce).Zoom(32);
+		}
+
+		private async void Form1_Shown(object sender, EventArgs e)
+		{
+			await CheckForUpdate();
 		}
 	}
 }
