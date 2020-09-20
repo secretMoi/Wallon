@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Updater.Logs;
 
 namespace Updater
@@ -17,6 +18,8 @@ namespace Updater
 				File = "logs.txt"
 			};
 			logger.Write(result);
+
+			Console.WriteLine(result);
 		}
 	}
 }

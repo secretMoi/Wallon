@@ -1,94 +1,43 @@
-﻿using System;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Updater.Compression;
-using Updater.Downloads;
-using Updater.Hash;
 
 namespace Updater
 {
 	public class Run
 	{
-		private string _directory = "Deploy";
-		private string _file = "test.zip";
-		private string _hashFile = "hash.txt";
-		private string _urlSource = "http://192.168.1.124";
+		private const string TempDirectory = "Temp";
+		private const string File = "test.zip";
+		private const string HashFile = "hash.txt";
+		private const string UrlSource = "http://aorus.aorus.ovh/wallon";
 
 		public async Task<string> Execute()
 		{
-			string result = null;
-			InitDirectory();
+			LocalVersion localVersion = new LocalVersion
+			{
+				TempDirectory = TempDirectory
+			};
+			ServerVersion serverVersion = new ServerVersion
+			{
+				UrlSource = UrlSource,
+				TempDirectory = TempDirectory
+			};
 
-			result = await Download(_file); // télécharge l'archive du nouveau prog sur le serveur
+			string result;
+			localVersion.InitDirectory();
+
+			string localHash = await localVersion.GetHash(File, HashFile); // récupère l'ancien hash
+			string serverHash = await serverVersion.GetHash(HashFile); // récupère le hash sur le serveur
+
+			if (serverHash == localHash) // si les hash correspondent
+				return "Already updated"; // l'app locale correspond au serveur
+
+			result = await serverVersion.Download(File); // télécharge l'archive du nouveau prog sur le serveur
 			if (result != null)
 				return result;
-
-			result = await Download(_hashFile); // récupère la code hash sur le 
-			if (result != null)
-				return result;
-
-			string serverHash = Hash(_file);
-			string localHash = await File.ReadAllTextAsync($"{_directory}/{_hashFile}");
-
-			if (serverHash != localHash)
-				return $"Hashes differents. Server : {serverHash} Local : {localHash}";
 
 			Decompress();
 
 			return "Update success";
-		}
-
-		/**
-		 * <summary>Nettoie le dossier d'extraction pour éviter des conflits</summary>
-		 */
-		private void InitDirectory()
-		{
-			// supprime les fichiers existants déjà
-			if (Directory.Exists(_directory))
-				Directory.Delete(_directory, true);
-
-			Directory.CreateDirectory(_directory); // crée le répertoire pour extraire le nouveau code
-		}
-
-		/**
-		 * <summary>télécharge un fichier</summary>
-		 * <param name="file">Url du fichier à télécharger</param>
-		 * <returns>Null si tout s'est bien passé, le message de l'erreur sinon</returns>
-		 */
-		private async Task<string> Download(string file)
-		{
-			// initialise ce qu'on télécharge et où on le met
-			Transferer transferer = new Transferer(new Http())
-			{
-				Source = $"{_urlSource}/{file}",
-				Destination = $"{_directory}/{file}"
-			};
-
-			// vérifie que le fichier existe
-			bool result = await transferer.Exists();
-			if (result == false)
-				return $"File {file} not found on server"; 
-
-			transferer.Download(); // télécharge le nouveau code
-			transferer.WaitTasksForEnding(); // on attend que le téléchargement soit terminé
-
-			return null;
-		}
-
-		/**
-		 * <summary>Retourne le hash en texte</summary>
-		 * <param name="file">Fichier à hasher</param>
-		 * <returns>Le hash sous forme de string</returns>
-		 */
-		private string Hash(string file)
-		{
-			// récupère hash le fichier téléchargé
-			Hasher hasher = new Hasher()
-			{
-				FileName = $"{_directory}/{file}"
-			};
-
-			return hasher.HashFile();
 		}
 
 		/**
@@ -99,8 +48,8 @@ namespace Updater
 			// décompresse le zip
 			Decompress decompress = new Decompress()
 			{
-				Source = $"{_directory}/{_file}",
-				Destination = _directory
+				Source = $"{TempDirectory}/{File}",
+				Destination = TempDirectory
 			};
 
 			decompress.Extract();

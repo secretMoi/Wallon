@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Updater.Hash
+﻿namespace Updater.Hash
 {
 	public interface IHash
 	{

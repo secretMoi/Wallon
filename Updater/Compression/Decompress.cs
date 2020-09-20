@@ -12,7 +12,7 @@ namespace Updater.Compression
 		 */
 		public void Extract()
 		{
-			ZipFile.ExtractToDirectory(Source, Destination);
+			ZipFile.ExtractToDirectory(Source, Destination, true);
 		}
 	}
 }

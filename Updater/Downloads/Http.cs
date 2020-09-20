@@ -15,7 +15,7 @@ namespace Updater.Downloads
 		public async Task Download()
 		{
 			using (WebClient client = new WebClient())
-			{
+			{ 
 				await client.DownloadFileTaskAsync(new Uri(Source), Destination);
 			}
 		}
