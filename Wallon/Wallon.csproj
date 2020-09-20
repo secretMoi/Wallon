@@ -61,7 +61,7 @@
     <ApplicationIcon>Ressources\Images\chicken.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>A6A315AF056899C692A80C0B97C69E0ADDC56BE7</ManifestCertificateThumbprint>
@@ -70,7 +70,7 @@
     <ManifestKeyFile>Wallon_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>Wallon.Program</StartupObject>
@@ -87,10 +87,6 @@
   <ItemGroup>
     <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="FlatControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\FlatControls\obj\Debug\FlatControls.dll</HintPath>
     </Reference>
     <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>..\packages\FluentValidation.8.6.2\lib\net45\FluentValidation.dll</HintPath>
@@ -416,6 +412,10 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FlatControls\FlatControls.csproj">
+      <Project>{70e7d56f-df43-4fe9-a6cc-d762a5cd7f4b}</Project>
+      <Name>FlatControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{2d3d5c1c-c704-467a-bf93-35cbfe56be49}</Project>
       <Name>Models</Name>

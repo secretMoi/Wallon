@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Updater.Compression;
+using Updater.Folders;
 
 namespace Updater
 {
@@ -12,6 +13,14 @@ namespace Updater
 
 		public async Task<string> Execute()
 		{
+			Starter starter = new Starter
+			{
+				ExePath = Installer.Executable
+			};
+			string result = starter.Run();
+			if (result != null)
+				return result;
+
 			LocalVersion localVersion = new LocalVersion
 			{
 				TempDirectory = TempDirectory
@@ -22,7 +31,6 @@ namespace Updater
 				TempDirectory = TempDirectory
 			};
 
-			string result;
 			localVersion.InitDirectory();
 
 			string localHash = await localVersion.GetHash(File, HashFile); // récupère l'ancien hash

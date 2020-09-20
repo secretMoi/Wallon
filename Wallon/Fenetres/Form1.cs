@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FlatControls;
@@ -96,7 +97,7 @@ namespace Wallon.Fenetres
 
 			panelContainer.Controls.Add(accueil); // affiche la page
 
-			SelfUpdate.CheckUpdate(); // vérifie les maj
+			//SelfUpdate.CheckUpdate(); // vérifie les maj
 		}
 
 		public void Disconnect_Click(object sender, EventArgs e)
@@ -248,7 +249,7 @@ namespace Wallon.Fenetres
 		// appelée lors du premier affichage de la fenêtre
 		private async void Form1_Shown(object sender, EventArgs e)
 		{
-			await CheckForUpdate();
+			//await CheckForUpdate();
 		}
 	}
 }

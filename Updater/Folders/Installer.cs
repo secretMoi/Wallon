@@ -5,7 +5,9 @@ namespace Updater.Folders
 {
 	public class Installer
 	{
-		public static string Path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "WallonsTest/";
+		public static string Path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\WallonsTest\\";
+		
+		public static string Executable = "Wallon.exe";
 		public static string LastInstallFile = "lastInstall.txt";
 
 		public static bool AlreadyUpdated(string serverVersion)
