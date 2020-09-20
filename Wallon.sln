@@ -13,7 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApiClient", "RestApiCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{2D3D5C1C-C704-467A-BF93-35CBFE56BE49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Updater", "Updater\Updater.csproj", "{176FDB5E-0740-4B61-BCB2-181483F2B20C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Updater", "Updater\Updater.csproj", "{176FDB5E-0740-4B61-BCB2-181483F2B20C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packager", "Packager\Packager.csproj", "{68D95A1C-49EA-48A9-B539-F81C78690824}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{176FDB5E-0740-4B61-BCB2-181483F2B20C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{176FDB5E-0740-4B61-BCB2-181483F2B20C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{176FDB5E-0740-4B61-BCB2-181483F2B20C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68D95A1C-49EA-48A9-B539-F81C78690824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68D95A1C-49EA-48A9-B539-F81C78690824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68D95A1C-49EA-48A9-B539-F81C78690824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68D95A1C-49EA-48A9-B539-F81C78690824}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

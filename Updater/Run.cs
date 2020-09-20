@@ -10,15 +10,14 @@ namespace Updater
 		private const string File = "test.zip";
 		private const string HashFile = "hash.txt";
 		private const string UrlSource = "http://aorus.aorus.ovh/wallon";
+		private const string InstallPath = @"C:\Users\Quentin\source\repos\secretMoi\Wallon\Wallon\bin\Debug\";
+		private const string InstallExe = "Wallon.exe";
 
 		public async Task<string> Execute()
 		{
-			Starter starter = new Starter
-			{
-				ExePath = Installer.Executable
-			};
-			string result = starter.Run();
-			if (result != null)
+			// lance le programme
+			string result = new Starter().Run(InstallPath, InstallExe);
+			if (result != "0")
 				return result;
 
 			LocalVersion localVersion = new LocalVersion
@@ -31,6 +30,7 @@ namespace Updater
 				TempDirectory = TempDirectory
 			};
 
+			// initialise les dossiers locaux
 			localVersion.InitDirectory();
 
 			string localHash = await localVersion.GetHash(File, HashFile); // récupère l'ancien hash
@@ -43,7 +43,7 @@ namespace Updater
 			if (result != null)
 				return result;
 
-			Decompress();
+			Decompress(); // décompresse le zip
 
 			return "Update success";
 		}
