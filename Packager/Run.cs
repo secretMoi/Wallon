@@ -36,6 +36,7 @@ namespace Packager
 			); // upload le fichier hash de la release
 
 			//todo persist files (config.ini)
+			//todo set config dans le programme principal
 		}
 
 		/**
