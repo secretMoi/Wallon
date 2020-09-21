@@ -5,7 +5,12 @@ namespace Packager
 {
 	public class Compress
 	{
-		public static string Zip(string source, string destination)
+		/**
+		 * <summary>Compress un répertoire dans une archive</summary>
+		 * <param name="source">Chemin du répertoire à compresser</param>
+		 * <param name="destination">Chemin de l'archive à créer</param>
+		 */
+		public static void Zip(string source, string destination)
 		{
 			string path = Path.GetDirectoryName(source);
 
@@ -16,8 +21,6 @@ namespace Packager
 				File.Delete(destination);
 
 			ZipFile.CreateFromDirectory(source, destination);
-
-			return destination;
 		}
 	}
 }
