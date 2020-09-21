@@ -6,16 +6,16 @@ namespace Packager
 {
 	public class Run
 	{
-		private const string Server = "ftp://192.168.1.124/";
+		private const string Server = "ftp://192.168.1.124/"; // serveur où stocker la release
 
-		private const string ProjectPath = "../../../../Wallon/bin/Debug";
-		private const string TempPath = "../../../../Wallon/bin/Temp/Source";
+		private const string ProjectPath = "../../../../Wallon/bin/Debug"; // chemin du fichier à packager
+		private const string TempPath = "../../../../Wallon/bin/Temp/Source"; // chemin du dossier temporaire du code pour créer l'archive
 
-		private const string ArchiveName = "test.zip";
-		private const string ArchivePath = "../../../../Wallon/bin/Temp/" + ArchiveName;
+		private const string ArchiveName = "test.zip"; // nom de l'archive
+		private const string ArchivePath = "../../../../Wallon/bin/Temp/" + ArchiveName; // chemin de l'archive
 
-		private const string HashName = "hash.txt";
-		private const string HashPath = "../../../../Wallon/bin/Temp/";
+		private const string HashName = "hash.txt"; // nom du fichier de hash
+		private const string HashPath = "../../../../Wallon/bin/Temp/"; // chemin du fichier de hash
 
 		public Run()
 		{
