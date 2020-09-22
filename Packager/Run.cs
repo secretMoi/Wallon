@@ -7,16 +7,7 @@ namespace Packager
 {
 	public class Run
 	{
-		//private const string Server = "ftp://192.168.1.124/"; // serveur où stocker la release
-
 		private const string ProjectPath = "../../../../Wallon/bin/Debug"; // chemin du fichier à packager
-		/*private const string TempPath = "../../../../Wallon/bin/Temp/Source"; // chemin du dossier temporaire du code pour créer l'archive
-
-		private const string ArchiveName = "test.zip"; // nom de l'archive
-		private const string ArchivePath = "../../../../Wallon/bin/Temp/" + ArchiveName; // chemin de l'archive
-
-		private const string HashName = "hash.txt"; // nom du fichier de hash
-		private const string HashPath = "../../../../Wallon/bin/Temp/"; // chemin du fichier de hash*/
 
 		private readonly Config _config;
 
@@ -28,7 +19,10 @@ namespace Packager
 
 			Compresser(_config.TempPath, _config.Archive.Path, _config.Archive.Name);
 
-			Hash(_config.Archive.Path, _config.Archive.Name, _config.Hash.Path, _config.Hash.Name);
+			Hash(
+				Path.Combine(_config.Archive.Path, _config.Archive.Name),
+				Path.Combine(_config.Hash.Path, _config.Hash.Name)
+			);
 
 			// upload l'archive de la release
 			Upload(
@@ -99,22 +93,21 @@ namespace Packager
 
 		/**
 		 * <summary>Hash un fichier</summary>
-		 * <param name="archivePath">Répertoire de l'archive à hasher</param>
-		 * <param name="archiveName">Nom de l'archive à hasher</param>
-		 * <param name="hashPath">Répertoire du hash à générer</param>
-		 * <param name="hashName">Nom du hash à générer</param>
+		 * <param name="source">Fichier à hasher</param>
+		 * <param name="destination">Chemin du fichier à hasher contenant le hash</param>
 		 */
-		private void Hash(string archivePath, string archiveName, string hashPath, string hashName)
+		//private void Hash(string archivePath, string archiveName, string hashPath, string hashName)
+		private void Hash(string source, string destination)
 		{
 			// initialise le hasher
 			Hasher hasher = new Hasher
 			{
-				FileName = Path.Combine(archivePath, archiveName)
+				FileName = source
 			};
 
 			hasher.HashFile(); // hash le fichier
 
-			hasher.SaveHash(Path.Combine(hashPath, hashName)); // sauvegarde le hash dans un fichier
+			hasher.SaveHash(destination); // sauvegarde le hash dans un fichier
 		}
 	}
 }
