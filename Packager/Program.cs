@@ -5,7 +5,7 @@
 
 		static void Main(string[] args)
 		{
-			Run run = new Run();
+			Run run = new Run("coucou");
 		}
 	}
 }

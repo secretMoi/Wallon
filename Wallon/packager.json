@@ -1,0 +1,13 @@
+{
+  "Server": "ftp://192.168.1.124/",
+  "ProjectPath": "../../../../Wallon/bin/Debug",
+  "TempPath": "../../../../Wallon/bin/Temp/Source",
+  "Archive": {
+    "Name": "test.zip",
+    "Path": "../../../../Wallon/bin/Temp/"
+  },
+  "Hash": {
+    "Name": "hash.txt",
+    "Path": "../../../../Wallon/bin/Temp/"
+  }
+}
