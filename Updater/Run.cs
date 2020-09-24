@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
+using IWshRuntimeLibrary;
 using Updater.Compression;
 
 namespace Updater
@@ -10,7 +12,7 @@ namespace Updater
 		private const string File = "test.zip"; // fichier release à télécharger
 		private const string HashFile = "hash.txt"; // fichier de hash à télécharger
 		private const string UrlSource = "http://aorus.aorus.ovh/wallon"; // serveur pour récupérer les releases
-		private const string InstallPath = @"C:\Users\Quentin\source\repos\secretMoi\Wallon\Wallon\bin\Debug\"; // chemin où lancer le programme intallé
+		private readonly string InstallPath = Path.Combine( Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Wallons"); // chemin où lancer le programme intallé
 		private const string InstallExe = "Wallon.exe"; // nom du programme à lancer
 
 		public async Task<string> Execute()
@@ -23,12 +25,12 @@ namespace Updater
 
 			LocalVersion localVersion = new LocalVersion
 			{
-				TempDirectory = TempDirectory
+				TempDirectory = Path.Combine(InstallPath, TempDirectory)
 			};
 			ServerVersion serverVersion = new ServerVersion
 			{
 				UrlSource = UrlSource,
-				TempDirectory = TempDirectory
+				TempDirectory = Path.Combine(InstallPath, TempDirectory)
 			};
 
 			// initialise les dossiers locaux
@@ -46,7 +48,21 @@ namespace Updater
 
 			Decompress(); // décompresse le zip
 
+			Install();
+
 			return "Update success";
+		}
+
+		private void Install()
+		{
+			object shDesktop = (object)"Desktop";
+			WshShell shell = new WshShell();
+			string shortcutAddress = (string)shell.SpecialFolders.Item(ref shDesktop) + @"\Wallon.lnk";
+			IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(shortcutAddress);
+			shortcut.Description = "Application de gestion des tâches des colocataires";
+			shortcut.TargetPath = Path.Combine(InstallPath, TempDirectory, InstallExe);
+			shortcut.WorkingDirectory = Path.Combine(InstallPath, TempDirectory);
+			shortcut.Save();
 		}
 
 		/**
@@ -57,8 +73,8 @@ namespace Updater
 			// décompresse le zip
 			Decompress decompress = new Decompress()
 			{
-				Source = $"{TempDirectory}/{File}",
-				Destination = TempDirectory
+				Source = $"{Path.Combine(InstallPath, TempDirectory)}/{File}",
+				Destination = InstallPath
 			};
 
 			decompress.Extract();
