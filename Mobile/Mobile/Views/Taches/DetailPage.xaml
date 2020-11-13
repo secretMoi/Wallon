@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 x:Class="Mobile.Views.Taches.DetailPage">
+    <ContentPage.Content>
+		<StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand" Spacing="20">
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+
+            <Label FontSize="34" Text="{Binding Title}" HorizontalOptions="Center" />
+
+            <BoxView HeightRequest="50" />
+
+            <Entry Text="{Binding Tache.Nom}" Placeholder="Nom de la tâche" />
+            <DatePicker x:Name="DatePicker" Date="{Binding Tache.DateFin}" Format="dd/MM/yyyy" />
+            <Entry Text="{Binding Tache.Cycle}" Keyboard="Numeric" Placeholder="Cycle en jours de la tâche" />
+
+            <BoxView HeightRequest="50" />
+
+            <Button Text="Envoyer" />
+
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

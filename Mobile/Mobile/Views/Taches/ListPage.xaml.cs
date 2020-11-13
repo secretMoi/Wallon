@@ -1,4 +1,5 @@
 ﻿using Mobile.ViewModels.Taches.List;
+using Models.Dtos.Taches;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -25,9 +26,9 @@ namespace Mobile.Views.Taches
 			_viewModel.IsBusy = false;
 		}
 
-		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
+		private async void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
 		{
-			
+			await _viewModel.OnItemSelected(e.Item as TacheReadDto);
 		}
 	}
 }

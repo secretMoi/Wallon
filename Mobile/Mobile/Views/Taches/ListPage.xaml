@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Mobile.ViewModels;assembly=Mobile"
+             xmlns:list="clr-namespace:Mobile.ViewModels.Taches.List;assembly=Mobile"
              x:Class="Mobile.Views.Taches.ListPage">
     <ContentPage.Content>
 
@@ -8,7 +10,7 @@
 
             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
 
-            <ListView ItemsSource="{Binding Taches}" HasUnevenRows="True" SeparatorVisibility="None"  ItemTapped="ListView_OnItemTapped">
+            <ListView ItemsSource="{Binding Taches}" HasUnevenRows="True" SeparatorVisibility="None" ItemTapped="ListView_OnItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell Height="120">
