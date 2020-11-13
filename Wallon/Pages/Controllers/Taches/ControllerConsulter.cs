@@ -63,7 +63,7 @@ namespace Wallon.Pages.Controllers.Taches
 			IList<TacheReadDto> taches = await _taches.LireAsync(); // récupère les données dans la bdd
 
 			// parrallel async mais problème de désordre
-			//List<Task> tasks = new List<Task>();
+			//ListPage<Task> tasks = new ListPage<Task>();
 
 			/*foreach (Couche_Classe.Taches tache in taches) // les lie à la dgv
 				tasks.Add(Task.Run(() => AddToDgv(tache)));*/

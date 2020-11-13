@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Mobile.Core;
-using Mobile.Views;
 using Models.Dtos.Locataires;
 using Models.Models;
 using RestApiClient.Controllers;
-using Xamarin.Forms;
 
 namespace Mobile.ViewModels.Locataires.LogIn
 {
@@ -61,8 +59,6 @@ namespace Mobile.ViewModels.Locataires.LogIn
 
 			try
 			{
-				//todo finir
-				//result = await _client.ByMail(LogInData.Nom);
 				result = await Existe(LogInData.Nom);
 			}
 			catch (Exception e)
@@ -80,9 +76,6 @@ namespace Mobile.ViewModels.Locataires.LogIn
 				return "Mot de passe incorrect";
 
 			Session.Instance.Connect = Mapping.Map(result, new Locataire()); // connecte l'utilisateur
-
-			// Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-			await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
 
 			return null;
 		}

@@ -232,9 +232,9 @@ namespace Wallon.Pages.Controllers.Taches
 		/// <returns>Tableau des noms des locataires</returns>
 		/*public string[] FillListLocataireCourant()
 		{
-			List<int> listeIdLocataires = _liaison.ListeLocataires((int) IdTache);
+			ListPage<int> listeIdLocataires = _liaison.ListeLocataires((int) IdTache);
 
-			List<Locataire> listeLocataires = new List<Locataire>(listeIdLocataires.Count);
+			ListPage<Locataire> listeLocataires = new ListPage<Locataire>(listeIdLocataires.Count);
 
 			foreach (int idLocataire in listeIdLocataires)
 				listeLocataires.Add(new ControllerLocataires().GetById(idLocataire));

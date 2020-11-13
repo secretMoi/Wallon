@@ -29,7 +29,8 @@ namespace Mobile.Views.Locataires
 			{
 				await DisplayAlert("Succès", "Connexion réussie", "OK");
 
-				//todo rediriger
+				// Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
+				await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
 			}
 		}
 
