@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile.Views.Locataires.LogInPage"
+             BackgroundColor="RoyalBlue">
+    <ContentPage.Content>
+
+        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand">
+
+            <ActivityIndicator IsRunning="{Binding DataLogIn.IsBusy}" IsVisible="{Binding DataLogIn.IsBusy}" />
+
+            <Label FontFamily="Comic Sans MS" FontSize="28" TextColor="WhiteSmoke" Text="Bievenue dans la Wallon mobile !" />
+            <Label FontFamily="Comic Sans MS" FontSize="24" TextColor="WhiteSmoke" Text="Page de connexion" />
+
+            <BoxView HeightRequest="50" BackgroundColor="RoyalBlue" />
+
+            <Entry Text="{Binding DataLogIn.Mail}" Placeholder="Your email" TextColor="WhiteSmoke" />
+
+            <StackLayout Orientation="Horizontal">
+                <Entry Text="{Binding DataLogIn.Password}" IsPassword="{Binding DataLogIn.ShowPassword}" 
+                       Placeholder="Your password" TextColor="WhiteSmoke" HorizontalOptions="FillAndExpand" />
+                <Image Source="{Binding DataLogIn.PasswordImageEye}" HorizontalOptions="End" VerticalOptions="Center" >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ShowPassword" NumberOfTapsRequired="1" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+
+            <BoxView HeightRequest="50" BackgroundColor="RoyalBlue" />
+
+            <Button Text="Log In" Clicked="btnLogIn_OnClicked" />
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>
