@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Mobile.Core;
 using Mobile.Views;
+using Models.Dtos.Locataires;
 using Models.Models;
 using RestApiClient.Controllers;
 using Xamarin.Forms;
@@ -52,17 +54,16 @@ namespace Mobile.ViewModels.Locataires.LogIn
 			if (!AndroidPermissions.HasInternet()) return "Pas d'accès à internet";
 
 			// vérifie les champs
-			if (LogInData.Mail == null || LogInData.Password == null)
+			if (LogInData.Nom == null || LogInData.Password == null)
 				return "Veuillez saisir vos informations !";
 
-			Locataire result;
+			LocataireReadDto result;
 
 			try
 			{
-				// récupère le client dans la bdd par son mail
 				//todo finir
-				//result = await _client.ByMail(LogInData.Mail);
-				result = null;
+				//result = await _client.ByMail(LogInData.Nom);
+				result = await Existe(LogInData.Nom);
 			}
 			catch (Exception e)
 			{
@@ -78,10 +79,26 @@ namespace Mobile.ViewModels.Locataires.LogIn
 			if (!result.Password.SequenceEqual(password))
 				return "Mot de passe incorrect";
 
-			Session.Instance.Connect = result; // connecte l'utilisateur
+			Session.Instance.Connect = Mapping.Map(result, new Locataire()); // connecte l'utilisateur
 
 			// Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
 			await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+
+			return null;
+		}
+
+		/// <summary>
+		/// Vérifie que le nom du locataire passé en paramètres existe dans la bdd
+		/// </summary>
+		/// <param name="nom">Le nom du locataire</param>
+		/// <returns>Renvoie un objet locataire si trouvé, null sinon</returns>
+		public async Task<LocataireReadDto> Existe(string nom)
+		{
+			IList<LocataireReadDto> locataires = await _client.GetAll<LocataireReadDto>();
+
+			foreach (LocataireReadDto locataire in locataires)
+				if (locataire.Nom == nom)
+					return locataire;
 
 			return null;
 		}

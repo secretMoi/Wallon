@@ -2,15 +2,15 @@
 {
 	public class LogInData : BaseViewModel
 	{
-		private string _mail, _password;
+		private string _nom, _password;
 
 		private bool _showPassword;
 		private string _passwordImageEye;
 
-		public string Mail
+		public string Nom
 		{
-			get => _mail;
-			set => SetProperty(ref _mail, value);
+			get => _nom;
+			set => SetProperty(ref _nom, value);
 		}
 
 		public string Password

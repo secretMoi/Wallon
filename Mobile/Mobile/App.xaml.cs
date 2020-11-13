@@ -1,6 +1,7 @@
 ﻿using Mobile.Services;
 using Mobile.Views;
 using System;
+using RestApiClient;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,6 +13,8 @@ namespace Mobile
 		public App()
 		{
 			InitializeComponent();
+
+			ApiHelper.InitializeClient();
 
 			DependencyService.Register<MockDataStore>();
 			MainPage = new AppShell();
