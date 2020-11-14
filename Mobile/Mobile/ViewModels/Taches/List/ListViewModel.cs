@@ -28,6 +28,8 @@ namespace Mobile.ViewModels.Taches.List
 
 		public async Task Hydrate()
 		{
+			if(Taches.Count != 0) return;
+
 			var taches = await _taches.GetAll<TacheReadDto>();
 
 			foreach (var tache in taches)

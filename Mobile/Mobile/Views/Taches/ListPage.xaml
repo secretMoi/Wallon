@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Mobile.ViewModels;assembly=Mobile"
-             xmlns:list="clr-namespace:Mobile.ViewModels.Taches.List;assembly=Mobile"
              xmlns:customControls="clr-namespace:Mobile.CustomControls;assembly=Mobile"
              x:Class="Mobile.Views.Taches.ListPage">
     <ContentPage.Content>
