@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using Models.Dtos.Taches;
+using RestApiClient;
 using RestApiClient.Controllers;
 using Xamarin.Forms;
 
@@ -40,9 +41,9 @@ namespace Mobile.ViewModels.Taches.Detail
 			{
 				Tache.Tache = await _taches.GetById<TacheReadDto>(Convert.ToInt32(itemId));
 			}
-			catch (Exception)
+			catch (Exception e)
 			{
-				Debug.WriteLine("Impossible de charger la tâche avec l'id : " + itemId);
+				Debug.WriteLine("Impossible de charger la tâche avec l'id : " + itemId + e.Message);
 			}
 		}
 	}

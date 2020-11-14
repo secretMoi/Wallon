@@ -1,9 +1,6 @@
 ﻿using Mobile.Services;
-using Mobile.Views;
-using System;
 using RestApiClient;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Mobile
 {
