@@ -11,9 +11,9 @@
 
             <BoxView HeightRequest="50" />
 
-            <Entry Text="{Binding Tache.Nom}" Placeholder="Nom de la tâche" />
-            <DatePicker x:Name="DatePicker" Date="{Binding Tache.DateFin}" Format="dd/MM/yyyy" />
-            <Entry Text="{Binding Tache.Cycle}" Keyboard="Numeric" Placeholder="Cycle en jours de la tâche" />
+            <Entry Text="{Binding Tache.Tache.Nom}" Placeholder="Nom de la tâche" />
+            <DatePicker x:Name="DatePicker" Date="{Binding Tache.Tache.DateFin}" Format="dd/MM/yyyy" />
+            <Entry Text="{Binding Tache.Tache.Cycle}" Keyboard="Numeric" Placeholder="Cycle en jours de la tâche" />
 
             <BoxView HeightRequest="50" />
 

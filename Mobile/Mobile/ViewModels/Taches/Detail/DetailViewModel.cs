@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Models.Dtos.Taches;
 using RestApiClient;
 using RestApiClient.Controllers;
@@ -10,7 +11,7 @@ namespace Mobile.ViewModels.Taches.Detail
 	[QueryProperty(nameof(TacheId), nameof(TacheId))]
 	public class DetailViewModel : BaseViewModel
 	{
-		private DetailData _detailData;
+		private DetailData _detailData = new DetailData();
 		private string _itemId;
 		private readonly TachesController _taches = new TachesController();
 
@@ -37,6 +38,7 @@ namespace Mobile.ViewModels.Taches.Detail
 
 		public async void LoadItemId(string itemId)
 		{
+			IsBusy = true;
 			try
 			{
 				Tache.Tache = await _taches.GetById<TacheReadDto>(Convert.ToInt32(itemId));
@@ -45,6 +47,8 @@ namespace Mobile.ViewModels.Taches.Detail
 			{
 				Debug.WriteLine("Impossible de charger la tâche avec l'id : " + itemId + e.Message);
 			}
+
+			IsBusy = false;
 		}
 	}
 }

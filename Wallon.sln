@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mobile.Android", "Mobile\Mo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mobile", "Mobile\Mobile\Mobile.csproj", "{60CF9FEF-06AB-4B5E-A0AA-85F673E804F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApiClient", "RestApiClient\RestApiClient.csproj", "{1C92339C-C630-4EA6-A636-19B2281DB450}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApiClient", "RestApiClient\RestApiClient.csproj", "{3394DC73-908F-4F3B-B915-91B9A7FA2552}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,10 +61,10 @@ Global
 		{60CF9FEF-06AB-4B5E-A0AA-85F673E804F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60CF9FEF-06AB-4B5E-A0AA-85F673E804F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60CF9FEF-06AB-4B5E-A0AA-85F673E804F3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1C92339C-C630-4EA6-A636-19B2281DB450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1C92339C-C630-4EA6-A636-19B2281DB450}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1C92339C-C630-4EA6-A636-19B2281DB450}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1C92339C-C630-4EA6-A636-19B2281DB450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3394DC73-908F-4F3B-B915-91B9A7FA2552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3394DC73-908F-4F3B-B915-91B9A7FA2552}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3394DC73-908F-4F3B-B915-91B9A7FA2552}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3394DC73-908F-4F3B-B915-91B9A7FA2552}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

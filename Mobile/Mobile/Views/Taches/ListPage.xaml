@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Mobile.ViewModels;assembly=Mobile"
              xmlns:list="clr-namespace:Mobile.ViewModels.Taches.List;assembly=Mobile"
+             xmlns:customControls="clr-namespace:Mobile.CustomControls;assembly=Mobile"
              x:Class="Mobile.Views.Taches.ListPage">
     <ContentPage.Content>
 
@@ -13,12 +14,14 @@
             <ListView ItemsSource="{Binding Taches}" HasUnevenRows="True" SeparatorVisibility="None" ItemTapped="ListView_OnItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell Height="120">
-                            <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand">
+                        <customControls:ExtendedViewCell SelectedBackgroundColor="#F0F0F0" Height="100">
+                        <ViewCell.View>
+                            <StackLayout Margin="20" Orientation="Vertical" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand">
                                 <Label Text="{Binding Nom}" FontSize="20" FontAttributes="Bold" TextColor="DeepSkyBlue" />
                                 <Label Text="{Binding Locataire.Nom}" FontAttributes="Italic" />
                             </StackLayout>
-                        </ViewCell>
+                        </ViewCell.View>
+                        </customControls:ExtendedViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

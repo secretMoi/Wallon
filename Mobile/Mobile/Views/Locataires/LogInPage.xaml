@@ -1,27 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Mobile.Views.Locataires.LogInPage"
-             BackgroundColor="RoyalBlue">
+             x:Class="Mobile.Views.Locataires.LogInPage">
     <ContentPage.Content>
 
-        <StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand">
+        <StackLayout Margin="20" Orientation="Vertical" HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand">
 
             <ActivityIndicator IsRunning="{Binding LogInData.IsBusy}" IsVisible="{Binding LogInData.IsBusy}" />
 
-            <Label FontFamily="Comic Sans MS" FontSize="34" TextColor="WhiteSmoke" Text="Bievenue dans la Wallon mobile !" />
-            
-            <BoxView HeightRequest="50" BackgroundColor="RoyalBlue" />
+            <Label FontFamily="Comic Sans MS" FontSize="34" Text="Bievenue dans la Wallon mobile !" />
 
-            <Label FontFamily="Comic Sans MS" FontSize="24" TextColor="WhiteSmoke" Text="Page de connexion" />
+            <BoxView HeightRequest="50" />
 
-            <BoxView HeightRequest="50" BackgroundColor="RoyalBlue" />
+            <Label FontFamily="Comic Sans MS" FontSize="24" Text="Page de connexion" />
 
-            <Entry Text="{Binding LogInData.Nom}" Placeholder="Your email" TextColor="WhiteSmoke" />
+            <BoxView HeightRequest="50" />
 
-            <StackLayout Orientation="Horizontal">
+            <Entry Text="{Binding LogInData.Nom}" Placeholder="Votre prénom" />
+
+            <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource Primary}">
                 <Entry Text="{Binding LogInData.Password}" IsPassword="{Binding LogInData.ShowPassword}" 
-                       Placeholder="Your password" TextColor="WhiteSmoke" HorizontalOptions="FillAndExpand" />
+                       Placeholder="Votre mot de passe" HorizontalOptions="FillAndExpand" />
                 <Image Source="{Binding LogInData.PasswordImageEye}" HorizontalOptions="End" VerticalOptions="Center" >
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="ShowPassword" NumberOfTapsRequired="1" />
@@ -29,9 +28,9 @@
                 </Image>
             </StackLayout>
 
-            <BoxView HeightRequest="50" BackgroundColor="RoyalBlue" />
+            <BoxView HeightRequest="50" />
 
-            <Button Text="Log In" Clicked="btnLogIn_OnClicked" />
+            <Button Text="Se connecter" Clicked="btnLogIn_OnClicked" />
 
         </StackLayout>
 

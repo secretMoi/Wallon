@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0006: Fichier de métadonnées 'C:\Users\Quentin\source\repos\secretMoi\Wallon\RestApiClient\bin\Debug\RestApiClient.dll' introuvable
+dotnet_diagnostic.CS0006.severity = warning
