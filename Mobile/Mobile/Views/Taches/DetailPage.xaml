@@ -1,24 +1,49 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
 			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-			 x:Class="Mobile.Views.Taches.DetailPage">
+			 xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+			 x:Class="Mobile.Views.Taches.DetailPage"
+             Title="{Binding Title}">
     <ContentPage.Content>
-		<StackLayout Orientation="Vertical" HorizontalOptions="CenterAndExpand"  VerticalOptions="CenterAndExpand" Spacing="20">
+		<StackLayout Margin="20" Orientation="Vertical" HorizontalOptions="CenterAndExpand"  VerticalOptions="StartAndExpand" Spacing="20">
 
             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
 
-            <Label FontSize="34" Text="{Binding Title}" HorizontalOptions="Center" />
+            <Frame CornerRadius="10" Padding="0">
+                <Entry Text="{Binding Tache.Tache.Nom}" Placeholder="Nom de la tâche" />
+            </Frame>
 
-            <BoxView HeightRequest="50" />
+            <Frame CornerRadius="10" Padding="0">
+                <DatePicker x:Name="DatePicker" Date="{Binding Tache.Tache.DateFin}" Format="dd/MM/yyyy" />
+            </Frame>
 
-            <Entry Text="{Binding Tache.Tache.Nom}" Placeholder="Nom de la tâche" />
-            <DatePicker x:Name="DatePicker" Date="{Binding Tache.Tache.DateFin}" Format="dd/MM/yyyy" />
-            <Entry Text="{Binding Tache.Tache.Cycle}" Keyboard="Numeric" Placeholder="Cycle en jours de la tâche" />
+            <Frame CornerRadius="10" Padding="0">
+                <Entry Text="{Binding Tache.Tache.Cycle}" Keyboard="Numeric" Placeholder="Cycle en jours de la tâche" />
+            </Frame>
 
-            <BoxView HeightRequest="50" />
+            <Frame CornerRadius="5" HasShadow="True">
+                <xForms:SfListView x:Name="ListViewLocataires" ItemsSource="{Binding Tache.Locataires}" DragStartMode="OnHold, OnDragIndicator"
+                                   ItemSize="50" SelectionBackgroundColor="#F0F0F0">
+                    <xForms:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Nom}" HorizontalOptions="FillAndExpand" />
 
-            <Button Text="Envoyer" />
+                                <xForms:DragIndicatorView ListView="{x:Reference ListViewLocataires}" 
+                                                          HorizontalOptions="End" 
+                                                          VerticalOptions="Start">
+                                    <Image Source="dots.png" HeightRequest="20" />
+                                </xForms:DragIndicatorView>
+                            </StackLayout>
+                        </DataTemplate>
+                    </xForms:SfListView.ItemTemplate>
+                </xForms:SfListView>
+            </Frame>
 
-		</StackLayout>
+            <Frame CornerRadius="30" Padding="0">
+                <Button Text="Envoyer" />
+            </Frame>
+
+        </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

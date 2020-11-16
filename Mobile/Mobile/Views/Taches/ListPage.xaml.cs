@@ -2,6 +2,7 @@
 using Models.Dtos.Taches;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ItemTappedEventArgs = Syncfusion.ListView.XForms.ItemTappedEventArgs;
 
 namespace Mobile.Views.Taches
 {
@@ -28,7 +29,7 @@ namespace Mobile.Views.Taches
 
 		private async void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
 		{
-			await _viewModel.OnItemSelected(e.Item as TacheReadDto);
+			await _viewModel.OnItemSelected(e.ItemData as TacheReadDto);
 		}
 	}
 }

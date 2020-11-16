@@ -25,6 +25,7 @@ namespace Mobile.ViewModels.Locataires.LogIn
 
 		public LogInViewModel()
 		{
+			Title = "Se connecter";
 			LogInData.ShowPassword = true;
 			LogInData.PasswordImageEye = ImageHidePassword;
 		}

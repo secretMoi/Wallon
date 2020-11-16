@@ -1,8 +1,9 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
-using RestApiClient;
 using RestApiClient.Controllers;
 using Xamarin.Forms;
 
@@ -14,10 +15,12 @@ namespace Mobile.ViewModels.Taches.Detail
 		private DetailData _detailData = new DetailData();
 		private string _itemId;
 		private readonly TachesController _taches = new TachesController();
+		private readonly LocatairesController _locataires = new LocatairesController();
 
 		public DetailViewModel()
 		{
 			Title = "Création d'une tâche";
+			Tache.Locataires = new ObservableCollection<LocataireReadDto>();
 		}
 
 		public DetailData Tache
@@ -42,6 +45,9 @@ namespace Mobile.ViewModels.Taches.Detail
 			try
 			{
 				Tache.Tache = await _taches.GetById<TacheReadDto>(Convert.ToInt32(itemId));
+				Title = "Modification de la tâche " + Tache.Tache.Nom;
+
+				await LoadLocataires();
 			}
 			catch (Exception e)
 			{
@@ -49,6 +55,16 @@ namespace Mobile.ViewModels.Taches.Detail
 			}
 
 			IsBusy = false;
+		}
+
+		private async Task LoadLocataires()
+		{
+			var locataires = await _locataires.GetAll<LocataireReadDto>();
+			
+			foreach (var locataire in locataires)
+			{
+				Tache.Locataires.Add(locataire);
+			}
 		}
 	}
 }

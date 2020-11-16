@@ -23,6 +23,7 @@ namespace Mobile.ViewModels.Taches.List
 
 		public ListViewModel()
 		{
+			Title = "Liste des tâches";
 			Taches = new ObservableCollection<TacheReadDto>();
 		}
 
