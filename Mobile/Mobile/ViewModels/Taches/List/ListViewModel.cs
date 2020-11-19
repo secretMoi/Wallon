@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Mobile.ViewModels.Taches.Detail;
 using Mobile.Views.Taches;
@@ -12,6 +13,7 @@ namespace Mobile.ViewModels.Taches.List
 	{
 		private ListData _listData = new ListData();
 		private readonly TachesController _taches = new TachesController();
+		private readonly LiaisonsController _liaisons = new LiaisonsController();
 
 		public ObservableCollection<TacheReadDto> Taches { get; private set; }
 
@@ -27,9 +29,15 @@ namespace Mobile.ViewModels.Taches.List
 			Taches = new ObservableCollection<TacheReadDto>();
 		}
 
+		/**
+		 * <summary>Hydrate les données de la âge en async</summary>
+		 */
 		public async Task Hydrate()
 		{
-			if(Taches.Count != 0) return;
+			if(Taches.Count != 0)
+			{
+				Taches.Clear();
+			};
 
 			var taches = await _taches.GetAll<TacheReadDto>();
 
@@ -39,6 +47,10 @@ namespace Mobile.ViewModels.Taches.List
 			}
 		}
 
+		/**
+		 * <summary>Navigue vers la page de détail de la tâche sélectionnée</summary>
+		 * <param name="tache">Données de la tâche sélectionnée</param>
+		 */
 		public async Task OnItemSelected(TacheReadDto tache)
 		{
 			if (tache == null)
@@ -46,6 +58,28 @@ namespace Mobile.ViewModels.Taches.List
 
 			// This will push the ItemDetailPage onto the navigation stack
 			await Shell.Current.GoToAsync($"{nameof(DetailPage)}?{nameof(DetailViewModel.TacheId)}={tache.Id}");
+		}
+
+		/**
+		 * <summary>Supprimer une tâche via son id</summary>
+		 * <param name="tacheId">Id de la tâche à supprimer</param>
+		 * <returns>true si tout s'est bien passé, false sinon</returns>
+		 */
+		public async Task<bool> DeleteTache(int tacheId)
+		{
+			try
+			{
+				await _liaisons.DeleteLiaisonsFromTache(tacheId);
+				await _taches.Delete(tacheId);
+
+				return true;
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+
+				return false;
+			}
 		}
 	}
 }

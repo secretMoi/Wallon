@@ -1,10 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Mobile.ViewModels.Taches.List;
 using Models.Dtos.Taches;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ItemTappedEventArgs = Syncfusion.ListView.XForms.ItemTappedEventArgs;
-using SwipeEndedEventArgs = Syncfusion.ListView.XForms.SwipeEndedEventArgs;
 
 namespace Mobile.Views.Taches
 {
@@ -24,6 +24,11 @@ namespace Mobile.Views.Taches
 		{
 			base.OnAppearing();
 
+			await LoadTaches();
+		}
+
+		private async Task LoadTaches()
+		{
 			_viewModel.IsBusy = true;
 			await _viewModel.Hydrate();
 			_viewModel.IsBusy = false;
@@ -36,14 +41,32 @@ namespace Mobile.Views.Taches
 
 		private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
 		{
-			var nom = ((sender as View)?.BindingContext as TacheReadDto)?.Nom;
+			var tache = ((sender as View)?.BindingContext as TacheReadDto);
 
-			await DisplayAlert(
+			var result = await DisplayAlert(
 				"Attention",
-				$"Voulez-vous vraimment supprimer {nom} ?",
+				$@"Voulez-vous vraimment supprimer la tâche {tache.Nom} ?",
 				"Oui",
 				"Non"
 			);
+
+			if (!result) return;
+
+			result = await _viewModel.DeleteTache(tache.Id);
+			string message;
+
+			if (result)
+				message = $"La tâche {tache.Nom} a bien été supprimée";
+			else
+				message = $"La tâche {tache.Nom} n'a pas pu être supprimée";
+
+			await DisplayAlert(
+				"Information",
+				message,
+				"D'accord"
+			);
+
+			await LoadTaches();
 		}
 	}
 }

@@ -48,21 +48,6 @@
                 </xForms:SfListView.RightSwipeTemplate>
             </xForms:SfListView>
 
-            <!--<ListView ItemsSource="{Binding Taches}" HasUnevenRows="True" SeparatorVisibility="None" ItemTapped="ListView_OnItemTapped">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <customControls:ExtendedViewCell SelectedBackgroundColor="#F0F0F0" Height="100">
-                            <ViewCell.View>
-                                <StackLayout Margin="20" Orientation="Vertical" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand">
-                                    <Label Text="{Binding Nom}" FontSize="20" FontAttributes="Bold" TextColor="DeepSkyBlue" />
-                                    <Label Text="{Binding Locataire.Nom}" FontAttributes="Italic" />
-                                </StackLayout>
-                            </ViewCell.View>
-                        </customControls:ExtendedViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
-
         </StackLayout>
 
     </ContentPage.Content>
