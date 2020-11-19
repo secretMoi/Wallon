@@ -8,14 +8,20 @@ namespace Mobile.ViewModels.Taches.Detail
 	public class DetailData : BaseViewModel
 	{
 		private TacheReadDto _tache;
+		private LocatairesInclus _locataireCourant;
 
-		//public ObservableCollection<LocataireReadDto> Locataires { get; set; } // données bindée dans la dgv du Fournisseur sélectionné
 		public ObservableCollection<LocatairesInclus> Locataires { get; set; }
 
 		public TacheReadDto Tache
 		{
 			get => _tache;
 			set => SetProperty(ref _tache, value);
+		}
+
+		public LocatairesInclus SelectedLocataire
+		{
+			get => _locataireCourant;
+			set => SetProperty(ref _locataireCourant, value);
 		}
 
 		public class LocatairesInclus : BaseViewModel

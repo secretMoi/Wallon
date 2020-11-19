@@ -27,6 +27,9 @@ namespace Mobile.Views.Taches
 			await LoadTaches();
 		}
 
+		/**
+		 * <summary>Charge les tâches de la bdd dans la vue</summary>
+		 */
 		private async Task LoadTaches()
 		{
 			_viewModel.IsBusy = true;
@@ -34,27 +37,35 @@ namespace Mobile.Views.Taches
 			_viewModel.IsBusy = false;
 		}
 
+		/**
+		 * <summary>Action à effectuer lors de la sélection d'une tâche dans la vue</summary>
+		 */
 		private async void ListView_OnItemTapped(object sender, ItemTappedEventArgs tappedEventArgs)
 		{
 			await _viewModel.OnItemSelected(tappedEventArgs.ItemData as TacheReadDto);
 		}
 
+		/**
+		 * <summary>Action à effectuer lorsque l'on demande de supprimer une tâche</summary>
+		 */
 		private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
 		{
-			var tache = ((sender as View)?.BindingContext as TacheReadDto);
+			var tache = ((sender as View)?.BindingContext as TacheReadDto); // récupère les infos sur la tâche
 
+			// message d'avertissement
 			var result = await DisplayAlert(
 				"Attention",
-				$@"Voulez-vous vraimment supprimer la tâche {tache.Nom} ?",
+				$@"Voulez-vous vraimment supprimer la tâche {tache?.Nom} ?",
 				"Oui",
 				"Non"
 			);
 
-			if (!result) return;
+			if (!result || tache == null) return; // si on ne veut pas supprimer on quitte ou si la tâches n'est pas correcte
 
-			result = await _viewModel.DeleteTache(tache.Id);
+			result = await _viewModel.DeleteTache(tache.Id); // supprime la tâche
 			string message;
 
+			// indication sur le succès ou pas de suppression ed la tâche
 			if (result)
 				message = $"La tâche {tache.Nom} a bien été supprimée";
 			else
@@ -66,7 +77,7 @@ namespace Mobile.Views.Taches
 				"D'accord"
 			);
 
-			await LoadTaches();
+			await LoadTaches(); // recharge les tâches
 		}
 	}
 }

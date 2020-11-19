@@ -29,7 +29,7 @@ namespace Mobile.ViewModels.Taches.Detail
 
 		public DetailViewModel()
 		{
-			Title = "Création d'une tâche";
+			Title = "Modification d'une tâche";
 			Tache.Locataires = new ObservableCollection<DetailData.LocatairesInclus>();
 		}
 

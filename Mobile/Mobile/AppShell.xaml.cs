@@ -17,6 +17,7 @@ namespace Mobile
 			Routing.RegisterRoute(nameof(LogInPage), typeof(LogInPage));
 			Routing.RegisterRoute(nameof(ListPage), typeof(ListPage));
 			Routing.RegisterRoute(nameof(DetailPage), typeof(DetailPage));
+			Routing.RegisterRoute(nameof(AddTachePage), typeof(AddTachePage));
 		}
 
 		private async void OnMenuItemClicked(object sender, EventArgs e)

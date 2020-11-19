@@ -15,6 +15,7 @@ namespace Mobile.ViewModels.Taches.List
 		private readonly TachesController _taches = new TachesController();
 		private readonly LiaisonsController _liaisons = new LiaisonsController();
 
+		public Command AddTacheCommand { get; }
 		public ObservableCollection<TacheReadDto> Taches { get; private set; }
 
 		public ListData LogInData // élément sélectionné dans la dgv
@@ -27,6 +28,13 @@ namespace Mobile.ViewModels.Taches.List
 		{
 			Title = "Liste des tâches";
 			Taches = new ObservableCollection<TacheReadDto>();
+
+			AddTacheCommand = new Command(NavigateToAddTache);
+		}
+
+		private async void NavigateToAddTache()
+		{
+			await Shell.Current.GoToAsync($"{nameof(AddTachePage)}");
 		}
 
 		/**
