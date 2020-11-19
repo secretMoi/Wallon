@@ -1,8 +1,10 @@
-﻿using Mobile.ViewModels.Taches.List;
+﻿using System;
+using Mobile.ViewModels.Taches.List;
 using Models.Dtos.Taches;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ItemTappedEventArgs = Syncfusion.ListView.XForms.ItemTappedEventArgs;
+using SwipeEndedEventArgs = Syncfusion.ListView.XForms.SwipeEndedEventArgs;
 
 namespace Mobile.Views.Taches
 {
@@ -27,9 +29,21 @@ namespace Mobile.Views.Taches
 			_viewModel.IsBusy = false;
 		}
 
-		private async void ListView_OnItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs itemTappedEventArgs)
+		private async void ListView_OnItemTapped(object sender, ItemTappedEventArgs tappedEventArgs)
 		{
-			await _viewModel.OnItemSelected(itemTappedEventArgs.Item as TacheReadDto);
+			await _viewModel.OnItemSelected(tappedEventArgs.ItemData as TacheReadDto);
+		}
+
+		private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
+		{
+			var nom = ((sender as View)?.BindingContext as TacheReadDto)?.Nom;
+
+			await DisplayAlert(
+				"Attention",
+				$"Voulez-vous vraimment supprimer {nom} ?",
+				"Oui",
+				"Non"
+			);
 		}
 	}
 }

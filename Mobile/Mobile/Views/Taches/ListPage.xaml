@@ -11,7 +11,44 @@
 
             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
 
-            <ListView ItemsSource="{Binding Taches}" HasUnevenRows="True" SeparatorVisibility="None" ItemTapped="ListView_OnItemTapped">
+            <xForms:SfListView ItemsSource="{Binding Taches}" ItemTapped="ListView_OnItemTapped"
+                               SelectionBackgroundColor="#F0F0F0" ItemSize="100"
+                               AllowSwiping="True" >
+                <xForms:SfListView.ItemTemplate>
+                    <DataTemplate>
+
+                        <StackLayout Margin="20" Orientation="Vertical" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand">
+
+                            <Label Text="{Binding Nom}" FontSize="20" FontAttributes="Bold" TextColor="DeepSkyBlue" />
+                            <Label Text="{Binding Locataire.Nom}" FontAttributes="Italic" />
+
+                        </StackLayout>
+
+                    </DataTemplate>
+                </xForms:SfListView.ItemTemplate>
+
+                <xForms:SfListView.RightSwipeTemplate>
+                    <DataTemplate x:Name="LeftSwipeTemplate">
+                        <Grid>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                            </Grid.GestureRecognizers>
+                            <Grid BackgroundColor="#DC595F" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                                <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Image  Grid.Column="0"
+                                             Grid.Row="0"
+                                             BackgroundColor="Transparent"
+                                             HeightRequest="32"
+                                             WidthRequest="32"
+                                             Source="delete.png" />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </xForms:SfListView.RightSwipeTemplate>
+            </xForms:SfListView>
+
+            <!--<ListView ItemsSource="{Binding Taches}" HasUnevenRows="True" SeparatorVisibility="None" ItemTapped="ListView_OnItemTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <customControls:ExtendedViewCell SelectedBackgroundColor="#F0F0F0" Height="100">
@@ -24,7 +61,7 @@
                         </customControls:ExtendedViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </ListView>-->
 
         </StackLayout>
 

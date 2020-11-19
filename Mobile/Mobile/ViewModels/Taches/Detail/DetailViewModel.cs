@@ -55,11 +55,14 @@ namespace Mobile.ViewModels.Taches.Detail
 
 			foreach (var orderedLocataire in _reoderedLocataires)
 			{
+				if (!Tache.Locataires[orderedLocataire].Inclu) continue;
+
 				var liaison = new LiaisonCreateDto
 				{
 					LocataireId = Tache.Locataires[orderedLocataire].Locataire.Id,
 					TacheId = tacheUpdate.Id
 				};
+
 				await _liaisons.Post<LiaisonCreateDto, LiaisonReadDto>(liaison);
 			}
 
@@ -122,19 +125,16 @@ namespace Mobile.ViewModels.Taches.Detail
 				// ajoute le locataire dans la liste data
 				Tache.Locataires.Add(new DetailData.LocatairesInclus
 				{
-					Locataire = locataire
+					Locataire = locataire,
+					Inclu = liaisons.FirstOrDefault(item => item.Id == locataire.Id) != null
 				});
-
-				var lastDataItem = Tache.Locataires[Tache.Locataires.Count - 1]; // récupère le dernier item
-
-				// si le locataire est inclu dans la tâche ou pas
-				lastDataItem.Inclu = liaisons.FirstOrDefault(item => item.Id == locataire.Id) != null;
 			}
 
 			OrderLocataires();
 
 			HydrateListeDeTri();
 
+			// Trie les locataires
 			void OrderLocataires()
 			{
 				int index = 0;
@@ -152,6 +152,7 @@ namespace Mobile.ViewModels.Taches.Detail
 				}
 			}
 
+			// Hydrate la liste cachée de tri
 			void HydrateListeDeTri()
 			{
 				foreach (var locataire in Tache.Locataires)
