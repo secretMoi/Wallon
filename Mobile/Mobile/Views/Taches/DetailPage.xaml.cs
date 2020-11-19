@@ -1,4 +1,6 @@
-﻿using Mobile.ViewModels.Taches.Detail;
+﻿using System;
+using Mobile.ViewModels.Taches.Detail;
+using Syncfusion.ListView.XForms;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,6 +16,21 @@ namespace Mobile.Views.Taches
 			InitializeComponent();
 
 			BindingContext = _viewModel;
+		}
+
+		private void ListViewLocataires_OnItemDragging(object sender, ItemDraggingEventArgs e)
+		{
+			if (e.Action == DragAction.Drop)
+			{
+				_viewModel.DropedItem(e.OldIndex, e.NewIndex);
+			}
+		}
+
+		private async void Button_OnClicked(object sender, EventArgs e)
+		{
+			string result = await _viewModel.OnSendClicked();
+
+			await DisplayAlert("Info", result, "OK");
 		}
 	}
 }

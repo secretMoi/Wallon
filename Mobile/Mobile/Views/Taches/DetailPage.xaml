@@ -23,10 +23,11 @@
 
             <Frame CornerRadius="5" HasShadow="True">
                 <xForms:SfListView x:Name="ListViewLocataires" ItemsSource="{Binding Tache.Locataires}" DragStartMode="OnHold, OnDragIndicator"
+                                   ItemDragging="ListViewLocataires_OnItemDragging"
                                    ItemSize="50" SelectionBackgroundColor="#F0F0F0">
                     <xForms:SfListView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                                 <Label Text="{Binding Nom}" HorizontalOptions="FillAndExpand" />
 
                                 <xForms:DragIndicatorView ListView="{x:Reference ListViewLocataires}" 
@@ -41,7 +42,7 @@
             </Frame>
 
             <Frame CornerRadius="30" Padding="0">
-                <Button Text="Envoyer" />
+                <Button Text="Envoyer" Clicked="Button_OnClicked" />
             </Frame>
 
         </StackLayout>

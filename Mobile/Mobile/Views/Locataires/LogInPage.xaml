@@ -9,7 +9,9 @@
 
             <ActivityIndicator IsRunning="{Binding LogInData.IsBusy}" IsVisible="{Binding LogInData.IsBusy}" />
 
+            
             <Label FontFamily="Comic Sans MS" FontSize="34" Text="Bievenue dans la Wallon mobile !" />
+            
 
             <BoxView HeightRequest="50" />
 
@@ -17,21 +19,27 @@
 
             <BoxView HeightRequest="50" />
 
-            <Entry Text="{Binding LogInData.Nom}" Placeholder="Votre prénom" />
+            <Frame CornerRadius="10" Padding="0">
+                <Entry Text="{Binding LogInData.Nom}" Placeholder="Votre prénom" />
+            </Frame>
 
-            <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource Primary}">
-                <Entry Text="{Binding LogInData.Password}" IsPassword="{Binding LogInData.ShowPassword}" 
-                       Placeholder="Votre mot de passe" HorizontalOptions="FillAndExpand" />
-                <Image Source="{Binding LogInData.PasswordImageEye}" HorizontalOptions="End" VerticalOptions="Center" >
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="ShowPassword" NumberOfTapsRequired="1" />
-                    </Image.GestureRecognizers>
-                </Image>
-            </StackLayout>
+            <Frame CornerRadius="10" Padding="0">
+                <StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource Primary}">
+                    <Entry Text="{Binding LogInData.Password}" IsPassword="{Binding LogInData.ShowPassword}" 
+                           Placeholder="Votre mot de passe" HorizontalOptions="FillAndExpand" />
+                    <Image Margin="0,0,10,0" Source="{Binding LogInData.PasswordImageEye}" HorizontalOptions="End" VerticalOptions="Center" >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ShowPassword" NumberOfTapsRequired="1" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+            </Frame>
 
             <BoxView HeightRequest="50" />
 
-            <Button Text="Se connecter" Clicked="btnLogIn_OnClicked" />
+            <Frame CornerRadius="10" Padding="0">
+                <Button Text="Se connecter" Clicked="btnLogIn_OnClicked" />
+            </Frame>
 
         </StackLayout>
 
