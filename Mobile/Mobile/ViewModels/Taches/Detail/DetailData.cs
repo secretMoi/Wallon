@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
 
@@ -9,6 +8,8 @@ namespace Mobile.ViewModels.Taches.Detail
 	{
 		private TacheReadDto _tache;
 		private LocatairesInclus _locataireCourant;
+
+		public ObservableCollection<LocatairesInclus> CheckedLocataires { get; set; }
 
 		public ObservableCollection<LocatairesInclus> Locataires { get; set; }
 

@@ -10,6 +10,7 @@ using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
 using RestApiClient.Controllers;
 
+//todo copier code vers modification tâche
 namespace Mobile.ViewModels.Taches.Add
 {
 	public class AddTacheViewModel : BaseViewModel
@@ -29,6 +30,8 @@ namespace Mobile.ViewModels.Taches.Add
 				DateFin = DateTime.Now
 			};
 			Tache.Locataires = new ObservableCollection<DetailData.LocatairesInclus>();
+
+			Tache.CheckedLocataires = new ObservableCollection<DetailData.LocatairesInclus>();
 		}
 
 		public DetailData Tache
@@ -63,12 +66,34 @@ namespace Mobile.ViewModels.Taches.Add
 
 			HydrateListeDeTri();
 
+			HydrateCheckedLocataires();
+
 			// Hydrate la liste cachée de tri
 			void HydrateListeDeTri()
 			{
 				foreach (var locataire in Tache.Locataires)
 				{
 					_reoderedLocataires.Add(Tache.Locataires.IndexOf(locataire));
+				}
+			}
+		}
+
+		/**
+		 * <summary>Hydrate la liste des locataires checkés</summary>
+		 */
+		public void HydrateCheckedLocataires()
+		{
+			Tache.CheckedLocataires.Clear();
+
+			foreach (var locataire in Tache.Locataires)
+			{
+				if (locataire.Inclu)
+				{
+					Tache.CheckedLocataires.Add(new DetailData.LocatairesInclus
+						{
+							Locataire = locataire.Locataire
+						}
+					);
 				}
 			}
 		}
@@ -102,6 +127,8 @@ namespace Mobile.ViewModels.Taches.Add
 		 */
 		public async Task<string> OnSendClicked()
 		{
+			Tache.Tache.LocataireId = Tache.SelectedLocataire.Locataire.Id;
+
 			// validation des données
 			var result = new TacheValidator().Validate(Tache.Tache);
 			if (!result.IsValid)

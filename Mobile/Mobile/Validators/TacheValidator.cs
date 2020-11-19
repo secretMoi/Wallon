@@ -24,6 +24,10 @@ namespace Mobile.Validators
 			RuleFor(tache => tache.Cycle)
 				.Cascade(CascadeMode.Stop)
 				.GreaterThanOrEqualTo(0).WithMessage("Le {PropertyName} ne peut pas être négatif");
+
+			RuleFor(tache => tache.LocataireId)
+				.Cascade(CascadeMode.Stop)
+				.GreaterThan(0).WithMessage("Le locataire courant est invalide");
 		}
 
 		/// <summary>

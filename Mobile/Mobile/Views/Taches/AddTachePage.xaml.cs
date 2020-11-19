@@ -35,10 +35,14 @@ namespace Mobile.Views.Taches
 
 		private async void Button_OnClicked(object sender, EventArgs e)
 		{
-			//todo implémenter
 			string result = await _viewModel.OnSendClicked();
 
 			await DisplayAlert("Info", result, "OK");
+		}
+
+		private void CheckBox_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
+		{
+			_viewModel.HydrateCheckedLocataires();
 		}
 	}
 }
