@@ -10,7 +10,6 @@ using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
 using RestApiClient.Controllers;
 
-//todo copier code vers modification tâche
 namespace Mobile.ViewModels.Taches.Add
 {
 	public class AddTacheViewModel : BaseViewModel
@@ -136,7 +135,6 @@ namespace Mobile.ViewModels.Taches.Add
 
 			// converti le dto de lecture en create
 			var tacheCreate = Mapping.Map(Tache.Tache, new TacheCreateDto());
-			tacheCreate.LocataireId = Tache.SelectedLocataire.Locataire.Id;
 
 			// ajoute la tâche
 			var createdTache = await _taches.Post<TacheCreateDto, TacheReadDto>(tacheCreate);

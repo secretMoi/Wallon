@@ -32,5 +32,10 @@ namespace Mobile.Views.Taches
 
 			await DisplayAlert("Info", result, "OK");
 		}
+
+		private void CheckBox_OnCheckedChanged(object sender, CheckedChangedEventArgs e)
+		{
+			_viewModel.HydrateCheckedLocataires();
+		}
 	}
 }

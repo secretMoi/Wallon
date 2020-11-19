@@ -21,6 +21,12 @@
                 <Entry Text="{Binding Tache.Tache.Cycle}" Keyboard="Numeric" Placeholder="Cycle en jours de la tâche" />
             </Frame>
 
+            <Picker Title="Locataire courant" TitleColor="{StaticResource Primary}"
+                    TextColor="{StaticResource Primary}"
+                    ItemsSource="{Binding Tache.CheckedLocataires}"
+                    ItemDisplayBinding="{Binding Locataire.Nom}"
+                    SelectedItem="{Binding Tache.SelectedLocataire, Mode=TwoWay}" />
+
             <Frame CornerRadius="5" HasShadow="True">
                 <xForms:SfListView x:Name="ListViewLocataires" ItemsSource="{Binding Tache.Locataires}" DragStartMode="OnHold, OnDragIndicator"
                                    ItemDragging="ListViewLocataires_OnItemDragging"
@@ -31,7 +37,7 @@
 
                                 <Label Text="{Binding Locataire.Nom}" HorizontalOptions="FillAndExpand" />
 
-                                <CheckBox IsChecked="{Binding Inclu}" />
+                                <CheckBox Color="{StaticResource Primary}" IsChecked="{Binding Inclu}" CheckedChanged="CheckBox_OnCheckedChanged" />
 
                                 <xForms:DragIndicatorView ListView="{x:Reference ListViewLocataires}" 
                                                           HorizontalOptions="End">
