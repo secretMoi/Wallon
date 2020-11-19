@@ -30,7 +30,7 @@ namespace Mobile.ViewModels.Taches.Detail
 		public DetailViewModel()
 		{
 			Title = "Création d'une tâche";
-			Tache.Locataires = new ObservableCollection<LocataireReadDto>();
+			Tache.Locataires = new ObservableCollection<DetailData.LocatairesInclus>();
 		}
 
 		/**
@@ -57,7 +57,7 @@ namespace Mobile.ViewModels.Taches.Detail
 			{
 				var liaison = new LiaisonCreateDto
 				{
-					LocataireId = Tache.Locataires[orderedLocataire].Id,
+					LocataireId = Tache.Locataires[orderedLocataire].Locataire.Id,
 					TacheId = tacheUpdate.Id
 				};
 				await _liaisons.Post<LiaisonCreateDto, LiaisonReadDto>(liaison);
@@ -106,7 +106,7 @@ namespace Mobile.ViewModels.Taches.Detail
 		}
 
 		/**
-		 * <summary>Charge les locataires depuis la bdd et peuple notre liste de locataires</summary>
+		 * <summary>Charge les locataires depuis la bdd et peuple la liste de locataires</summary>
 		 */
 		private async Task LoadLocataires(int idTache)
 		{
@@ -116,33 +116,48 @@ namespace Mobile.ViewModels.Taches.Detail
 			// liste des locataires dans la tâche
 			var liaisons = await _liaisons.ListeLocataires(idTache);
 
-			//todo trier les locataires par ordre de la tâche
-			//todo check box dans les locataires pour les activer ou non dans la tâche ou par groupe
-
+			// parcours la liste des locataires
 			foreach (var locataire in locataires)
 			{
-				Tache.Locataires.Add(locataire);
-
-				// si le locataire est inclu dans la tâche
-				if (liaisons.FirstOrDefault(item => item.Id == locataire.Id) != null)
+				// ajoute le locataire dans la liste data
+				Tache.Locataires.Add(new DetailData.LocatairesInclus
 				{
-					Tache.LocataireIncluded.Add(new DetailData.LocataireInclu
-					{
-						IdLocataire = locataire.Id,
-						Inclu = true
-					});
-				}
-				else
+					Locataire = locataire
+				});
+
+				var lastDataItem = Tache.Locataires[Tache.Locataires.Count - 1]; // récupère le dernier item
+
+				// si le locataire est inclu dans la tâche ou pas
+				lastDataItem.Inclu = liaisons.FirstOrDefault(item => item.Id == locataire.Id) != null;
+			}
+
+			OrderLocataires();
+
+			HydrateListeDeTri();
+
+			void OrderLocataires()
+			{
+				int index = 0;
+				foreach (var locataire in liaisons)
 				{
-					Tache.LocataireIncluded.Add(new DetailData.LocataireInclu
-					{
-						IdLocataire = locataire.Id,
-						Inclu = false
-					});
+					int oldIndex = Tache.Locataires.IndexOf(
+						Tache.Locataires.First(item => item.Locataire.Id == locataire.Id)
+					);
 
+					int newIndex = index;
+
+					SwapElementInList(oldIndex, newIndex, Tache.Locataires);
+
+					index++;
 				}
+			}
 
-				_reoderedLocataires.Add(Tache.Locataires.Count - 1);
+			void HydrateListeDeTri()
+			{
+				foreach (var locataire in Tache.Locataires)
+				{
+					_reoderedLocataires.Add(Tache.Locataires.IndexOf(locataire));
+				}
 			}
 		}
 

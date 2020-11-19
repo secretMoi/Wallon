@@ -9,8 +9,8 @@ namespace Mobile.ViewModels.Taches.Detail
 	{
 		private TacheReadDto _tache;
 
-		public ObservableCollection<LocataireReadDto> Locataires { get; set; } // données bindée dans la dgv du Fournisseur sélectionné
-		public ObservableCollection<LocataireInclu> LocataireIncluded { get; set; }
+		//public ObservableCollection<LocataireReadDto> Locataires { get; set; } // données bindée dans la dgv du Fournisseur sélectionné
+		public ObservableCollection<LocatairesInclus> Locataires { get; set; }
 
 		public TacheReadDto Tache
 		{
@@ -18,21 +18,21 @@ namespace Mobile.ViewModels.Taches.Detail
 			set => SetProperty(ref _tache, value);
 		}
 
-		public class LocataireInclu : BaseViewModel
+		public class LocatairesInclus : BaseViewModel
 		{
-			private int _idLocataire;
+			private LocataireReadDto _locataire;
 			private bool _inclu;
-
-			public int IdLocataire
-			{
-				get => _idLocataire;
-				set => SetProperty(ref _idLocataire, value);
-			}
 
 			public bool Inclu
 			{
 				get => _inclu;
 				set => SetProperty(ref _inclu, value);
+			}
+
+			public LocataireReadDto Locataire
+			{
+				get => _locataire;
+				set => SetProperty(ref _locataire, value);
 			}
 		}
 	}

@@ -29,9 +29,9 @@
                         <DataTemplate>
                             <StackLayout Orientation="Horizontal" VerticalOptions="Center">
 
-                                <Label Text="{Binding Nom}" HorizontalOptions="FillAndExpand" />
+                                <Label Text="{Binding Locataire.Nom}" HorizontalOptions="FillAndExpand" />
 
-                                <CheckBox BindingContext="{Binding Source=LocataireIncluded}" IsChecked="{Binding Inclu.}" />
+                                <CheckBox IsChecked="{Binding Inclu}" />
 
                                 <xForms:DragIndicatorView ListView="{x:Reference ListViewLocataires}" 
                                                           HorizontalOptions="End">
