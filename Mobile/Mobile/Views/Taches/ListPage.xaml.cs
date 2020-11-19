@@ -27,9 +27,9 @@ namespace Mobile.Views.Taches
 			_viewModel.IsBusy = false;
 		}
 
-		private async void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
+		private async void ListView_OnItemTapped(object sender, Xamarin.Forms.ItemTappedEventArgs itemTappedEventArgs)
 		{
-			await _viewModel.OnItemSelected(e.ItemData as TacheReadDto);
+			await _viewModel.OnItemSelected(itemTappedEventArgs.Item as TacheReadDto);
 		}
 	}
 }

@@ -28,13 +28,16 @@
                     <xForms:SfListView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+
                                 <Label Text="{Binding Nom}" HorizontalOptions="FillAndExpand" />
 
+                                <CheckBox BindingContext="{Binding Source=LocataireIncluded}" IsChecked="{Binding Inclu.}" />
+
                                 <xForms:DragIndicatorView ListView="{x:Reference ListViewLocataires}" 
-                                                          HorizontalOptions="End" 
-                                                          VerticalOptions="Start">
+                                                          HorizontalOptions="End">
                                     <Image Source="dots.png" HeightRequest="20" />
                                 </xForms:DragIndicatorView>
+
                             </StackLayout>
                         </DataTemplate>
                     </xForms:SfListView.ItemTemplate>

@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
-using FluentValidation.Results;
 using Mobile.Core;
 using Mobile.Validators;
 using Models.Dtos.LiaisonsTachesLocataires;
 using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
-using Models.Models;
 using RestApiClient.Controllers;
 using Xamarin.Forms;
 
@@ -26,6 +25,7 @@ namespace Mobile.ViewModels.Taches.Detail
 		private readonly LiaisonsController _liaisons = new LiaisonsController();
 
 		private readonly IList<int> _reoderedLocataires = new List<int>();
+		
 
 		public DetailViewModel()
 		{
@@ -33,12 +33,16 @@ namespace Mobile.ViewModels.Taches.Detail
 			Tache.Locataires = new ObservableCollection<LocataireReadDto>();
 		}
 
+		/**
+		 * <summary>Effectue les actions pour modifier la tâche dans la bdd</summary>
+		 * <returns>Retourne une string expliquant ce qu'il s'est passé</returns>
+		 */
 		public async Task<string> OnSendClicked()
 		{
 			// validation des données
 			var result = new TacheValidator().Validate(Tache.Tache);
 			if (!result.IsValid)
-				return "Veuillez remplir correctement les champs !";
+				return $"{result.Errors[0].ErrorMessage}";
 
 			// converti le dto de lecture en update
 			var tacheUpdate = Mapping.Map(Tache.Tache, new TacheUpdateDto());
@@ -87,10 +91,11 @@ namespace Mobile.ViewModels.Taches.Detail
 			IsBusy = true;
 			try
 			{
-				Tache.Tache = await _taches.GetById<TacheReadDto>(Convert.ToInt32(itemId));
+				int idTache = Convert.ToInt32(itemId);
+				Tache.Tache = await _taches.GetById<TacheReadDto>(idTache);
 				Title = "Modification de la tâche " + Tache.Tache.Nom;
 
-				await LoadLocataires();
+				await LoadLocataires(idTache);
 			}
 			catch (Exception e)
 			{
@@ -103,13 +108,40 @@ namespace Mobile.ViewModels.Taches.Detail
 		/**
 		 * <summary>Charge les locataires depuis la bdd et peuple notre liste de locataires</summary>
 		 */
-		private async Task LoadLocataires()
+		private async Task LoadLocataires(int idTache)
 		{
+			// liste de tous les locataires
 			var locataires = await _locataires.GetAll<LocataireReadDto>();
-			
+
+			// liste des locataires dans la tâche
+			var liaisons = await _liaisons.ListeLocataires(idTache);
+
+			//todo trier les locataires par ordre de la tâche
+			//todo check box dans les locataires pour les activer ou non dans la tâche ou par groupe
+
 			foreach (var locataire in locataires)
 			{
 				Tache.Locataires.Add(locataire);
+
+				// si le locataire est inclu dans la tâche
+				if (liaisons.FirstOrDefault(item => item.Id == locataire.Id) != null)
+				{
+					Tache.LocataireIncluded.Add(new DetailData.LocataireInclu
+					{
+						IdLocataire = locataire.Id,
+						Inclu = true
+					});
+				}
+				else
+				{
+					Tache.LocataireIncluded.Add(new DetailData.LocataireInclu
+					{
+						IdLocataire = locataire.Id,
+						Inclu = false
+					});
+
+				}
+
 				_reoderedLocataires.Add(Tache.Locataires.Count - 1);
 			}
 		}
