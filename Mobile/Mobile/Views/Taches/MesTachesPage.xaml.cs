@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Mobile.Core;
 using Mobile.ViewModels.Taches.MesTaches;
 using Models.Dtos.Taches;
 using Xamarin.Forms;
@@ -11,7 +12,7 @@ namespace Mobile.Views.Taches
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MesTachesPage : ContentPage
 	{
-		private readonly MesTachesViewModel _viewModel = new MesTachesViewModel();
+		private readonly MesTachesViewModel _viewModel = new MesTachesViewModel(Session.Instance.Get);
 
 		public MesTachesPage()
 		{

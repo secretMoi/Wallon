@@ -76,7 +76,7 @@ namespace Mobile.ViewModels.Locataires.LogIn
 			if (!result.Password.SequenceEqual(password))
 				return "Mot de passe incorrect";
 
-			Session.Instance.Connect = Mapping.Map(result, new Locataire()); // connecte l'utilisateur
+			Session.Instance.Connect = Mapping.Map(result, new LocataireReadDto()); // connecte l'utilisateur
 
 			return null;
 		}

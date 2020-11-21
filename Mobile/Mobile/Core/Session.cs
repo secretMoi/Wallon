@@ -1,5 +1,5 @@
 ﻿using System;
-using Models.Models;
+using Models.Dtos.Locataires;
 
 namespace Mobile.Core
 {
@@ -7,7 +7,7 @@ namespace Mobile.Core
 	{
 		private static readonly Lazy<Session> Lazy = new Lazy<Session>(() => new Session());
 
-		private Locataire _session;
+		private LocataireReadDto _session;
 
 		public static Session Instance => Lazy.Value;
 
@@ -24,7 +24,7 @@ namespace Mobile.Core
 		/**
 		 * <summary>Crée une session</summary>
 		 */
-		public Locataire Connect
+		public LocataireReadDto Connect
 		{
 			set => _session = value;
 		}
@@ -40,6 +40,6 @@ namespace Mobile.Core
 		/**
 		 * <summary>Renvoie les informations sur la session courante</summary>
 		 */
-		public Locataire Get => _session;
+		public LocataireReadDto Get => _session;
 	}
 }
