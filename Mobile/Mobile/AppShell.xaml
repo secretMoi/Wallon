@@ -2,6 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:Mobile.Views"
+       xmlns:viewModels="clr-namespace:Mobile.ViewModels;assembly=Mobile"
        Title="Mobile"
        x:Class="Mobile.AppShell">
 
@@ -79,25 +80,28 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-    <FlyoutItem Title="About" Icon="icon_about.png">
+    <!--<FlyoutItem Title="About" Icon="icon_about.png">
         <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Browse" Icon="icon_feed.png">
         <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Se connecter">
+    </FlyoutItem>-->
+    <FlyoutItem Title="Se connecter" IsEnabled="{Binding IsGuest}" x:DataType="viewModels:ShellViewModel">
         <ShellContent Route="LogInPage" ContentTemplate="{DataTemplate local:Locataires.LogInPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Liste des tâches">
         <ShellContent Route="ListPage" ContentTemplate="{DataTemplate local:Taches.ListPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Mes tâches">
+    <FlyoutItem Title="Mes tâches" IsEnabled="{Binding IsLogged}" x:DataType="viewModels:ShellViewModel">
         <ShellContent Route="MesTachesPage" ContentTemplate="{DataTemplate local:Taches.MesTachesPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Se déconnecter" IsEnabled="{Binding IsLogged}" x:DataType="viewModels:ShellViewModel">
+        <ShellContent Route="disconnect" ContentTemplate="{DataTemplate local:Taches.MesTachesPage}" />
     </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
-    <MenuItem Text="Se connecter" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
-    </MenuItem>
+    <!--<MenuItem Text="Se connecter" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
+    </MenuItem>-->
 
     <!--
         TabBar lets you define content that won't show up in a flyout menu. When this content is active

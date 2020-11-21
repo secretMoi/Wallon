@@ -20,7 +20,7 @@ namespace Mobile.Droid.CustomRenderers
 		{
 			_cellCore = base.GetCellCore(item, convertView, parent, context);
 
-			// Save original background to roll-back to it when not selected,
+			// SaveAsync original background to roll-back to it when not selected,
 			// we're assuming that no cells will be selected on creation.
 			_selected = false;
 			_unselectedBackground = _cellCore.Background;

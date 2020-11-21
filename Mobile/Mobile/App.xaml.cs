@@ -6,6 +6,7 @@ namespace Mobile
 {
 	public partial class App : Application
 	{
+		public static string ConfigurationPath => "config.ini";
 
 		public App()
 		{

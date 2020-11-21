@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Mobile.Core;
+using Mobile.Models;
+using Mobile.Views.Taches;
 using Models.Dtos.Locataires;
-using Models.Models;
 using RestApiClient.Controllers;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace Mobile.ViewModels.Locataires.LogIn
 {
@@ -13,6 +16,7 @@ namespace Mobile.ViewModels.Locataires.LogIn
 	{
 		private LogInData _logInData = new LogInData();
 		private readonly LocatairesController _client = new LocatairesController();
+		private readonly LocalConfiguration _configuration;
 
 		private const string ImageShowPassword = "eye.png";
 		private const string ImageHidePassword = "eyeClose.png";
@@ -23,11 +27,13 @@ namespace Mobile.ViewModels.Locataires.LogIn
 			set => SetProperty(ref _logInData, value);
 		}
 
-		public LogInViewModel()
+		public LogInViewModel(string configurationPath)
 		{
 			Title = "Se connecter";
 			LogInData.ShowPassword = true;
 			LogInData.PasswordImageEye = ImageHidePassword;
+
+			_configuration = new LocalConfiguration(configurationPath);
 		}
 
 		/**
@@ -60,7 +66,7 @@ namespace Mobile.ViewModels.Locataires.LogIn
 
 			try
 			{
-				result = await Existe(LogInData.Nom);
+				result = await ExisteAsync(LogInData.Nom);
 			}
 			catch (Exception e)
 			{
@@ -77,8 +83,52 @@ namespace Mobile.ViewModels.Locataires.LogIn
 				return "Mot de passe incorrect";
 
 			Session.Instance.Connect = Mapping.Map(result, new LocataireReadDto()); // connecte l'utilisateur
+			if (!await SaveSessionAsync(Session.Instance.Get))
+				return
+					"Vous êtes connecté, mais vous devrez vous reconnecter la prochaine fois dû à une erreur de stockage";
 
 			return null;
+		}
+
+		/// <summary>
+		/// Enregistre les identifiants dans le fichier de sauvegarde local
+		/// </summary>
+		/// <param name="locataire">Informations sur le locataire courant</param>
+		public async Task<bool> SaveSessionAsync(LocataireReadDto locataire)
+		{
+			try
+			{
+				_configuration.Configuration.Session = Mapping.Map(locataire, new ConfigurationSessionModel());
+				return await _configuration.SaveAsync();
+			}
+			catch (Exception e)
+			{
+				Catcher.LogError(e.Message);
+				return false;
+			}
+		}
+
+		/**
+		 * <summary>Charge une session locale pour éviter de se relogger</summary>
+		 */
+		public async Task<bool> LoadSessionAsync()
+		{
+			bool result = await _configuration.RestoreAsync(); // charge la session dans le fichier local
+			if (!result) return false; // si aucune erreur on continue
+
+			// charge les infos du locataire depuis la bdd
+			var locataireInDb = await ExisteAsync(_configuration.Configuration.Session.Nom);
+
+			// si la session == au locataire dans la db
+			if (_configuration.Configuration.Session.Nom == locataireInDb.Nom &&
+			    _configuration.Configuration.Session.Password.SequenceEqual(locataireInDb.Password))
+			{
+				Session.Instance.Connect = locataireInDb; // connecte l'utilisateur
+				
+				return true;
+			}
+
+			return false;
 		}
 
 		/// <summary>
@@ -86,7 +136,7 @@ namespace Mobile.ViewModels.Locataires.LogIn
 		/// </summary>
 		/// <param name="nom">Le nom du locataire</param>
 		/// <returns>Renvoie un objet locataire si trouvé, null sinon</returns>
-		public async Task<LocataireReadDto> Existe(string nom)
+		public async Task<LocataireReadDto> ExisteAsync(string nom)
 		{
 			IList<LocataireReadDto> locataires = await _client.GetAll<LocataireReadDto>();
 
