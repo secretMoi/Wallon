@@ -38,7 +38,7 @@ namespace Mobile.ViewModels.Taches.List
 		}
 
 		/**
-		 * <summary>Hydrate les données de la âge en async</summary>
+		 * <summary>Hydrate les données de la page en async</summary>
 		 */
 		public async Task Hydrate()
 		{

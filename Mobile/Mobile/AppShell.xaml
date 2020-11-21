@@ -91,9 +91,9 @@
     <FlyoutItem Title="Liste des tâches">
         <ShellContent Route="ListPage" ContentTemplate="{DataTemplate local:Taches.ListPage}" />
     </FlyoutItem>
-    <!--<FlyoutItem Title="Tuto drag&drop">
-        <ShellContent Route="ListPage" ContentTemplate="{DataTemplate local:Taches.ListPage}" />
-    </FlyoutItem>-->
+    <FlyoutItem Title="Mes tâches">
+        <ShellContent Route="MesTachesPage" ContentTemplate="{DataTemplate local:Taches.MesTachesPage}" />
+    </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <MenuItem Text="Se connecter" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
