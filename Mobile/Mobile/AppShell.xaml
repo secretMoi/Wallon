@@ -96,7 +96,7 @@
         <ShellContent Route="MesTachesPage" ContentTemplate="{DataTemplate local:Taches.MesTachesPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Se déconnecter" IsVisible="{Binding IsLogged}" x:DataType="viewModels:ShellViewModel">
-        <ShellContent Route="disconnect" ContentTemplate="{DataTemplate local:Taches.MesTachesPage}" />
+        <ShellContent Route="DisconnectPage" ContentTemplate="{DataTemplate local:Locataires.DisconnectPage}" />
     </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->

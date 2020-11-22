@@ -111,7 +111,7 @@ namespace Mobile.ViewModels.Locataires.LogIn
 		public async Task<bool> LoadSessionAsync()
 		{
 			bool result = await _configuration.RestoreAsync(); // charge la session dans le fichier local
-			if (!result) return false; // si aucune erreur on continue
+			if (!result || _configuration.Configuration.Session.Nom == null) return false; // si aucune erreur on continue
 
 			// charge les infos du locataire depuis la bdd
 			var locataireInDb = await ExisteAsync(_configuration.Configuration.Session.Nom);
