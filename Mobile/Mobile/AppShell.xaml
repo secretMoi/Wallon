@@ -86,16 +86,16 @@
     <FlyoutItem Title="Browse" Icon="icon_feed.png">
         <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
     </FlyoutItem>-->
-    <FlyoutItem Title="Se connecter" IsEnabled="{Binding IsGuest}" x:DataType="viewModels:ShellViewModel">
+    <FlyoutItem Title="Se connecter" IsVisible="{Binding IsGuest}" x:DataType="viewModels:ShellViewModel">
         <ShellContent Route="LogInPage" ContentTemplate="{DataTemplate local:Locataires.LogInPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Liste des tâches">
         <ShellContent Route="ListPage" ContentTemplate="{DataTemplate local:Taches.ListPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Mes tâches" IsEnabled="{Binding IsLogged}" x:DataType="viewModels:ShellViewModel">
+    <FlyoutItem Title="Mes tâches" IsVisible="{Binding IsLogged}" x:DataType="viewModels:ShellViewModel">
         <ShellContent Route="MesTachesPage" ContentTemplate="{DataTemplate local:Taches.MesTachesPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Se déconnecter" IsEnabled="{Binding IsLogged}" x:DataType="viewModels:ShellViewModel">
+    <FlyoutItem Title="Se déconnecter" IsVisible="{Binding IsLogged}" x:DataType="viewModels:ShellViewModel">
         <ShellContent Route="disconnect" ContentTemplate="{DataTemplate local:Taches.MesTachesPage}" />
     </FlyoutItem>
 

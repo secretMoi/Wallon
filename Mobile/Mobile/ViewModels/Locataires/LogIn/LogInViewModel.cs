@@ -4,11 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Mobile.Core;
 using Mobile.Models;
-using Mobile.Views.Taches;
 using Models.Dtos.Locataires;
 using RestApiClient.Controllers;
-using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace Mobile.ViewModels.Locataires.LogIn
 {

@@ -26,7 +26,11 @@ namespace Mobile.Core
 		 */
 		public LocataireReadDto Connect
 		{
-			set => _session = value;
+			set
+			{
+				_session = value;
+				AppShell.Instance.ConnectionState = IsSet;
+			}
 		}
 
 		/**
@@ -35,6 +39,7 @@ namespace Mobile.Core
 		public void Disconnect()
 		{
 			_session = null;
+			AppShell.Instance.ConnectionState = IsSet;
 		}
 
 		/**
