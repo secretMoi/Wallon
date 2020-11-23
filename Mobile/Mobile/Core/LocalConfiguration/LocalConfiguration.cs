@@ -2,13 +2,15 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
+using Mobile.Core.LocalFiles;
+using Mobile.Core.Logger;
 using Mobile.Models;
 
-namespace Mobile.Core
+namespace Mobile.Core.LocalConfiguration
 {
-	public class LocalConfiguration
+	public class LocalConfiguration : ILocalConfiguration
 	{
-		private readonly LocalFile _localFile;
+		private readonly ILocalFile _localFile;
 		public ConfigurationModel Configuration { get; set; }
 
 		public LocalConfiguration(string path)
@@ -17,6 +19,10 @@ namespace Mobile.Core
 			_localFile = new LocalFile(path);
 		}
 
+		/**
+		 * <summary>Sauvegarde la configuration dans le fichier</summary>
+		 * <returns>true si tout s'est bien passé, false sinon</returns>
+		 */
 		public async Task<bool> SaveAsync()
 		{
 			try
@@ -31,12 +37,16 @@ namespace Mobile.Core
 			}
 			catch (Exception e)
 			{
-				Catcher.LogError(e.Message);
+				Logger.Logger.LogError(e.Message);
 				return false;
 			}
 			
 		}
 
+		/**
+		 * <summary>Charge la configuration depuis le fichier</summary>
+		 * <returns>true si tout s'est bien passé, false sinon</returns>
+		 */
 		public async Task<bool> RestoreAsync()
 		{
 			try
@@ -52,7 +62,7 @@ namespace Mobile.Core
 			}
 			catch (Exception e)
 			{
-				Catcher.LogError(e.Message);
+				Logger.Logger.LogError(e.Message);
 
 				return false;
 			}
@@ -65,12 +75,10 @@ namespace Mobile.Core
 		 */
 		private static byte[] ObjectToByteArray(object obj)
 		{
-			BinaryFormatter bf = new BinaryFormatter();
-			using (var ms = new MemoryStream())
-			{
-				bf.Serialize(ms, obj);
-				return ms.ToArray();
-			}
+			var bf = new BinaryFormatter();
+			using var ms = new MemoryStream();
+			bf.Serialize(ms, obj);
+			return ms.ToArray();
 		}
 
 		/**
@@ -80,16 +88,14 @@ namespace Mobile.Core
 		 */
 		private static T ByteArrayToObject<T>(byte[] arrBytes) where T : class
 		{
-			using (var memStream = new MemoryStream())
-			{
-				var binForm = new BinaryFormatter();
+			using var memStream = new MemoryStream();
+			var binForm = new BinaryFormatter();
 
-				memStream.Write(arrBytes, 0, arrBytes.Length);
-				memStream.Seek(0, SeekOrigin.Begin);
-				var obj = binForm.Deserialize(memStream);
+			memStream.Write(arrBytes, 0, arrBytes.Length);
+			memStream.Seek(0, SeekOrigin.Begin);
+			var obj = binForm.Deserialize(memStream);
 
-				return obj as T;
-			}
+			return obj as T;
 		}
 	}
 }

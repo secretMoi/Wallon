@@ -1,14 +1,15 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+using Mobile.Core.Logger;
 
-namespace Mobile.Core
+namespace Mobile.Core.LocalFiles
 {
-	public class LocalFile
+	public class LocalFile : ILocalFile
 	{
 		public string Path { get; set; }
 
-		private string AppPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+		private readonly string _appPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 
 		public LocalFile()
 		{
@@ -31,13 +32,13 @@ namespace Mobile.Core
 
 			try
 			{
-				await Task.Run(() => File.WriteAllBytes(System.IO.Path.Combine(AppPath, Path), data));
+				await Task.Run(() => File.WriteAllBytes(System.IO.Path.Combine(_appPath, Path), data));
 
 				return true;
 			}
 			catch (Exception e)
 			{
-				Catcher.LogError(e.Message);
+				Logger.Logger.LogError(e.Message);
 
 				return false;
 			}
@@ -55,15 +56,15 @@ namespace Mobile.Core
 			{
 				return await Task.Run(() =>
 				{
-					if(File.Exists(System.IO.Path.Combine(AppPath, Path)))
-						return File.ReadAllBytes(System.IO.Path.Combine(AppPath, Path));
+					if(File.Exists(System.IO.Path.Combine(_appPath, Path)))
+						return File.ReadAllBytes(System.IO.Path.Combine(_appPath, Path));
 
 					return null;
 				});
 			}
 			catch (Exception e)
 			{
-				Catcher.LogError(e.Message);
+				Logger.Logger.LogError(e.Message);
 
 				return null;
 			}

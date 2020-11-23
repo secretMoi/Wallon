@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Mobile.Core;
+using Mobile.Core.LocalConfiguration;
+using Mobile.Core.Logger;
 using Mobile.Models;
 
 namespace Mobile.ViewModels.Locataires.Disconnect
@@ -18,7 +20,7 @@ namespace Mobile.ViewModels.Locataires.Disconnect
 				Session.Instance.Disconnect(); // déconnecte la session
 
 				// supprime la session courante sauvegardée
-				var configuration = new LocalConfiguration(App.ConfigurationPath);
+				ILocalConfiguration configuration = new LocalConfiguration(App.ConfigurationPath);
 				await configuration.RestoreAsync(); // restaure les paramètres
 				configuration.Configuration.Session = new ConfigurationSessionModel(); // reinit la session des paramètres
 				await configuration.SaveAsync(); // sauvegarde les paramètres sans la session
@@ -27,7 +29,7 @@ namespace Mobile.ViewModels.Locataires.Disconnect
 			}
 			catch (Exception e)
 			{
-				Catcher.LogError(e.Message);
+				Logger.LogError(e.Message);
 
 				return false;
 			}

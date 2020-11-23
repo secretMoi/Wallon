@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Mobile.Controllers.Locataire;
 using Mobile.Core;
+using Mobile.Core.LocalConfiguration;
+using Mobile.Core.Logger;
 using Mobile.Models;
 using Models.Dtos.Locataires;
 
@@ -13,7 +15,7 @@ namespace Mobile.ViewModels.Locataires.LogIn
 	{
 		private LogInData _logInData = new LogInData();
 		private readonly ILocataireController _locataire = LocataireController.Instance;
-		private readonly LocalConfiguration _configuration;
+		private readonly ILocalConfiguration _configuration;
 
 		private const string ImageShowPassword = "eye.png";
 		private const string ImageHidePassword = "eyeClose.png";
@@ -100,7 +102,7 @@ namespace Mobile.ViewModels.Locataires.LogIn
 			}
 			catch (Exception e)
 			{
-				Catcher.LogError(e.Message);
+				Logger.LogError(e.Message);
 				return false;
 			}
 		}
