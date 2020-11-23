@@ -4,12 +4,13 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Mobile.Controllers.Liaison;
+using Mobile.Controllers.Locataire;
+using Mobile.Controllers.Tache;
 using Mobile.Core;
 using Mobile.Validators;
 using Models.Dtos.LiaisonsTachesLocataires;
-using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
-using RestApiClient.Controllers;
 using Xamarin.Forms;
 
 namespace Mobile.ViewModels.Taches.Detail
@@ -20,9 +21,9 @@ namespace Mobile.ViewModels.Taches.Detail
 		private DetailData _detailData = new DetailData();
 		private string _itemId;
 
-		private readonly TachesController _taches = new TachesController();
-		private readonly LocatairesController _locataires = new LocatairesController();
-		private readonly LiaisonsController _liaisons = new LiaisonsController();
+		private readonly ITacheController _taches = TacheController.Instance;
+		private readonly ILocataireController _locataires = LocataireController.Instance;
+		private readonly ILiaisonController _liaisons = LiaisonController.Instance;
 
 		private readonly IList<int> _reoderedLocataires = new List<int>();
 
@@ -43,7 +44,7 @@ namespace Mobile.ViewModels.Taches.Detail
 			Tache.Tache.LocataireId = Tache.SelectedLocataire.Locataire.Id;
 
 			// validation des données
-			var result = new TacheValidator().Validate(Tache.Tache);
+			var result = await new TacheValidator().ValidateAsync(Tache.Tache);
 			if (!result.IsValid)
 				return $"{result.Errors[0].ErrorMessage}";
 
@@ -51,10 +52,10 @@ namespace Mobile.ViewModels.Taches.Detail
 			var tacheUpdate = Mapping.Map(Tache.Tache, new TacheUpdateDto());
 
 			// modifie la tâche
-			await _taches.Update(tacheUpdate);
+			await _taches.UpdateAsync(tacheUpdate);
 
 			// modifie les liaisons
-			await _liaisons.DeleteLiaisonsFromTache(tacheUpdate.Id);
+			await _liaisons.DeleteLiaisonsFromTacheAsync(tacheUpdate.Id);
 
 			foreach (var orderedLocataire in _reoderedLocataires)
 			{
@@ -66,7 +67,7 @@ namespace Mobile.ViewModels.Taches.Detail
 					TacheId = tacheUpdate.Id
 				};
 
-				await _liaisons.Post<LiaisonCreateDto, LiaisonReadDto>(liaison);
+				await _liaisons.PostAsync(liaison);
 			}
 
 			return $"La tâche {Tache.Tache.Nom} a bien été modifiée";
@@ -98,7 +99,7 @@ namespace Mobile.ViewModels.Taches.Detail
 			try
 			{
 				int idTache = Convert.ToInt32(itemId);
-				Tache.Tache = await _taches.GetById<TacheReadDto>(idTache);
+				Tache.Tache = await _taches.GetByIdAsync(idTache);
 				Title = "Modification de la tâche " + Tache.Tache.Nom;
 
 				await LoadLocataires(idTache);
@@ -120,10 +121,10 @@ namespace Mobile.ViewModels.Taches.Detail
 		private async Task LoadLocataires(int idTache)
 		{
 			// liste de tous les locataires
-			var locataires = await _locataires.GetAll<LocataireReadDto>();
+			var locataires = await _locataires.GetAllAsync();
 
 			// liste des locataires dans la tâche
-			var liaisons = await _liaisons.ListeLocataires(idTache);
+			var liaisons = await _liaisons.ListeLocatairesAsync(idTache);
 
 			// parcours la liste des locataires
 			foreach (var locataire in locataires)

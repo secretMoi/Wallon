@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Mobile.Controllers.Locataire;
 using Mobile.Core;
 using Mobile.Models;
 using Models.Dtos.Locataires;
-using RestApiClient.Controllers;
 
 namespace Mobile.ViewModels.Locataires.LogIn
 {
 	public class LogInViewModel : BaseViewModel
 	{
 		private LogInData _logInData = new LogInData();
-		private readonly LocatairesController _client = new LocatairesController();
+		private readonly ILocataireController _locataire = LocataireController.Instance;
 		private readonly LocalConfiguration _configuration;
 
 		private const string ImageShowPassword = "eye.png";
@@ -135,7 +135,7 @@ namespace Mobile.ViewModels.Locataires.LogIn
 		/// <returns>Renvoie un objet locataire si trouvé, null sinon</returns>
 		public async Task<LocataireReadDto> ExisteAsync(string nom)
 		{
-			IList<LocataireReadDto> locataires = await _client.GetAll<LocataireReadDto>();
+			IList<LocataireReadDto> locataires = await _locataire.GetAllAsync();
 
 			foreach (LocataireReadDto locataire in locataires)
 				if (locataire.Nom == nom)

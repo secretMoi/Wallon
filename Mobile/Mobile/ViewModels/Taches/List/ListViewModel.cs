@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Mobile.Controllers.Liaison;
+using Mobile.Controllers.Tache;
 using Mobile.ViewModels.Taches.Detail;
 using Mobile.Views.Taches;
 using Models.Dtos.Taches;
-using RestApiClient.Controllers;
 using Xamarin.Forms;
 
 namespace Mobile.ViewModels.Taches.List
@@ -12,8 +13,8 @@ namespace Mobile.ViewModels.Taches.List
 	public class ListViewModel : BaseViewModel
 	{
 		private ListData _listData = new ListData();
-		private readonly TachesController _taches = new TachesController();
-		private readonly LiaisonsController _liaisons = new LiaisonsController();
+		private readonly ITacheController _taches = TacheController.Instance;
+		private readonly ILiaisonController _liaisons = LiaisonController.Instance;
 
 		public Command AddTacheCommand { get; }
 		public ObservableCollection<TacheReadDto> Taches { get; private set; }
@@ -45,9 +46,9 @@ namespace Mobile.ViewModels.Taches.List
 			if(Taches.Count != 0)
 			{
 				Taches.Clear();
-			};
+			}
 
-			var taches = await _taches.GetAll<TacheReadDto>();
+			var taches = await _taches.GetAllAsync();
 
 			foreach (var tache in taches)
 			{
@@ -77,8 +78,8 @@ namespace Mobile.ViewModels.Taches.List
 		{
 			try
 			{
-				await _liaisons.DeleteLiaisonsFromTache(tacheId);
-				await _taches.Delete(tacheId);
+				await _liaisons.DeleteLiaisonsFromTacheAsync(tacheId);
+				await _taches.DeleteAsync(tacheId);
 
 				return true;
 			}

@@ -15,12 +15,19 @@ namespace Mobile.ViewModels
 		string _title = string.Empty;
 		bool _isBusy;
 
+		/**
+		 * <summary>Indique si la view est occupée</summary>
+		 * <returns>true si elle est occupée, false sinon</returns>
+		 */
 		public bool IsBusy
 		{
 			get => _isBusy;
 			set => SetProperty(ref _isBusy, value);
 		}
 
+		/**
+		 * <summary>Titre de la view</summary>
+		 */
 		public string Title
 		{
 			get => _title;

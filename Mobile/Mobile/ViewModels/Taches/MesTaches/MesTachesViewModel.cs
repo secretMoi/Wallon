@@ -1,21 +1,19 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Mobile.Controllers;
+using Mobile.Controllers.Tache;
 using Mobile.Core;
 using Mobile.ViewModels.Taches.Detail;
 using Mobile.Views.Taches;
 using Models.Dtos;
 using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
-using RestApiClient.Controllers;
 using Xamarin.Forms;
 
 namespace Mobile.ViewModels.Taches.MesTaches
 {
 	public class MesTachesViewModel : BaseViewModel
 	{
-		private readonly TachesController _taches = new TachesController();
-		private readonly TacheController _tacheController = new TacheController();
+		private readonly ITacheController _tacheController = TacheController.Instance;
 		private readonly IRead _locataireLogged;
 
 		public ObservableCollection<TacheReadDto> TachesData { get; private set; }
@@ -37,7 +35,7 @@ namespace Mobile.ViewModels.Taches.MesTaches
 				TachesData.Clear();
 			}
 
-			var taches = await _taches.GetTachesFromLocataire(_locataireLogged.Id);
+			var taches = await _tacheController.GetTachesFromLocataireAsync(_locataireLogged.Id);
 
 			foreach (var tache in taches)
 			{

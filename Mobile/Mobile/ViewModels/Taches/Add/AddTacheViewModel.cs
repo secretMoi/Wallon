@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Mobile.Controllers.Liaison;
+using Mobile.Controllers.Locataire;
+using Mobile.Controllers.Tache;
 using Mobile.Core;
 using Mobile.Validators;
 using Mobile.ViewModels.Taches.Detail;
 using Models.Dtos.LiaisonsTachesLocataires;
-using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
-using RestApiClient.Controllers;
 
 namespace Mobile.ViewModels.Taches.Add
 {
 	public class AddTacheViewModel : BaseViewModel
 	{
 		private DetailData _detailData = new DetailData();
-		private readonly TachesController _taches = new TachesController();
-		private readonly LocatairesController _locataires = new LocatairesController();
-		private readonly LiaisonsController _liaisons = new LiaisonsController();
+		private readonly ITacheController _taches = TacheController.Instance;
+		private readonly ILocataireController _locataires = LocataireController.Instance;
+		private readonly ILiaisonController _liaisons = LiaisonController.Instance;
 
 		private readonly IList<int> _reoderedLocataires = new List<int>();
 
@@ -50,7 +51,7 @@ namespace Mobile.ViewModels.Taches.Add
 		private async Task LoadLocataires()
 		{
 			// liste de tous les locataires
-			var locataires = await _locataires.GetAll<LocataireReadDto>();
+			var locataires = await _locataires.GetAllAsync();
 
 			// parcours la liste des locataires
 			foreach (var locataire in locataires)
@@ -129,7 +130,7 @@ namespace Mobile.ViewModels.Taches.Add
 			Tache.Tache.LocataireId = Tache.SelectedLocataire.Locataire.Id;
 
 			// validation des données
-			var result = new TacheValidator().Validate(Tache.Tache);
+			var result = await new TacheValidator().ValidateAsync(Tache.Tache);
 			if (!result.IsValid)
 				return $"{result.Errors[0].ErrorMessage}";
 
@@ -137,7 +138,7 @@ namespace Mobile.ViewModels.Taches.Add
 			var tacheCreate = Mapping.Map(Tache.Tache, new TacheCreateDto());
 
 			// ajoute la tâche
-			var createdTache = await _taches.Post<TacheCreateDto, TacheReadDto>(tacheCreate);
+			var createdTache = await _taches.PostAsync(tacheCreate);
 
 			// ajout des liaisons
 			foreach (var orderedLocataire in _reoderedLocataires)
@@ -150,7 +151,7 @@ namespace Mobile.ViewModels.Taches.Add
 					TacheId = createdTache.Id
 				};
 
-				await _liaisons.Post<LiaisonCreateDto, LiaisonReadDto>(liaison);
+				await _liaisons.PostAsync(liaison);
 			}
 
 			return $"La tâche {Tache.Tache.Nom} a bien été ajoutée";
