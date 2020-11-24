@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Models.Dtos;
 using Newtonsoft.Json;
+using RestApiClient.Interfaces;
 
 namespace RestApiClient.Controllers
 {
-	public class BaseController
+	public class BaseController : IBaseController, IBaseController
 	{
 		protected string Url;
 		protected List<BaseMethod> BaseMethods;

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Models.Dtos.Taches;
+using RestApiClient.Interfaces;
 
 namespace RestApiClient.Controllers
 {
-	public class TachesController : BaseController
+	public class TachesController : BaseController, ITachesController
 	{
 		public TachesController()
 		{

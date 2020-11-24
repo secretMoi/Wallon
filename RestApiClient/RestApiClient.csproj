@@ -49,6 +49,10 @@
   <ItemGroup>
     <Compile Include="ApiHelper.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Interfaces\ILiaisonsController.cs" />
+    <Compile Include="Interfaces\ITachesController.cs" />
+    <Compile Include="Interfaces\ILocatairesController.cs" />
+    <Compile Include="Interfaces\IBaseController.cs" />
     <Compile Include="Controllers\LiaisonsController.cs" />
     <Compile Include="Controllers\LocatairesController.cs" />
     <Compile Include="Controllers\TachesController.cs" />
@@ -62,6 +66,9 @@
       <Project>{2d3d5c1c-c704-467a-bf93-35cbfe56be49}</Project>
       <Name>Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mocks\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

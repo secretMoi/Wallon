@@ -41,6 +41,11 @@ namespace Mobile.Controllers.Tache
 		public Task<IList<TacheReadDto>> GetTachesFromLocataireAsync(int idLocataire)
 		{
 			throw new NotImplementedException();
+			//return Task.Run(() =>
+			//	{
+
+			//	}
+			//);
 		}
 
 		public Task DeleteAsync(int id)

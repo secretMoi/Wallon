@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Models.Dtos.Locataires;
+using RestApiClient.Interfaces;
 
 namespace RestApiClient.Controllers
 {
-	public class LiaisonsController : BaseController
+	public class LiaisonsController : BaseController, ILiaisonsController
 	{
 		public LiaisonsController()
 		{

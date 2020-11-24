@@ -1,6 +1,8 @@
-﻿namespace RestApiClient.Controllers
+﻿using RestApiClient.Interfaces;
+
+namespace RestApiClient.Controllers
 {
-	public class LocatairesController : BaseController
+	public class LocatairesController : BaseController, ILocatairesController
 	{
 		public LocatairesController()
 		{
