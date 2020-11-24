@@ -98,6 +98,9 @@
     <FlyoutItem Title="Se déconnecter" IsVisible="{Binding IsLogged}" x:DataType="viewModels:ShellViewModel">
         <ShellContent Route="DisconnectPage" ContentTemplate="{DataTemplate local:Locataires.DisconnectPage}" />
     </FlyoutItem>
+    <FlyoutItem Title="Liste des locataires" x:DataType="viewModels:ShellViewModel">
+        <ShellContent Route="LocatairesListPage" ContentTemplate="{DataTemplate local:Locataires.LocatairesListPage}" />
+    </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <!--<MenuItem Text="Se connecter" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">

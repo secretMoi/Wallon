@@ -1,4 +1,5 @@
-﻿using Mobile.ViewModels.Taches.MesTaches;
+﻿using Mobile.Controllers;
+using Mobile.ViewModels.Taches.MesTaches;
 using Models.Dtos.Locataires;
 using RestApiClient;
 using Xunit;
@@ -19,7 +20,8 @@ namespace Mobile.Tests.ViewModels.Taches.MesTaches
 				new LocataireReadDto
 				{
 					Id = 2
-				}
+				},
+				FactoryController.CreateMockTache()
 			);
 			
 			Assert.NotNull(viewModel.TachesData);
@@ -39,7 +41,8 @@ namespace Mobile.Tests.ViewModels.Taches.MesTaches
 				new LocataireReadDto
 				{
 					Id = 2
-				}
+				},
+				FactoryController.CreateMockTache()
 			);
 		}
 	}

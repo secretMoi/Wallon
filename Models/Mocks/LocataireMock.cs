@@ -7,6 +7,8 @@ namespace Models.Mocks
 	{
 		private readonly IList<LocataireReadDto> _mock = new List<LocataireReadDto>();
 
+		public IList<LocataireReadDto> Data => _mock;
+
 		public LocataireMock()
 		{
 			_mock.Add(

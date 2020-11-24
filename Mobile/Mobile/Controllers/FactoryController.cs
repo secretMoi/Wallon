@@ -16,6 +16,11 @@ namespace Mobile.Controllers
 			return TacheController.Instance;
 		}
 
+		public static ITacheController CreateMockTache()
+		{
+			return new MockTacheController();
+		}
+
 		public static ILiaisonController CreateLiaison()
 		{
 			return LiaisonController.Instance;
