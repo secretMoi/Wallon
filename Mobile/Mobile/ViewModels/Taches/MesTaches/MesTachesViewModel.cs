@@ -13,16 +13,18 @@ namespace Mobile.ViewModels.Taches.MesTaches
 {
 	public class MesTachesViewModel : BaseViewModel
 	{
-		private readonly ITacheController _tacheController = TacheController.Instance;
+		private readonly ITacheController _tacheController;
 		private readonly IRead _locataireLogged;
 
 		public ObservableCollection<TacheReadDto> TachesData { get; private set; }
 
-		public MesTachesViewModel(IRead locataire)
+		public MesTachesViewModel(IRead locataire, ITacheController tacheController)
 		{
 			Title = "Mes tâches à réaliser";
 			TachesData = new ObservableCollection<TacheReadDto>();
+			
 			_locataireLogged = locataire;
+			_tacheController = tacheController;
 		}
 
 		/**

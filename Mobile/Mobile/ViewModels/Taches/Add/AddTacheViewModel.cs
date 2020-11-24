@@ -16,13 +16,13 @@ namespace Mobile.ViewModels.Taches.Add
 	public class AddTacheViewModel : BaseViewModel
 	{
 		private DetailData _detailData = new DetailData();
-		private readonly ITacheController _taches = TacheController.Instance;
-		private readonly ILocataireController _locataires = LocataireController.Instance;
-		private readonly ILiaisonController _liaisons = LiaisonController.Instance;
+		private readonly ITacheController _taches;
+		private readonly ILocataireController _locataires;
+		private readonly ILiaisonController _liaisons;
 
 		private readonly IList<int> _reoderedLocataires = new List<int>();
 
-		public AddTacheViewModel()
+		public AddTacheViewModel(ITacheController tacheController, ILocataireController locataireController, ILiaisonController liaisonController)
 		{
 			Title = "Création d'une tâche";
 			Tache.Tache = new TacheReadDto
@@ -32,6 +32,10 @@ namespace Mobile.ViewModels.Taches.Add
 			Tache.Locataires = new ObservableCollection<DetailData.LocatairesInclus>();
 
 			Tache.CheckedLocataires = new ObservableCollection<DetailData.LocatairesInclus>();
+
+			_taches = tacheController;
+			_locataires = locataireController;
+			_liaisons = liaisonController;
 		}
 
 		public DetailData Tache

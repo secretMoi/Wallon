@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Mobile.Core.Logger;
 using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
 using RestApiClient.Controllers;
@@ -94,11 +95,30 @@ namespace Mobile.Controllers.Tache
 			return await _taches.Post<TacheCreateDto, TacheReadDto>(tache);
 		}
 
+		/**
+		 * <summary>Récupère toutes les tâches</summary>
+		 * <returns>Une liste des toutes les tâches, null si une erreur a été rencontrée</returns>
+		 * <exception cref="Exception">Une erreur s'est produite avec null</exception>
+		 */
 		public async Task<IList<TacheReadDto>> GetAllAsync()
 		{
-			return await _taches.GetAll<TacheReadDto>();
+			try
+			{
+				return await _taches.GetAll<TacheReadDto>();
+			}
+			catch (Exception e)
+			{
+				Logger.LogError(e.Message);
+
+				return null;
+			}
 		}
 
+		/**
+		 * <summary>Récupère une tâche de la bdd par son id</summary>
+		 * <param name="id">Id de la tâche à récupérer</param>
+		 * <returns>Retourne une <see cref="TacheReadDto"/> contenant les infos de la tâche</returns>
+		 */
 		public async Task<TacheReadDto> GetByIdAsync(int id)
 		{
 			return await _taches.GetById<TacheReadDto>(id);

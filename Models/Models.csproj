@@ -53,10 +53,12 @@
     <Compile Include="Dtos\Taches\TacheCreateDto.cs" />
     <Compile Include="Dtos\Taches\TacheReadDto.cs" />
     <Compile Include="Dtos\Taches\TacheUpdateDto.cs" />
+    <Compile Include="Mocks\LocataireMock.cs" />
     <Compile Include="Models\LiaisonTacheLocataire.cs" />
     <Compile Include="Models\Locataire.cs" />
     <Compile Include="Models\Tache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

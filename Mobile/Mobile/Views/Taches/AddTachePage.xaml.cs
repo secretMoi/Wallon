@@ -1,4 +1,5 @@
 ﻿using System;
+using Mobile.Controllers;
 using Mobile.ViewModels.Taches.Add;
 using Syncfusion.ListView.XForms;
 using Xamarin.Forms;
@@ -9,7 +10,11 @@ namespace Mobile.Views.Taches
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AddTachePage : ContentPage
 	{
-		private readonly AddTacheViewModel _viewModel = new AddTacheViewModel();
+		private readonly AddTacheViewModel _viewModel = new AddTacheViewModel(
+			FactoryController.CreateTache(),
+			FactoryController.CreateLocataire(),
+			FactoryController.CreateLiaison()
+		);
 
 		public AddTachePage()
 		{

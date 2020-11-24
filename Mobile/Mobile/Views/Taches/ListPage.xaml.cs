@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Mobile.Controllers;
 using Mobile.ViewModels.Taches.List;
 using Models.Dtos.Taches;
 using Xamarin.Forms;
@@ -11,7 +12,7 @@ namespace Mobile.Views.Taches
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ListPage : ContentPage
 	{
-		private readonly ListViewModel _viewModel = new ListViewModel();
+		private readonly ListViewModel _viewModel = new ListViewModel(FactoryController.CreateTache(), FactoryController.CreateLiaison());
 
 		public ListPage()
 		{

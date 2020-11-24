@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq;
+using Mobile.Controllers;
 using Mobile.ViewModels.Locataires.LogIn;
-using Mobile.Views.Taches;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +9,7 @@ namespace Mobile.Views.Locataires
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class LogInPage : ContentPage
 	{
-		private readonly LogInViewModel _viewModel = new LogInViewModel(App.ConfigurationPath);
+		private readonly LogInViewModel _viewModel = new LogInViewModel(App.ConfigurationPath, FactoryController.CreateLocataire());
 
 		public LogInPage()
 		{

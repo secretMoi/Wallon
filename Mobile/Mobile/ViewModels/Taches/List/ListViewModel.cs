@@ -13,8 +13,8 @@ namespace Mobile.ViewModels.Taches.List
 	public class ListViewModel : BaseViewModel
 	{
 		private ListData _listData = new ListData();
-		private readonly ITacheController _taches = TacheController.Instance;
-		private readonly ILiaisonController _liaisons = LiaisonController.Instance;
+		private readonly ITacheController _taches;
+		private readonly ILiaisonController _liaisons;
 
 		public Command AddTacheCommand { get; }
 		public ObservableCollection<TacheReadDto> Taches { get; private set; }
@@ -25,10 +25,13 @@ namespace Mobile.ViewModels.Taches.List
 			set => SetProperty(ref _listData, value);
 		}
 
-		public ListViewModel()
+		public ListViewModel(ITacheController tacheController, ILiaisonController liaisonController)
 		{
 			Title = "Liste des tâches";
 			Taches = new ObservableCollection<TacheReadDto>();
+
+			_taches = tacheController;
+			_liaisons = liaisonController;
 
 			AddTacheCommand = new Command(NavigateToAddTache);
 		}

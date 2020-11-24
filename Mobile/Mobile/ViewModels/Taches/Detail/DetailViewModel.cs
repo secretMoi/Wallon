@@ -21,18 +21,22 @@ namespace Mobile.ViewModels.Taches.Detail
 		private DetailData _detailData = new DetailData();
 		private string _itemId;
 
-		private readonly ITacheController _taches = TacheController.Instance;
-		private readonly ILocataireController _locataires = LocataireController.Instance;
-		private readonly ILiaisonController _liaisons = LiaisonController.Instance;
+		private readonly ITacheController _taches;
+		private readonly ILocataireController _locataires;
+		private readonly ILiaisonController _liaisons;
 
 		private readonly IList<int> _reoderedLocataires = new List<int>();
 
-		public DetailViewModel()
+		public DetailViewModel(ITacheController tacheController, ILocataireController locataireController, ILiaisonController liaisonController)
 		{
 			Title = "Modification d'une tâche";
 			Tache.Locataires = new ObservableCollection<DetailData.LocatairesInclus>();
 
 			Tache.CheckedLocataires = new ObservableCollection<DetailData.LocatairesInclus>();
+
+			_taches = tacheController;
+			_locataires = locataireController;
+			_liaisons = liaisonController;
 		}
 
 		/**

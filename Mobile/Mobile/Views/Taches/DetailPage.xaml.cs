@@ -1,4 +1,5 @@
 ﻿using System;
+using Mobile.Controllers;
 using Mobile.ViewModels.Taches.Detail;
 using Syncfusion.ListView.XForms;
 using Xamarin.Forms;
@@ -9,7 +10,11 @@ namespace Mobile.Views.Taches
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DetailPage : ContentPage
 	{
-		private readonly DetailViewModel _viewModel = new DetailViewModel();
+		private readonly DetailViewModel _viewModel = new DetailViewModel(
+			FactoryController.CreateTache(),
+			FactoryController.CreateLocataire(),
+			FactoryController.CreateLiaison()
+		);
 
 		public DetailPage()
 		{

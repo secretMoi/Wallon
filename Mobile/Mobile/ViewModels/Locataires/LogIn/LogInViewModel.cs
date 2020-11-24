@@ -14,7 +14,7 @@ namespace Mobile.ViewModels.Locataires.LogIn
 	public class LogInViewModel : BaseViewModel
 	{
 		private LogInData _logInData = new LogInData();
-		private readonly ILocataireController _locataire = LocataireController.Instance;
+		private readonly ILocataireController _locataire;
 		private readonly ILocalConfiguration _configuration;
 
 		private const string ImageShowPassword = "eye.png";
@@ -26,11 +26,13 @@ namespace Mobile.ViewModels.Locataires.LogIn
 			set => SetProperty(ref _logInData, value);
 		}
 
-		public LogInViewModel(string configurationPath)
+		public LogInViewModel(string configurationPath, ILocataireController locataireController)
 		{
 			Title = "Se connecter";
 			LogInData.ShowPassword = true;
 			LogInData.PasswordImageEye = ImageHidePassword;
+
+			_locataire = locataireController;
 
 			_configuration = new LocalConfiguration(configurationPath);
 		}
