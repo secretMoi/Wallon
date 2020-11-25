@@ -10,7 +10,8 @@ namespace Models.Mocks
 
 		public TacheMock()
 		{
-			Data.Add(
+			Data = new List<TacheReadDto>
+			{
 				new TacheReadDto
 				{
 					Id = 1,
@@ -20,9 +21,7 @@ namespace Models.Mocks
 					Description = null,
 					LocataireId = 5,
 					Nom = "Balayer"
-				}
-			);
-			Data.Add(
+				},
 				new TacheReadDto
 				{
 					Id = 1000,
@@ -33,7 +32,8 @@ namespace Models.Mocks
 					LocataireId = 1,
 					Nom = "Laver"
 				}
-			);
+			};
+
 		}
 	}
 }

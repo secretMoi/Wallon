@@ -13,7 +13,7 @@ namespace Mobile.Controllers.Tache
 {
 	public class TacheController : ITacheController
 	{
-		private ITachesController _taches = new TachesController();
+		private ITachesController _taches;
 		private readonly LiaisonsController _liaisons = new LiaisonsController();
 
 		private static readonly Lazy<ITacheController> Lazy = new Lazy<ITacheController>(() => new TacheController());
