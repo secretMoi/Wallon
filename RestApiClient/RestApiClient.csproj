@@ -52,15 +52,17 @@
   <ItemGroup>
     <Compile Include="ApiHelper.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Interfaces\ILiaisonsController.cs" />
-    <Compile Include="Interfaces\ITachesController.cs" />
-    <Compile Include="Interfaces\ILocatairesController.cs" />
+    <Compile Include="Interfaces\ISuggestionsApiController.cs" />
+    <Compile Include="Controllers\SuggestionsApiController.cs" />
+    <Compile Include="Interfaces\ILiaisonsApiController.cs" />
+    <Compile Include="Interfaces\ITachesApiController.cs" />
+    <Compile Include="Interfaces\ILocatairesApiController.cs" />
     <Compile Include="Interfaces\IBaseController.cs" />
-    <Compile Include="Controllers\LiaisonsController.cs" />
-    <Compile Include="Controllers\LocatairesController.cs" />
-    <Compile Include="Controllers\TachesController.cs" />
+    <Compile Include="Controllers\LiaisonsApiController.cs" />
+    <Compile Include="Controllers\LocatairesApiController.cs" />
+    <Compile Include="Controllers\TachesApiController.cs" />
     <Compile Include="Mocks\BaseApiMock.cs" />
-    <Compile Include="Mocks\LocataireApiMock.cs" />
+    <Compile Include="Mocks\LocataireApiApiMock.cs" />
     <Compile Include="Mocks\TacheApiMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

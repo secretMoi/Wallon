@@ -7,9 +7,9 @@ using RestApiClient.Interfaces;
 
 namespace RestApiClient.Controllers
 {
-	public class TachesController : BaseController, ITachesController
+	public class TachesApiController : BaseController, ITachesApiController
 	{
-		public TachesController()
+		public TachesApiController()
 		{
 			Url = "taches";
 

@@ -19,16 +19,16 @@ namespace Wallon.Repository
 		{
 		}
 
-		private static TachesController _apiClientController;
+		private static TachesApiController _apiClientApiController;
 
-		private TachesController Controller
+		private TachesApiController ApiController
 		{
 			get
 			{
-				if (_apiClientController == null)
-					_apiClientController = new TachesController();
+				if (_apiClientApiController == null)
+					_apiClientApiController = new TachesApiController();
 
-				return _apiClientController;
+				return _apiClientApiController;
 			}
 		}
 
@@ -36,7 +36,7 @@ namespace Wallon.Repository
 		{
 			try
 			{
-				return await Controller.GetAll<TacheReadDto>();
+				return await ApiController.GetAll<TacheReadDto>();
 			}
 			catch (Exception ex)
 			{
@@ -53,7 +53,7 @@ namespace Wallon.Repository
 		{
 			try
 			{
-				return await Controller.GetById<TacheReadDto>(id);
+				return await ApiController.GetById<TacheReadDto>(id);
 			}
 			catch (Exception ex)
 			{
@@ -65,7 +65,7 @@ namespace Wallon.Repository
 		{
 			try
 			{
-				await Controller.Update(tacheUpdateDto);
+				await ApiController.Update(tacheUpdateDto);
 			}
 			catch (Exception ex)
 			{
@@ -77,7 +77,7 @@ namespace Wallon.Repository
 		{
 			try
 			{
-				await Controller.Delete(id);
+				await ApiController.Delete(id);
 			}
 			catch (Exception ex)
 			{
@@ -94,7 +94,7 @@ namespace Wallon.Repository
 		{
 			try
 			{
-				return await Controller.GetTachesFromLocataire(idLocataireCourant);
+				return await ApiController.GetTachesFromLocataire(idLocataireCourant);
 			}
 			catch (Exception ex)
 			{
@@ -106,7 +106,7 @@ namespace Wallon.Repository
 		{
 			try
 			{
-				return await Controller.Post<TacheCreateDto, TacheReadDto>(tache);
+				return await ApiController.Post<TacheCreateDto, TacheReadDto>(tache);
 			}
 			catch (Exception ex)
 			{
@@ -124,7 +124,7 @@ namespace Wallon.Repository
 			try
 			{
 				//todo optimiser avec un patch au lieu de put
-				TacheReadDto tacheReadDto = await Controller.GetById<TacheReadDto>(id);
+				TacheReadDto tacheReadDto = await ApiController.GetById<TacheReadDto>(id);
 
 				tacheReadDto.DateFin = tacheReadDto.DateFin.AddDays(tacheReadDto.Cycle); // met à jour la datte de fin
 				tacheReadDto.LocataireId = idLocataire; // met à jour le locataire courant
@@ -136,7 +136,7 @@ namespace Wallon.Repository
 				Mapper mapper = new Mapper(config);
 				TacheUpdateDto tacheUpdateDto = mapper.Map<TacheUpdateDto>(tacheReadDto);
 
-				await Controller.Update(tacheUpdateDto);
+				await ApiController.Update(tacheUpdateDto);
 			}
 			catch (Exception ex)
 			{

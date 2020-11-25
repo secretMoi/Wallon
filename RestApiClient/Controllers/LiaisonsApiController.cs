@@ -7,9 +7,9 @@ using RestApiClient.Interfaces;
 
 namespace RestApiClient.Controllers
 {
-	public class LiaisonsController : BaseController, ILiaisonsController
+	public class LiaisonsApiController : BaseController, ILiaisonsApiController
 	{
-		public LiaisonsController()
+		public LiaisonsApiController()
 		{
 			Url = "liaisons";
 

@@ -17,16 +17,16 @@ namespace Wallon.Repository
 		{
 		}
 
-		private static LocatairesController _apiClientController;
+		private static LocatairesApiController _apiClientApiController;
 
-		private LocatairesController Controller
+		private LocatairesApiController ApiController
 		{
 			get
 			{
-				if (_apiClientController == null)
-					_apiClientController = new LocatairesController();
+				if (_apiClientApiController == null)
+					_apiClientApiController = new LocatairesApiController();
 
-				return _apiClientController;
+				return _apiClientApiController;
 			}
 		}
 
@@ -34,7 +34,7 @@ namespace Wallon.Repository
 		{
 			try
 			{
-				return await Controller.GetAll<LocataireReadDto>();
+				return await ApiController.GetAll<LocataireReadDto>();
 			}
 			catch (Exception ex)
 			{
@@ -46,7 +46,7 @@ namespace Wallon.Repository
 		{
 			try
 			{
-				return await Controller.GetById<LocataireReadDto>(id);
+				return await ApiController.GetById<LocataireReadDto>(id);
 			}
 			catch (Exception ex)
 			{
@@ -70,7 +70,7 @@ namespace Wallon.Repository
 		{
 			try
 			{
-				return await Controller.Post<LocataireCreateDto, LocataireReadDto>(locataire);
+				return await ApiController.Post<LocataireCreateDto, LocataireReadDto>(locataire);
 			}
 			catch (Exception ex)
 			{
@@ -82,7 +82,7 @@ namespace Wallon.Repository
 		{
 			try
 			{
-				await Controller.Update(locataire);
+				await ApiController.Update(locataire);
 			}
 			catch (Exception ex)
 			{

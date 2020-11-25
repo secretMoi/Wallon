@@ -3,7 +3,7 @@ using RestApiClient.Interfaces;
 
 namespace RestApiClient.Mocks
 {
-	public class LocataireApiMock : BaseApiMock, ILocatairesController
+	public class LocataireApiApiMock : BaseApiMock, ILocatairesApiController
 	{
 		private readonly LocataireMock _mock = new LocataireMock();
 	}

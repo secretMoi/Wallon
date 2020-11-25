@@ -8,7 +8,7 @@ using RestApiClient.Interfaces;
 
 namespace RestApiClient.Mocks
 {
-	public class TacheApiMock : BaseApiMock, ITachesController
+	public class TacheApiMock : BaseApiMock, ITachesApiController
 	{
 		/*public TacheApiMock()
 		{

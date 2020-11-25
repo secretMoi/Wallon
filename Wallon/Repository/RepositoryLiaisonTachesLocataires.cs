@@ -19,16 +19,16 @@ namespace Wallon.Repository
 		{
 		}
 
-		private static LiaisonsController _apiClientController;
+		private static LiaisonsApiController _apiClientApiController;
 
-		private LiaisonsController Controller
+		private LiaisonsApiController ApiController
 		{
 			get
 			{
-				if (_apiClientController == null)
-					_apiClientController = new LiaisonsController();
+				if (_apiClientApiController == null)
+					_apiClientApiController = new LiaisonsApiController();
 
-				return _apiClientController;
+				return _apiClientApiController;
 			}
 		}
 
@@ -36,7 +36,7 @@ namespace Wallon.Repository
 		{
 			try
 			{
-				await Controller.Delete(id);
+				await ApiController.Delete(id);
 			}
 			catch (Exception ex)
 			{
@@ -48,7 +48,7 @@ namespace Wallon.Repository
 		{
 			try
 			{
-				await Controller.DeleteLiaisonsFromTache(idTache);
+				await ApiController.DeleteLiaisonsFromTache(idTache);
 			}
 			catch (Exception ex)
 			{
@@ -60,7 +60,7 @@ namespace Wallon.Repository
 		{
 			try
 			{
-				return await Controller.ListeLocataires(idTache);
+				return await ApiController.ListeLocataires(idTache);
 			}
 			catch (Exception ex)
 			{
@@ -72,7 +72,7 @@ namespace Wallon.Repository
 		{
 			try
 			{
-				return await Controller.Post<LiaisonCreateDto, TacheReadDto>(liaison);
+				return await ApiController.Post<LiaisonCreateDto, TacheReadDto>(liaison);
 			}
 			catch (Exception ex)
 			{

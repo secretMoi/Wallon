@@ -19,7 +19,7 @@ namespace Wallon.Pages.Vue
 		private void Accueil_Load(object sender, System.EventArgs e)
 		{
 			// lire tout
-			//IEnumerable<LocataireReadDto> locataires = await new LocatairesController().GetAll<LocataireReadDto>();
+			//IEnumerable<LocataireReadDto> locataires = await new LocatairesApiController().GetAll<LocataireReadDto>();
 
 			// post
 			/*LocataireCreateDto locataire = new LocataireCreateDto
@@ -30,7 +30,7 @@ namespace Wallon.Pages.Vue
 			await RepositoryLocataires.Instance.Ajouter(locataire);*/
 
 			// lire 1
-			//LocataireReadDto locataire = await LocatairesController.GetLocataireById(4);
+			//LocataireReadDto locataire = await LocatairesApiController.GetLocataireById(4);
 
 			// update
 			/*LocataireUpdateDto locataire = new LocataireUpdateDto()
@@ -39,16 +39,16 @@ namespace Wallon.Pages.Vue
 				Nom = "1",
 				Password = Encoding.ASCII.GetBytes("test5")
 			};
-			string res = await new LocatairesController().Update(locataire);*/
+			string res = await new LocatairesApiController().Update(locataire);*/
 
 			// get taches from locataire
-			//IEnumerable<TacheReadDto> taches = await new TachesController().GetTachesFromLocataire(1);
+			//IEnumerable<TacheReadDto> taches = await new TachesApiController().GetTachesFromLocataire(1);
 
-			//IEnumerable<TacheReadDto> taches = await new TachesController().GetAll<TacheReadDto>();
+			//IEnumerable<TacheReadDto> taches = await new TachesApiController().GetAll<TacheReadDto>();
 
-			//LocataireReadDto locataire = await new LocatairesController().GetById<LocataireReadDto>(5);
+			//LocataireReadDto locataire = await new LocatairesApiController().GetById<LocataireReadDto>(5);
 
-			//IList<LocataireReadDto> liaison = await new LocatairesController().GetAll<LocataireReadDto>();
+			//IList<LocataireReadDto> liaison = await new LocatairesApiController().GetAll<LocataireReadDto>();
 
 			//var test = await new RepositoryLocataires().LireTest(1);
 		}

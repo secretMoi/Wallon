@@ -13,16 +13,16 @@ namespace Mobile.Controllers.Tache
 {
 	public class TacheController : ITacheController
 	{
-		private ITachesController _taches;
-		private readonly LiaisonsController _liaisons = new LiaisonsController();
+		private ITachesApiController _tachesApi;
+		private readonly LiaisonsApiController _liaisonsApi = new LiaisonsApiController();
 
 		private static readonly Lazy<ITacheController> Lazy = new Lazy<ITacheController>(() => new TacheController());
 
 		//public static ITacheController Instance => Lazy.Value;
 
-		public static ITacheController Instance(ITachesController tachesController)
+		public static ITacheController Instance(ITachesApiController tachesApiController)
 		{
-			((TacheController) Lazy.Value)._taches = tachesController;
+			((TacheController) Lazy.Value)._tachesApi = tachesApiController;
 			return Lazy.Value;
 		}
 
@@ -39,7 +39,7 @@ namespace Mobile.Controllers.Tache
 		 */
 		public async Task<LocataireReadDto> TrouveLocataireSuivant(int idTache, int idLocataire)
 		{
-			List<LocataireReadDto> liaison = (await _liaisons.ListeLocataires(idTache)).ToList(); // liste des locataires participant à la tâche
+			List<LocataireReadDto> liaison = (await _liaisonsApi.ListeLocataires(idTache)).ToList(); // liste des locataires participant à la tâche
 
 			int indexActuel = liaison.FindIndex(l => l.Id == idLocataire); // situe le locataire actuel dans la liste
 			if (indexActuel == -1) // si la liste ne le contient pas
@@ -72,7 +72,7 @@ namespace Mobile.Controllers.Tache
 		{
 			try
 			{
-				TacheReadDto tacheReadDto = await _taches.GetById<TacheReadDto>(id); // récupère les infos du locataire actuel
+				TacheReadDto tacheReadDto = await _tachesApi.GetById<TacheReadDto>(id); // récupère les infos du locataire actuel
 
 				tacheReadDto.DateFin = tacheReadDto.DateFin.AddDays(tacheReadDto.Cycle); // met à jour la datte de fin
 				tacheReadDto.LocataireId = idLocataire; // met à jour le locataire courant
@@ -84,7 +84,7 @@ namespace Mobile.Controllers.Tache
 				Mapper mapper = new Mapper(config);
 				TacheUpdateDto tacheUpdateDto = mapper.Map<TacheUpdateDto>(tacheReadDto);
 
-				await _taches.Update(tacheUpdateDto); // met à jour le locataire
+				await _tachesApi.Update(tacheUpdateDto); // met à jour le locataire
 			}
 			catch (Exception ex)
 			{
@@ -99,7 +99,7 @@ namespace Mobile.Controllers.Tache
 		 */
 		public async Task<TacheReadDto> PostAsync(TacheCreateDto tache)
 		{
-			return await _taches.Post<TacheCreateDto, TacheReadDto>(tache);
+			return await _tachesApi.Post<TacheCreateDto, TacheReadDto>(tache);
 		}
 
 		/**
@@ -111,7 +111,7 @@ namespace Mobile.Controllers.Tache
 		{
 			try
 			{
-				return await _taches.GetAll<TacheReadDto>();
+				return await _tachesApi.GetAll<TacheReadDto>();
 			}
 			catch (Exception e)
 			{
@@ -128,22 +128,22 @@ namespace Mobile.Controllers.Tache
 		 */
 		public async Task<TacheReadDto> GetByIdAsync(int id)
 		{
-			return await _taches.GetById<TacheReadDto>(id);
+			return await _tachesApi.GetById<TacheReadDto>(id);
 		}
 
 		public async Task UpdateAsync(TacheUpdateDto tache)
 		{
-			await _taches.Update(tache);
+			await _tachesApi.Update(tache);
 		}
 
 		public async Task<IList<TacheReadDto>> GetTachesFromLocataireAsync(int idLocataire)
 		{
-			return await _taches.GetTachesFromLocataire(idLocataire);
+			return await _tachesApi.GetTachesFromLocataire(idLocataire);
 		}
 
 		public async Task DeleteAsync(int id)
 		{
-			await _taches.Delete(id);
+			await _tachesApi.Delete(id);
 		}
 	}
 }

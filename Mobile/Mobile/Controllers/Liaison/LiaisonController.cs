@@ -9,7 +9,7 @@ namespace Mobile.Controllers.Liaison
 {
 	public class LiaisonController : ILiaisonController
 	{
-		private readonly LiaisonsController _liaisons = new LiaisonsController();
+		private readonly LiaisonsApiController _liaisonsApi = new LiaisonsApiController();
 
 		private static readonly Lazy<ILiaisonController> Lazy = new Lazy<ILiaisonController>(() => new LiaisonController());
 
@@ -22,17 +22,17 @@ namespace Mobile.Controllers.Liaison
 
 		public async Task<LiaisonReadDto> PostAsync(LiaisonCreateDto liaison)
 		{
-			return await _liaisons.Post<LiaisonCreateDto, LiaisonReadDto>(liaison);
+			return await _liaisonsApi.Post<LiaisonCreateDto, LiaisonReadDto>(liaison);
 		}
 
 		public async Task DeleteLiaisonsFromTacheAsync(int idTache)
 		{
-			await _liaisons.DeleteLiaisonsFromTache(idTache);
+			await _liaisonsApi.DeleteLiaisonsFromTache(idTache);
 		}
 
 		public async Task<IList<LocataireReadDto>> ListeLocatairesAsync(int idTache)
 		{
-			return await _liaisons.ListeLocataires(idTache);
+			return await _liaisonsApi.ListeLocataires(idTache);
 		}
 	}
 }

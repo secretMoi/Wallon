@@ -2,11 +2,11 @@
 
 namespace RestApiClient.Controllers
 {
-	public class LocatairesController : BaseController, ILocatairesController
+	public class SuggestionsApiController : BaseController, ISuggestionsApiController
 	{
-		public LocatairesController()
+		public SuggestionsApiController()
 		{
-			Url = "locataires";
+			Url = "suggestions";
 
 			FillBaseMethods(
 				BaseMethod.GetAll,
