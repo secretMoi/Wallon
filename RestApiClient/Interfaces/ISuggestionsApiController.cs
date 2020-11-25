@@ -1,6 +1,6 @@
 ﻿namespace RestApiClient.Interfaces
 {
-	public interface ISuggestionsApiController
+	public interface ISuggestionsApiController : IBaseController
 	{
 	}
 }

@@ -12,11 +12,11 @@
             <BoxView HeightRequest="50" />
 
             <Frame CornerRadius="10" Padding="0">
-                <Entry Text="{Binding SuggestionData.Nom}" Placeholder="Titre" />
+                <Entry Text="{Binding SuggestionData.Suggestion.Nom}" Placeholder="Titre" />
             </Frame>
 
             <Frame CornerRadius="10" Padding="0">
-                <Editor AutoSize="TextChanges" Text="{Binding SuggestionData.Description}" Placeholder="Description" />
+                <Editor AutoSize="TextChanges" Text="{Binding SuggestionData.Suggestion.Description}" Placeholder="Description" />
             </Frame>
 
             <BoxView HeightRequest="50" />

@@ -6,6 +6,11 @@ namespace Mobile.ViewModels.Suggestions.SuggestionAdd
 	{
 		private SuggestionReadDto _suggestion;
 
+		public SuggestionAddData()
+		{
+			Suggestion = new SuggestionReadDto();
+		}
+
 		public SuggestionReadDto Suggestion
 		{
 			get => _suggestion;

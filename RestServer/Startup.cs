@@ -10,6 +10,7 @@ using Newtonsoft.Json.Serialization;
 using RestServer.Data;
 using RestServer.Data.LiaisonsTachesLocataires;
 using RestServer.Data.Locataires;
+using RestServer.Data.Suggestions;
 using RestServer.Data.Taches;
 
 namespace RestServer
@@ -45,6 +46,7 @@ namespace RestServer
 			services.AddScoped<ILocataireRepo, LocataireRepo>();
 			services.AddScoped<ITacheRepo, TacheRepo>();
 			services.AddScoped<ILiaisonTacheLocataireRepo, LiaisonTacheLocataireRepo>();
+			services.AddScoped<ISuggestionRepo, SuggestionRepo>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
