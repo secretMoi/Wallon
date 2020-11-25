@@ -214,7 +214,6 @@
       <DependentUpon>Profil.cs</DependentUpon>
     </Compile>
     <Compile Include="Profiles\TachesProfile.cs" />
-    <Compile Include="Repository\BaseRepo.cs" />
     <Compile Include="Repository\RepositoryLiaisonTachesLocataires.cs" />
     <Compile Include="Repository\RepositoryLocataires.cs" />
     <Compile Include="Pages\Vue\Accueil.cs">

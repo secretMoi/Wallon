@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Models.Models;
-using RestServer.Validations;
 
 namespace RestServer.Data
 {
@@ -24,5 +23,6 @@ namespace RestServer.Data
 		public DbSet<Locataire> Locataires { get; set; } // map entity framework avec nos modèles
 		public DbSet<Tache> Taches { get; set; } // map entity framework avec nos modèles
 		public DbSet<LiaisonTacheLocataire> LiaisonTachesLocataires { get; set; } // map entity framework avec nos modèles
+		public DbSet<Suggestion> Suggestions { get; set; } // map entity framework avec nos modèles
 	}
 }
