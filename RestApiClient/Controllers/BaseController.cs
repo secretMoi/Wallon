@@ -9,7 +9,7 @@ using RestApiClient.Interfaces;
 
 namespace RestApiClient.Controllers
 {
-	public class BaseController : IBaseController, IBaseController
+	public class BaseController : IBaseController
 	{
 		protected string Url;
 		protected List<BaseMethod> BaseMethods;
@@ -50,7 +50,7 @@ namespace RestApiClient.Controllers
 			return url.ToString();
 		}
 
-		public virtual async Task<T> GetById<T>(int id) where T : IRead
+		public virtual async Task<T> GetById<T>(int id) where T : class, IRead
 		{
 			if (!BaseMethods.Contains(BaseMethod.GetId)) return default;
 
@@ -71,7 +71,7 @@ namespace RestApiClient.Controllers
 			}
 		}
 
-		public virtual async Task<IList<T>> GetAll<T>() where T : IRead
+		public virtual async Task<IList<T>> GetAll<T>() where T : class, IRead
 		{
 			if (!BaseMethods.Contains(BaseMethod.GetAll)) return default;
 

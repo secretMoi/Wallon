@@ -1,6 +1,6 @@
 ﻿namespace Models.Dtos.Locataires
 {
-	public class LocataireCreateDto
+	public class LocataireCreateDto : ILocataire
 	{
 		public string Nom { get; set; }
 

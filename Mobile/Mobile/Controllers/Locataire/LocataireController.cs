@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Models.Dtos.Locataires;
-using Models.Dtos.Taches;
 using RestApiClient.Controllers;
 
 namespace Mobile.Controllers.Locataire

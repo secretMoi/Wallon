@@ -2,7 +2,7 @@
 
 namespace Models.Dtos.Taches
 {
-	public class TacheUpdateDto : IUpdate
+	public class TacheUpdateDto : IUpdate, ITache
 	{
 		public int Id { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace Models.Dtos.Locataires
 {
-	public class LocataireUpdateDto : IUpdate
+	public class LocataireUpdateDto : IUpdate, ILocataire
 	{
 		public int Id { get; set; }
 

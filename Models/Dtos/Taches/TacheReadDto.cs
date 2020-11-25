@@ -6,7 +6,7 @@ namespace Models.Dtos.Taches
 {
 	// copié/collé de la classe Tache
 	// on retire les annotations car inutiles, on ne va pas dialoguer avec la bdd
-	public class TacheReadDto : IRead
+	public class TacheReadDto : IRead, ITache
 	{
 		public int Id { get; set; }
 

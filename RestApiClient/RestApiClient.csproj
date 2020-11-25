@@ -56,6 +56,9 @@
     <Compile Include="Controllers\LiaisonsController.cs" />
     <Compile Include="Controllers\LocatairesController.cs" />
     <Compile Include="Controllers\TachesController.cs" />
+    <Compile Include="Mocks\BaseApiMock.cs" />
+    <Compile Include="Mocks\LocataireApiMock.cs" />
+    <Compile Include="Mocks\TacheApiMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -67,8 +70,6 @@
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mocks\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

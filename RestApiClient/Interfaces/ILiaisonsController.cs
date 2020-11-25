@@ -4,7 +4,7 @@ using Models.Dtos.Locataires;
 
 namespace RestApiClient.Interfaces
 {
-	public interface ILiaisonsController
+	public interface ILiaisonsController : IBaseController
 	{
 		/// <summary>
 		/// Récupère tous les locataires d'une tâche donnée

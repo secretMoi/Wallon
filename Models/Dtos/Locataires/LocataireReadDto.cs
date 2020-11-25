@@ -1,6 +1,6 @@
 ﻿namespace Models.Dtos.Locataires
 {
-	public class LocataireReadDto : IRead
+	public class LocataireReadDto : IRead, ILocataire
 	{
 		public int Id { get; set; }
 

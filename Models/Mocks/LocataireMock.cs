@@ -3,7 +3,7 @@ using Models.Dtos.Locataires;
 
 namespace Models.Mocks
 {
-	public class LocataireMock
+	public class LocataireMock : IDtoMock<LocataireReadDto>
 	{
 		private readonly IList<LocataireReadDto> _mock = new List<LocataireReadDto>();
 

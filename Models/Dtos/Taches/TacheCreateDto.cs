@@ -2,7 +2,7 @@
 
 namespace Models.Dtos.Taches
 {
-	public class TacheCreateDto
+	public class TacheCreateDto : ITache
 	{
 		public string Nom { get; set; }
 

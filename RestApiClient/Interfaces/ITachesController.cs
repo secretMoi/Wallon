@@ -4,7 +4,7 @@ using Models.Dtos.Taches;
 
 namespace RestApiClient.Interfaces
 {
-	public interface ITachesController
+	public interface ITachesController : IBaseController
 	{
 		/// <summary>
 		/// Récupère les tâches où est inscrit un locataire
