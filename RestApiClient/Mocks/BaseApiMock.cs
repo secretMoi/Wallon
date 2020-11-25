@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Models.Dtos;
 using Models.Mocks;
 using RestApiClient.Interfaces;
@@ -11,6 +12,7 @@ namespace RestApiClient.Mocks
 	public class BaseApiMock : IBaseController
 	{
 		private IDtoMock<object> _mock;
+		protected Type Dto;
 
 		protected void InitMock<T>()
 		{
@@ -71,12 +73,30 @@ namespace RestApiClient.Mocks
 
 		public Task<TU> Post<T, TU>(T input) where TU : IRead
 		{
-			throw new NotImplementedException();
+			return Task.Run(() =>
+				{
+					var config = new MapperConfiguration(cfg => cfg.CreateMap<T, TU>());
+					var mapper = config.CreateMapper(); // crée le mapper
+
+					GetMock<TU>().Data.Add(mapper.Map<TU>(input));
+
+					return GetMock<TU>().Data.LastOrDefault();
+				}
+			);
 		}
 
 		public Task Delete(int id)
 		{
 			throw new NotImplementedException();
+			/*return Task.Run(() =>
+				{
+					var indexOf = GetMock<Dto>().Data.IndexOf(
+						GetMock<T>().Data.FirstOrDefault(x => x.Id == data.Id)
+					);
+
+					GetMock<T>().Data[indexOf] = data;
+				}
+			);*/
 		}
 	}
 }

@@ -1,6 +1,6 @@
 ﻿namespace Models.Dtos.LiaisonsTachesLocataires
 {
-	public class LiaisonUpdateDto : IUpdate
+	public class LiaisonUpdateDto : IUpdate, ILiaison
 	{
 		public int Id { get; set; }
 		public int LocataireId { get; set; }

@@ -1,6 +1,8 @@
 ﻿using Mobile.Controllers.Liaison;
 using Mobile.Controllers.Locataire;
 using Mobile.Controllers.Tache;
+using RestApiClient.Controllers;
+using RestApiClient.Mocks;
 
 namespace Mobile.Controllers
 {
@@ -13,12 +15,12 @@ namespace Mobile.Controllers
 
 		public static ITacheController CreateTache()
 		{
-			return TacheController.Instance;
+			return TacheController.Instance(new TachesController());
 		}
 
 		public static ITacheController CreateMockTache()
 		{
-			return new MockTacheController();
+			return TacheController.Instance(new TacheApiMock());
 		}
 
 		public static ILiaisonController CreateLiaison()

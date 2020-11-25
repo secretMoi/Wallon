@@ -2,7 +2,7 @@
 
 namespace Models.Dtos.LiaisonsTachesLocataires
 {
-	public class LiaisonReadDto : IRead
+	public class LiaisonReadDto : IRead, ILiaison
 	{
 		public int Id { get; set; }
 		public int LocataireId { get; set; }

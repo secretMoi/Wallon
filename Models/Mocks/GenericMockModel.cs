@@ -1,4 +1,5 @@
-﻿using Models.Dtos.Locataires;
+﻿using Models.Dtos.LiaisonsTachesLocataires;
+using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
 
 namespace Models.Mocks
@@ -11,6 +12,8 @@ namespace Models.Mocks
 				return new LocataireMock() as IDtoMock<T>;
 			else if(typeof(ITache).IsAssignableFrom(typeof(T)))
 				return new TacheMock() as IDtoMock<T>;
+			else if (typeof(ILiaison).IsAssignableFrom(typeof(T)))
+				return new LiaisonMock() as IDtoMock<T>;
 
 			return null;
 		}

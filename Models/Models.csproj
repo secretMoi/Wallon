@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Dtos\IRead.cs" />
     <Compile Include="Dtos\IUpdate.cs" />
+    <Compile Include="Dtos\LiaisonsTachesLocataires\ILiaison.cs" />
     <Compile Include="Dtos\LiaisonsTachesLocataires\LiaisonCreateDto.cs" />
     <Compile Include="Dtos\LiaisonsTachesLocataires\LiaisonReadDto.cs" />
     <Compile Include="Dtos\LiaisonsTachesLocataires\LiaisonUpdateDto.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="Dtos\Taches\TacheUpdateDto.cs" />
     <Compile Include="Mocks\GenericMockModel.cs" />
     <Compile Include="Mocks\IDtoMock.cs" />
+    <Compile Include="Mocks\LiaisonMock.cs" />
     <Compile Include="Mocks\LocataireMock.cs" />
     <Compile Include="Mocks\TacheMock.cs" />
     <Compile Include="Models\LiaisonTacheLocataire.cs" />
