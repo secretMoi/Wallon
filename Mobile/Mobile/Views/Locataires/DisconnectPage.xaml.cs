@@ -1,6 +1,7 @@
 ﻿using Mobile.ViewModels.Locataires.Disconnect;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using INavigation = Mobile.Core.Navigation.INavigation;
 
 namespace Mobile.Views.Locataires
 {
@@ -25,7 +26,7 @@ namespace Mobile.Views.Locataires
 			else
 				await DisplayAlert("Erreur", "Une erreur est survenue lors de la déconnexion", "D'accord");
 			
-			Application.Current.MainPage = new LogInPage();
+			App.Container.GetService<INavigation>().GoToLogInFlow();
 
 			base.OnAppearing();
 		}

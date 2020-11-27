@@ -1,9 +1,9 @@
 ﻿using System;
 using Mobile.Controllers;
 using Mobile.ViewModels.Locataires.LogIn;
-using Mobile.Views.Taches;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using INavigation = Mobile.Core.Navigation.INavigation;
 
 namespace Mobile.Views.Locataires
 {
@@ -25,7 +25,7 @@ namespace Mobile.Views.Locataires
 			if (await _viewModel.LoadSessionAsync())
 			{
 				await DisplayAlert("Succès", "Connexion réussie", "OK");
-				Application.Current.MainPage = new AppShell();
+				App.Container.GetService<INavigation>().GoToMainFlow();
 			}
 
 			IsBusy = false;
@@ -44,7 +44,7 @@ namespace Mobile.Views.Locataires
 			else
 			{
 				await DisplayAlert("Succès", "Connexion réussie", "OK");
-				Application.Current.MainPage = new AppShell();
+				App.Container.GetService<INavigation>().GoToMainFlow();
 
 				// Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
 				//await Shell.Current.GoToAsync($"{nameof(ListPage)}");

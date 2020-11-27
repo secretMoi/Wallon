@@ -1,10 +1,12 @@
-﻿using Mobile.Core;
+﻿using DependencyInjection;
+using Mobile.Core;
 using Mobile.Core.Navigation;
 using Mobile.Services;
 using Mobile.Views.Locataires;
 using RestApiClient;
 using RestApiClient.Controllers;
 using Xamarin.Forms;
+using INavigation = Mobile.Core.Navigation.INavigation;
 
 namespace Mobile
 {
@@ -12,17 +14,9 @@ namespace Mobile
 	{
 		public static string ConfigurationPath => "config.ini";
 
-		public static Page HomePage
-		{
-			get => Instance.MainPage;
-			set => Instance.MainPage = value;
-		}
-		
-		public static Shell Shell
-		{
-			get;
-			set;
-		}
+		private readonly DiServiceCollection _services = new DiServiceCollection();
+
+		public static DiContainer Container { get; set; }
 		
 		private static App Instance { get; set; }
 
@@ -34,12 +28,13 @@ namespace Mobile
 
 			Instance = this;
 
-			new Shell();
+			//new Shell();
 			DependencyService.Register<MockDataStore>();
-			DependencyService.RegisterSingleton(new Navigation());
+			
+			_services.RegisterSingleton<INavigation, Navigation>();
+			Container = _services.GenerateContainer();
 			
 			MainPage = new LogInPage();
-			HomePage = MainPage;
 		}
 
 		protected override async void OnStart()
