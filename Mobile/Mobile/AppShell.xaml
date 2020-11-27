@@ -86,25 +86,25 @@
     <FlyoutItem Title="Browse" Icon="icon_feed.png">
         <ShellContent Route="ItemsPage" ContentTemplate="{DataTemplate local:ItemsPage}" />
     </FlyoutItem>-->
-    <FlyoutItem Title="Se connecter" IsVisible="{Binding IsGuest}" x:DataType="viewModels:ShellViewModel">
+    <!--<FlyoutItem Title="Se connecter" IsVisible="{Binding IsGuest}" x:DataType="viewModels:ShellViewModel">
         <ShellContent Route="LogInPage" ContentTemplate="{DataTemplate local:Locataires.LogInPage}" />
-    </FlyoutItem>
+    </FlyoutItem>-->
     <FlyoutItem Title="Liste des tâches">
         <ShellContent Route="ListPage" ContentTemplate="{DataTemplate local:Taches.ListPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Mes tâches" IsVisible="{Binding IsLogged}" x:DataType="viewModels:ShellViewModel">
+    <FlyoutItem Title="Mes tâches">
         <ShellContent Route="MesTachesPage" ContentTemplate="{DataTemplate local:Taches.MesTachesPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Liste des locataires" x:DataType="viewModels:ShellViewModel">
+    <FlyoutItem Title="Liste des locataires">
         <ShellContent Route="LocatairesListPage" ContentTemplate="{DataTemplate local:Locataires.LocatairesListPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Proposer une suggestion" IsVisible="{Binding IsLogged}" x:DataType="viewModels:ShellViewModel">
+    <FlyoutItem Title="Proposer une suggestion">
         <ShellContent Route="SuggestionAddPage" ContentTemplate="{DataTemplate local:Suggestions.SuggestionAddPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Liste des suggestions" IsVisible="{Binding IsLogged}" x:DataType="viewModels:ShellViewModel">
+    <FlyoutItem Title="Liste des suggestions">
         <ShellContent Route="SuggestionListPage" ContentTemplate="{DataTemplate local:Suggestions.SuggestionListPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Se déconnecter" IsVisible="{Binding IsLogged}" x:DataType="viewModels:ShellViewModel">
+    <FlyoutItem Title="Se déconnecter">
         <ShellContent Route="DisconnectPage" ContentTemplate="{DataTemplate local:Locataires.DisconnectPage}" />
     </FlyoutItem>
 

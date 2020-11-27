@@ -17,7 +17,7 @@ namespace Mobile.Core
 		}
 
 		/**
-		 * <summary>Vérifie si une session est crée ou pas</summary>
+		 * <summary>Vérifie si une session est créée ou pas</summary>
 		 */
 		public bool IsSet => _session != null;
 
@@ -29,7 +29,7 @@ namespace Mobile.Core
 			set
 			{
 				_session = value;
-				AppShell.Instance.ConnectionState = IsSet;
+				//AppShell.Instance.ConnectionState = IsSet;
 			}
 		}
 
@@ -39,7 +39,7 @@ namespace Mobile.Core
 		public void Disconnect()
 		{
 			_session = null;
-			AppShell.Instance.ConnectionState = IsSet;
+			//AppShell.Instance.ConnectionState = IsSet;
 		}
 
 		/**

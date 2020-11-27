@@ -24,6 +24,8 @@ namespace Mobile.Views.Locataires
 				await DisplayAlert("Succès", "Vous avez bien été déconnecté", "Au revoir");
 			else
 				await DisplayAlert("Erreur", "Une erreur est survenue lors de la déconnexion", "D'accord");
+			
+			Application.Current.MainPage = new LogInPage();
 
 			base.OnAppearing();
 		}

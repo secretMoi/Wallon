@@ -22,8 +22,8 @@ namespace Mobile
 
 			Routing.RegisterRoute(nameof(DisconnectPage), typeof(DisconnectPage));
 
-			Routing.RegisterRoute(nameof(LogInPage), typeof(LogInPage));
-			Routing.RegisterRoute(nameof(ListPage), typeof(ListPage));
+			Routing.RegisterRoute("locataires/login", typeof(LogInPage));
+			Routing.RegisterRoute("taches/list", typeof(ListPage));
 			Routing.RegisterRoute(nameof(DetailPage), typeof(DetailPage));
 			Routing.RegisterRoute(nameof(AddTachePage), typeof(AddTachePage));
 			Routing.RegisterRoute(nameof(MesTachesPage), typeof(MesTachesPage));

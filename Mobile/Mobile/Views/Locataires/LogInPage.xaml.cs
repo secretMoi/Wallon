@@ -1,6 +1,7 @@
 ﻿using System;
 using Mobile.Controllers;
 using Mobile.ViewModels.Locataires.LogIn;
+using Mobile.Views.Taches;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -20,10 +21,14 @@ namespace Mobile.Views.Locataires
 
 		protected override async void OnAppearing()
 		{
+			IsBusy = true;
 			if (await _viewModel.LoadSessionAsync())
 			{
 				await DisplayAlert("Succès", "Connexion réussie", "OK");
+				Application.Current.MainPage = new AppShell();
 			}
+
+			IsBusy = false;
 
 			base.OnAppearing();
 		}
@@ -39,6 +44,7 @@ namespace Mobile.Views.Locataires
 			else
 			{
 				await DisplayAlert("Succès", "Connexion réussie", "OK");
+				Application.Current.MainPage = new AppShell();
 
 				// Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
 				//await Shell.Current.GoToAsync($"{nameof(ListPage)}");

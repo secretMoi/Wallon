@@ -3,10 +3,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:xForms="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             xmlns:list="clr-namespace:Mobile.ViewModels.Suggestions.List;assembly=Mobile"
              x:Class="Mobile.Views.Suggestions.SuggestionListPage"
-             Title="{Binding Title}"
-             x:DataType="list:SuggestionListViewModel">
+             Title="{Binding Title}">
 	<ContentPage.Content>
 		
 		<StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand">
@@ -16,11 +14,13 @@
             <xForms:SfListView ItemsSource="{Binding Suggestion.List}"
                                ItemTapped="ListView_OnItemTapped"
                                SelectionBackgroundColor="#F0F0F0" ItemSize="100"
-                               AllowSwiping="True"
-                               >
+                               AllowSwiping="True">
                 <xForms:SfListView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Margin="20" Orientation="Vertical" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand">
+                            
+                            <Label Text="{Binding Nom}" FontSize="20" FontAttributes="Bold" TextColor="DeepSkyBlue" />
+                            <Label Text="{Binding Locataire.Nom}" FontAttributes="Italic" />
 
                             <!--<Label Text="{Binding Source={x:Reference YourListView}, Path=Nom }" FontSize="20" FontAttributes="Bold" TextColor="DeepSkyBlue" />
                             <Label Text="{Binding Source={x:Reference YourListView}, Path= CurrentItem.Description }" FontAttributes="Italic" />-->
