@@ -101,6 +101,9 @@
     <FlyoutItem Title="Proposer une suggestion" IsVisible="{Binding IsLogged}" x:DataType="viewModels:ShellViewModel">
         <ShellContent Route="SuggestionAddPage" ContentTemplate="{DataTemplate local:Suggestions.SuggestionAddPage}" />
     </FlyoutItem>
+    <FlyoutItem Title="Liste des suggestions" IsVisible="{Binding IsLogged}" x:DataType="viewModels:ShellViewModel">
+        <ShellContent Route="SuggestionListPage" ContentTemplate="{DataTemplate local:Suggestions.SuggestionListPage}" />
+    </FlyoutItem>
     <FlyoutItem Title="Se déconnecter" IsVisible="{Binding IsLogged}" x:DataType="viewModels:ShellViewModel">
         <ShellContent Route="DisconnectPage" ContentTemplate="{DataTemplate local:Locataires.DisconnectPage}" />
     </FlyoutItem>

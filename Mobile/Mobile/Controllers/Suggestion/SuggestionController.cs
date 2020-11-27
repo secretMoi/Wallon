@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Models.Dtos.Suggestions;
 using RestApiClient.Interfaces;
@@ -25,6 +26,11 @@ namespace Mobile.Controllers.Suggestion
 		public Task<SuggestionReadDto> PostAsync(SuggestionCreateDto suggestion)
 		{
 			return _suggestionsApi.Post<SuggestionCreateDto, SuggestionReadDto>(suggestion);
+		}
+
+		public Task<IList<SuggestionReadDto>> GetAllAsync()
+		{
+			return _suggestionsApi.GetAll<SuggestionReadDto>();
 		}
 	}
 }

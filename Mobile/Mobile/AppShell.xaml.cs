@@ -29,6 +29,7 @@ namespace Mobile
 			Routing.RegisterRoute(nameof(MesTachesPage), typeof(MesTachesPage));
 			Routing.RegisterRoute(nameof(LocatairesListPage), typeof(LocatairesListPage));
 			Routing.RegisterRoute(nameof(SuggestionAddPage), typeof(SuggestionAddPage));
+			Routing.RegisterRoute(nameof(SuggestionListPage), typeof(SuggestionListPage));
 
 			Instance = this;
 			BindingContext = _viewModel;

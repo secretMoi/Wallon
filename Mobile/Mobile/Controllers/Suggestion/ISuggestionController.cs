@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Models.Dtos.Suggestions;
 
 namespace Mobile.Controllers.Suggestion
@@ -7,5 +8,6 @@ namespace Mobile.Controllers.Suggestion
 	{
 		static ISuggestionController Instance { get; }
 		Task<SuggestionReadDto> PostAsync(SuggestionCreateDto suggestion);
+		Task<IList<SuggestionReadDto>> GetAllAsync();
 	}
 }
