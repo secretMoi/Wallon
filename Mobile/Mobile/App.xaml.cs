@@ -1,8 +1,9 @@
-﻿using Mobile.Core.Navigation;
+﻿using Mobile.Core;
+using Mobile.Core.Navigation;
 using Mobile.Services;
-using Mobile.Views;
 using Mobile.Views.Locataires;
 using RestApiClient;
+using RestApiClient.Controllers;
 using Xamarin.Forms;
 
 namespace Mobile
@@ -41,8 +42,10 @@ namespace Mobile
 			HomePage = MainPage;
 		}
 
-		protected override void OnStart()
+		protected override async void OnStart()
 		{
+			if (AndroidPermissions.HasInternet())
+				await new BaseController().InitConnection();
 		}
 
 		protected override void OnSleep()

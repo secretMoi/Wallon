@@ -6,6 +6,7 @@ namespace RestApiClient.Interfaces
 {
 	public interface IBaseController
 	{
+		Task<bool> InitConnection();
 		Task<T> GetById<T>(int id) where T : class, IRead;
 		Task<IList<T>> GetAll<T>() where T : class, IRead;
 		Task Update<T>(T data) where T : IUpdate;

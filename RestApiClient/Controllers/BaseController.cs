@@ -50,6 +50,22 @@ namespace RestApiClient.Controllers
 			return url.ToString();
 		}
 
+		public virtual async Task<bool> InitConnection()
+		{
+			var url = MakeUrl();
+
+			try
+			{
+				await ApiHelper.ApiClient.GetAsync(url);
+				return true;
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+				return false;
+			}
+		} 
+
 		public virtual async Task<T> GetById<T>(int id) where T : class, IRead
 		{
 			if (!BaseMethods.Contains(BaseMethod.GetId)) return default;

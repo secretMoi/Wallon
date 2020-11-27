@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestApiClient", "RestApiCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mobile.Tests", "Mobile.Tests\Mobile.Tests.csproj", "{A6317468-DF29-4599-9138-028F6FFFDEA0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyInjection", "DependencyInjection\DependencyInjection.csproj", "{32959350-1D56-43A6-A636-40E29A5190EA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{A6317468-DF29-4599-9138-028F6FFFDEA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6317468-DF29-4599-9138-028F6FFFDEA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6317468-DF29-4599-9138-028F6FFFDEA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32959350-1D56-43A6-A636-40E29A5190EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32959350-1D56-43A6-A636-40E29A5190EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32959350-1D56-43A6-A636-40E29A5190EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32959350-1D56-43A6-A636-40E29A5190EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -37,6 +37,11 @@ namespace RestApiClient.Mocks
 			return newList;
 		}
 
+		public Task<bool> InitConnection()
+		{
+			return Task.Run(() => true);
+		}
+
 		public Task<T> GetById<T>(int id) where T : class, IRead
 		{
 			return Task.Run(() =>
