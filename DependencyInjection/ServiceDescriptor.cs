@@ -36,5 +36,13 @@
 			ImplementationType = implementationType;
 			LifeTime = lifeTime;
 		}
+		
+		// interface + objet déjà instancié
+		public ServiceDescriptor(Type serviceType, object implementation, ServiceLifeTime lifeTime)
+		{
+			ServiceType = serviceType;
+			Implementation = implementation;
+			LifeTime = lifeTime;
+		}
 	}
 }

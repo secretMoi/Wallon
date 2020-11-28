@@ -24,6 +24,14 @@ namespace DependencyInjection
 			);
 		}
 		
+		// enregistre via un objet / une instanciation
+		public void RegisterSingleton<TService, TImplementation>(TImplementation implementation) where TImplementation : TService
+		{
+			_serviceDescriptors.Add(
+				new ServiceDescriptor(typeof(TService), implementation, ServiceLifeTime.Singleton)
+			);
+		}
+		
 		// enregistre via un objet / une implémentation
 		public void RegisterSingleton<TService>(TService implementation)
 		{

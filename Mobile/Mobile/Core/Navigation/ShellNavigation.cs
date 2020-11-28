@@ -6,6 +6,13 @@ namespace Mobile.Core.Navigation
 {
 	public class Navigation : INavigation
 	{
+		private readonly string _viewNamespace;
+		
+		public Navigation(string viewNamespace)
+		{
+			_viewNamespace = viewNamespace;
+		}
+		
 		public Task AsRootPage(Page page)
 		{
 			return Shell.Current.GoToAsync("//" + page);

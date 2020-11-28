@@ -3,6 +3,7 @@ using DependencyInjection.Interfaces;
 using Mobile.Core;
 using Mobile.Core.Logger;
 using Mobile.Core.Navigation;
+using Mobile.Core.Routes;
 using Mobile.Services;
 using Mobile.Views.Locataires;
 using RestApiClient;
@@ -18,17 +19,13 @@ namespace Mobile
 
 		private readonly IDiServiceCollection _services = new DiServiceCollection();
 
-		public static IDiContainer Container { get; set; }
-		
-		private static App Instance { get; set; }
+		public static IDiContainer Container { get; private set; }
 
 		public App()
 		{
 			InitializeComponent();
 
 			ApiHelper.InitializeClient();
-
-			Instance = this;
 
 			ConfigureServices(_services);
 			Container = _services.GenerateContainer();
@@ -40,8 +37,9 @@ namespace Mobile
 		{
 			DependencyService.Register<MockDataStore>();
 			
-			serviceCollection.RegisterSingleton<INavigation, Navigation>();
+			serviceCollection.RegisterSingleton<INavigation>(new Navigation("Mobile.Views."));
 			serviceCollection.RegisterSingleton<ILogger, Logger>();
+			serviceCollection.RegisterSingleton<IRoute, Route>(new Route("Mobile.Views."));
 		}
 
 		protected override async void OnStart()

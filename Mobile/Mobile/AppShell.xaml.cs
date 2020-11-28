@@ -1,5 +1,6 @@
 ﻿using Mobile.Views;
 using System;
+using Mobile.Core.Routes;
 using Mobile.ViewModels;
 using Mobile.Views.Locataires;
 using Mobile.Views.Suggestions;
@@ -26,7 +27,7 @@ namespace Mobile
 			Routing.RegisterRoute("locataires/login", typeof(LogInPage));
 			Routing.RegisterRoute("taches/list", typeof(ListPage));
 			Routing.RegisterRoute(nameof(DetailPage), typeof(DetailPage));
-			Routing.RegisterRoute(nameof(AddTachePage), typeof(AddTachePage));
+			//Routing.RegisterRoute(nameof(AddTachePage), typeof(AddTachePage));
 			Routing.RegisterRoute(nameof(MesTachesPage), typeof(MesTachesPage));
 			Routing.RegisterRoute(nameof(LocatairesListPage), typeof(LocatairesListPage));
 			Routing.RegisterRoute(nameof(SuggestionAddPage), typeof(SuggestionAddPage));
@@ -34,10 +35,11 @@ namespace Mobile
 			BindingContext = _viewModel;
 
 			_viewNamespace = viewNamespace;
-			RegisterRoute<AddTachePage>();
+			//RegisterRoute<AddTachePage>();
+			App.Container.GetService<IRoute>().RegisterRoute<AddTachePage>();
 		}
 
-		private void RegisterRoute<T>() where T : Page
+		/*private void RegisterRoute<T>() where T : Page
 		{
 			Type type = typeof(T); // récupère le type
 			string route = SetRouteName(type.ToString());
@@ -49,8 +51,8 @@ namespace Mobile
 		{
 			string route = completeNamespace.Remove(0, _viewNamespace.Length); // ne garde que les dossiers dans view
 			return route.Replace('.', '/'); // remplace les . du namespace par des / pour créer la route
-		}
-
+		}*/
+		
 		public bool ConnectionState
 		{
 			set
