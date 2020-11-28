@@ -32,5 +32,10 @@ namespace Mobile.Controllers.Suggestion
 		{
 			return _suggestionsApi.GetAll<SuggestionReadDto>();
 		}
+
+		public Task<bool> DeleteAsync(int suggestionId)
+		{
+			return _suggestionsApi.Delete(suggestionId);
+		}
 	}
 }

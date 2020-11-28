@@ -11,6 +11,6 @@ namespace RestApiClient.Interfaces
 		Task<IList<T>> GetAll<T>() where T : class, IRead;
 		Task Update<T>(T data) where T : IUpdate;
 		Task<TU> Post<T, TU>(T input) where TU : IRead;
-		Task Delete(int id);
+		Task<bool> Delete(int id);
 	}
 }

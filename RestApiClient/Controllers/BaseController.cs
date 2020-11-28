@@ -142,13 +142,22 @@ namespace RestApiClient.Controllers
 			return result;
 		}
 
-		public virtual async Task Delete(int id)
+		public virtual async Task<bool> Delete(int id)
 		{
-			if (!BaseMethods.Contains(BaseMethod.Delete)) return;
+			if (!BaseMethods.Contains(BaseMethod.Delete)) return false;
 
 			string url = MakeUrl(id);
 
-			await ApiHelper.ApiClient.DeleteAsync(url);
+			try
+			{
+				return (await ApiHelper.ApiClient.DeleteAsync(url)).IsSuccessStatusCode;
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+				return false;
+			}
+			
 		}
 	}
 }

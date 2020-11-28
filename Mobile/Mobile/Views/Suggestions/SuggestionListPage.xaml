@@ -30,6 +30,26 @@
                     </DataTemplate>
                 </xForms:SfListView.ItemTemplate>
                 
+                <xForms:SfListView.RightSwipeTemplate>
+                    <DataTemplate x:Name="LeftSwipeTemplate">
+                        <Grid>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped"/>
+                            </Grid.GestureRecognizers>
+                            <Grid BackgroundColor="#DC595F" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                                <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Image  Grid.Column="0"
+                                            Grid.Row="0"
+                                            BackgroundColor="Transparent"
+                                            HeightRequest="32"
+                                            WidthRequest="32"
+                                            Source="delete.png" />
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </xForms:SfListView.RightSwipeTemplate>
+                
             </xForms:SfListView>
 
         </StackLayout>

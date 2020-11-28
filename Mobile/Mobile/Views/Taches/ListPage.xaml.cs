@@ -51,12 +51,12 @@ namespace Mobile.Views.Taches
 		 */
 		private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
 		{
-			var tache = ((sender as View)?.BindingContext as TacheReadDto); // récupère les infos sur la tâche
+			var tache = (sender as View)?.BindingContext as TacheReadDto; // récupère les infos sur la tâche
 
 			// message d'avertissement
 			var result = await DisplayAlert(
 				"Attention",
-				$@"Voulez-vous vraimment supprimer la tâche {tache?.Nom} ?",
+				$@"Voulez-vous vraiment supprimer la tâche {tache?.Nom} ?",
 				"Oui",
 				"Non"
 			);

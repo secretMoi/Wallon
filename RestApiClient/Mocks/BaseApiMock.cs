@@ -90,7 +90,7 @@ namespace RestApiClient.Mocks
 			);
 		}
 
-		public Task Delete(int id)
+		public Task<bool> Delete(int id)
 		{
 			throw new NotImplementedException();
 			/*return Task.Run(() =>

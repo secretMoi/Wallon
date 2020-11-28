@@ -16,16 +16,7 @@ namespace Mobile
 		public AppShell()
 		{
 			InitializeComponent();
-
-			//Routing.RegisterRoute(nameof(DisconnectPage), typeof(DisconnectPage));
-
-			//Routing.RegisterRoute("locataires/login", typeof(LogInPage));
-			//Routing.RegisterRoute("taches/list", typeof(ListPage));
-			//Routing.RegisterRoute(nameof(DetailPage), typeof(DetailPage));
-			//Routing.RegisterRoute(nameof(MesTachesPage), typeof(MesTachesPage));
-			/*Routing.RegisterRoute(nameof(LocatairesListPage), typeof(LocatairesListPage));
-			Routing.RegisterRoute(nameof(SuggestionAddPage), typeof(SuggestionAddPage));
-			Routing.RegisterRoute(nameof(SuggestionListPage), typeof(SuggestionListPage));*/
+			
 			BindingContext = _viewModel;
 
 			// taches

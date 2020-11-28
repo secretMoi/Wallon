@@ -90,25 +90,25 @@
         <ShellContent Route="LogInPage" ContentTemplate="{DataTemplate local:Locataires.LogInPage}" />
     </FlyoutItem>-->
     <FlyoutItem Title="Liste des tâches">
-        <ShellContent Route="ListPage" ContentTemplate="{DataTemplate local:Taches.ListPage}" />
+        <ShellContent ContentTemplate="{DataTemplate local:Taches.ListPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Ajouter tâches">
-        <ShellContent Route="Taches.AddTachePage" ContentTemplate="{DataTemplate local:Taches.AddTachePage}" />
+        <ShellContent ContentTemplate="{DataTemplate local:Taches.AddTachePage}" />
     </FlyoutItem>
     <FlyoutItem Title="Mes tâches">
-        <ShellContent Route="MesTachesPage" ContentTemplate="{DataTemplate local:Taches.MesTachesPage}" />
+        <ShellContent ContentTemplate="{DataTemplate local:Taches.MesTachesPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Liste des locataires">
-        <ShellContent Route="LocatairesListPage" ContentTemplate="{DataTemplate local:Locataires.LocatairesListPage}" />
+        <ShellContent ContentTemplate="{DataTemplate local:Locataires.LocatairesListPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Proposer une suggestion">
-        <ShellContent Route="SuggestionAddPage" ContentTemplate="{DataTemplate local:Suggestions.SuggestionAddPage}" />
+        <ShellContent ContentTemplate="{DataTemplate local:Suggestions.SuggestionAddPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Liste des suggestions">
-        <ShellContent Route="SuggestionListPage" ContentTemplate="{DataTemplate local:Suggestions.SuggestionListPage}" />
+        <ShellContent ContentTemplate="{DataTemplate local:Suggestions.SuggestionListPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Se déconnecter">
-        <ShellContent Route="DisconnectPage" ContentTemplate="{DataTemplate local:Locataires.DisconnectPage}" />
+        <ShellContent ContentTemplate="{DataTemplate local:Locataires.DisconnectPage}" />
     </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->

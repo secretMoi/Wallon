@@ -12,7 +12,8 @@ namespace RestApiClient.Controllers
 				BaseMethod.GetAll,
 				BaseMethod.GetId,
 				BaseMethod.Post,
-				BaseMethod.Update
+				BaseMethod.Update,
+				BaseMethod.Delete
 			);
 		}
 	}

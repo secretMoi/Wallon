@@ -9,5 +9,6 @@ namespace Mobile.Controllers.Suggestion
 		static ISuggestionController Instance { get; }
 		Task<SuggestionReadDto> PostAsync(SuggestionCreateDto suggestion);
 		Task<IList<SuggestionReadDto>> GetAllAsync();
+		Task<bool> DeleteAsync(int suggestionId);
 	}
 }

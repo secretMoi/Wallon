@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Mobile.Controllers.Suggestion;
+using Mobile.Core.Logger;
 
 namespace Mobile.ViewModels.Suggestions.List
 {
@@ -7,7 +9,7 @@ namespace Mobile.ViewModels.Suggestions.List
 	{
 		private readonly ISuggestionController _suggestionController;
 
-		public SuggestionListData Suggestion { get; set; }
+		public SuggestionListData Suggestion { get; }
 		
 		public SuggestionListViewModel(ISuggestionController suggestionController)
 		{
@@ -29,6 +31,20 @@ namespace Mobile.ViewModels.Suggestions.List
 			foreach (var tache in taches)
 			{
 				Suggestion.List.Add(tache);
+			}
+		}
+
+		public async Task<bool> Delete(int suggestionId)
+		{
+			try
+			{
+				return await _suggestionController.DeleteAsync(suggestionId);
+			}
+			catch (Exception e)
+			{
+				App.Container.GetService<ILogger>().LogError(e.Message);
+
+				return false;
 			}
 		}
 	}
