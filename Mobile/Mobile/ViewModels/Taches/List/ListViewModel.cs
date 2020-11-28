@@ -7,6 +7,7 @@ using Mobile.ViewModels.Taches.Detail;
 using Mobile.Views.Taches;
 using Models.Dtos.Taches;
 using Xamarin.Forms;
+using INavigation = Mobile.Core.Navigation.INavigation;
 
 namespace Mobile.ViewModels.Taches.List
 {
@@ -38,7 +39,8 @@ namespace Mobile.ViewModels.Taches.List
 
 		private async void NavigateToAddTache()
 		{
-			await Shell.Current.GoToAsync($"{nameof(AddTachePage)}");
+			await App.Container.GetService<INavigation>().PushAsync<AddTachePage>();
+			//await Shell.Current.GoToAsync($"{nameof(AddTachePage)}");
 		}
 
 		/**

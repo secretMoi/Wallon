@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Mobile.ViewModels;
 using Mobile.Views.Locataires;
 using Xamarin.Forms;
 
@@ -7,6 +6,11 @@ namespace Mobile.Core.Navigation
 {
 	public class Navigation : INavigation
 	{
+		public Task AsRootPage(Page page)
+		{
+			return Shell.Current.GoToAsync("//" + page);
+		}
+
 		public void ChangeFlow(Page page)
 		{
 			Application.Current.MainPage = page;
@@ -14,7 +18,7 @@ namespace Mobile.Core.Navigation
 		
 		public void GoToMainFlow()
 		{
-			ChangeFlow(new AppShell());
+			ChangeFlow(new AppShell("Mobile.Views."));
 		}
 		
 		public void GoToLogInFlow()
@@ -22,9 +26,9 @@ namespace Mobile.Core.Navigation
 			ChangeFlow(new LogInPage());
 		}
 
-		public Task PushAsync<T>() where T : BaseViewModel
+		public Task PushAsync<T>() where T : Page
 		{
-			return Shell.Current.GoToAsync(nameof(T));
+			return Shell.Current.GoToAsync(typeof(T).Name);
 		}
 	}
 }

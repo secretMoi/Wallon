@@ -10,10 +10,11 @@ namespace Mobile
 {
 	public partial class AppShell : Shell
 	{
-		public static AppShell Instance { get; private set; }
 		private readonly ShellViewModel _viewModel = new ShellViewModel();
 
-		public AppShell()
+		private readonly string _viewNamespace;
+
+		public AppShell(string viewNamespace)
 		{
 			InitializeComponent();
 
@@ -30,9 +31,24 @@ namespace Mobile
 			Routing.RegisterRoute(nameof(LocatairesListPage), typeof(LocatairesListPage));
 			Routing.RegisterRoute(nameof(SuggestionAddPage), typeof(SuggestionAddPage));
 			Routing.RegisterRoute(nameof(SuggestionListPage), typeof(SuggestionListPage));
-
-			Instance = this;
 			BindingContext = _viewModel;
+
+			_viewNamespace = viewNamespace;
+			RegisterRoute<AddTachePage>();
+		}
+
+		private void RegisterRoute<T>() where T : Page
+		{
+			Type type = typeof(T); // récupère le type
+			string route = SetRouteName(type.ToString());
+			
+			Routing.RegisterRoute(route, type);
+		}
+
+		private string SetRouteName(string completeNamespace)
+		{
+			string route = completeNamespace.Remove(0, _viewNamespace.Length); // ne garde que les dossiers dans view
+			return route.Replace('.', '/'); // remplace les . du namespace par des / pour créer la route
 		}
 
 		public bool ConnectionState
