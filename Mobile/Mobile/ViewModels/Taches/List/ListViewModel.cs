@@ -71,7 +71,8 @@ namespace Mobile.ViewModels.Taches.List
 				return;
 
 			// This will push the ItemDetailPage onto the navigation stack
-			await Shell.Current.GoToAsync($"{nameof(DetailPage)}?{nameof(DetailViewModel.TacheId)}={tache.Id}");
+			await App.Container.GetService<INavigation>().PushAsync<DetailPage>(nameof(DetailViewModel.TacheId), tache.Id);
+			//await Shell.Current.GoToAsync($"{nameof(DetailPage)}?{nameof(DetailViewModel.TacheId)}={tache.Id}");
 		}
 
 		/**

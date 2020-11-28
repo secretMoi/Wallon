@@ -27,9 +27,9 @@ namespace Mobile
 
 			ApiHelper.InitializeClient();
 
-			ConfigureServices(_services);
 			Container = _services.GenerateContainer();
-			
+			ConfigureServices(_services);
+
 			MainPage = new LogInPage();
 		}
 
@@ -37,9 +37,9 @@ namespace Mobile
 		{
 			DependencyService.Register<MockDataStore>();
 			
-			serviceCollection.RegisterSingleton<INavigation>(new Navigation("Mobile.Views."));
+			serviceCollection.RegisterSingleton<IRoute>(new Route("Mobile.Views."));
+			serviceCollection.RegisterSingleton<INavigation>(new Navigation(Container.GetService<IRoute>()));
 			serviceCollection.RegisterSingleton<ILogger, Logger>();
-			serviceCollection.RegisterSingleton<IRoute, Route>(new Route("Mobile.Views."));
 		}
 
 		protected override async void OnStart()

@@ -13,45 +13,36 @@ namespace Mobile
 	{
 		private readonly ShellViewModel _viewModel = new ShellViewModel();
 
-		private readonly string _viewNamespace;
-
-		public AppShell(string viewNamespace)
+		public AppShell()
 		{
 			InitializeComponent();
 
-			Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-			Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+			//Routing.RegisterRoute(nameof(DisconnectPage), typeof(DisconnectPage));
 
-			Routing.RegisterRoute(nameof(DisconnectPage), typeof(DisconnectPage));
-
-			Routing.RegisterRoute("locataires/login", typeof(LogInPage));
-			Routing.RegisterRoute("taches/list", typeof(ListPage));
-			Routing.RegisterRoute(nameof(DetailPage), typeof(DetailPage));
-			//Routing.RegisterRoute(nameof(AddTachePage), typeof(AddTachePage));
-			Routing.RegisterRoute(nameof(MesTachesPage), typeof(MesTachesPage));
-			Routing.RegisterRoute(nameof(LocatairesListPage), typeof(LocatairesListPage));
+			//Routing.RegisterRoute("locataires/login", typeof(LogInPage));
+			//Routing.RegisterRoute("taches/list", typeof(ListPage));
+			//Routing.RegisterRoute(nameof(DetailPage), typeof(DetailPage));
+			//Routing.RegisterRoute(nameof(MesTachesPage), typeof(MesTachesPage));
+			/*Routing.RegisterRoute(nameof(LocatairesListPage), typeof(LocatairesListPage));
 			Routing.RegisterRoute(nameof(SuggestionAddPage), typeof(SuggestionAddPage));
-			Routing.RegisterRoute(nameof(SuggestionListPage), typeof(SuggestionListPage));
+			Routing.RegisterRoute(nameof(SuggestionListPage), typeof(SuggestionListPage));*/
 			BindingContext = _viewModel;
 
-			_viewNamespace = viewNamespace;
-			//RegisterRoute<AddTachePage>();
+			// taches
 			App.Container.GetService<IRoute>().RegisterRoute<AddTachePage>();
-		}
-
-		/*private void RegisterRoute<T>() where T : Page
-		{
-			Type type = typeof(T); // récupère le type
-			string route = SetRouteName(type.ToString());
+			App.Container.GetService<IRoute>().RegisterRoute<ListPage>();
+			App.Container.GetService<IRoute>().RegisterRoute<MesTachesPage>();
+			App.Container.GetService<IRoute>().RegisterRoute<DetailPage>();
 			
-			Routing.RegisterRoute(route, type);
+			// locataires
+			App.Container.GetService<IRoute>().RegisterRoute<LogInPage>();
+			App.Container.GetService<IRoute>().RegisterRoute<DisconnectPage>();
+			App.Container.GetService<IRoute>().RegisterRoute<LocatairesListPage>();
+			
+			// suggestions
+			App.Container.GetService<IRoute>().RegisterRoute<SuggestionAddPage>();
+			App.Container.GetService<IRoute>().RegisterRoute<SuggestionListPage>();
 		}
-
-		private string SetRouteName(string completeNamespace)
-		{
-			string route = completeNamespace.Remove(0, _viewNamespace.Length); // ne garde que les dossiers dans view
-			return route.Replace('.', '/'); // remplace les . du namespace par des / pour créer la route
-		}*/
 		
 		public bool ConnectionState
 		{

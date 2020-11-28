@@ -11,5 +11,6 @@ namespace Mobile.Core.Navigation
 		void GoToMainFlow();
 		void GoToLogInFlow();
 		Task PushAsync<T>() where T : Page;
+		Task PushAsync<T>(string parameterName, object data) where T : Page;
 	}
 }

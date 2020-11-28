@@ -92,6 +92,9 @@
     <FlyoutItem Title="Liste des tâches">
         <ShellContent Route="ListPage" ContentTemplate="{DataTemplate local:Taches.ListPage}" />
     </FlyoutItem>
+    <FlyoutItem Title="Ajouter tâches">
+        <ShellContent Route="Taches.AddTachePage" ContentTemplate="{DataTemplate local:Taches.AddTachePage}" />
+    </FlyoutItem>
     <FlyoutItem Title="Mes tâches">
         <ShellContent Route="MesTachesPage" ContentTemplate="{DataTemplate local:Taches.MesTachesPage}" />
     </FlyoutItem>

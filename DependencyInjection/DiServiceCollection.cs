@@ -24,7 +24,7 @@ namespace DependencyInjection
 			);
 		}
 		
-		// enregistre via un objet / une instanciation
+		// enregistre via une interface TService ET une instanciation TImplementation
 		public void RegisterSingleton<TService, TImplementation>(TImplementation implementation) where TImplementation : TService
 		{
 			_serviceDescriptors.Add(
@@ -36,7 +36,7 @@ namespace DependencyInjection
 		public void RegisterSingleton<TService>(TService implementation)
 		{
 			_serviceDescriptors.Add(
-				new ServiceDescriptor(implementation, ServiceLifeTime.Singleton)
+				new ServiceDescriptor(typeof(TService), implementation, ServiceLifeTime.Singleton)
 			);
 		}
 		
