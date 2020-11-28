@@ -115,7 +115,8 @@ namespace Mobile.Controllers.Tache
 			}
 			catch (Exception e)
 			{
-				Logger.LogError(e.Message);
+				//Logger.LogError(e.Message);
+				App.Container.GetService<ILogger>().LogError(e.Message);
 
 				return null;
 			}

@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using DependencyInjection.Interfaces;
 
 namespace DependencyInjection
 {
 	// permet d'enregistrer les services
-	public class DiServiceCollection
+	public class DiServiceCollection : IDiServiceCollection
 	{
 		private readonly List<ServiceDescriptor> _serviceDescriptors = new List<ServiceDescriptor>();
 		

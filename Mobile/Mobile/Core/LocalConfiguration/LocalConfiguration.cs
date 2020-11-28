@@ -37,7 +37,8 @@ namespace Mobile.Core.LocalConfiguration
 			}
 			catch (Exception e)
 			{
-				Logger.Logger.LogError(e.Message);
+				//Logger.Logger.LogError(e.Message);
+				App.Container.GetService<ILogger>().LogError(e.Message);
 				return false;
 			}
 			
@@ -62,7 +63,8 @@ namespace Mobile.Core.LocalConfiguration
 			}
 			catch (Exception e)
 			{
-				Logger.Logger.LogError(e.Message);
+				//Logger.Logger.LogError(e.Message);
+				App.Container.GetService<ILogger>().LogError(e.Message);
 
 				return false;
 			}

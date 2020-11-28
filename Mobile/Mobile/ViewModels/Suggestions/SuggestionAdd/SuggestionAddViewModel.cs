@@ -48,7 +48,8 @@ namespace Mobile.ViewModels.Suggestions.SuggestionAdd
 			}
 			catch (Exception e)
 			{
-				Logger.LogError(e.Message);
+				//Logger.LogError(e.Message);
+				App.Container.GetService<ILogger>().LogError(e.Message);
 				return "Erreur lors de l'ajout de la proposition";
 			}
 		}

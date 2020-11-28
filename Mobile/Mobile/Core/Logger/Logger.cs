@@ -12,7 +12,7 @@ namespace Mobile.Core.Logger
 		 * <param name="caller">Méthode appelante</param>
 		 * <param name="fileName">Nom du fichier dans lequel est survenue l'erreur</param>
 		 */
-		public static void LogError(
+		public void LogError(
 			string message,
 			[CallerLineNumber] int lineNumber = 0,
 			[CallerMemberName] string caller = null,
@@ -32,7 +32,7 @@ namespace Mobile.Core.Logger
 		 * <summary>Permet de logger une info</summary>
 		 * <param name="message">Message de l'information</param>
 		 */
-		public static void LogInfo(string message)
+		public void LogInfo(string message)
 		{
 			Console.WriteLine(
 				$@"[{DateTime.Now.ToShortTimeString()}] Info : {message}"

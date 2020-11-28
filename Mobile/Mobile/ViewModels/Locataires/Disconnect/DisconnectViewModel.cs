@@ -29,7 +29,8 @@ namespace Mobile.ViewModels.Locataires.Disconnect
 			}
 			catch (Exception e)
 			{
-				Logger.LogError(e.Message);
+				App.Container.GetService<ILogger>().LogError(e.Message);
+				//Logger.LogError(e.Message);
 
 				return false;
 			}
