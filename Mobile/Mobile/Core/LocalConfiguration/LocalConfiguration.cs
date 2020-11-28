@@ -13,10 +13,11 @@ namespace Mobile.Core.LocalConfiguration
 		private readonly ILocalFile _localFile;
 		public ConfigurationModel Configuration { get; set; }
 
-		public LocalConfiguration(string path)
+		public LocalConfiguration(ILocalFile localFile, string path)
 		{
 			Configuration = new ConfigurationModel();
-			_localFile = new LocalFile(path);
+			_localFile = localFile;
+			_localFile.Path = path;
 		}
 
 		/**
@@ -37,7 +38,6 @@ namespace Mobile.Core.LocalConfiguration
 			}
 			catch (Exception e)
 			{
-				//Logger.Logger.LogError(e.Message);
 				App.Container.GetService<ILogger>().LogError(e.Message);
 				return false;
 			}
@@ -63,7 +63,6 @@ namespace Mobile.Core.LocalConfiguration
 			}
 			catch (Exception e)
 			{
-				//Logger.Logger.LogError(e.Message);
 				App.Container.GetService<ILogger>().LogError(e.Message);
 
 				return false;

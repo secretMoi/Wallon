@@ -8,6 +8,7 @@ using Mobile.Controllers.Liaison;
 using Mobile.Controllers.Locataire;
 using Mobile.Controllers.Tache;
 using Mobile.Core;
+using Mobile.Core.Logger;
 using Mobile.Validators;
 using Models.Dtos.LiaisonsTachesLocataires;
 using Models.Dtos.Taches;
@@ -113,7 +114,7 @@ namespace Mobile.ViewModels.Taches.Detail
 			}
 			catch (Exception e)
 			{
-				Debug.WriteLine("Impossible de charger la tâche avec l'id : " + itemId + e.Message);
+				App.Container.GetService<ILogger>().LogError("Impossible de charger la tâche avec l'id : " + itemId + e.Message);
 			}
 
 			IsBusy = false;

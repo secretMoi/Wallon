@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Mobile.Controllers.Liaison;
 using Mobile.Controllers.Tache;
+using Mobile.Core.Logger;
 using Mobile.ViewModels.Taches.Detail;
 using Mobile.Views.Taches;
 using Models.Dtos.Taches;
@@ -40,7 +41,6 @@ namespace Mobile.ViewModels.Taches.List
 		private async void NavigateToAddTache()
 		{
 			await App.Container.GetService<INavigation>().PushAsync<AddTachePage>();
-			//await Shell.Current.GoToAsync($"{nameof(AddTachePage)}");
 		}
 
 		/**
@@ -70,9 +70,7 @@ namespace Mobile.ViewModels.Taches.List
 			if (tache == null)
 				return;
 
-			// This will push the ItemDetailPage onto the navigation stack
 			await App.Container.GetService<INavigation>().PushAsync<DetailPage>(nameof(DetailViewModel.TacheId), tache.Id);
-			//await Shell.Current.GoToAsync($"{nameof(DetailPage)}?{nameof(DetailViewModel.TacheId)}={tache.Id}");
 		}
 
 		/**
@@ -91,7 +89,7 @@ namespace Mobile.ViewModels.Taches.List
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine(e.Message);
+				App.Container.GetService<ILogger>().LogError(e.Message);
 
 				return false;
 			}

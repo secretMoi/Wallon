@@ -10,7 +10,7 @@ namespace Mobile.Views.Locataires
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class LogInPage : ContentPage
 	{
-		private readonly LogInViewModel _viewModel = new LogInViewModel(App.ConfigurationPath, FactoryController.CreateLocataire());
+		private readonly LogInViewModel _viewModel = new LogInViewModel(FactoryController.CreateLocataire());
 
 		public LogInPage()
 		{
@@ -45,9 +45,6 @@ namespace Mobile.Views.Locataires
 			{
 				await DisplayAlert("Succès", "Connexion réussie", "OK");
 				App.Container.GetService<INavigation>().GoToMainFlow();
-
-				// Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-				//await Shell.Current.GoToAsync($"{nameof(ListPage)}");
 			}
 		}
 

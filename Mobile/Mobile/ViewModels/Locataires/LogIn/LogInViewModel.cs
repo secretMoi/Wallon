@@ -26,7 +26,7 @@ namespace Mobile.ViewModels.Locataires.LogIn
 			set => SetProperty(ref _logInData, value);
 		}
 
-		public LogInViewModel(string configurationPath, ILocataireController locataireController)
+		public LogInViewModel(ILocataireController locataireController)
 		{
 			Title = "Se connecter";
 			LogInData.ShowPassword = true;
@@ -34,7 +34,7 @@ namespace Mobile.ViewModels.Locataires.LogIn
 
 			_locataire = locataireController;
 
-			_configuration = new LocalConfiguration(configurationPath);
+			_configuration = App.Container.GetService<ILocalConfiguration>();
 		}
 
 		/**
@@ -104,7 +104,6 @@ namespace Mobile.ViewModels.Locataires.LogIn
 			}
 			catch (Exception e)
 			{
-				//Logger.LogError(e.Message);
 				App.Container.GetService<ILogger>().LogError(e.Message);
 				return false;
 			}

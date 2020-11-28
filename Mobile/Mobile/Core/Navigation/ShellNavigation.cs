@@ -42,6 +42,11 @@ namespace Mobile.Core.Navigation
 			return Shell.Current.GoToAsync(_route.RouteName(typeof(T).ToString()));
 		}
 		
+		/**
+		 * <summary>Navigue vers une page avec paramètres</summary>
+		 * <param name="parameterName">Nom du paramètre</param>
+		 * <param name="data">Données à transmettre à la nouvelle page</param>
+		 */
 		public Task PushAsync<T>(string parameterName, object data) where T : Page
 		{
 			if (parameterName == null) throw new ArgumentNullException(nameof(parameterName));

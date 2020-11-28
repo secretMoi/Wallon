@@ -1,6 +1,8 @@
 ﻿using DependencyInjection;
 using DependencyInjection.Interfaces;
 using Mobile.Core;
+using Mobile.Core.LocalConfiguration;
+using Mobile.Core.LocalFiles;
 using Mobile.Core.Logger;
 using Mobile.Core.Navigation;
 using Mobile.Core.Routes;
@@ -15,7 +17,7 @@ namespace Mobile
 {
 	public partial class App : Application
 	{
-		public static string ConfigurationPath => "config.ini";
+		private static string ConfigurationPath => "config.ini";
 
 		private readonly IDiServiceCollection _services = new DiServiceCollection();
 
@@ -40,6 +42,8 @@ namespace Mobile
 			serviceCollection.RegisterSingleton<IRoute>(new Route("Mobile.Views."));
 			serviceCollection.RegisterSingleton<INavigation>(new Navigation(Container.GetService<IRoute>()));
 			serviceCollection.RegisterSingleton<ILogger, Logger>();
+			serviceCollection.RegisterSingleton<ILocalFile, LocalFile>();
+			serviceCollection.RegisterSingleton<ILocalConfiguration>(new LocalConfiguration(Container.GetService<ILocalFile>(), ConfigurationPath));
 		}
 
 		protected override async void OnStart()

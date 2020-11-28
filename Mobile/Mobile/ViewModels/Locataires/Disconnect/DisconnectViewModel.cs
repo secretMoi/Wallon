@@ -20,7 +20,7 @@ namespace Mobile.ViewModels.Locataires.Disconnect
 				Session.Instance.Disconnect(); // déconnecte la session
 
 				// supprime la session courante sauvegardée
-				ILocalConfiguration configuration = new LocalConfiguration(App.ConfigurationPath);
+				ILocalConfiguration configuration = App.Container.GetService<ILocalConfiguration>();
 				await configuration.RestoreAsync(); // restaure les paramètres
 				configuration.Configuration.Session = new ConfigurationSessionModel(); // reinit la session des paramètres
 				await configuration.SaveAsync(); // sauvegarde les paramètres sans la session
@@ -30,7 +30,6 @@ namespace Mobile.ViewModels.Locataires.Disconnect
 			catch (Exception e)
 			{
 				App.Container.GetService<ILogger>().LogError(e.Message);
-				//Logger.LogError(e.Message);
 
 				return false;
 			}

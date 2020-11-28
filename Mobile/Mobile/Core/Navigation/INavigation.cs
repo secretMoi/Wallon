@@ -11,6 +11,12 @@ namespace Mobile.Core.Navigation
 		void GoToMainFlow();
 		void GoToLogInFlow();
 		Task PushAsync<T>() where T : Page;
+		
+		/**
+		 * <summary>Navigue vers une page avec paramètres</summary>
+		 * <param name="parameterName">Nom du paramètre</param>
+		 * <param name="data">Données à transmettre à la nouvelle page</param>
+		 */
 		Task PushAsync<T>(string parameterName, object data) where T : Page;
 	}
 }
