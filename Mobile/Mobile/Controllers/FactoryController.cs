@@ -21,12 +21,12 @@ namespace Mobile.Controllers
 
 		public static ITacheController CreateTache()
 		{
-			return TacheController.Instance(new TachesApiController());
+			return TacheController.Instance(new TachesApiController(), new LiaisonsApiController());
 		}
 
 		public static ITacheController CreateMockTache()
 		{
-			return TacheController.Instance(new TacheApiMock());
+			return TacheController.Instance(new TacheApiMock(), new LiaisonsApiController());
 		}
 
 		public static ILiaisonController CreateLiaison()

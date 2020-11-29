@@ -89,26 +89,28 @@
     <!--<FlyoutItem Title="Se connecter" IsVisible="{Binding IsGuest}" x:DataType="viewModels:ShellViewModel">
         <ShellContent Route="LogInPage" ContentTemplate="{DataTemplate local:Locataires.LogInPage}" />
     </FlyoutItem>-->
-    <FlyoutItem Title="Liste des tâches">
-        <ShellContent ContentTemplate="{DataTemplate local:Taches.ListPage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Ajouter tâches">
-        <ShellContent ContentTemplate="{DataTemplate local:Taches.AddTachePage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Mes tâches">
-        <ShellContent ContentTemplate="{DataTemplate local:Taches.MesTachesPage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Liste des locataires">
-        <ShellContent ContentTemplate="{DataTemplate local:Locataires.LocatairesListPage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Proposer une suggestion">
-        <ShellContent ContentTemplate="{DataTemplate local:Suggestions.SuggestionAddPage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Liste des suggestions">
-        <ShellContent ContentTemplate="{DataTemplate local:Suggestions.SuggestionListPage}" />
-    </FlyoutItem>
-    <FlyoutItem Title="Se déconnecter">
-        <ShellContent ContentTemplate="{DataTemplate local:Locataires.DisconnectPage}" />
+    
+    <FlyoutItem Title="Tâches" Shell.TabBarIsVisible="False"
+                FlyoutDisplayOptions="AsMultipleItems">
+        
+        <Tab FlyoutDisplayOptions="AsMultipleItems"><!--Title="Tâches"-->
+            <ShellContent Title="Liste des tâches" ContentTemplate="{DataTemplate local:Taches.ListPage}" />
+            <ShellContent Title="Ajouter tâche" ContentTemplate="{DataTemplate local:Taches.AddTachePage}" />
+            <ShellContent Title="Mes tâches" ContentTemplate="{DataTemplate local:Taches.MesTachesPage}" />
+        </Tab>
+        
+        <Tab FlyoutDisplayOptions="AsMultipleItems"><!-- Title="Suggestions"-->
+            <ShellContent Title="Proposer une suggestion" ContentTemplate="{DataTemplate local:Suggestions.SuggestionAddPage}" />
+            <ShellContent Title="Liste des suggestions" ContentTemplate="{DataTemplate local:Suggestions.SuggestionListPage}" />
+        </Tab>
+        
+        <Tab FlyoutDisplayOptions="AsMultipleItems"><!-- Title="Suggestions"-->
+            <ShellContent Title="Liste des locataires" ContentTemplate="{DataTemplate local:Locataires.LocatairesListPage}" />
+        </Tab>
+        
+        <Tab FlyoutDisplayOptions="AsMultipleItems"><!-- Title="Suggestions"-->
+            <ShellContent Title="Se déconnecter" ContentTemplate="{DataTemplate local:Locataires.DisconnectPage}" />
+        </Tab>
     </FlyoutItem>
 
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->

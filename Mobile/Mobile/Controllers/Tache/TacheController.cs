@@ -14,15 +14,16 @@ namespace Mobile.Controllers.Tache
 	public class TacheController : ITacheController
 	{
 		private ITachesApiController _tachesApi;
-		private readonly LiaisonsApiController _liaisonsApi = new LiaisonsApiController();
+		private ILiaisonsApiController _liaisonsApi;
 
 		private static readonly Lazy<ITacheController> Lazy = new Lazy<ITacheController>(() => new TacheController());
 
 		//public static ITacheController Instance => Lazy.Value;
 
-		public static ITacheController Instance(ITachesApiController tachesApiController)
+		public static ITacheController Instance(ITachesApiController tachesApiController, ILiaisonsApiController liaisonsApi)
 		{
 			((TacheController) Lazy.Value)._tachesApi = tachesApiController;
+			((TacheController) Lazy.Value)._liaisonsApi = liaisonsApi;
 			return Lazy.Value;
 		}
 
