@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Mobile.Controllers;
-using Mobile.Controllers.Suggestion;
 using Mobile.ViewModels.Suggestions.List;
 using Models.Dtos.Suggestions;
 using Xamarin.Forms;
@@ -40,10 +39,9 @@ namespace Mobile.Views.Suggestions
 			_viewModel.IsBusy = false;
 		}
 
-		private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
+		private async void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
 		{
-			//todo finir
-			//throw new System.NotImplementedException();
+			await _viewModel.OnItemSelected(e.ItemData as SuggestionReadDto);
 		}
 
 		private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)

@@ -2,6 +2,10 @@
 using System.Threading.Tasks;
 using Mobile.Controllers.Suggestion;
 using Mobile.Core.Logger;
+using Mobile.Core.Navigation;
+using Mobile.ViewModels.Suggestions.Detail;
+using Mobile.Views.Suggestions;
+using Models.Dtos.Suggestions;
 
 namespace Mobile.ViewModels.Suggestions.List
 {
@@ -46,6 +50,14 @@ namespace Mobile.ViewModels.Suggestions.List
 
 				return false;
 			}
+		}
+
+		public async Task OnItemSelected(SuggestionReadDto suggestion)
+		{
+			if (suggestion == null)
+				return;
+
+			await App.Container.GetService<INavigation>().PushAsync<SuggestionDetailPage>(nameof(SuggestionDetailViewModel.SuggestionId), suggestion.Id);
 		}
 	}
 }

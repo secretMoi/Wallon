@@ -33,6 +33,7 @@ namespace Mobile
 			// suggestions
 			App.Container.GetService<IRoute>().RegisterRoute<SuggestionAddPage>();
 			App.Container.GetService<IRoute>().RegisterRoute<SuggestionListPage>();
+			App.Container.GetService<IRoute>().RegisterRoute<SuggestionDetailPage>();
 		}
 		
 		public bool ConnectionState

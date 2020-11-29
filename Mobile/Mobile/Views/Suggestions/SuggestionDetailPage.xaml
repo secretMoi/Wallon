@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:detail="clr-namespace:Mobile.ViewModels.Suggestions.Detail;assembly=Mobile"
+             x:Class="Mobile.Views.Suggestions.SuggestionDetailPage"
+             x:DataType="detail:SuggestionDetailViewModel">
+	<ContentPage.Content>
+		<StackLayout Margin="20" Orientation="Vertical" HorizontalOptions="FillAndExpand"  VerticalOptions="StartAndExpand" Spacing="20">
+			
+			<ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+			
+			<Frame CornerRadius="10" HasShadow="True" Padding="0" HorizontalOptions="FillAndExpand">
+				
+					<Label Text="{Binding SuggestionDetail.Suggestion.Nom}" HorizontalOptions="CenterAndExpand"
+					       FontSize="22" FontAttributes="Bold" />
+				
+			</Frame>
+			
+			<Frame CornerRadius="10" HasShadow="True" Padding="0" HorizontalOptions="FillAndExpand">
+				<Label Text="{Binding SuggestionDetail.Suggestion.Description}" HorizontalOptions="CenterAndExpand"
+				       FontSize="18"/>
+			</Frame>
+			
+			<StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+				<Label Text="Par"  HorizontalOptions="End" FontSize="14" />
+				<Label Text="{Binding SuggestionDetail.Suggestion.Locataire.Nom}" HorizontalOptions="End" FontSize="14" />
+			</StackLayout>
+			
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

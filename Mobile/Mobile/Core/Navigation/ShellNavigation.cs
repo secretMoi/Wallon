@@ -51,11 +51,11 @@ namespace Mobile.Core.Navigation
 		{
 			if (parameterName == null) throw new ArgumentNullException(nameof(parameterName));
 			if (data == null) throw new ArgumentNullException(nameof(data));
-			
+
 			return Shell.Current.GoToAsync(
 				_route.RouteName(typeof(T).ToString()) +
 				"?" +
-				nameof(parameterName) +
+				parameterName +
 				"=" +
 				data
 			);
