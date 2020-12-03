@@ -1,5 +1,4 @@
 ﻿using Mobile.ViewModels;
-using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace Mobile.Views

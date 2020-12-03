@@ -6,7 +6,6 @@ using AutoMapper;
 using Mobile.Core.Logger;
 using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
-using RestApiClient.Controllers;
 using RestApiClient.Interfaces;
 
 namespace Mobile.Controllers.Tache
@@ -17,8 +16,6 @@ namespace Mobile.Controllers.Tache
 		private ILiaisonsApiController _liaisonsApi;
 
 		private static readonly Lazy<ITacheController> Lazy = new Lazy<ITacheController>(() => new TacheController());
-
-		//public static ITacheController Instance => Lazy.Value;
 
 		public static ITacheController Instance(ITachesApiController tachesApiController, ILiaisonsApiController liaisonsApi)
 		{
@@ -116,7 +113,6 @@ namespace Mobile.Controllers.Tache
 			}
 			catch (Exception e)
 			{
-				//Logger.LogError(e.Message);
 				App.Container.GetService<ILogger>().LogError(e.Message);
 
 				return null;

@@ -12,8 +12,6 @@ namespace Mobile.Controllers.Locataire
 
 		private static readonly Lazy<ILocataireController> Lazy = new Lazy<ILocataireController>(() => new LocataireController());
 
-		//public static ILocataireController Instance => Lazy.Value;
-
 		public static ILocataireController Instance(ILocatairesApiController locataireApiController)
 		{
 			((LocataireController) Lazy.Value)._taches = locataireApiController;

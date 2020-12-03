@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Models.Dtos.Locataires;
 
 namespace Models.Mocks
 {

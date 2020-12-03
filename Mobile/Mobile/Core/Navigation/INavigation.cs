@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Mobile.ViewModels;
 using Xamarin.Forms;
 
 namespace Mobile.Core.Navigation

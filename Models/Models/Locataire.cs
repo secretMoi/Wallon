@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace Models.Models
+﻿namespace Models.Models
 {
 	public class Locataire
 	{

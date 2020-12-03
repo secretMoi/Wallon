@@ -107,5 +107,43 @@ namespace RestServer.Controllers
 
 			return NoContent();
 		}
+		
+		/**
+		 * <summary>Désactive un locataire</summary>
+		 * <param name="id">Id du locataire à désactiver</param>
+		 * <returns>NotFound si l'id n'existe pas, NoContent si tout s'est bien passé</returns>
+		 */
+		[HttpPut]
+		[Route("Desactive/{id:int}")]
+		public ActionResult Desactive(int id)
+		{
+			return ChangeActiveState(id, false);
+		}
+		
+		/**
+		 * <summary>Désactive un locataire</summary>
+		 * <param name="id">Id du locataire à désactiver</param>
+		 * <returns>NotFound si l'id n'existe pas, NoContent si tout s'est bien passé</returns>
+		 */
+		[HttpPut]
+		[Route("Active/{id:int}")]
+		public ActionResult Active(int id)
+		{
+			return ChangeActiveState(id, true);
+		}
+
+		private ActionResult ChangeActiveState(int id, bool state)
+		{
+			Locataire locataireModel = _repository.GetById(id); // cherche l'objet dans la bdd
+			if (locataireModel == null)
+				return NotFound(); // si il n'existe pas on quitte et envoie 404
+
+			locataireModel.Actif = state;
+			
+			_repository.Update(locataireModel);
+			_repository.SaveChanges();
+
+			return NoContent();
+		}
 	}
 }

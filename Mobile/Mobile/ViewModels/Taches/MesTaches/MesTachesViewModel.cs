@@ -7,7 +7,7 @@ using Mobile.Views.Taches;
 using Models.Dtos;
 using Models.Dtos.Locataires;
 using Models.Dtos.Taches;
-using Xamarin.Forms;
+using INavigation = Mobile.Core.Navigation.INavigation;
 
 namespace Mobile.ViewModels.Taches.MesTaches
 {
@@ -55,7 +55,7 @@ namespace Mobile.ViewModels.Taches.MesTaches
 				return;
 
 			// This will push the ItemDetailPage onto the navigation stack
-			await Shell.Current.GoToAsync($"{nameof(DetailPage)}?{nameof(DetailViewModel.TacheId)}={tache.Id}");
+			await App.Container.GetService<INavigation>().PushAsync<DetailPage>(nameof(DetailViewModel.TacheId), tache.Id);
 		}
 
 		/**

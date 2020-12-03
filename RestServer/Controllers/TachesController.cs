@@ -98,11 +98,10 @@ namespace RestServer.Controllers
 				return Content("Liste de liaisons nulle");
 
 			IList<TacheReadDto> tachesReadDtos = new List<TacheReadDto>(liaisons.Count);
-			TacheReadDto tacheReadDto;
 
 			foreach (LiaisonTacheLocataire liaison in liaisons)
 			{
-				tacheReadDto = new TacheReadDto();
+				var tacheReadDto = new TacheReadDto();
 				_mapper.Map(liaison.Tache, tacheReadDto);
 
 				if(tacheReadDto.LocataireId == id) // si le locataire actuel est celui renseigné en paramètre

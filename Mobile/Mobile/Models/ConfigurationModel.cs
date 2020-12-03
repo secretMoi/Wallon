@@ -1,5 +1,4 @@
 ﻿using System;
-using Models.Dtos.Locataires;
 
 namespace Mobile.Models
 {

@@ -1,6 +1,4 @@
-﻿using Mobile.Views;
-using System;
-using Mobile.Core.Routes;
+﻿using Mobile.Core.Routes;
 using Mobile.ViewModels;
 using Mobile.Views.Locataires;
 using Mobile.Views.Suggestions;
@@ -34,20 +32,6 @@ namespace Mobile
 			App.Container.GetService<IRoute>().RegisterRoute<SuggestionAddPage>();
 			App.Container.GetService<IRoute>().RegisterRoute<SuggestionListPage>();
 			App.Container.GetService<IRoute>().RegisterRoute<SuggestionDetailPage>();
-		}
-		
-		public bool ConnectionState
-		{
-			set
-			{
-				_viewModel.IsLogged = value;
-				_viewModel.IsGuest = !value;
-			}
-		}
-
-		private async void OnMenuItemClicked(object sender, EventArgs e)
-		{
-			await Shell.Current.GoToAsync($"{nameof(LogInPage)}");
 		}
 	}
 }
