@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Mobile.Controllers.Locataire;
 using Mobile.Core;
@@ -51,7 +52,8 @@ namespace Mobile.ViewModels.Locataires.Compte
 		public async Task<bool> UpdateProfile()
 		{
 			if (CompteData.Nom == null || CompteData.Password == null ||
-			    CompteData.Nom.Length == 0 || CompteData.Password.Length == 0)
+			    CompteData.Nom.Length == 0 || CompteData.Password.Length == 0 ||
+			    !IsValidPassword())
 				return false;
 			
 			try
@@ -71,6 +73,21 @@ namespace Mobile.ViewModels.Locataires.Compte
 			}
 
 			return true;
+
+			bool IsValidPassword()
+			{
+				//todo regex
+				try
+				{
+					return Regex.IsMatch(CompteData.Password,
+						@"^.{4,50}",
+						RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(50));
+				}
+				catch (RegexMatchTimeoutException)
+				{
+					return false;
+				}
+			}
 		}
 	}
 }
