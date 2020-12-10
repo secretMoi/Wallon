@@ -11,7 +11,7 @@
                     <DataTemplate>
                         <Grid Padding="2" Margin="2">
                             <Frame x:Name="frame" HasShadow="True" Padding="2" Margin="2">
-                                <StackLayout>
+                                <StackLayout VerticalOptions="Center">
                                     <Label Text="{Binding Nom}" VerticalTextAlignment="Center" />
                                 </StackLayout>
                             </Frame>

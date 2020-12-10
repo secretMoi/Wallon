@@ -10,7 +10,7 @@ using ItemTappedEventArgs = Syncfusion.ListView.XForms.ItemTappedEventArgs;
 namespace Mobile.Views.Taches
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ListPage : ContentPage
+	public partial class ListPage
 	{
 		private readonly ListViewModel _viewModel = new ListViewModel(FactoryController.CreateTache(), FactoryController.CreateLiaison());
 
@@ -34,7 +34,7 @@ namespace Mobile.Views.Taches
 		private async Task LoadTaches()
 		{
 			_viewModel.IsBusy = true;
-			await _viewModel.Hydrate();
+			await _viewModel.Hydrate("");
 			_viewModel.IsBusy = false;
 		}
 
@@ -79,6 +79,11 @@ namespace Mobile.Views.Taches
 			);
 
 			await LoadTaches(); // recharge les tâches
+		}
+
+		private async void SearchBar_OnTextChanged(object sender, TextChangedEventArgs e)
+		{
+			await _viewModel.Hydrate(e.NewTextValue);
 		}
 	}
 }

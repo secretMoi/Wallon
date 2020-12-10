@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Mobile.Controllers.Liaison;
 using Mobile.Controllers.Tache;
@@ -19,6 +21,8 @@ namespace Mobile.ViewModels.Taches.List
 		private readonly ILiaisonController _liaisons;
 
 		public Command AddTacheCommand { get; }
+		
+		private IList<TacheReadDto> _tachesCache = new List<TacheReadDto>();
 		public ObservableCollection<TacheReadDto> Taches { get; private set; }
 
 		public ListData LogInData // élément sélectionné dans la dgv
@@ -46,16 +50,15 @@ namespace Mobile.ViewModels.Taches.List
 		/**
 		 * <summary>Hydrate les données de la page en async</summary>
 		 */
-		public async Task Hydrate()
+		public async Task Hydrate(string search)
 		{
-			if(Taches.Count != 0)
-			{
-				Taches.Clear();
-			}
+			Taches.Clear();
 
-			var taches = await _taches.GetAllAsync();
+			if(_tachesCache.Count == 0)
+				_tachesCache = await _taches.GetAllAsync();
 
-			foreach (var tache in taches)
+			//todo fonction de recherche
+			foreach (var tache in _tachesCache.Where(tache => tache.Nom.ToLower().Contains(search.ToLower())))
 			{
 				Taches.Add(tache);
 			}

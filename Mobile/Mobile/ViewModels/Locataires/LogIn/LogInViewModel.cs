@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Mobile.Controllers.Locataire;
@@ -44,10 +43,7 @@ namespace Mobile.ViewModels.Locataires.LogIn
 		{
 			LogInData.ShowPassword = !LogInData.ShowPassword;
 
-			if (LogInData.ShowPassword)
-				LogInData.PasswordImageEye = ImageHidePassword;
-			else
-				LogInData.PasswordImageEye = ImageShowPassword;
+			LogInData.PasswordImageEye = LogInData.ShowPassword ? ImageHidePassword : ImageShowPassword;
 		}
 
 		/**
@@ -95,7 +91,7 @@ namespace Mobile.ViewModels.Locataires.LogIn
 		/// Enregistre les identifiants dans le fichier de sauvegarde local
 		/// </summary>
 		/// <param name="locataire">Informations sur le locataire courant</param>
-		public async Task<bool> SaveSessionAsync(LocataireReadDto locataire)
+		private async Task<bool> SaveSessionAsync(LocataireReadDto locataire)
 		{
 			try
 			{
@@ -120,6 +116,8 @@ namespace Mobile.ViewModels.Locataires.LogIn
 			// charge les infos du locataire depuis la bdd
 			var locataireInDb = await ExisteAsync(_configuration.Configuration.Session.Nom);
 
+			if (locataireInDb == null) return false;
+
 			// si la session == au locataire dans la db
 			if (_configuration.Configuration.Session.Nom == locataireInDb.Nom &&
 			    _configuration.Configuration.Session.Password.SequenceEqual(locataireInDb.Password))
@@ -137,15 +135,11 @@ namespace Mobile.ViewModels.Locataires.LogIn
 		/// </summary>
 		/// <param name="nom">Le nom du locataire</param>
 		/// <returns>Renvoie un objet locataire si trouvé, null sinon</returns>
-		public async Task<LocataireReadDto> ExisteAsync(string nom)
+		private async Task<LocataireReadDto> ExisteAsync(string nom)
 		{
-			IList<LocataireReadDto> locataires = await _locataire.GetAllAsync();
+			var locataires = await _locataire.GetAllAsync();
 
-			foreach (LocataireReadDto locataire in locataires)
-				if (locataire.Nom == nom)
-					return locataire;
-
-			return null;
+			return locataires.FirstOrDefault(locataire => locataire.Nom == nom);
 		}
 	}
 }

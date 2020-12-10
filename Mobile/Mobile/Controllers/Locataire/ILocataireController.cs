@@ -9,5 +9,9 @@ namespace Mobile.Controllers.Locataire
 		static ILocataireController Instance { get; }
 
 		Task<IList<LocataireReadDto>> GetAllAsync();
+
+		Task<LocataireReadDto> GetByIdAsync(int id);
+
+		Task UpdateAsync(LocataireUpdateDto locataireUpdateDto);
 	}
 }

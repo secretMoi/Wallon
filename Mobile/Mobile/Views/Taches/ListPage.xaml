@@ -14,6 +14,8 @@
         <StackLayout Orientation="Vertical" HorizontalOptions="StartAndExpand"  VerticalOptions="CenterAndExpand">
 
             <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+            
+            <SearchBar Placeholder="Chercher..." VerticalOptions="Start" FontSize="25" TextChanged="SearchBar_OnTextChanged" />
 
             <xForms:SfListView ItemsSource="{Binding Taches}" ItemTapped="ListView_OnItemTapped"
                                SelectionBackgroundColor="#F0F0F0" ItemSize="100"

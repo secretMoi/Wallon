@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Mobile.Views.Locataires.ComptePage"
+             Title="{Binding Title}">
+	<ContentPage.Content>
+		<StackLayout Margin="20" Orientation="Vertical" HorizontalOptions="FillAndExpand"  VerticalOptions="FillAndExpand">
+
+			<ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+			
+			<Label FontSize="22" Text="Nom" VerticalTextAlignment="Center" />
+			<StackLayout Orientation="Horizontal">
+				<Frame CornerRadius="10" Padding="0" HorizontalOptions="FillAndExpand">
+					<Entry Text="{Binding CompteData.Nom}" Placeholder="Votre prénom" />
+				</Frame>
+			</StackLayout>
+			
+			
+			<Label Margin="0, 50, 0, 0" FontSize="22" Text="Mot de passe" VerticalTextAlignment="Center" />
+			<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+				<Frame CornerRadius="10" Padding="0" HorizontalOptions="FillAndExpand">
+					<StackLayout Orientation="Horizontal" BackgroundColor="{StaticResource Primary}">
+						
+						<Entry IsPassword="{Binding CompteData.ShowPassword}" Text="{Binding CompteData.Password}"
+						       Placeholder="Votre mot de passe" HorizontalOptions="FillAndExpand"/>
+				
+						<Image Margin="0,0,10,0" Source="{Binding CompteData.PasswordImageEye}" HorizontalOptions="End" VerticalOptions="Center" >
+							<Image.GestureRecognizers>
+								<TapGestureRecognizer Tapped="ShowPassword" NumberOfTapsRequired="1" />
+							</Image.GestureRecognizers>
+						</Image>
+						
+					</StackLayout>
+				</Frame>
+			</StackLayout>
+			
+			<Frame CornerRadius="10" Padding="0" VerticalOptions="EndAndExpand">
+				<Button Text="Modifier" Clicked="Button_OnClicked" />
+			</Frame>
+			
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

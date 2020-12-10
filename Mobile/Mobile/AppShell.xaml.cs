@@ -27,6 +27,7 @@ namespace Mobile
 			App.Container.GetService<IRoute>().RegisterRoute<LogInPage>();
 			App.Container.GetService<IRoute>().RegisterRoute<DisconnectPage>();
 			App.Container.GetService<IRoute>().RegisterRoute<LocatairesListPage>();
+			App.Container.GetService<IRoute>().RegisterRoute<ComptePage>();
 			
 			// suggestions
 			App.Container.GetService<IRoute>().RegisterRoute<SuggestionAddPage>();
