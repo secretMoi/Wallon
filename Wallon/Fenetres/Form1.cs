@@ -246,7 +246,7 @@ namespace Wallon.Fenetres
 		}
 
 		// appelée lors du premier affichage de la fenêtre
-		private async void Form1_Shown(object sender, EventArgs e)
+		private  void Form1_Shown(object sender, EventArgs e)
 		{
 			//await CheckForUpdate();
 		}
