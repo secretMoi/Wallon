@@ -16,6 +16,7 @@ namespace Mobile.ViewModels.Locataires.List
 		 */
 		public LocatairesListViewModel(ILocataireController locataireController)
 		{
+			Title = "Liste des locataires";
 			Locataires = new LocatairesListData
 			{
 				List = new ObservableCollection<LocataireReadDto>()
