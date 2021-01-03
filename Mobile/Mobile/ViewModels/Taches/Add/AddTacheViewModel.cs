@@ -46,7 +46,8 @@ namespace Mobile.ViewModels.Taches.Add
 
 		public async Task Load()
 		{
-			await LoadLocataires();
+			if(Tache.Locataires.Count == 0)
+				await LoadLocataires();
 		}
 
 		/**
